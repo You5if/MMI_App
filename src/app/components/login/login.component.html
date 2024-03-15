@@ -1,0 +1,61 @@
+<html>
+    <body>
+        
+            <div class="login-container">
+                <div class="container">
+                    <h2>Login</h2>
+                    <div class="usernamesec">
+                        <label for="username">Username:</label>
+                        <div class="input-container">
+                            <!-- SVG circle icon for username -->
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                            width="50.000000pt" height="50.000000pt" viewBox="0 0 50.000000 50.000000"
+                            preserveAspectRatio="xMidYMid meet">
+    
+                            <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)"
+                            fill="#3B3E79" stroke="none">
+                            <path d="M155 456 c-60 -28 -87 -56 -114 -116 -36 -79 -19 -183 42 -249 33
+                            -36 115 -71 167 -71 52 0 134 35 167 71 34 37 63 110 63 159 0 52 -35 134 -71
+                            167 -37 34 -110 63 -159 63 -27 0 -65 -10 -95 -24z m180 -15 c76 -34 125 -113
+                            125 -201 0 -41 -33 -118 -54 -126 -8 -3 -35 4 -60 15 -52 23 -57 38 -26 89 22
+                            35 28 129 10 161 -24 46 -125 51 -155 8 -23 -32 -20 -129 5 -169 31 -51 26
+                            -66 -26 -89 -25 -11 -52 -18 -60 -15 -23 9 -54 86 -54 134 -1 151 159 255 295
+                            193z"/>
+                            </g>
+                            </svg>
+                            
+                            <!-- <input type="text" id="username" #emailInput="ngModel" [(ngModel)]="userEmail" name="username" required> -->
+                             <input type="text" id="username"  name="username" required>
+                           
+                        </div>
+                    </div>
+                    <div class="passwordsec">
+                        <label for="password">Password:</label>
+                        <div class="input-container">
+                            
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                            width="50.000000pt" height="50.000000pt" viewBox="0 0 50.000000 50.000000"
+                            preserveAspectRatio="xMidYMid meet">
+    
+                            <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)"
+                            fill="#3B3E79" stroke="none">
+                            <path d="M275 486 c-64 -29 -105 -107 -92 -175 5 -24 -5 -38 -89 -122 -77 -77
+                            -94 -99 -94 -124 0 -28 4 -26 94 64 51 51 96 89 99 84 3 -5 -36 -52 -88 -103
+                            -52 -51 -92 -97 -89 -102 3 -4 22 -8 43 -8 37 0 71 23 71 48 0 7 5 12 12 12 6
+                            0 39 28 73 62 62 61 62 61 123 62 100 2 157 58 157 156 0 63 -16 95 -67 133
+                            -33 25 -113 32 -153 13z m115 -51 c32 -17 60 -61 60 -95 0 -24 -27 -80 -38
+                            -80 -9 0 -152 143 -152 152 0 12 53 37 78 38 13 0 36 -7 52 -15z"/>
+                            </g>
+                            </svg>
+    
+    
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                    </div>
+                    <div class="submitsec">
+                        <input type="button" (click)="btnClick();" value="Login">
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

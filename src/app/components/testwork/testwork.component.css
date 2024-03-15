@@ -1,0 +1,26 @@
+  .example-card {
+    max-height: 600px;
+  }
+  
+  .mat-card-image {
+    width: 100px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv4qNp55mfP_MT7WILhS1jIBMy_FuMVz_N1w&usqp=CAU');
+    background-size: cover;
+  }
+
+  div {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    font-family: 'MyFont', sans-serif;
+}
+
+mat-form-field {
+    margin-right: 12px;
+  }

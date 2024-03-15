@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('assets/fonts/Lora-VariableFont_wght.ttf') format('truetype'),
+         url('assets/fonts/Lora-Italic-VariableFont_wght.ttf') format('truetype');
+}
+
+/* html, body { */
+    /* height: 100%; */
+    /* margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; */
+    /* justify-content: center; */
+    /* min-height: 100vh; */
+    /* background: #282c34; */
+    /* font-family: 'MyFont', sans-serif;
+    position: relative;
+} */
+body {
+    position: relative;
+    font-family: 'MyFont', sans-serif;
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef;
+    
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+}
+

@@ -1,0 +1,318 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+    <div class="logo-container">
+        <button class="logo" (click)="toggleCollapse()">A</button>
+        <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
+        <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            style="width: 95%;
+            height: 95%;" viewBox="0 -80 700 600"
+            preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+            fill="#fff" stroke="none">
+            <path d="M271 5109 c-104 -20 -194 -91 -239 -187 -22 -47 -27 -71 -27 -137 0
+            -155 -68 -78 1075 -1220 l1010 -1010 -1019 -1020 c-827 -829 -1022 -1029
+            -1041 -1070 -34 -71 -35 -199 -2 -270 29 -63 93 -129 157 -163 72 -37 187 -42
+            270 -12 58 22 94 56 1083 1044 l1022 1021 1018 -1016 c817 -816 1027 -1021
+            1067 -1040 42 -20 65 -24 145 -24 83 0 101 4 145 27 62 32 129 103 158 166 32
+            68 30 197 -3 267 -19 41 -214 241 -1041 1070 l-1019 1020 1010 1010 c1143
+            1142 1075 1065 1075 1220 0 65 -5 90 -26 135 -81 172 -284 242 -454 158 -26
+            -13 -391 -370 -1057 -1036 l-1018 -1017 -1017 1017 c-667 666 -1032 1023
+            -1058 1036 -34 17 -145 45 -164 41 -3 -1 -26 -5 -50 -10z"/>
+            </g>
+            </svg>
+        </button>
+    </div>
+    <!-- <ul class="sidenav-nav"> -->
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="dashboard"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Dashboard</span>
+            </a>
+        </li> -->
+
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="products"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Products</span>
+            </a> -->
+            <!-- <app-sublevel-menu 
+                [data]="data"
+                [collapsed]="collapsed"
+
+            ></app-sublevel-menu> -->
+        <!-- </li> -->
+
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="statistics"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Statistics</span>
+            </a>
+        </li> -->
+
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="coupens"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Coupens</span>
+            </a>
+        </li> -->
+
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="pages"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Pages</span>
+            </a>
+        </li> -->
+
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="media"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Media</span>
+            </a>
+        </li> -->
+
+        <!-- <li class="sidenav-nav-item">
+            <a class="sidenav-nav-link" routerLink="settings"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+            <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                style="width: 95%;
+                height: 95%;" viewBox="0 0 500 400"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#000000" class="mysvgfill" stroke="none">
+                <path d="M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337
+                -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462
+                355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167
+                651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355
+                651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29
+                185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3
+                -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57
+                -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229
+                230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z"/>
+                </g>
+                </svg>
+
+            </div>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Settings</span>
+            </a>
+        </li> -->
+        <!-- <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink]="[data.routerlink]"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+            >
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+            </a>
+        </li>
+    </ul> -->
+    <div class="scrollwrap scrollwrap_delayed">
+        <ul class="sidenav-nav">
+            
+           
+            <li class="sidenav-nav-item" *ngFor="let data of navData">
+                <a class="sidenav-nav-link" (click)="handleClick(data)"
+                    *ngIf="data.items && data.items.length > 0"
+                    [ngClass]="getActiveClass(data)"
+                >
+                    <div class="sidenav-link-icon">
+                        <!-- <img src="../../../assets/images/bullet.svg" width="100%" height="100%"/> -->
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                            attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
+                            attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
+
+                            <g attr.transform="{{data.svgicon.transform}}"
+                            fill="#000000" class="mysvgfill" stroke="none">
+                            <path attr.d="{{data.svgicon.d}}"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+                </a>
+    
+                
+                <a class="sidenav-nav-link"
+                    *ngIf="!data.items || (data.items && data.items.length === 0)"
+                [routerLink]="[data.routeLink]"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}"
+                    (click)="shrinkItems(data)"
+                >
+                    
+                <div class="sidenav-link-icon">
+                    <!-- <img src="../../../assets/images/bullet.svg" width="100%" height="100%"/> -->
+                    <svg *ngIf="data.svgicon.d !== ''" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
+                        attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
+
+                        <g attr.transform="{{data.svgicon.transform}}"
+                        fill="#000000" class="mysvgfill" stroke="none">
+                        <path attr.d="{{data.svgicon.d}}"/>
+                        </g>
+                    </svg>
+                    <svg *ngIf="data.svgicon.src !== ''" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
+                        attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}" src="./../../../assets/images/"+{{data.svgicon.src}}>
+                    </svg>
+                </div>
+                  
+                    <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+                </a>
+                
+                <div *ngIf="collapsed && data.items && data.items.length > 0">
+                    <app-sublevel-menu
+                        [data]="data"
+                        [collapsed]="collapsed"
+                        [multiple]="multiple"
+                        [expanded]="data.expanded"
+                    ></app-sublevel-menu>
+                </div>
+               
+            </li>
+        </ul>
+    </div>
+    
+</div>

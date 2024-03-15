@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #282c34;
+    font-family: 'MyFont', sans-serif;
+}
+
+.login-container {
+    width: 100%;
+    min-width: 400px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'MyFont', sans-serif;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'MyFont', sans-serif;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    height: 100%;
+    font-family: 'MyFont', sans-serif;
+}
+
+label {
+    color: #555;
+    text-align: left;
+    font-family: 'MyFont', sans-serif;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    font-family: 'MyFont', sans-serif;
+}
+
+.input-container svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    fill: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Adjusted padding for the icon */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'MyFont', sans-serif;
+}
+
+input[type="button"] {
+    background: #3B3E79;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'MyFont', sans-serif;
+    font-weight: bold;
+}
+
+input[type="button"]:hover {
+    background: #242B64;
+}
+
+.container {
+    display: grid;
+    height: 60vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "formtitle"
+        "usernamecontrol"
+        "passwordcontrol"
+        "loginbutton";
+    place-items: center center;
+    font-family: 'MyFont', sans-serif;
+}
+
+.usernamesec, .passwordsec, .submitsec {
+    width: 100%;
+    text-align: left;
+    font-family: 'MyFont', sans-serif;
+}
