@@ -10,11 +10,13 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { app } from '../../server';
 import { EmployeeprofileComponent } from './components/employeeprofile/employeeprofile.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-entry.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch:'full'},
+  {path: '', redirectTo: 'employeeprofile', pathMatch:'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'employeeprofile', component: EmployeeprofileComponent},
+  {path: 'employeeprofile-entry/:id', component: EmpEntryComponent},
   {path: 'employeeattendance', component: AttendanceComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'statistics', component: StatisticsComponent},

@@ -16,7 +16,7 @@ export class AttendanceService {
   }
 
   sendData(dataToSend: AttendanceModel): Observable<any> {
-      if (dataToSend.EmpProfileId === 0) {
+      if (dataToSend.empAttId === 0) {
           return this.httpclient.post<any>(this._cf.baseUrl + 'EmpAtt/create', dataToSend);
       } else {
           return this.httpclient.post<any>(this._cf.baseUrl + 'EmpAtt/edit', dataToSend);
@@ -31,5 +31,11 @@ export class AttendanceService {
       }), catchError(this._cf.handleError)
       );
   }
+
+  deleteRecord(dataToSend: AttendanceModel): Observable<any> {
+        
+    return this.httpclient.post<any>(this._cf.baseUrl + 'EmpAtt/delete', dataToSend);
+    
+}
      
 }

@@ -1,12 +1,20 @@
 <h1>Employee attendance</h1>
 
-<button *ngIf="screenMode === 'index'"
+<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+
+<button 
+type="file"
+    (click)="file.click()"
+  >
+  Upload CSV
+</button>
+<!-- <button *ngIf="screenMode === 'index'"
     (click)="btnClickCreate();"
   >
   Create
-</button>
+</button> -->
 
-<div class="card" *ngIf="screenMode === 'index'">
+<div class="card" >
     <div class="card-head">Employee attendanceindex</div>
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">
@@ -18,7 +26,7 @@
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button (click)="onEdit(row.empProfileId)" class="Btn" mat-menu-item>Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
               </mat-cell>
           </ng-container>
         
@@ -26,7 +34,7 @@
             <mat-header-cell class="centH" *matHeaderCellDef>
                 Att Id
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.first}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empAttId}}</mat-cell>
           </ng-container>
           
       
@@ -41,267 +49,3 @@
         
     </div>
 </div>
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" *ngIf="screenMode === 'entry'">
-    <button type="submit" 
-    (click)="btnClick();"
-  >
-  Save
-</button>
-<button type="button"
-    (click)="btnClickCancel(); heroForm.resetForm();"
-  >
-  Cancel
-</button>
-    <div class="card" >
-        <div class="card-head">Personal information</div>
-        <div class="card-body">
-           
-            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
-                    <mat-card class="example-card">
-                        <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="Photo of a Shiba Inu">
-                        <div class="no-img" *ngIf="user_img === '/path/to/file'"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon></div>
-                        <mat-card-actions class="card-footer">
-                          <button class="card-btn" mat-raised-button (click)="deleteImg()" color="warn"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete_forever"></mat-icon></button>
-                          <button class="card-btn" mat-raised-button (click)="file.click()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="mode_edit"></mat-icon></button>
-                        </mat-card-actions>
-                      </mat-card>
-           
-           <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>First name</mat-label>
-                <input matInput  placeholder="First name"  [(ngModel)]="firstName" name="firstName" autofocus  required>
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
-            </mat-form-field>
-    
-            <mat-radio-group  name="gender">
-                <mat-radio-button value="true">Male</mat-radio-button>
-                <mat-radio-button value="false">Female</mat-radio-button>
-            </mat-radio-group>
-           </div>
-            <!-- <mat-radio-group [(ngModel)]="selectedGender" name="gender">
-                <mat-radio-button value="true">Male</mat-radio-button>
-                <mat-radio-button value="false">Female</mat-radio-button>
-            </mat-radio-group> -->
-            
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Contact</div>
-        <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="E-mail"  [(ngModel)]="mail" name="mail">
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Phone"  type="number" [(ngModel)]="phone" name="phone">
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Emer. contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
-            </mat-form-field>
-    
-            <mat-form-field appearance="fill" style="margin-right: 10px;">
-                <textarea matInput placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>Nationality</mat-label>
-                <mat-select [(ngModel)]="selectedNationality" name="nationality">
-                  <mat-option *ngFor="let nationality of nationalitites" [value]="nationality">{{ nationality }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Job info</div>
-        <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>Department</mat-label>
-                <mat-select [(ngModel)]="selectedDepartment" name="department">
-                  <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>Job title</mat-label>
-                <mat-select [(ngModel)]="selectedJobTitle" name="department">
-                  <mat-option *ngFor="let jobtitle of jobTitles" [value]="jobtitle">{{ jobtitle }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
-            </mat-form-field>
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Identification documents</div>
-        <div class="card-body">
-            
-                <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Insurance</mat-label>
-                    <input matInput placeholder="Insurance"  [(ngModel)]="insurance" name="insurance">
-                </mat-form-field>
-                <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" [(ngModel)]="inDesc" name="description">
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Insurance</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate placeholder="Start" [(ngModel)]="inSt" name="inSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="inEnd" name="inEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
-                  <mat-divider></mat-divider>
-                  <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Labor card</mat-label>
-                    <input matInput placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard">
-                </mat-form-field>
-                <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" [(ngModel)]="laborDesc" name="laborDescription" >
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Labor</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate placeholder="Start" [(ngModel)]="laborSt" name="laborSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="laborEn" name="laborEn">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
-                  <mat-divider></mat-divider>
-                  <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Emirates Id</mat-label>
-                    <input matInput placeholder="Emirates Id"  [(ngModel)]="emiratesId" name="EmiratesId" >
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Emirates</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate placeholder="Start" [(ngModel)]="emiratesSt" name="emiratesSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="emiratesEn" name="emiratesEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
-                  <mat-divider></mat-divider>
-                  <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Passport</mat-label>
-                    <input matInput placeholder="Passport"  [(ngModel)]="passport" name="Passport">
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Passport</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate placeholder="Start" [(ngModel)]="passportSt" name="passportSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="passportEn" name="passportEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
-                  <mat-divider></mat-divider>
-                  <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Visa</mat-label>
-                    <input matInput placeholder="Visa" name="visa" [(ngModel)]="visa" >
-                </mat-form-field>
-                <mat-form-field style="margin-right: 10px;">
-                    <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" name="visaDescription" [(ngModel)]="visaDesc">
-                </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Visa</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate placeholder="Start" [(ngModel)]="visaSt" name="visaSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="visaEn" name="visaEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
-            
-        </div>
-    </div>
-    
-    <!-- <div class="card" >
-        <div class="card-head">Payroll</div>
-        <div class="card-body">
-            This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text. This is my test text.
-        </div>
-    </div> -->
-    
-    <div class="card" >
-        <div class="card-head">Skills and experience</div>
-        <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
-                <input matInput placeholder="Experience" name="experience" type="text" [(ngModel)]="experience">
-            </mat-form-field>
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <textarea matInput placeholder="Skills" name="skills" [(ngModel)]="skills"></textarea>
-            </mat-form-field>
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Languages</div>
-        <div class="card-body">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <textarea matInput placeholder="" name="languages" [(ngModel)]="languages"></textarea>
-            </mat-form-field>
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Education</div>
-        <div class="card-body">
-                <mat-form-field appearance="fill" style="width: 100%;">
-                    <textarea matInput placeholder="" name="education" [(ngModel)]="education"></textarea>
-                </mat-form-field>
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Training and certifications</div>
-        <div class="card-body">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <textarea matInput placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
-            </mat-form-field>
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <textarea matInput placeholder="Certificates" name="certificates" [(ngModel)]="certificates"></textarea>
-            </mat-form-field>
-        </div>
-    </div>
-    
-    <div class="card" >
-        <div class="card-head">Attachments</div>
-        <div class="card-body">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <textarea matInput placeholder="" name="attachments" [(ngModel)]="attachments"></textarea>
-            </mat-form-field>
-        </div>
-    </div>
-</form>

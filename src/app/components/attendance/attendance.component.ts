@@ -13,52 +13,7 @@ import { FileListModel } from '../employeeprofile/upload-file.model';
 })
 export class AttendanceComponent implements OnInit{
   // local variables 
-  public empProfileId = 0;
-  public firstName = '';
-  public middleName = '';
-  public lastName = '';
-  public nationalitites: string[] = ['India', 'Sudan', 'Senegal', 'South Africa']; // Sample departments
-  public selectedNationality: string = ''; // Variable to store the selected department
-
-  public mail = '';
-  public phone = '';
-  public phone2 = '';
-  public emerContact = '';
-  public address = '';
-
-  public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
-  public selectedDepartment: string = ''; // Variable to store the selected department
-  public jobTitles: string[] = ['Painter', 'Fabricator', 'Wielder', 'Accountant']; // Sample departments
-  public selectedJobTitle: string = ''; // Variable to store the selected department
-  public biomId = '';
-
-  public languages = '';
-  public education = '';
-  public experience = '';
-  public skills = '';
-  public attachments = '';
-  public trainings = '';
-  public certificates = '';
-  public insurance = '';
-  public inDesc = '';
-  public inSt = '';
-  public inEnd = '';
-  public laborCard = '';
-  public laborDesc = '';
-  public laborSt = '';
-  public laborEn = '';
-
-  public emiratesSt = '';
-  public emiratesEn = '';
-  public passport = '';
-  public passportSt = '';
-  public passportEn = '';
-  public visa = '';
-  public visaDesc = '';
-  public visaSt = '';
-  public visaEn = '';
-  public emiratesId = '';
-
+  
   uploadStatus!: boolean;
   progress!: number;
   uploadedFile!: FileListModel;
@@ -83,7 +38,7 @@ export class AttendanceComponent implements OnInit{
   @Output() public onUploadFinished = new EventEmitter();
   user_img: string = "/path/to/file";
   apiImagePath: string = "";
-  apiPath: string = "";
+  apiPath: string = ""; 
   extension: string = "";
   fileName: string = "";
   fullPath: string = "";
@@ -95,8 +50,8 @@ export class AttendanceComponent implements OnInit{
     private _cf: CommonService,
     private http: HttpClient
   ) { 
-    this.pTableName = 'EmpProfile';
-    this.pTableId = 10;
+    this.pTableName = 'EmpAtt';
+    this.pTableId = 14;
     this.recordsPerPage = 10;
     this.pUserId = 1;
     this.isLastPage = false;
@@ -118,7 +73,7 @@ export class AttendanceComponent implements OnInit{
       browser: '',
       resol: '',
       device: '',
-      isTest: false, // must take with roleid(change) and is key to fetching data
+      isTest: true, // must take with roleid(change) and is key to fetching data
       sort: '',
       filter: ""
     }
@@ -201,50 +156,7 @@ export class AttendanceComponent implements OnInit{
     this.empService.getEmployeeProfileEntry(id).subscribe(
       response => {
         console.log('API Response:', response);
-        this.empProfileId = response.empProfileId
-        this.firstName = response.first;
-        this.middleName = response.middle;
-        this.lastName = response.last;
-        this.mail = response.mail;
-        this.phone = response.phone;
-        this.phone2 = response.phone2;
-        this.emerContact = response.emerContact;
-        this.address = response.address;
-        this.selectedDepartment = response.department;
-        this.biomId = response.biomId;
-        this.languages = response.languages;
-        this.education = response.education;
-        this.experience = response.experience;
-        this.attachments = response.attachments
-        this.skills = response.skills;
-        this.trainings = response.trainings;
-        this.certificates = response.certificates;
-        this.insurance = response.insurance
-        this.inDesc = response.inDesc
-        this.inSt = response.inSt
-        this.inEnd = response.inEnd
-        this.laborCard = response.laborCard
-        this.laborDesc = response.laborDesc
-        this.laborSt = response.laborSt
-        this.laborEn = response.laborEn
-        this.emiratesSt = response.emiratesSt;
-        this.emiratesEn = response.emiratesEn;
-        this.passport = response.passport;
-        this.passportSt = response.passportSt;
-        this.passportEn = response.passportEn;
-        this.visa = response.visa;
-        this.visaDesc = response.visaDesc;
-        this.visaSt = response.visaSt;
-        this.visaEn = response.visaEn;
-        this.emiratesId = response.emiratesId;
-        this.selectedNationality = response.nationality;
-        this.selectedJobTitle = response.jobTitle;
-        // this.apiImagePath = response.apiImagePath
-        this.apiPath = response.apiPath
-        this.extension = response.extension
-        this.fileName = response.fileName
-        this.fullPath = response.fullPath
-        this.originalFileName = response.originalFileName
+       
         
         if (response.fullPath != "/path/to/file") {
           this.user_img = "https://" + response.fullPath.substring(39)
@@ -265,93 +177,21 @@ export class AttendanceComponent implements OnInit{
   btnClick=  () => {
     // this.router.navigate(['/user']);
     // console.log(this.firstName);
-    var dataToSend: AttendanceModel = { 
-      "EmpProfileId": this.empProfileId,
-      "AppUserName": "JohnDoe",
-      "APIImagePath": "example.com\/images",
-      "APIPath": this.apiPath,
-      "Extension": this.extension,
-      "FileName": this.fileName,
-      "FullPath": this.fullPath,
-      "OriginalFileName": this.originalFileName,
-      "First": this.firstName,
-      "Middle": this.middleName,
-      "Last": this.lastName,
-      "Mail": this.mail,
-      "Phone": Number(this.phone),
-      "Phone2": Number(this.phone2),
-      "Address": this.address,
-      "Department": this.selectedDepartment,
-      "EmployeeId": 987654321,
-      "BiomId": Number(this.biomId),
-      "EmerContact": Number(this.emerContact),
-      "Languages": this.languages,
-      "JobTitle": this.selectedJobTitle,
-      "Nationality": this.selectedNationality,
-      "Gender": true,
-      "MaritStatus": "Married",
-      "Children": 2,
-      "DOB": "1990-01-01T00:00:00Z",
-      "Supervisor": 123456789,
-      "DOJ": "2020-01-01T00:00:00Z",
-      "ContractSt": "2020-01-01T00:00:00Z",
-      "ContractEnd": "2022-01-01T00:00:00Z",
-      "Education": this.education,
-      "Experience": this.experience,
-      "Skills": this.skills,
-      "Trainings": this.trainings,
-      "Certificates": this.certificates,
-      "Basic": 5000.00,
-      "Earn1": 1000.00,
-      "Earn2": 2000.00,
-      "Ded1": 500.00,
-      "Ded2": 300.00,
-      "Attachments": this.attachments,
-      "Insurance": this.insurance,
-      "InDesc": this.inDesc,
-      "InSt": this.inSt,
-      "InEnd": this.inEnd,
-      "LaborCard": this.laborCard,
-      "LaborDesc": this.laborDesc,
-      "LaborSt": this.laborSt,
-      "LaborEn": this.laborEn,
-      "EmiratesId": this.emiratesId,
-      "EmiratesSt": this.emiratesSt,
-      "EmiratesEn": this.emiratesEn,
-      "Passport": this.passport,
-      "PassportSt": this.passportSt,
-      "PassportEn": this.passportEn,
-      "Visa": this.visa,
-      "VisaDesc": this.visaDesc,
-      "VisaSt": this.visaSt,
-      "VisaEn": this.visaEn,
-      "IsTest": false,
-      "Active": true,
-      "Deleted": false,
-      "UserCR": 1,
-      "Company": 1,
-      "RoleCR": 2,
-      "DateCR": "2024-02-20T00:00:00Z",
-      "Browser": "Chrome",
-      "Device": "Desktop",
-      "Resol": "1920x1080",
-      "TransId": -1 
-    }; // Example data to send
-
-    console.log(dataToSend);
     
-    this.empService.sendData(dataToSend).subscribe(
-      response => {
-        console.log('API Response:', response);
-        this.refreshMe();
-        this.screenMode = 'index';
-        // Handle the response data here
-      },
-      error => {
-        console.error('API Error:', error);
-        // Handle any errors here
-      }
-    );
+    // console.log(dataToSend);
+    
+    // this.empService.sendData(dataToSend).subscribe(
+    //   response => {
+    //     console.log('API Response:', response);
+    //     this.refreshMe();
+    //     this.screenMode = 'index';
+    //     // Handle the response data here
+    //   },
+    //   error => {
+    //     console.error('API Error:', error);
+    //     // Handle any errors here
+    //   }
+    // );
   }
 
   EnterSubmit(event: any) { 
@@ -370,9 +210,11 @@ alert('Enter key is pressed, form will be submitted');
   uploadFile = (files:any) => {
     let fileValidations = 1;
     for (let i = 0; i < files.length; i++) {
-      if (files[i].type === "image/jpeg" || files[i].type === "image/png") {
+      if (files[i].type === "text/csv") {
         // do nothing
       } else {
+        // console.log(files[i].type);
+        
         fileValidations = 0;
       }
     }
@@ -401,7 +243,7 @@ alert('Enter key is pressed, form will be submitted');
         const formData = new FormData();
         formData.append("file", fileToUpload, fileToUpload.name);
         this.http
-          .post(this._cf.baseUrl + "file/upload", formData, {
+          .post(this._cf.baseUrl + "EmpAtt/uploadattendance", formData, {
             reportProgress: true,
             observe: "events"
           })
@@ -412,33 +254,9 @@ alert('Enter key is pressed, form will be submitted');
               this.uploadStatus = false;
             } else if (event.type === HttpEventType.Response) {
               const res: any = event.body;
-              this.uploadedFile = {
-                apiPath: res.apiPath,
-                extension: res.extention,
-                fileName: res.fileName,
-                fullPath: res.fullPath,
-                originalFileName: res.originalFileName,
-                // apiImagePath: this._globals.baseAPIRootUrl + res.apiPath
-                apiImagePath: res.apiImagePath
-              };
-              this.uploadStatus = true;
-              this.onUploadFinished.emit(event.body);
-              // this.tmpFilesList.push(this.uploadedFile);
-              // this.myFiles.push(this.uploadedFile);
-              console.log(JSON.stringify(this.uploadedFile));
-              this.user_img = "https://" + this.uploadedFile.fullPath.substring(39)
-              // this.apiImagePath = this.uploadedFile.apiImagePath
-              this.apiPath = this.uploadedFile.apiPath
-              this.extension = this.uploadedFile.extension
-              this.fileName = this.uploadedFile.fileName
-              this.fullPath = this.uploadedFile.fullPath
-              this.originalFileName = this.uploadedFile.originalFileName
-
-              // this.btnClick()
-              // this.businessService.imageChange2(this.uploadedFile)
-              // this.businessService.imageChange(this.uploadedFile)
-              this.message = fileToUpload.name + " upload success!";
+              
             }
+            this.refreshMe();
             // this.myFiles = this.tmpFilesList;
 
             // this.childFileListComponent.refreshMe();
@@ -472,52 +290,39 @@ alert('Enter key is pressed, form will be submitted');
   btnClickCreate=  () => {
     // this.router.navigate(['/user']);
     this.screenMode = 'entry';
-    this.empProfileId = 0;
-    this.firstName = '';
-    this.middleName = '';
-    this.lastName = '';
-    this.mail = '';
-    this.phone = '';
-    this.phone2 = '';
-    this.emerContact = '';
-    this.address = '';
-    this.selectedDepartment = '';
-    this.biomId = '';
-    this.languages = '';
-    this.education = ''
-    this.experience = ''
-    this.skills = ''
-    this.attachments = ''
-    this.trainings = '';
-    this.insurance = '';
-    this.inDesc = ''
-    this.inSt = ''
-    this.inEnd = ''
-    this.laborCard = '';
-    this.laborDesc = ''
-    this.laborSt = ''
-    this.laborEn = ''
-    this.emiratesSt = '';
-    this.emiratesEn = '';
-    this.passport = '';
-    this.passportSt = '';
-    this.passportEn = '';
-    this.visa = '';
-    this.visaDesc = '';
-    this.visaSt = '';
-    this.visaEn = '';
-    this.emiratesId = '';
-    this.certificates = ''
-    this.selectedJobTitle = '';
-    this.selectedNationality = '';
-    this.apiPath = ''
-        this.extension = ''
-        this.fileName = ''
-        this.fullPath = ''
-        this.originalFileName = ''
-        this.user_img = '/path/to/file'
-    console.log(this.firstName);
+    
   }
+
+  uploadCSV() {
+    
+  }
+
+  
+
+  onDelete=  (data: AttendanceModel) => {
+    // this.router.navigate(['/user']);
+    // console.log(this.firstName);
+    var dataToSend: AttendanceModel = data // Example data to send
+
+    // console.log(dataToSend);
+    dataToSend.transId = 0
+
+    confirm('This record will be deleted permanently!'); 
+    
+    this.empService.deleteRecord(dataToSend).subscribe(
+      response => {
+        console.log('API Response:', response);
+        this.refreshMe();
+        this.screenMode = 'index';
+        // Handle the response data here
+      },
+      error => {
+        console.error('API Error:', error);
+        // Handle any errors here
+      }
+    );
+  }
+
 
   btnClickCancel=  () => {
     // this.router.navigate(['/user']);

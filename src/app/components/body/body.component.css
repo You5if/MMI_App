@@ -20,3 +20,18 @@
     width: calc(100% - 5rem);
     margin-left: 5rem;
 }
+
+@media only screen and (max-width: 960px) {
+    .body {
+        width: calc(100% - 5rem);
+        height: 100vh;
+        margin-left: 5rem;
+        z-index: 0;
+        position: relative;
+        top: 0;
+        transition: all .5s ease;
+        background: #f4f7fa;
+        padding: 1rem;
+    
+    }
+  }

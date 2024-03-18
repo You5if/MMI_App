@@ -107,6 +107,7 @@ export class EmployeeprofileComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.screenMode = 'index';
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
@@ -263,6 +264,28 @@ export class EmployeeprofileComponent implements OnInit{
     );
   }
 
+  onDelete=  (data: EmployeeModel) => {
+    // this.router.navigate(['/user']);
+    // console.log(this.firstName);
+    var dataToSend: EmployeeModel = data // Example data to send
+
+    console.log(dataToSend);
+
+    confirm('This record will be deleted permanently!'); 
+    
+    this.empService.deleteRecord(dataToSend).subscribe(
+      response => {
+        console.log('API Response:', response);
+        this.refreshMe();
+        this.screenMode = 'index';
+        // Handle the response data here
+      },
+      error => {
+        console.error('API Error:', error);
+        // Handle any errors here
+      }
+    );
+  }
 
   btnClick=  () => {
     // this.router.navigate(['/user']);
@@ -356,18 +379,7 @@ export class EmployeeprofileComponent implements OnInit{
     );
   }
 
-  EnterSubmit(event: any) { 
-    //keycode for Enter is 13 
-    if (event.keyCode === 13) {
-alert('Enter key is pressed, form will be submitted'); 
-//calling submit method if key pressed is Enter.
- } if (event.keyCode === 27) {
-  this.btnClickCancel()
- }
- console.log(event.keyCode);
-//function to submit the form submitit(form){
-  
-}
+
 
   uploadFile = (files:any) => {
     let fileValidations = 1;
@@ -518,12 +530,7 @@ alert('Enter key is pressed, form will be submitted');
         this.fullPath = ''
         this.originalFileName = ''
         this.user_img = '/path/to/file'
-    console.log(this.firstName);
-  }
-
-  btnClickCancel=  () => {
-    // this.router.navigate(['/user']);
-    this.screenMode = 'index';
     // console.log(this.firstName);
   }
+
 }

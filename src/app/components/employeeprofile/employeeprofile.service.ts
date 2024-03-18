@@ -25,6 +25,11 @@ export class EmployeeProfileService {
         }
         
     }
+    deleteRecord(dataToSend: EmployeeModel): Observable<any> {
+        
+        return this.httpclient.post<any>(this._cf.baseUrl + 'EmpProfile/delete', dataToSend);
+        
+    }
 
     getEmployeeProfileEntry(id: number): Observable<any> {
         return this.httpclient.get<any>(this._cf.baseUrl + "EmpProfile/" + id + "/1/1/1/''/''/''").pipe(

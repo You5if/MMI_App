@@ -31,6 +31,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-entry.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
     SublevelMenuComponent,
     EmployeeprofileComponent,
     AttendanceComponent,
+    EmpEntryComponent,
   ],
   imports: [
     BrowserModule,
