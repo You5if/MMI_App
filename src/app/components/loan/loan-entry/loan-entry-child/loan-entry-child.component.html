@@ -1,0 +1,20 @@
+<div class="card" >
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Amount</mat-label>
+                <input matInput appTitleCase placeholder="Loan amount"  [(ngModel)]="amount" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="month" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Remarks</mat-label>
+                <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="remarks" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </div>
+    </div>

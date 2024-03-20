@@ -11,13 +11,17 @@ import { app } from '../../server';
 import { EmployeeprofileComponent } from './components/employeeprofile/employeeprofile.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-entry.component';
+import { LoanComponent } from './components/loan/loan.component';
+import { LoanEntryComponent } from './components/loan/loan-entry/loan-entry.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'employeeprofile', pathMatch:'full'},
+  {path: '', component: EmployeeprofileComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'employeeprofile', component: EmployeeprofileComponent},
   {path: 'employeeprofile-entry/:id', component: EmpEntryComponent},
   {path: 'employeeattendance', component: AttendanceComponent},
+  {path: 'loan', component: LoanComponent},
+  {path: 'loan-entry/:id', component: LoanEntryComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'statistics', component: StatisticsComponent},
   {
@@ -30,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true}),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

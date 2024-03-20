@@ -26,17 +26,17 @@
            <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>First name</mat-label>
-                <input matInput  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"  required>
+                <input matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"  required>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
-                <mat-label>Middlename</mat-label>
-                <input matInput placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
+                <mat-label>Middle name</mat-label>
+                <input matInput appTitleCase placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Last name</mat-label>
-                <input matInput placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
+                <input matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
             </mat-form-field>
     
             <mat-radio-group  name="gender">
@@ -57,27 +57,27 @@
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>E-mail</mat-label>
-                <input matInput placeholder="E-mail"  [(ngModel)]="mail" name="mail">
+                <input matInput appTitleCase placeholder="E-mail"  [(ngModel)]="mail" name="mail">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Phone</mat-label>
-                <input matInput placeholder="Phone"  type="number" [(ngModel)]="phone" name="phone">
+                <input matInput appTitleCase placeholder="Phone"  type="number" [(ngModel)]="phone" name="phone">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Phone 2</mat-label>
-                <input matInput placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
+                <input matInput appTitleCase placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Emer. contact</mat-label>
-                <input matInput placeholder="Emer. contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
+                <input matInput appTitleCase placeholder="Emer. contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
             </mat-form-field>
     
             <mat-form-field appearance="fill" style="margin-right: 10px;">
                 <mat-label>Address</mat-label>
-                <textarea matInput placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
+                <textarea matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
@@ -108,7 +108,7 @@
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Biometric Id</mat-label>
-                <input matInput placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
+                <input matInput appTitleCase placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
             </mat-form-field>
         </div>
     </div>
@@ -119,95 +119,125 @@
             
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Insurance</mat-label>
-                    <input matInput placeholder="Insurance"  [(ngModel)]="insurance" name="insurance">
+                    <input matInput appTitleCase placeholder="Insurance"  [(ngModel)]="insurance" name="insurance">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" [(ngModel)]="inDesc" name="description">
+                    <input matInput appTitleCase  placeholder="Description" [(ngModel)]="inDesc" name="description">
                 </mat-form-field>
         
-                <mat-form-field>
-                    <mat-label>Start & End of Insurance</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate placeholder="Start" [(ngModel)]="inSt" name="inSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="inEnd" name="inEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  </mat-form-field>
+                
+                    <mat-form-field style="margin-right: 10px;">
+                        <mat-label>Start of Insurance</mat-label>
+                        <input matInput [matDatepicker]="inStpicker" [(ngModel)]="inSt" name="inSt">
+                        
+                        <mat-datepicker-toggle matIconSuffix [for]="inStpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #inStpicker></mat-datepicker>
+                      </mat-form-field >
+                      <mat-form-field  style="margin-right: 10px;">
+                        <mat-label>End of Insurance</mat-label>
+                        <input matInput [matDatepicker]="inEndpicker" [(ngModel)]="inEnd" name="inEnd">
+                        
+                        <mat-datepicker-toggle matIconSuffix [for]="inEndpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #inEndpicker></mat-datepicker>
+                      </mat-form-field>
+                    
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Labor card</mat-label>
-                    <input matInput placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard">
+                    <input matInput appTitleCase placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" [(ngModel)]="laborDesc" name="laborDescription" >
+                    <input matInput appTitleCase placeholder="Description" [(ngModel)]="laborDesc" name="laborDescription" >
                 </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Labor</mat-label>
-                    <mat-date-range-input [rangePicker]="picker2">
-                      <input matStartDate placeholder="Start" [(ngModel)]="laborSt" name="laborSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="laborEn" name="laborEn">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker2></mat-date-range-picker>
+
+                <mat-form-field style="margin-right: 10px;">
+                    <mat-label>Start of Labor</mat-label>
+                    <input matInput [matDatepicker]="laborStpicker" [(ngModel)]="laborSt" name="laborSt">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="laborStpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #laborStpicker></mat-datepicker>
+                  </mat-form-field >
+                  <mat-form-field  style="margin-right: 10px;">
+                    <mat-label>End of Labor</mat-label>
+                    <input matInput [matDatepicker]="laborEnpicker" [(ngModel)]="laborEn" name="laborEn">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="laborEnpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #laborEnpicker></mat-datepicker>
                   </mat-form-field>
+        
+                
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Emirates Id</mat-label>
-                    <input matInput placeholder="Emirates Id"  [(ngModel)]="emiratesId" name="EmiratesId" >
+                    <input matInput appTitleCase placeholder="Emirates Id"  [(ngModel)]="emiratesId" name="EmiratesId" >
                 </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Emirates</mat-label>
-                    <mat-date-range-input [rangePicker]="picker3">
-                      <input matStartDate placeholder="Start" [(ngModel)]="emiratesSt" name="emiratesSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="emiratesEn" name="emiratesEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker3></mat-date-range-picker>
+
+                <mat-form-field style="margin-right: 10px;">
+                    <mat-label>Start of Emirates</mat-label>
+                    <input matInput [matDatepicker]="emiratesStpicker" [(ngModel)]="emiratesSt" name="emiratesSt">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="emiratesStpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #emiratesStpicker></mat-datepicker>
+                  </mat-form-field >
+                  <mat-form-field  style="margin-right: 10px;">
+                    <mat-label>End of Emirates</mat-label>
+                    <input matInput [matDatepicker]="emiratesEnpicker" [(ngModel)]="emiratesEn" name="emiratesEn">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="emiratesEnpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #emiratesEnpicker></mat-datepicker>
                   </mat-form-field>
+        
+                
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Passport</mat-label>
-                    <input matInput placeholder="Passport"  [(ngModel)]="passport" name="Passport">
+                    <input matInput appTitleCase placeholder="Passport"  [(ngModel)]="passport" name="Passport">
                 </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Passport</mat-label>
-                    <mat-date-range-input [rangePicker]="picker4">
-                      <input matStartDate placeholder="Start" [(ngModel)]="passportSt" name="passportSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="passportEn" name="passportEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker4></mat-date-range-picker>
+
+                <mat-form-field style="margin-right: 10px;">
+                    <mat-label>Start of Passport</mat-label>
+                    <input matInput [matDatepicker]="passportStpicker" [(ngModel)]="passportSt" name="passportSt">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="passportStpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #passportStpicker></mat-datepicker>
+                  </mat-form-field >
+                  <mat-form-field  style="margin-right: 10px;">
+                    <mat-label>End of Passport</mat-label>
+                    <input matInput [matDatepicker]="passportEnpicker" [(ngModel)]="passportEn" name="passportEn">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="passportEnpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #passportEnpicker></mat-datepicker>
                   </mat-form-field>
+        
+                
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Visa</mat-label>
-                    <input matInput placeholder="Visa" name="visa" [(ngModel)]="visa" >
+                    <input matInput appTitleCase placeholder="Visa" name="visa" [(ngModel)]="visa" >
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" name="visaDescription" [(ngModel)]="visaDesc">
+                    <input matInput appTitleCase placeholder="Description" name="visaDescription" [(ngModel)]="visaDesc">
                 </mat-form-field>
-        
-                <mat-form-field>
-                    <mat-label>Start & End of Visa</mat-label>
-                    <mat-date-range-input [rangePicker]="picker5">
-                      <input matStartDate placeholder="Start" [(ngModel)]="visaSt" name="visaSt">
-                      <input matEndDate placeholder="End" [(ngModel)]="visaEn" name="visaEnd">
-                    </mat-date-range-input>
-                    <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker5></mat-date-range-picker>
+
+                <mat-form-field style="margin-right: 10px;">
+                    <mat-label>Start of Visa</mat-label>
+                    <input matInput [matDatepicker]="visaStpicker" [(ngModel)]="visaSt" name="visaSt">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="visaStpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #visaStpicker></mat-datepicker>
+                  </mat-form-field >
+                  <mat-form-field  style="margin-right: 10px;">
+                    <mat-label>End of Visa</mat-label>
+                    <input matInput [matDatepicker]="visaEnpicker" [(ngModel)]="visaEn" name="visaEn">
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="visaEnpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #visaEnpicker></mat-datepicker>
                   </mat-form-field>
+        
+                
             
         </div>
     </div>
@@ -224,11 +254,11 @@
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Experience</mat-label>
-                <input matInput placeholder="Experience" name="experience" type="text" [(ngModel)]="experience">
+                <input matInput appTitleCase placeholder="Experience" name="experience" type="text" [(ngModel)]="experience">
             </mat-form-field>
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Skills</mat-label>
-                <textarea matInput placeholder="Skills" name="skills" [(ngModel)]="skills"></textarea>
+                <textarea matInput appTitleCase placeholder="Skills" name="skills" [(ngModel)]="skills"></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -238,7 +268,7 @@
         <div class="card-body">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Languages</mat-label>
-                <textarea matInput placeholder="" name="languages" [(ngModel)]="languages"></textarea>
+                <textarea matInput appTitleCase placeholder="" name="languages" [(ngModel)]="languages"></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -248,7 +278,7 @@
         <div class="card-body">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Education</mat-label>
-                    <textarea matInput placeholder="Education" name="education" [(ngModel)]="education"></textarea>
+                    <textarea matInput appTitleCase placeholder="Education" name="education" [(ngModel)]="education"></textarea>
                 </mat-form-field>
         </div>
     </div>
@@ -258,11 +288,11 @@
         <div class="card-body">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Trainins</mat-label>
-                <textarea matInput placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
+                <textarea matInput appTitleCase placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
             </mat-form-field>
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Certificaties</mat-label>
-                <textarea matInput placeholder="Certificates" name="certificates" [(ngModel)]="certificates"></textarea>
+                <textarea matInput appTitleCase placeholder="Certificates" name="certificates" [(ngModel)]="certificates"></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -272,7 +302,7 @@
         <div class="card-body">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Attachments</mat-label>
-                <textarea matInput placeholder="Attachments" name="attachments" [(ngModel)]="attachments"></textarea>
+                <textarea matInput appTitleCase placeholder="Attachments" name="attachments" [(ngModel)]="attachments"></textarea>
             </mat-form-field>
         </div>
     </div>

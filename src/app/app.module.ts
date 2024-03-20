@@ -32,6 +32,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-entry.component';
+import { TitleCaseDirective } from './directives/TitleCaseDirective';
+import { LoanEntryComponent } from './components/loan/loan-entry/loan-entry.component';
+import { LoanComponent } from './components/loan/loan.component';
+import { LoanEntryChildComponent } from './components/loan/loan-entry/loan-entry-child/loan-entry-child.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CheckTenuresComponent } from './components/loan/tenure-options/check-tenures.component';
+import { AmountIsLessComponent } from './components/loan/tenure-options/AmountIsLess.component copy';
+import { SaveChangesComponent } from './components/loan/tenure-options/save-changes.component';
+import { CheckDeleteComponent } from './components/loan/tenure-options/check-delete.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +59,14 @@ import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-en
     EmployeeprofileComponent,
     AttendanceComponent,
     EmpEntryComponent,
+    TitleCaseDirective,
+    LoanComponent,
+    LoanEntryComponent,
+    LoanEntryChildComponent,
+    CheckTenuresComponent,
+    AmountIsLessComponent,
+    SaveChangesComponent,
+    CheckDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +78,7 @@ import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-en
     MatButtonModule,
     MatSelectModule,
     MatIconModule,
+    MatDialogModule,
     ReactiveFormsModule,
     MatRadioModule,
     MatDatepickerModule,

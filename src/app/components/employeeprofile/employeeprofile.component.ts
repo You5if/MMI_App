@@ -7,6 +7,8 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { FileListModel } from './upload-file.model';
 import { EmployeeModel } from './employeeprofile.model';
 import { log } from 'console';
+import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-employeeprofile',
@@ -95,7 +97,8 @@ export class EmployeeprofileComponent implements OnInit{
   constructor(
     private empService: EmployeeProfileService,
     private _cf: CommonService,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog,
   ) { 
     this.pTableName = 'EmpProfile';
     this.pTableId = 10;
@@ -271,20 +274,30 @@ export class EmployeeprofileComponent implements OnInit{
 
     console.log(dataToSend);
 
-    confirm('This record will be deleted permanently!'); 
-    
-    this.empService.deleteRecord(dataToSend).subscribe(
-      response => {
-        console.log('API Response:', response);
-        this.refreshMe();
-        this.screenMode = 'index';
-        // Handle the response data here
-      },
-      error => {
-        console.error('API Error:', error);
-        // Handle any errors here
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(CheckDeleteComponent, {
+       // disableClose: true  
+       
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log(result);
+      if (result) {
+        this.empService.deleteRecord(dataToSend).subscribe(
+          response => {
+            console.log('API Response:', response);
+            this.refreshMe();
+            this.screenMode = 'index';
+            // Handle the response data here
+          },
+          error => {
+            console.error('API Error:', error);
+            // Handle any errors here
+          }
+        );
       }
-    );
+     })
+  }
   }
 
   btnClick=  () => {
@@ -532,5 +545,6 @@ export class EmployeeprofileComponent implements OnInit{
         this.user_img = '/path/to/file'
     // console.log(this.firstName);
   }
+  
 
 }

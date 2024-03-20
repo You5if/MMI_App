@@ -6,6 +6,8 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { CommonService } from '../../common.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-emp-entry',
@@ -82,7 +84,8 @@ export class EmpEntryComponent {
     private _cf: CommonService,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private cdref: ChangeDetectorRef
+    private cdref: ChangeDetectorRef,
+    private dialog: MatDialog,
     ) {
 
   }
@@ -400,20 +403,42 @@ btnClick=  () => {
   );
 }
 
-btnClickCancel=  () => {
-  // this.router.navigate(['/user']);
-  // this.screenMode = 'index';
-  console.log(this.ngForm.dirty);
-  if (this.ngForm.dirty) {
-    confirm("Save changes?");
-    this.btnClick();
-  }else {
-    this.router.navigate(['../employeeprofile'], { relativeTo: this.activeRoute.parent });
-  }
-  // this.router.navigate(['../employeeprofile'], { relativeTo: this.activeRoute.parent });
+// btnClickCancel=  () => {
+//   // this.router.navigate(['/user']);
+//   // this.screenMode = 'index';
+//   console.log(this.ngForm.dirty);
+//   if (this.ngForm.dirty) {
+//     confirm("Save changes?");
+//     this.btnClick();
+//   }else {
+//     this.router.navigate(['../employeeprofile'], { relativeTo: this.activeRoute.parent });
+//   }
+//   // this.router.navigate(['../employeeprofile'], { relativeTo: this.activeRoute.parent });
  
   
-  // console.log(this.firstName);
+//   // console.log(this.firstName);
+// }
+btnClickCancel=  () => {
+  console.log(this.ngForm.dirty);
+  if (this.ngForm.dirty) {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(SaveChangesComponent, {
+       disableClose: true  
+       
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.btnClick();
+      }else {
+        this.router.navigate(['/employeeprofile'], { relativeTo: this.activeRoute.parent });
+      }
+     })
+  }
+  }else {
+    this.router.navigate(['/employeeprofile'], { relativeTo: this.activeRoute.parent });
+  }
+ 
 }
 
 }
