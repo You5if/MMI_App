@@ -41,6 +41,7 @@ import { CheckTenuresComponent } from './components/loan/tenure-options/check-te
 import { AmountIsLessComponent } from './components/loan/tenure-options/AmountIsLess.component copy';
 import { SaveChangesComponent } from './components/loan/tenure-options/save-changes.component';
 import { CheckDeleteComponent } from './components/loan/tenure-options/check-delete.component';
+import { Login2Component } from './security/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CheckDeleteComponent } from './components/loan/tenure-options/check-del
     AmountIsLessComponent,
     SaveChangesComponent,
     CheckDeleteComponent,
+    Login2Component
   ],
   imports: [
     BrowserModule,

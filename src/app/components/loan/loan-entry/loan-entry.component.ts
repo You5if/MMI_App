@@ -264,7 +264,7 @@ btnClick=  () => {
     loanTenEntries: this.tenures
   }; // Example data to send
 
-  console.log(dataToSend);
+  console.log(JSON.stringify(dataToSend));
   
   this.loanService.sendData(dataToSend).subscribe(
     response => {
