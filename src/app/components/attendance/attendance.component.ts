@@ -5,6 +5,7 @@ import { CommonService } from '../common.service';
 import { AttendanceModel } from '../attendance/attendance.model';
 import { AttendanceService } from '../attendance/attendance.service';
 import { FileListModel } from '../employeeprofile/upload-file.model';
+import { AppGlobals } from '../../app.global';
 
 @Component({
   selector: 'app-attendance',
@@ -48,7 +49,8 @@ export class AttendanceComponent implements OnInit{
   constructor(
     private empService: AttendanceService,
     private _cf: CommonService,
-    private http: HttpClient
+    private http: HttpClient,
+    private _globals: AppGlobals
   ) { 
     this.pTableName = 'EmpAtt';
     this.pTableId = 14;
@@ -243,7 +245,7 @@ alert('Enter key is pressed, form will be submitted');
         const formData = new FormData();
         formData.append("file", fileToUpload, fileToUpload.name);
         this.http
-          .post(this._cf.baseUrl + "EmpAtt/uploadattendance", formData, {
+          .post(this._globals.baseAPIUrl + "EmpAtt/uploadattendance", formData, {
             reportProgress: true,
             observe: "events"
           })

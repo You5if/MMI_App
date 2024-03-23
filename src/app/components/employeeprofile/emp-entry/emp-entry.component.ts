@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AppGlobals } from '../../../app.global';
+import { GlobalService } from '../../../global.service';
 
 @Component({
   selector: 'app-emp-entry',
@@ -29,6 +31,9 @@ export class EmpEntryComponent {
   public phone2 = '';
   public emerContact = '';
   public address = '';
+  public gender = true;
+
+
 
   public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
   public selectedDepartment: string = ''; // Variable to store the selected department
@@ -86,11 +91,14 @@ export class EmpEntryComponent {
     private activeRoute: ActivatedRoute,
     private cdref: ChangeDetectorRef,
     private dialog: MatDialog,
+    private _globals: AppGlobals,
+    private globalService: GlobalService
     ) {
 
   }
 
   ngOnInit():void {
+    this.globalService.setNavStatus('entry')
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
@@ -106,6 +114,7 @@ export class EmpEntryComponent {
               this.phone2 = response.phone2;
               this.emerContact = response.emerContact;
               this.address = response.address;
+              this.gender = response.gender
               this.selectedDepartment = response.department;
               this.biomId = response.biomId;
               this.languages = response.languages;
@@ -157,6 +166,10 @@ export class EmpEntryComponent {
       }
     )
   }
+
+  changeGender(arg0: boolean) {
+    this.gender = arg0
+    }
 
   ngAfterViewInit() {
     // After the view has initialized, focus on the first input field
@@ -241,7 +254,7 @@ uploadFile = (files:any) => {
       const formData = new FormData();
       formData.append("file", fileToUpload, fileToUpload.name);
       this.http
-        .post(this._cf.baseUrl + "file/upload", formData, {
+        .post(this._globals.baseAPIUrl + "file/upload", formData, {
           reportProgress: true,
           observe: "events"
         })
@@ -337,7 +350,7 @@ btnClick=  () => {
     "Languages": this.languages,
     "JobTitle": this.selectedJobTitle,
     "Nationality": this.selectedNationality,
-    "Gender": true,
+    "Gender": this.gender,
     "MaritStatus": "Married",
     "Children": 2,
     "DOB": "1990-01-01T00:00:00Z",
@@ -392,7 +405,7 @@ btnClick=  () => {
   this.empService.sendData(dataToSend).subscribe(
     response => {
       console.log('API Response:', response);
-      this.router.navigate(['../'], { relativeTo: this.activeRoute.parent });
+      this.router.navigate(['/system/employeeprofile'], { relativeTo: this.activeRoute.parent });
       // this.screenMode = 'index';
       // Handle the response data here
     },
@@ -431,12 +444,12 @@ btnClickCancel=  () => {
       if (result) {
         this.btnClick();
       }else {
-        this.router.navigate(['/employeeprofile'], { relativeTo: this.activeRoute.parent });
+        this.router.navigate(['/system/employeeprofile'], { relativeTo: this.activeRoute.parent });
       }
      })
   }
   }else {
-    this.router.navigate(['/employeeprofile'], { relativeTo: this.activeRoute.parent });
+    this.router.navigate(['/system/employeeprofile'], { relativeTo: this.activeRoute.parent });
   }
  
 }

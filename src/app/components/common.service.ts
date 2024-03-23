@@ -1,8 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, throwError } from "rxjs";
 import { APIResultModel } from "./sidenav/helper";
 import { PageEvent } from "@angular/material/paginator";
+import { AppGlobals } from "../app.global";
 
 @Injectable({
     providedIn: "root",
@@ -10,20 +11,33 @@ import { PageEvent } from "@angular/material/paginator";
 export class CommonService {
 
     arr: any
+  userToken: string | null;
 
-    baseUrl: string = 'https://inventoryapi.autopay-mcs.com/api/';
+    // baseUrl: string = 'https://inventoryapi.autopay-mcs.com/api/';
 
     constructor(
-        private httpClient: HttpClient
+        private httpClient: HttpClient,
+        private _globals: AppGlobals
     ) {}
 
     newGetPageData(tableName:string ,arr: any){
         // console.log('Reached here!');
-        return this.httpClient.post(this.baseUrl + tableName +"/getpagedata/"+arr.tableId+"/1/"+arr.recordsPerPage+"/"+arr.pageNo+"/1/"+arr.lastPage+"/1/2/''/''/''/"+arr.isTest+"/''/''",arr).pipe(
+        return this.httpClient.post(this._globals.baseAPIUrl + tableName +"/getpagedata/"+arr.tableId+"/1/"+arr.recordsPerPage+"/"+arr.pageNo+"/1/"+arr.lastPage+"/1/2/''/''/''/"+arr.isTest+"/''/''",arr).pipe(
           map((res: any) => res),
           catchError(this.handleError)
         );;
      }
+
+     public requestOptions() {
+      //step 3 of security (next: auth.service.ts > login())
+      this.userToken = localStorage.getItem(this._globals.baseAppName + "_token");
+      const headers = new HttpHeaders({
+        authorization: "Bearer " + this.userToken,
+        "Content-Type": "application/json",
+      });
+      console.log(headers);
+      return {headers: headers};
+    }
 
      public newGetPageDataOnPaginatorOperation(
         event: PageEvent,
@@ -52,10 +66,10 @@ export class CommonService {
         console.log('Error detected!');
         console.log(error);
         try {
-          const applicationError = error.headers.get("Application-Error");
-          if (applicationError) {
-            // return throwError(applicationError);
-          }
+          // const applicationError = error.headers.get("Application-Error");
+          // if (applicationError) {
+          //   // return throwError(applicationError);
+          // }
           // let modelStateErrors = '';
           const mApiError: APIResultModel = {
             id: 0,

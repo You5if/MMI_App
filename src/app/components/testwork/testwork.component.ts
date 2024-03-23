@@ -1,21 +1,37 @@
 import { Component } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators, FormControl, FormGroupDirective, NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GlobalService } from '../../global.service';
 
+interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+
+}
 @Component({
   selector: 'app-testwork',
   templateUrl: './testwork.component.html',
   styleUrl: './testwork.component.css'
 })
 export class TestworkComponent {
-  firstNameAutofilled!: boolean;
-  lastNameAutofilled!: boolean;
+  title = 'MMI_app';
 
-  firstName: any;
+  isSideNavCollapsed = false;
+  screenWidth = 0;
 
-  events: string[] = [];
+  navStatus: String = 'login'
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
+  constructor(
+    private globalService: GlobalService
+  ) {}
+
+  ngOnInit() {
+    this.globalService.navStatus$.subscribe(n => this.navStatus = n)
   }
+
+  onToggleSideNav(data: SideNavToggle): void {
+    this.screenWidth = data.screenWidth;
+    this.isSideNavCollapsed = data.collapsed;
+  }
+
 }

@@ -4,6 +4,9 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 import { getWindow } from "ssr-window";
 import { ActivatedRoute, Router } from '@angular/router';
 import { INavbarData, fadeInOut } from './helper';
+import { GlobalService } from '../../global.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveChangesComponent } from '../loan/tenure-options/save-changes.component';
 
 
 interface SideNavToggle {
@@ -45,6 +48,8 @@ export class SidenavComponent implements OnInit {
   screenWidth = 0;
   navData = navbarData;
   multiple: boolean = false;
+
+  navStatus: String = 'login'
   
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
@@ -55,7 +60,11 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router) {
+  constructor(
+    public router: Router,
+    private globalService: GlobalService,
+    private dialog: MatDialog
+    ) {
 
   }
 
@@ -83,12 +92,30 @@ export class SidenavComponent implements OnInit {
   }
 
   shrinkItems(item: INavbarData): void {
-    if (!this.multiple) {
-      for (let modelItem of this.navData) {
-        if (item !== modelItem && modelItem.expanded) {
-          modelItem.expanded = false;
+    // this.globalService.navStatus$.subscribe(n => this.navStatus = n)
+    // if (this.navStatus === 'system') {
+      if (!this.multiple) {
+        for (let modelItem of this.navData) {
+          if (item !== modelItem && modelItem.expanded) {
+            modelItem.expanded = false;
+          }
         }
       }
-    }
+    // }else if (this.navStatus === 'entry') {
+    //   if(this.dialog.openDialogs.length==0){
+    //     const dialogRef = this.dialog.open(SaveChangesComponent, {
+    //      disableClose: true  
+         
+    //    });
+  
+    //    dialogRef.afterClosed().subscribe((result: boolean) => {
+    //     if (result) {
+          
+    //     }else {
+    //       this.router.navigate([`/${item.routeLink}`]);
+    //     }
+    //    })
+    // }
+    // }
   }
 }

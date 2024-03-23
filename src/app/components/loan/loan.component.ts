@@ -7,6 +7,7 @@ import { LoanModel } from './loan-models/loan.model';
 import { FileListModel } from '../employeeprofile/upload-file.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckDeleteComponent } from './tenure-options/check-delete.component';
+import { AuthService } from '../../security/auth/auth.service';
 
 @Component({
   selector: 'app-loan',
@@ -53,6 +54,7 @@ export class LoanComponent {
     private _cf: CommonService,
     private http: HttpClient,
     private dialog: MatDialog,
+    private _auth: AuthService
   ) { 
     this.pTableName = 'LoanReq';
     this.pTableId = 27;
@@ -107,6 +109,10 @@ export class LoanComponent {
   //   }, 1500); // Adjust the delay as needed
 
   // }
+
+  logout() {
+    this._auth.logout()
+  }
 
   refreshMe() {
     // console.log('reached here');

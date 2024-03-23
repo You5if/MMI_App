@@ -42,6 +42,22 @@ import { AmountIsLessComponent } from './components/loan/tenure-options/AmountIs
 import { SaveChangesComponent } from './components/loan/tenure-options/save-changes.component';
 import { CheckDeleteComponent } from './components/loan/tenure-options/check-delete.component';
 import { Login2Component } from './security/auth/login/login.component';
+import { AppGlobals } from './app.global';
+import { AuthGuard } from './security/auth/auth-guard';
+import { AuthService } from './security/auth/auth.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { NavigateCheckComponent } from './components/loan/tenure-options/navigation-check.component';
+
+export function getAccessToken(): string {
+  return localStorage.getItem("MMI_token")!;
+}
+export const jwtConfig = {
+  tokenGetter: getAccessToken,
+  // local
+  // whiteListedDomains: ['localhost:4200']
+  // global
+  whiteListedDomains: ["89.34.16.77"]
+};
 
 @NgModule({
   declarations: [
@@ -68,7 +84,8 @@ import { Login2Component } from './security/auth/login/login.component';
     AmountIsLessComponent,
     SaveChangesComponent,
     CheckDeleteComponent,
-    Login2Component
+    Login2Component,
+    NavigateCheckComponent
   ],
   imports: [
     BrowserModule,
@@ -89,12 +106,18 @@ import { Login2Component } from './security/auth/login/login.component';
     MatDividerModule,
     FormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: jwtConfig
+    }),
   ],
   providers: [
     provideClientHydration(),
     provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
     EmployeeProfileService,
+    AppGlobals,
+    AuthGuard,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

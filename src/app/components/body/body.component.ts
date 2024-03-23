@@ -1,5 +1,6 @@
 import { style } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { GlobalService } from '../../global.service';
 
 @Component({
   selector: 'app-body',
@@ -8,8 +9,30 @@ import { Component, Input } from '@angular/core';
 })
 export class BodyComponent {
 
+  constructor(
+    private globalService: GlobalService,
+    private cdref: ChangeDetectorRef
+  ) {}
+
+  navClass: string = 'body'
+  // navStatus: String = 'body'
   @Input() collapsed = false;
   @Input() screenWidth = 0;
+
+  ngOnInit() {
+    this.globalService.navStatus$.subscribe(n => {
+      if (n === 'login') {
+        this.navClass = 'login-body'
+      }else {
+        this.navClass = 'body'
+      }
+    })
+  }
+
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
+ }
+
 
   getBodyClass(): string {
     let styleClass = '';

@@ -9,6 +9,8 @@ import { EmployeeModel } from './employeeprofile.model';
 import { log } from 'console';
 import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AppGlobals } from '../../app.global';
+import { GlobalService } from '../../global.service';
 
 @Component({
   selector: 'app-employeeprofile',
@@ -99,6 +101,8 @@ export class EmployeeprofileComponent implements OnInit{
     private _cf: CommonService,
     private http: HttpClient,
     private dialog: MatDialog,
+    private _globals: AppGlobals,
+    private globalService: GlobalService
   ) { 
     this.pTableName = 'EmpProfile';
     this.pTableId = 10;
@@ -110,6 +114,7 @@ export class EmployeeprofileComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.globalService.setNavStatus('system')
     this.screenMode = 'index';
     // preparing index call parameters
     this.pageData = {
@@ -428,7 +433,7 @@ export class EmployeeprofileComponent implements OnInit{
         const formData = new FormData();
         formData.append("file", fileToUpload, fileToUpload.name);
         this.http
-          .post(this._cf.baseUrl + "file/upload", formData, {
+          .post(this._globals.baseAPIUrl + "file/upload", formData, {
             reportProgress: true,
             observe: "events"
           })

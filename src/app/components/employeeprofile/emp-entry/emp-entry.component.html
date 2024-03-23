@@ -39,15 +39,15 @@
                 <input matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
             </mat-form-field>
     
-            <mat-radio-group  name="gender">
+            <!-- <mat-radio-group  name="gender"> -->
+                <!-- <mat-radio-button [(ngModel)]="gender" onclick="changeGender(true)"  name="male">Male</mat-radio-button>
+                <mat-radio-button [(ngModel)]="!gender" (ngModelChange)="changeGender(false)" name="female">Female</mat-radio-button> -->
+            <!-- </mat-radio-group> -->
+            <mat-radio-group [(ngModel)]="gender" name="gender">
                 <mat-radio-button value="true">Male</mat-radio-button>
                 <mat-radio-button value="false">Female</mat-radio-button>
             </mat-radio-group>
            </div>
-            <!-- <mat-radio-group [(ngModel)]="selectedGender" name="gender">
-                <mat-radio-button value="true">Male</mat-radio-button>
-                <mat-radio-button value="false">Female</mat-radio-button>
-            </mat-radio-group> -->
             
         </div>
     </div>

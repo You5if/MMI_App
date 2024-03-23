@@ -269,7 +269,7 @@ btnClick=  () => {
   this.loanService.sendData(dataToSend).subscribe(
     response => {
       console.log('API Response:', response);
-      this.router.navigate(['/loan'], { relativeTo: this.activeRoute.parent });
+      this.router.navigate(['/system/loan'], { relativeTo: this.activeRoute.parent });
       // this.screenMode = 'index';
       // Handle the response data here
     },
@@ -369,12 +369,12 @@ btnClickCancel=  () => {
       if (result) {
         this.btnClick();
       }else {
-        this.router.navigate(['/loan'], { relativeTo: this.activeRoute.parent });
+        this.router.navigate(['/system/loan'], { relativeTo: this.activeRoute.parent });
       }
      })
   }
   }else {
-    this.router.navigate(['/loan'], { relativeTo: this.activeRoute.parent });
+    this.router.navigate(['/system/loan'], { relativeTo: this.activeRoute.parent });
   }
  
 }
