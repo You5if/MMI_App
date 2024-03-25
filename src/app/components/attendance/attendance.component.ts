@@ -26,7 +26,7 @@ export class AttendanceComponent implements OnInit{
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'empName'];
+  displayedColumns: string[] = ['select', 'empName', 'department', 'jobTitle', 'checkIn'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

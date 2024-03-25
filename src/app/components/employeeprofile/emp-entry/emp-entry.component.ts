@@ -397,7 +397,7 @@ btnClick=  () => {
     "Browser": "Chrome",
     "Device": "Desktop",
     "Resol": "1920x1080",
-    "TransId": -1 
+    "TransId": 0 
   }; // Example data to send
 
   console.log(dataToSend);

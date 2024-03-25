@@ -1,0 +1,32 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+  >
+  Save
+</button>
+<button type="button"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">User information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>User name</mat-label>
+                <input matInput  placeholder="First name" id="firstControl"   [(ngModel)]="appUserName" name="firstName"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Display name</mat-label>
+                <input matInput appTitleCase placeholder="Display name"  [(ngModel)]="displayName" name="displayName" required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="passwrd"  [(ngModel)]="password" name="password" required>
+            </mat-form-field>
+           
+        </div>
+    </div>
+    
+</form>

@@ -1,0 +1,53 @@
+<h1>Users</h1>
+
+<button 
+    routerLink="/system/users-entry/0"
+  >
+  Create
+</button>
+
+<div class="card"  >
+    <div class="card-head">Users index</div>
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/user-roles/{{row.appUserId}}" style="margin-right: 5px;" class="Btn" mat-menu-item>Roles</button>
+                <button (click)="changePassword(row.appUserId)" style="margin-right: 5px;" class="Btn" mat-menu-item>Change password</button>
+                <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="displayName">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Name
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.displayName}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="appUserName">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Email
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.appUserName}}</mat-cell>
+          </ng-container>
+          
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

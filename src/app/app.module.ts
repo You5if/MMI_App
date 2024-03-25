@@ -47,6 +47,11 @@ import { AuthGuard } from './security/auth/auth-guard';
 import { AuthService } from './security/auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NavigateCheckComponent } from './components/loan/tenure-options/navigation-check.component';
+import { UsersComponent } from './components/users/users.component';
+import { UsersEntryComponent } from './components/users/users-entry/users-entry.component';
+import { UsersRolesComponent } from './components/users/users-roles/users-roles.component';
+import { ChangePasswordComponent } from './components/users/changepassword.component';
+import { AddRoleComponent } from './components/users/add-role.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem("MMI_token")!;
@@ -85,7 +90,12 @@ export const jwtConfig = {
     SaveChangesComponent,
     CheckDeleteComponent,
     Login2Component,
-    NavigateCheckComponent
+    NavigateCheckComponent,
+    UsersComponent,
+    UsersEntryComponent,
+    UsersRolesComponent,
+    ChangePasswordComponent,
+    AddRoleComponent
   ],
   imports: [
     BrowserModule,

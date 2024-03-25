@@ -18,10 +18,10 @@ export class AuthGuard {
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
         if (this._auth.loggedIn() === true) {
-            this.globalService.setNavStatus('system')
+            // this.globalService.setNavStatus('system')
             return true;
         } else {
-            this.globalService.setNavStatus('login')
+            // this.globalService.setNavStatus('login')
             this.router.navigate(['/login']);
             // this._msg.showError('You need to be logged in to access this area!');
             return false;

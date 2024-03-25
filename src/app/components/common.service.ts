@@ -22,7 +22,7 @@ export class CommonService {
 
     newGetPageData(tableName:string ,arr: any){
         // console.log('Reached here!');
-        return this.httpClient.post(this._globals.baseAPIUrl + tableName +"/getpagedata/"+arr.tableId+"/1/"+arr.recordsPerPage+"/"+arr.pageNo+"/1/"+arr.lastPage+"/1/2/''/''/''/"+arr.isTest+"/''/''",arr).pipe(
+        return this.httpClient.post(this._globals.baseAPIUrl + tableName +"/getpagedata/"+arr.tableId+"/1/"+arr.recordsPerPage+"/"+arr.pageNo+"/1/"+arr.lastPage+"/1/2/''/''/''/"+arr.isTest+"/''/''",arr, this.requestOptions()).pipe(
           map((res: any) => res),
           catchError(this.handleError)
         );;

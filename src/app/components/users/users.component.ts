@@ -1,26 +1,26 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { LoanService } from './loan.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { UsersService } from './users.service';
 import { CommonService } from '../common.service';
 import { HttpClient } from '@angular/common/http';
-import { LoanModel } from './loan-models/loan.model';
-import { FileListModel } from '../employeeprofile/upload-file.model';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckDeleteComponent } from './tenure-options/check-delete.component';
-import { AuthService } from '../../security/auth/auth.service';
+import { AppGlobals } from '../../app.global';
+import { GlobalService } from '../../global.service';
+import { UsersModel, UsersToDeleteModel } from './users.model';
+import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { ChangePasswordComponent } from './changepassword.component';
 
 @Component({
-  selector: 'app-loan',
-  templateUrl: './loan.component.html',
-  styleUrl: './loan.component.css'
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrl: './users.component.css'
 })
-export class LoanComponent {
-
-  // local variables 
+export class UsersComponent {
   
-  uploadStatus!: boolean;
-  progress!: number;
-  uploadedFile!: FileListModel;
+  public middleName = '';
+  public lastName = '';
+
+  
 
   // screen mode
   screenMode = 'index';
@@ -29,7 +29,7 @@ export class LoanComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'empName', 'department', 'jobTitle', 'loanDate', 'amount'];
+  displayedColumns: string[] = ['select', 'displayName', 'appUserName'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -42,7 +42,7 @@ export class LoanComponent {
   @Output() public onUploadFinished = new EventEmitter();
   user_img: string = "/path/to/file";
   apiImagePath: string = "";
-  apiPath: string = ""; 
+  apiPath: string = "";
   extension: string = "";
   fileName: string = "";
   fullPath: string = "";
@@ -50,14 +50,15 @@ export class LoanComponent {
 
 
   constructor(
-    private loanService: LoanService,
+    private usersService: UsersService,
     private _cf: CommonService,
     private http: HttpClient,
     private dialog: MatDialog,
-    private _auth: AuthService
+    private _globals: AppGlobals,
+    private globalService: GlobalService
   ) { 
-    this.pTableName = 'LoanReq';
-    this.pTableId = 27;
+    this.pTableName = 'AppUser';
+    this.pTableId = 2;
     this.recordsPerPage = 10;
     this.pUserId = 1;
     this.isLastPage = false;
@@ -66,6 +67,8 @@ export class LoanComponent {
   }
 
   ngOnInit() {
+    this.globalService.setNavStatus('system')
+    this.screenMode = 'index';
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
@@ -79,7 +82,7 @@ export class LoanComponent {
       browser: '',
       resol: '',
       device: '',
-      isTest: true, // must take with roleid(change) and is key to fetching data
+      isTest: false, // must take with roleid(change) and is key to fetching data
       sort: '',
       filter: ""
     }
@@ -110,13 +113,9 @@ export class LoanComponent {
 
   // }
 
-  logout() {
-    this._auth.logout()
-  }
-
   refreshMe() {
     // console.log('reached here');
-    this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: LoanModel[]) => {
+    this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: any) => {
       // this._ui.loadingStateChanged.next(false);
       this.totalRecords = result[0].totalRecords;
       this.recordsPerPage = this.recordsPerPage;
@@ -124,6 +123,13 @@ export class LoanComponent {
       // console.log('Reached here!');
       // console.log(result);
     })
+  }
+
+  onKey(event: any) { 
+    // if (this.screenMode === 'entry') {
+      console.log(event);
+      
+    // }
   }
 
   paginatoryOperation(event: PageEvent ): any {
@@ -154,28 +160,24 @@ export class LoanComponent {
     }
   }
 
-
   
-  
-
-  onDelete=  (data: LoanModel) => {
+  onDelete=  (data: UsersToDeleteModel) => {
     // this.router.navigate(['/user']);
     // console.log(this.firstName);
-    var dataToSend: LoanModel = data // Example data to send
-
-    dataToSend.transId = 0
+    var dataToSend: UsersToDeleteModel = data // Example data to send
+    dataToSend.TransId = 0
     console.log(dataToSend);
 
     if(this.dialog.openDialogs.length==0){
       const dialogRef = this.dialog.open(CheckDeleteComponent, {
-       // disableClose: true  
+       // disableClose: true 
        
      });
 
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.loanService.deleteRecord(dataToSend).subscribe(
+        this.usersService.deleteRecord(dataToSend).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();
@@ -190,9 +192,42 @@ export class LoanComponent {
       }
      })
   }
-    
+  }
+  changePassword=  (data: number) => {
+    // this.router.navigate(['/user']);
+    // console.log(this.firstName);
+    // var dataToSend: UsersToDeleteModel = data // Example data to send
+    // dataToSend.TransId = 0
+    // console.log(dataToSend);
+
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(ChangePasswordComponent, {
+       disableClose: true,
+       data: { 
+        appUserId: data,
+        password: ''
+       }, 
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log(result);
+      if (result) {
+        // this.usersService.deleteRecord(dataToSend).subscribe(
+        //   response => {
+        //     console.log('API Response:', response);
+            this.refreshMe();
+        //     this.screenMode = 'index';
+        //     // Handle the response data here
+        //   },
+        //   error => {
+        //     console.error('API Error:', error);
+        //     // Handle any errors here
+        //   }
+        // );
+      }
+     })
+  }
   }
 
-  
-
+ 
 }

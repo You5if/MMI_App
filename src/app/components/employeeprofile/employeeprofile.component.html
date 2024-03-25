@@ -1,7 +1,6 @@
 <h1>Employee profile</h1>
 
 <button 
-    (click)="btnClickCreate();"
     routerLink="/system/employeeprofile-entry/0"
   >
   Create
@@ -19,16 +18,59 @@
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/employeeprofile-entry/{{row.empProfileId}}" class="Btn" mat-menu-item>Edit</button>
+                <button routerLink="/system/employeeprofile-entry/{{row.empProfileId}}" class="Btn" mat-menu-item>Edit</button>
                 <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
               </mat-cell>
           </ng-container>
         
+          <ng-container matColumnDef="photo">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Photo
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+              <img class="table-img" src="{{row.fileName}}" alt="{{row.empName}}">
+            </mat-cell>
+          </ng-container>
           <ng-container matColumnDef="empName">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Employee Name
+                Name
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.first}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empName}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="department">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Department
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.department}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="jobTitle">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Job title
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.jobTitle}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="supervisor">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Supervisor
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.supervisor === 'NONE NONE NONE' ? '' : row.supervisor}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="biomId">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Biometric id
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.biomId}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Contact
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.phone}}</mat-cell>
           </ng-container>
           
       

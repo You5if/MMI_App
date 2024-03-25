@@ -1,0 +1,26 @@
+<h1>User roles</h1>
+<div  >
+    <button type="button" 
+    (click)="addNewRole(userId)"
+    style="margin-right: 5px;"
+  >
+  New role
+</button>
+<button type="button"
+    (click)="btnClickCancel();"
+  >
+  Back to list
+</button>
+
+    <div class="card" *ngFor="let role of roles" >
+        <div class="card-body roles">
+            <div>
+                {{role.appRoleId}}
+            </div>
+           <div>
+            <button type="button" (click)="onDelete(role)">Remove</button>
+           </div>
+        </div>
+    </div>
+    
+</div>

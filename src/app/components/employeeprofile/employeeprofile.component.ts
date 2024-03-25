@@ -76,7 +76,7 @@ export class EmployeeprofileComponent implements OnInit{
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'empName'];
+  displayedColumns: string[] = ['photo', 'empName', 'department', 'jobTitle', 'supervisor', 'biomId', 'phone', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

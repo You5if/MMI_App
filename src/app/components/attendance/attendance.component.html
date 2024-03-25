@@ -32,9 +32,30 @@ type="file"
         
           <ng-container matColumnDef="empName">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Att Id
+                Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empAttId}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empName}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="department">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Department
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.department}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="jobTitle">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Job title
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.jobTitle}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="checkIn">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Check in
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.checkIn | date:"dd/MMM/yyyy HH:mm"}}</mat-cell>
           </ng-container>
           
       

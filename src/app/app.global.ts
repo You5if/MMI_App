@@ -10,11 +10,11 @@ export class AppGlobals {
   
   /* Development Server */
   // readonly baseDomainUrl: string = "qualityhouse.auto-paymcs.com";
-  readonly baseDomainUrl: string = "http://49.50.77.201/qualityhouse/";
-  // readonly baseAppUrl: string = "http://qualityhouse.auto-paymcs.com/";
-  readonly baseAppUrl: string = "http://49.50.77.201/qualityhouse/";
-  // readonly baseLandingAppUrl: string = "http://qualityhouse.auto-paymcs.com/";
- readonly baseLandingAppUrl: string = "http://49.50.77.201/qualityhouse/";
+//   readonly baseDomainUrl: string = "http://49.50.77.201/qualityhouse/";
+//   // readonly baseAppUrl: string = "http://qualityhouse.auto-paymcs.com/";
+//   readonly baseAppUrl: string = "http://49.50.77.201/qualityhouse/";
+//   // readonly baseLandingAppUrl: string = "http://qualityhouse.auto-paymcs.com/";
+//  readonly baseLandingAppUrl: string = "http://49.50.77.201/qualityhouse/";
 
   /* Live Server */
   // readonly baseDomainUrl: string = "aladdinshipping.com";

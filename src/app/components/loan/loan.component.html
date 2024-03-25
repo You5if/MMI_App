@@ -23,16 +23,44 @@
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/loan-entry/{{row.loanReqId}}" class="Btn" mat-menu-item>Edit</button>
+                <button routerLink="/system/loan-entry/{{row.loanReqId}}" class="Btn" mat-menu-item>Edit</button>
                 <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
               </mat-cell>
           </ng-container>
         
           <ng-container matColumnDef="empName">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                LoanId
+                Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.loanReqId}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empName}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="department">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Department
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.department}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="jobTitle">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Job title
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.jobTitle}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="loanDate">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Loan date
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.loanDate | date:"dd/MMM/yyyy HH:mm"}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="amount">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Loan Amount
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.amount}}</mat-cell>
           </ng-container>
           
       

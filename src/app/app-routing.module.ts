@@ -16,6 +16,9 @@ import { LoanEntryComponent } from './components/loan/loan-entry/loan-entry.comp
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './security/auth/auth-guard';
 import { TestworkComponent } from './components/testwork/testwork.component';
+import { UsersComponent } from './components/users/users.component';
+import { UsersEntryComponent } from './components/users/users-entry/users-entry.component';
+import { UsersRolesComponent } from './components/users/users-roles/users-roles.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -37,6 +40,9 @@ const routes: Routes = [
   {path: 'employeeattendance', component: AttendanceComponent},
   {path: 'loan', component: LoanComponent},
   {path: 'loan-entry/:id', component: LoanEntryComponent},
+  {path: 'users', component: UsersComponent},
+  {path: 'users-entry/:id', component: UsersEntryComponent},
+  {path: 'user-roles/:id', component: UsersRolesComponent},
   ]},
   {path: 'products', component: ProductsComponent},
   {path: 'statistics', component: StatisticsComponent},
@@ -51,7 +57,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),],
+  imports: [RouterModule.forRoot(routes, {useHash: true}),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
