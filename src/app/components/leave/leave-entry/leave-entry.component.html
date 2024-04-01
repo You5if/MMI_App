@@ -1,0 +1,61 @@
+<!-- <p>inventory-entry works!</p> -->
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Leave information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Leave name</mat-label>
+                <input matInput  placeholder="Leave name" id="firstControl"   [(ngModel)]="leaveName" name="leaveName"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Description</mat-label>
+                <input matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+            </mat-form-field>
+           
+        </div>
+    </div>
+    <div class="card" >
+    <div class="card-head">Formula</div>
+        <div class="card-body">
+            
+            <mat-form-field style="width: 100%;margin-right: 10px;">
+                <mat-label>Leave formula</mat-label>
+                <input matInput appTitleCase placeholder="Leave formula"   [(ngModel)]="leaveFormula" name="leaveFormula" required>
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="card" >
+    <div class="card-head">Payment</div>
+        <div class="card-body">
+           
+                <mat-checkbox style="margin-right: 10px;" color="primary" [(ngModel)]="isPaid" name="isPaid">Is paid</mat-checkbox>
+            
+        </div>
+    </div>
+    <div class="card" >
+    <div class="card-head">Payment formula</div>
+        <div class="card-body">
+            <mat-form-field style="width: 100%; margin-right: 10px;">
+                <mat-label>Pay eval formula</mat-label>
+                <input matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula" required>
+            </mat-form-field>
+        </div>
+    </div>
+    
+</form>

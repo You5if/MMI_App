@@ -1,0 +1,61 @@
+<h1>Day working hours</h1>
+
+<button 
+mat-stroked-button
+color="primary"
+    routerLink="/system/dayworkinghours-entry/0"
+  >
+  Create
+</button>
+
+<div class="card"  >
+    <!-- <div class="card-head">Day Hours index</div> -->
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/dayworkinghours-entry/{{row.monthWDayId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="Month">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                From
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.fromDate | date:"dd/MMM/yyyy"}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="Year">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              To
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.toDate | date:"dd/MMM/yyyy"}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Holiday">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Day hours
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.dayHours}}</mat-cell>
+          </ng-container>
+          
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

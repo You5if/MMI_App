@@ -1,0 +1,40 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Holiday information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <input matInput  placeholder="Month" id="firstControl"   [(ngModel)]="month" name="month"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <input matInput appTitleCase placeholder="Year"  [(ngModel)]="getYear" name="year" required>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Holiday</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="holiday" name="holiday">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+           
+        </div>
+    </div>
+    
+</form>

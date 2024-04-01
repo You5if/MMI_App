@@ -1,3 +1,22 @@
+<mat-toolbar class="navItem">
+    <mat-toolbar-row>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="more_vert"></mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="changeRole()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="graphic_eq"></mat-icon>
+          <span>Change role</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
 <div class="{{navClass}}" [ngClass]="getBodyClass()">
     <router-outlet></router-outlet>
 </div>

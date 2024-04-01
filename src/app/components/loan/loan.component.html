@@ -1,18 +1,19 @@
 <h1>Loan</h1>
 
 <button 
+mat-stroked-button
+color="primary"
     routerLink="/system/loan-entry/0"
   >
   Create
 </button>
-<button 
+<!-- <button 
     (click)="logout()"
   >
   logout
-</button>
+</button> -->
 
 <div class="card"  >
-    <div class="card-head">Loan index</div>
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">
   
@@ -23,8 +24,8 @@
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/loan-entry/{{row.loanReqId}}" class="Btn" mat-menu-item>Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
+                <button routerLink="/system/loan-entry/{{row.loanReqId}}" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
               </mat-cell>
           </ng-container>
         

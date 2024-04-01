@@ -19,15 +19,15 @@ export class AttendanceService {
 
   sendData(dataToSend: AttendanceModel): Observable<any> {
       if (dataToSend.empAttId === 0) {
-          return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/create', dataToSend);
+          return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/create', dataToSend, this._cf.requestOptions());
       } else {
-          return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/edit', dataToSend);
+          return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/edit', dataToSend, this._cf.requestOptions());
       }
       
   }
 
   getEmployeeProfileEntry(id: number): Observable<any> {
-      return this.httpclient.get<any>(this._globals.baseAPIUrl + "EmpAtt/" + id + "/1/1/1/''/''/''").pipe(
+      return this.httpclient.get<any>(this._globals.baseAPIUrl + "EmpAtt/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(
       map((result: any) => {
       return result;
       }), catchError(this._cf.handleError)
@@ -36,7 +36,7 @@ export class AttendanceService {
 
   deleteRecord(dataToSend: AttendanceModel): Observable<any> {
         
-    return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/delete', dataToSend);
+    return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/delete', dataToSend, this._cf.requestOptions());
     
 }
      

@@ -79,7 +79,7 @@ export class LoanComponent {
       browser: '',
       resol: '',
       device: '',
-      isTest: true, // must take with roleid(change) and is key to fetching data
+      isTest: this._auth.getIsTest(), // must take with roleid(change) and is key to fetching data
       sort: '',
       filter: ""
     }

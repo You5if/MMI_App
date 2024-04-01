@@ -19,6 +19,19 @@ import { TestworkComponent } from './components/testwork/testwork.component';
 import { UsersComponent } from './components/users/users.component';
 import { UsersEntryComponent } from './components/users/users-entry/users-entry.component';
 import { UsersRolesComponent } from './components/users/users-roles/users-roles.component';
+import { PublicHolidayComponent } from './components/public-holiday/public-holiday.component';
+import { PublicHolidayEntryComponent } from './components/public-holiday/public-holiday-entry/public-holiday-entry.component';
+import { CompanyWeekendComponent } from './components/company-weekend/company-weekend.component';
+import { DayWorkingHoursComponent } from './components/day-working-hours/day-working-hours.component';
+import { DayWorkingHoursEntryComponent } from './components/day-working-hours/day-working-hours-entry/day-working-hours-entry.component';
+import { AgreementComponent } from './components/agreement/agreement.component';
+import { AgreementEntryComponent } from './components/agreement/agreement-entry/agreement-entry.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { InventoryEntryComponent } from './components/inventory/inventory-entry/inventory-entry.component';
+import { EmpInventoryComponent } from './components/emp-inventory/emp-inventory.component';
+import { EmpInventoryEntryComponent } from './components/emp-inventory/emp-inventory-entry/emp-inventory-entry.component';
+import { LeaveComponent } from './components/leave/leave.component';
+import { LeaveEntryComponent } from './components/leave/leave-entry/leave-entry.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -40,9 +53,22 @@ const routes: Routes = [
   {path: 'employeeattendance', component: AttendanceComponent},
   {path: 'loan', component: LoanComponent},
   {path: 'loan-entry/:id', component: LoanEntryComponent},
+  {path: 'publicholiday', component: PublicHolidayComponent},
+  {path: 'publicholiday-entry/:id', component: PublicHolidayEntryComponent},
+  {path: 'dayworkinghours', component: DayWorkingHoursComponent},
+  {path: 'dayworkinghours-entry/:id', component: DayWorkingHoursEntryComponent},
+  {path: 'agreement', component: AgreementComponent},
+  {path: 'agreement-entry/:id', component: AgreementEntryComponent},
+  {path: 'inventory', component: InventoryComponent},
+  {path: 'inventory-entry/:id', component: InventoryEntryComponent},
+  {path: 'empinventory', component: EmpInventoryComponent},
+  {path: 'empinventory-entry/:id', component: EmpInventoryEntryComponent},
+  {path: 'leave', component: LeaveComponent},
+  {path: 'leave-entry/:id', component: LeaveEntryComponent},
   {path: 'users', component: UsersComponent},
   {path: 'users-entry/:id', component: UsersEntryComponent},
   {path: 'user-roles/:id', component: UsersRolesComponent},
+  {path: 'companyweekend', component: CompanyWeekendComponent},
   ]},
   {path: 'products', component: ProductsComponent},
   {path: 'statistics', component: StatisticsComponent},
@@ -57,7 +83,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true}),],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -3,6 +3,8 @@
 <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
 
 <button 
+mat-button
+color="primary"
 type="file"
     (click)="file.click()"
   >
@@ -15,7 +17,7 @@ type="file"
 </button> -->
 
 <div class="card" >
-    <div class="card-head">Employee attendanceindex</div>
+    <!-- <div class="card-head">Employee attendanceindex</div> -->
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">
   
@@ -26,7 +28,7 @@ type="file"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
               </mat-cell>
           </ng-container>
         

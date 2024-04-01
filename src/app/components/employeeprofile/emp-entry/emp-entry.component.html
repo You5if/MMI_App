@@ -1,9 +1,14 @@
 <form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
     <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
   >
   Save
 </button>
 <button type="button"
+mat-button
+    color="basic"
     (click)="btnClickCancel();"
   >
   Cancel
@@ -17,8 +22,8 @@
                         <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="Photo of a Shiba Inu">
                         <div class="no-img" *ngIf="user_img === '/path/to/file'"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon></div>
                         <mat-card-actions class="card-footer">
-                          <button class="card-btn" mat-raised-button (click)="deleteImg()" color="warn"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete_forever"></mat-icon></button>
-                          <button class="card-btn" mat-raised-button (click)="file.click()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="mode_edit"></mat-icon></button>
+                          <button class="card-btn" type="button" mat-raised-button (click)="deleteImg()" color="warn"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete_forever"></mat-icon></button>
+                          <button class="card-btn" type="button" mat-raised-button (click)="file.click()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="mode_edit"></mat-icon></button>
                         </mat-card-actions>
                       </mat-card>
            
@@ -108,6 +113,17 @@
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Biometric Id</mat-label>
                 <input matInput appTitleCase placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
+            </mat-form-field>
+        </div>
+    </div>
+    
+    <div class="card" >
+        <div class="card-head">Supervisor</div>
+        <div class="card-body">
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Supervisor</mat-label>
+                <input matInput appTitleCase placeholder="Supervisor" type="number" [(ngModel)]="supervisorId" name="supervisorId">
             </mat-form-field>
         </div>
     </div>

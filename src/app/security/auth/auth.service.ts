@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 // import getMAC, { isMAC } from 'getmac';
@@ -7,6 +7,7 @@ import { AppGlobals } from '../../app.global';
 import { CommonService } from '../../components/common.service';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DOCUMENT } from '@angular/common';
 // import { AuthService2 } from './myauth.service';
 
 @Injectable({
@@ -18,6 +19,7 @@ export class AuthService {
   userRole: any;
   decodedToken: any;
   jwtHelper: JwtHelperService = new JwtHelperService();
+  // localStorage = this.document.defaultView?.localStorage;
 
   constructor(
     private http: HttpClient,
@@ -25,25 +27,29 @@ export class AuthService {
     private _cf: CommonService,
     private jwtHelperService: JwtHelperService,
     // private _auth: AuthService2,
-    private router: Router
+    private router: Router,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   login(model: any): Observable<any> {
+
     console.log(model);
     
     return this.http.post<any>(this._globals.baseAPIUrl + 'User/login', model).pipe(
       map((response: any) => {
         const user = response;
         if (user) {
-          console.log(user);
+          console.log('User:', user);
           //step 4 of security(next: login.model.ts)
-          localStorage.setItem(this._globals.baseAppName + '_token', user.token);
+          // if (this.localStorage) {
+            localStorage.setItem(this._globals.baseAppName + '_token', user.token);
           // console.log('Token: '+localStorage.getItem(this._globals.baseAppName + '_token'));
           // console.log('User', user);
-          localStorage.setItem('role', user.roleId.toString());
+          localStorage.setItem(this._globals.baseAppName + '_role', user.roleId.toString());
+          // }
           this.userRole = user.roleId.toString();
-          localStorage.setItem('sdCompanyId', user.companyId.toString());
-          this.userRole = user.roleId.toString();
+          // localStorage.setItem('sdCompanyId', user.companyId.toString());
+          // this.userRole = user.roleId.toString();
           this.userToken = user.token;
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
 
@@ -76,14 +82,22 @@ export class AuthService {
     this.decodedToken = null;
     localStorage.removeItem(this._globals.baseAppName + '_token');
     localStorage.removeItem('sdCompanyId');
-    localStorage.removeItem('role');
+    localStorage.removeItem(this._globals.baseAppName + '_role');
     localStorage.clear();
     this.router.navigate(['/login']);
   }
 
   getRole() {
-    console.log(this.userRole);
-    return this.userRole;
+    // console.log(this.userRole);
+    return localStorage.getItem(this._globals.baseAppName + '_role');
+  }
+
+  getIsTest() {
+    if (Number(localStorage.getItem(this._globals.baseAppName + '_role')) === 2) {
+      return true
+    }else {
+      return false
+    }
   }
 
   getToken() {

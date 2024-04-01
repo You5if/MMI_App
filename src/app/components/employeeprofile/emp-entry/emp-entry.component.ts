@@ -10,6 +10,7 @@ import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.com
 import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
+import { AuthService } from '../../../security/auth/auth.service';
 
 @Component({
   selector: 'app-emp-entry',
@@ -50,23 +51,24 @@ export class EmpEntryComponent {
   public certificates = '';
   public insurance = '';
   public inDesc = '';
-  public inSt = '';
-  public inEnd = '';
+  public inSt = new Date();
+  public inEnd = new Date();
   public laborCard = '';
   public laborDesc = '';
-  public laborSt = '';
-  public laborEn = '';
+  public laborSt = new Date();
+  public laborEn = new Date();
 
-  public emiratesSt = '';
-  public emiratesEn = '';
+  public emiratesSt = new Date();
+  public emiratesEn = new Date();
   public passport = '';
-  public passportSt = '';
-  public passportEn = '';
+  public passportSt = new Date();
+  public passportEn = new Date();
   public visa = '';
   public visaDesc = '';
-  public visaSt = '';
-  public visaEn = '';
+  public visaSt = new Date();
+  public visaEn = new Date();
   public emiratesId = '';
+  public supervisorId = 1;
   message: string = "";
 
   uploadStatus!: boolean;
@@ -92,7 +94,8 @@ export class EmpEntryComponent {
     private cdref: ChangeDetectorRef,
     private dialog: MatDialog,
     private _globals: AppGlobals,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private _auth: AuthService,
     ) {
 
   }
@@ -254,17 +257,14 @@ uploadFile = (files:any) => {
       const formData = new FormData();
       formData.append("file", fileToUpload, fileToUpload.name);
       this.http
-        .post(this._globals.baseAPIUrl + "file/upload", formData, {
-          reportProgress: true,
-          observe: "events"
-        })
-        .subscribe((event:any) => {
-          console.log('valEvent', event);
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progress = Math.round((100 * event.loaded) / event.total);
-            this.uploadStatus = false;
-          } else if (event.type === HttpEventType.Response) {
-            const res: any = event.body;
+        .post(this._globals.baseAPIUrl + "file/upload", formData, this._cf.imageequestOptions())
+        .subscribe((event) => {
+          // console.log('valEvent', event);
+          // if (event.type === HttpEventType.UploadProgress) {
+          //   this.progress = Math.round((100 * event.loaded) / event.total);
+          //   this.uploadStatus = false;
+          // } else if (event.type === HttpEventType.Response) {
+            const res: any = event;
             this.uploadedFile = {
               apiPath: res.apiPath,
               extension: res.extention,
@@ -291,7 +291,7 @@ uploadFile = (files:any) => {
             // this.businessService.imageChange2(this.uploadedFile)
             // this.businessService.imageChange(this.uploadedFile)
             this.message = fileToUpload.name + " upload success!";
-          }
+          
           // this.myFiles = this.tmpFilesList;
 
           // this.childFileListComponent.refreshMe();
@@ -354,7 +354,7 @@ btnClick=  () => {
     "MaritStatus": "Married",
     "Children": 2,
     "DOB": "1990-01-01T00:00:00Z",
-    "Supervisor": 123456789,
+    "Supervisor": 1,
     "DOJ": "2020-01-01T00:00:00Z",
     "ContractSt": "2020-01-01T00:00:00Z",
     "ContractEnd": "2022-01-01T00:00:00Z",
@@ -371,23 +371,23 @@ btnClick=  () => {
     "Attachments": this.attachments,
     "Insurance": this.insurance,
     "InDesc": this.inDesc,
-    "InSt": this.inSt,
-    "InEnd": this.inEnd,
+    "InSt": this.inSt.toDateString(),
+    "InEnd": this.inEnd.toDateString(),
     "LaborCard": this.laborCard,
     "LaborDesc": this.laborDesc,
-    "LaborSt": this.laborSt,
-    "LaborEn": this.laborEn,
+    "LaborSt": this.laborSt.toDateString(),
+    "LaborEn": this.laborEn.toDateString(),
     "EmiratesId": this.emiratesId,
-    "EmiratesSt": this.emiratesSt,
-    "EmiratesEn": this.emiratesEn,
+    "EmiratesSt": this.emiratesSt.toDateString(),
+    "EmiratesEn": this.emiratesEn.toDateString(),
     "Passport": this.passport,
-    "PassportSt": this.passportSt,
-    "PassportEn": this.passportEn,
+    "PassportSt": this.passportSt.toDateString(),
+    "PassportEn": this.passportEn.toDateString(),
     "Visa": this.visa,
     "VisaDesc": this.visaDesc,
-    "VisaSt": this.visaSt,
-    "VisaEn": this.visaEn,
-    "IsTest": false,
+    "VisaSt": this.visaSt.toDateString(),
+    "VisaEn": this.visaEn.toDateString(),
+    "IsTest": this._auth.getIsTest(),
     "Active": true,
     "Deleted": false,
     "UserCR": 1,

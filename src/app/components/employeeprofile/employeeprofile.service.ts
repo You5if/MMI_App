@@ -21,20 +21,20 @@ export class EmployeeProfileService {
 
     sendData(dataToSend: EmployeeModel): Observable<any> {
         if (dataToSend.EmpProfileId === 0) {
-            return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpProfile/create', dataToSend);
+            return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpProfile/create', dataToSend, this._cf.requestOptions());
         } else {
-            return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpProfile/edit', dataToSend);
+            return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpProfile/edit', dataToSend, this._cf.requestOptions());
         }
         
     }
     deleteRecord(dataToSend: EmployeeModel): Observable<any> {
         
-        return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpProfile/delete', dataToSend);
+        return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpProfile/delete', dataToSend, this._cf.requestOptions());
         
     }
 
     getEmployeeProfileEntry(id: number): Observable<any> {
-        return this.httpclient.get<any>(this._globals.baseAPIUrl + "EmpProfile/" + id + "/1/1/1/''/''/''").pipe(
+        return this.httpclient.get<any>(this._globals.baseAPIUrl + "EmpProfile/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(
         map((result: any) => {
         return result;
         }), catchError(this._cf.handleError)

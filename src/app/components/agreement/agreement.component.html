@@ -1,0 +1,69 @@
+<h1>Agreement</h1>
+
+<button 
+mat-stroked-button
+color="primary"
+    routerLink="/system/agreement-entry/0"
+  >
+  Create
+</button>
+
+<div class="card"  >
+    <!-- <div class="card-head">Agreement index</div> -->
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/agreement-entry/{{row.empAgreementId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="agStart">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Start
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.agStart | date:"dd/MMM/yyyy"}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="agEnd">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              End
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.agEnd | date:"dd/MMM/yyyy"}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="department">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Department
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.department}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="jobTitle">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Job title
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.jobTitle}}</mat-cell>
+          </ng-container>
+
+          
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

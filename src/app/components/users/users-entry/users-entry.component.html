@@ -1,9 +1,14 @@
 <form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
     <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
   >
   Save
 </button>
 <button type="button"
+mat-button
+    color="basic"
     (click)="btnClickCancel();"
   >
   Cancel

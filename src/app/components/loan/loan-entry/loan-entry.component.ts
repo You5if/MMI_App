@@ -18,6 +18,7 @@ import {
 import { CheckTenuresComponent } from '../tenure-options/check-tenures.component';
 import { AmountIsLessComponent } from '../tenure-options/AmountIsLess.component copy';
 import { SaveChangesComponent } from '../tenure-options/save-changes.component';
+import { AuthService } from '../../../security/auth/auth.service';
 
 @Component({
   selector: 'app-loan-entry',
@@ -45,6 +46,7 @@ loadId: number = 0;
     private activeRoute: ActivatedRoute,
     private cdref: ChangeDetectorRef,
     private dialog: MatDialog,
+    private _auth: AuthService,
     ) {
 
   }
@@ -173,7 +175,10 @@ loadId: number = 0;
   }
 
   fetchTenure() {
-    this.tenures = []
+    if (this.tenures.length != 0) {
+      this.tenure = this.tenures.length
+    }
+      this.tenures = []
     var date = new Date(this.requestDate);
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
@@ -214,6 +219,7 @@ loadId: number = 0;
       remainingLoan -= Number(loanChildAmount.toFixed(2)); // Subtract the assigned loan amount
       this.tenures.push(loanChild)
     }
+    
   }
 
   EnterSubmit(event: any) { 
@@ -249,7 +255,7 @@ btnClick=  () => {
           "amount": this.amount,
           "remarks": "Emergency medical expenses",
           "loanType": 1,
-          "isTest": true,
+          "isTest": this._auth.getIsTest(),
           "active": true,
           "userCR": 456,
           "company": 789,

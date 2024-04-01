@@ -1,13 +1,14 @@
 <h1>Users</h1>
 
 <button 
+mat-stroked-button
+color="primary"
     routerLink="/system/users-entry/0"
   >
   Create
 </button>
 
 <div class="card"  >
-    <div class="card-head">Users index</div>
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">
   
@@ -18,9 +19,9 @@
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/user-roles/{{row.appUserId}}" style="margin-right: 5px;" class="Btn" mat-menu-item>Roles</button>
-                <button (click)="changePassword(row.appUserId)" style="margin-right: 5px;" class="Btn" mat-menu-item>Change password</button>
-                <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
+                <button routerLink="/system/user-roles/{{row.appUserId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Roles</button>
+                <button (click)="changePassword(row.appUserId)" style="margin-right: 5px;" class="Btn" mat-button color="basic">Change password</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
               </mat-cell>
           </ng-container>
         

@@ -1,0 +1,99 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Agreement period</div>
+        
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Agreement start</mat-label>
+                <input id="firstControl" matInput [matDatepicker]="picker" [(ngModel)]="agStart" name="agStart">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Agreement end</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="agEnd" name="agEnd">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+        </div>
+        </div>
+        <div class="card" >
+            <div class="card-head">Agreement information</div>
+        <div class="card-body">
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Department</mat-label>
+                <input matInput  placeholder="Department"   [(ngModel)]="department" name="department"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>jobTitle</mat-label>
+                <input matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle" required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Description</mat-label>
+                <input matInput appTitleCase placeholder="description"  [(ngModel)]="description" name="description" required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Reamrks</mat-label>
+                <input matInput appTitleCase placeholder="Job title"  [(ngModel)]="remarks" name="remarks" required>
+            </mat-form-field>
+    
+           
+        </div>
+    </div>
+    <div class="card" >
+        <div class="card-head">Agreement earning</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Earn 1</mat-label>
+                <input matInput appTitleCase placeholder="Earn 1"  [(ngModel)]="earn1" name="earn1" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Earn 2</mat-label>
+                <input matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn2" name="earn2" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Earn 3</mat-label>
+                <input matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn3" name="earn3" required>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="card" >
+        <div class="card-head">Agreement deduction</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Ded 1</mat-label>
+                <input matInput appTitleCase placeholder="Ded 1"  [(ngModel)]="ded1" name="Ded1" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Ded 2</mat-label>
+                <input matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded2" name="Ded2" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Ded 3</mat-label>
+                <input matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded3" name="Ded3" required>
+            </mat-form-field>
+        </div>
+    </div>
+    
+</form>

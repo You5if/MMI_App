@@ -1,0 +1,40 @@
+<!-- <p>inventory-entry works!</p> -->
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Inventory information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Item name</mat-label>
+                <input matInput  placeholder="Item name" id="firstControl"   [(ngModel)]="itemName" name="itemName"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Description</mat-label>
+                <input matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Item type</mat-label>
+                <input matInput appTitleCase placeholder="Item type" type="number"  [(ngModel)]="itemType" name="itemType" required>
+            </mat-form-field>
+    
+            
+           
+        </div>
+    </div>
+    
+</form>

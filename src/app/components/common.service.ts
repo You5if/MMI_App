@@ -38,6 +38,15 @@ export class CommonService {
       console.log(headers);
       return {headers: headers};
     }
+     public imageequestOptions() {
+      //step 3 of security (next: auth.service.ts > login())
+      this.userToken = localStorage.getItem(this._globals.baseAppName + "_token");
+      const headers = new HttpHeaders({
+        authorization: "Bearer " + this.userToken,
+      });
+      console.log(headers);
+      return {headers: headers};
+    }
 
      public newGetPageDataOnPaginatorOperation(
         event: PageEvent,

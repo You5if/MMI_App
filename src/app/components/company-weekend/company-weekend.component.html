@@ -1,0 +1,94 @@
+<h1>Company weekend</h1>
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-button
+color="primary"
+  >
+  Save
+</button>
+<!-- <button type="button"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button> -->
+    <div class="card" >
+        <!-- <div class="card-head">Days</div> -->
+        <div class="card-body week">
+            
+                <mat-slide-toggle
+                id="firstControl"
+                    class="example-margin"
+                    name="satDay"
+                    [(ngModel)]="days[0].day">
+                    Saturday
+                </mat-slide-toggle>
+           
+           
+                <!-- <mat-slide-toggle
+                id="firstControl"
+                    class="example-margin"
+                    name="satDay"
+                    (click)="toggleDay(0)"
+                    [(ngModel)]="days[0].day">
+                    Saturday
+                </mat-slide-toggle>
+           
+            -->
+            
+                <mat-slide-toggle
+                    class="example-margin"
+                    name="sunDay"
+                    [(ngModel)]="days[1].day">
+                    Sunday
+                </mat-slide-toggle>
+           
+           
+            
+                <mat-slide-toggle
+                    class="example-margin"
+                    name="monDay"
+                    [(ngModel)]="days[2].day">
+                    Monday
+                </mat-slide-toggle>
+           
+           
+            
+                <mat-slide-toggle
+                    class="example-margin"
+                    name="tueDay"
+                    [(ngModel)]="days[3].day">
+                    Tuesday
+                </mat-slide-toggle>
+           
+           
+            
+                <mat-slide-toggle
+                    class="example-margin"
+                    name="wedDay"
+                    [(ngModel)]="days[4].day">
+                    Wednesday
+                </mat-slide-toggle>
+           
+           
+            
+                <mat-slide-toggle
+                    class="example-margin"
+                    name="thuDay"
+                    [(ngModel)]="days[5].day">
+                    Thursday
+                </mat-slide-toggle>
+           
+           
+            
+                <mat-slide-toggle
+                    class="example-margin"
+                    name="friDay"
+                    [(ngModel)]="days[6].day">
+                    Friday
+                </mat-slide-toggle>
+           
+           
+        </div>
+    </div>
+    
+</form>

@@ -6,6 +6,7 @@ import { AttendanceModel } from '../attendance/attendance.model';
 import { AttendanceService } from '../attendance/attendance.service';
 import { FileListModel } from '../employeeprofile/upload-file.model';
 import { AppGlobals } from '../../app.global';
+import { AuthService } from '../../security/auth/auth.service';
 
 @Component({
   selector: 'app-attendance',
@@ -50,7 +51,8 @@ export class AttendanceComponent implements OnInit{
     private empService: AttendanceService,
     private _cf: CommonService,
     private http: HttpClient,
-    private _globals: AppGlobals
+    private _globals: AppGlobals,
+    private _auth: AuthService,
   ) { 
     this.pTableName = 'EmpAtt';
     this.pTableId = 14;
@@ -75,7 +77,7 @@ export class AttendanceComponent implements OnInit{
       browser: '',
       resol: '',
       device: '',
-      isTest: true, // must take with roleid(change) and is key to fetching data
+      isTest: this._auth.getIsTest(), // must take with roleid(change) and is key to fetching data
       sort: '',
       filter: ""
     }

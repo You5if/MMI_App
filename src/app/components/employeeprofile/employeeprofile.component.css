@@ -52,6 +52,7 @@ mat-divider {
     width: 100px;
     height: 100px;
     background-size: contain;
+    object-fit: contain;
     background-position: center;
     background-repeat: no-repeat;
 }

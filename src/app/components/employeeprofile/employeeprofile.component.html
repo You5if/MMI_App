@@ -1,13 +1,15 @@
 <h1>Employee profile</h1>
 
 <button 
+mat-stroked-button
+color="primary"
     routerLink="/system/employeeprofile-entry/0"
   >
   Create
 </button>
 
 <div class="card"  >
-    <div class="card-head">Employee profile index</div>
+    <!-- <div class="card-head">Employee profile index</div> -->
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">
   
@@ -18,8 +20,8 @@
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/employeeprofile-entry/{{row.empProfileId}}" class="Btn" mat-menu-item>Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-menu-item>Delete</button>
+                <button routerLink="/system/employeeprofile-entry/{{row.empProfileId}}" class="Btn" mat-button color="basic">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
               </mat-cell>
           </ng-container>
         
@@ -56,7 +58,7 @@
             <mat-header-cell class="centH" *matHeaderCellDef>
               Supervisor
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.supervisor === 'NONE NONE NONE' ? '' : row.supervisor}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.supervisorName === 'NONE NONE NONE' ? '' : row.supervisorName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="biomId">      

@@ -7,8 +7,11 @@
     top: 0;
     transition: all .5s ease;
     background: #f4f7fa;
-    padding: 3rem;
+    padding: 0 3rem;
 
+}
+.navItem {
+    background: #f4f7fa;
 }
 .login-body {
     width: 100%;
@@ -22,6 +25,9 @@
     padding: 3rem;
 
 }
+.example-spacer {
+    flex: 1 1 auto;
+  }
 
 .body-trimmed {
     width: calc(100% - 16.5625rem);

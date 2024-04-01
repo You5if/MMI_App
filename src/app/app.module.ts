@@ -52,6 +52,24 @@ import { UsersEntryComponent } from './components/users/users-entry/users-entry.
 import { UsersRolesComponent } from './components/users/users-roles/users-roles.component';
 import { ChangePasswordComponent } from './components/users/changepassword.component';
 import { AddRoleComponent } from './components/users/add-role.component';
+import { PublicHolidayComponent } from './components/public-holiday/public-holiday.component';
+import { PublicHolidayEntryComponent } from './components/public-holiday/public-holiday-entry/public-holiday-entry.component';
+import { CompanyWeekendComponent } from './components/company-weekend/company-weekend.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { DayWorkingHoursComponent } from './components/day-working-hours/day-working-hours.component';
+import { DayWorkingHoursEntryComponent } from './components/day-working-hours/day-working-hours-entry/day-working-hours-entry.component';
+import { AgreementComponent } from './components/agreement/agreement.component';
+import { AgreementEntryComponent } from './components/agreement/agreement-entry/agreement-entry.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { InventoryEntryComponent } from './components/inventory/inventory-entry/inventory-entry.component';
+import { EmpInventoryComponent } from './components/emp-inventory/emp-inventory.component';
+import { EmpInventoryEntryComponent } from './components/emp-inventory/emp-inventory-entry/emp-inventory-entry.component';
+import { LeaveComponent } from './components/leave/leave.component';
+import { LeaveEntryComponent } from './components/leave/leave-entry/leave-entry.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import { ChangeRoleComponent } from './components/general-operations/change-role.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem("MMI_token")!;
@@ -95,7 +113,21 @@ export const jwtConfig = {
     UsersEntryComponent,
     UsersRolesComponent,
     ChangePasswordComponent,
-    AddRoleComponent
+    AddRoleComponent,
+    PublicHolidayComponent,
+    PublicHolidayEntryComponent,
+    CompanyWeekendComponent,
+    DayWorkingHoursComponent,
+    DayWorkingHoursEntryComponent,
+    AgreementComponent,
+    AgreementEntryComponent,
+    InventoryComponent,
+    InventoryEntryComponent,
+    EmpInventoryComponent,
+    EmpInventoryEntryComponent,
+    LeaveComponent,
+    LeaveEntryComponent,
+    ChangeRoleComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +146,10 @@ export const jwtConfig = {
     MatPaginatorModule,
     MatTableModule,
     MatDividerModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatMenuModule,
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot({

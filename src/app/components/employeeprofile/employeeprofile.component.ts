@@ -11,6 +11,7 @@ import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.compon
 import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../app.global';
 import { GlobalService } from '../../global.service';
+import { AuthService } from '../../security/auth/auth.service';
 
 @Component({
   selector: 'app-employeeprofile',
@@ -76,7 +77,7 @@ export class EmployeeprofileComponent implements OnInit{
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['photo', 'empName', 'department', 'jobTitle', 'supervisor', 'biomId', 'phone', 'select'];
+  displayedColumns: string[] = ['select', 'photo', 'empName', 'department', 'jobTitle', 'supervisor', 'biomId', 'phone'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -102,7 +103,8 @@ export class EmployeeprofileComponent implements OnInit{
     private http: HttpClient,
     private dialog: MatDialog,
     private _globals: AppGlobals,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private _auth: AuthService,
   ) { 
     this.pTableName = 'EmpProfile';
     this.pTableId = 10;
@@ -129,7 +131,7 @@ export class EmployeeprofileComponent implements OnInit{
       browser: '',
       resol: '',
       device: '',
-      isTest: false, // must take with roleid(change) and is key to fetching data
+      isTest: this._auth.getIsTest(), // must take with roleid(change) and is key to fetching data
       sort: '',
       filter: ""
     }
@@ -368,7 +370,7 @@ export class EmployeeprofileComponent implements OnInit{
       "VisaDesc": this.visaDesc,
       "VisaSt": this.visaSt,
       "VisaEn": this.visaEn,
-      "IsTest": false,
+      "IsTest": this._auth.getIsTest(),
       "Active": true,
       "Deleted": false,
       "UserCR": 1,

@@ -1,0 +1,120 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+<div class="card" >
+    <div class="card-head">Employee inventory information</div>
+
+<div class="card-body">
+
+    <mat-form-field style="margin-right: 10px;">
+        <mat-label>Employee</mat-label>
+        <input id="firstControl" matInput  placeholder="Employee"   [(ngModel)]="empId" type="number" name="Employee"  required>
+    </mat-form-field>
+
+    <mat-form-field style="margin-right: 10px;">
+        <mat-label>Inventory list</mat-label>
+        <input matInput appTitleCase placeholder="Inventory list"  [(ngModel)]="empInvListId" type="number" name="empInvListId" required>
+    </mat-form-field>
+
+    <mat-form-field style="margin-right: 10px;">
+        <mat-label>Model no</mat-label>
+        <input matInput appTitleCase placeholder="Model no"  [(ngModel)]="modelNo" name="modelNo" required>
+    </mat-form-field>
+
+    <mat-form-field style="margin-right: 10px;">
+        <mat-label>Specifications</mat-label>
+        <input matInput appTitleCase placeholder="Specifications"  [(ngModel)]="specs" name="specs" required>
+    </mat-form-field>
+
+    
+   
+</div>
+</div>
+    <div class="card" >
+        <div class="card-head">Expiry and allocation</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Expiry</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="expiry" name="expiry">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Allocation date</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="allocationDate" name="allocationDate">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field style="margin-right: 10px;">
+                <mat-label>Allocation remarks</mat-label>
+                <input matInput appTitleCase placeholder="Allocation remarks"  [(ngModel)]="allocRemarks" name="allocRemarks" required>
+            </mat-form-field>
+        </div>
+        </div>
+        
+    <div class="card" >
+        <div class="card-head">Witnesses</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness Employee 1</mat-label>
+                <input matInput appTitleCase placeholder="Witness Employee 1" type="number"  [(ngModel)]="witnessEmp1" name="witnessEmp1" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness Employee 2</mat-label>
+                <input matInput appTitleCase placeholder="Witness Employee 2"  type="number"  [(ngModel)]="witnessEmp2" name="witnessEmp2" required>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="card" >
+        <div class="card-head">withdraw details</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Withdraw date</mat-label>
+                <input matInput [matDatepicker]="picker3" [(ngModel)]="withdrawDate" name="withdrawDate">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness withdraw 1</mat-label>
+                <input matInput appTitleCase placeholder="Witness withdraw 1" type="number"  [(ngModel)]="witnessWDEmp1" name="witnessWDEmp1" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness withdraw 2</mat-label>
+                <input matInput appTitleCase placeholder="Witness withdraw 2"  type="number"  [(ngModel)]="witnessWDEmp2" name="witnessWDEmp2" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Withdraw remarks</mat-label>
+                <input matInput appTitleCase placeholder="Withdraw remarks"  [(ngModel)]="withdrRemarks" name="withdrRemarks" required>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="card" >
+        <div class="card-head">Cost</div>
+
+        <div class="card-body">
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Cost of item</mat-label>
+                <input matInput appTitleCase placeholder="Cost of item"  type="number"  [(ngModel)]="costOfItem" name="costOfItem" required>
+            </mat-form-field>
+        </div>
+    </div>
+    
+</form>
