@@ -8,6 +8,7 @@ import { FileListModel } from '../employeeprofile/upload-file.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckDeleteComponent } from './tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-loan',
@@ -54,7 +55,8 @@ export class LoanComponent {
     private _cf: CommonService,
     private http: HttpClient,
     private dialog: MatDialog,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'LoanReq';
     this.pTableId = 27;
@@ -175,7 +177,13 @@ export class LoanComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.loanService.deleteRecord(dataToSend).subscribe(
+        this.loanService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();

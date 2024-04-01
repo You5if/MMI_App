@@ -3,12 +3,14 @@
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
+    [disabled]="submitDisable"
   >
   Save
 </button>
 <button type="button"
 mat-button
     color="basic"
+    [disabled]="submitDisable"
     (click)="btnClickCancel();"
   >
   Cancel
@@ -19,7 +21,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Agreement start</mat-label>
-                <input id="firstControl" matInput [matDatepicker]="picker" [(ngModel)]="agStart" name="agStart">
+                <input [disabled]="submitDisable"  id="firstControl" matInput [matDatepicker]="picker" [(ngModel)]="agStart" name="agStart">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -27,7 +29,7 @@ mat-button
               
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Agreement end</mat-label>
-                <input matInput [matDatepicker]="picker2" [(ngModel)]="agEnd" name="agEnd">
+                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="agEnd" name="agEnd">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -40,22 +42,22 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Department</mat-label>
-                <input matInput  placeholder="Department"   [(ngModel)]="department" name="department"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="Department"   [(ngModel)]="department" name="department"  required>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>jobTitle</mat-label>
-                <input matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle" required>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Description</mat-label>
-                <input matInput appTitleCase placeholder="description"  [(ngModel)]="description" name="description" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="description"  [(ngModel)]="description" name="description" required>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Reamrks</mat-label>
-                <input matInput appTitleCase placeholder="Job title"  [(ngModel)]="remarks" name="remarks" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="remarks" name="remarks" required>
             </mat-form-field>
     
            
@@ -66,15 +68,15 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Earn 1</mat-label>
-                <input matInput appTitleCase placeholder="Earn 1"  [(ngModel)]="earn1" name="earn1" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Earn 1"  [(ngModel)]="earn1" name="earn1" required>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Earn 2</mat-label>
-                <input matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn2" name="earn2" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn2" name="earn2" required>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Earn 3</mat-label>
-                <input matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn3" name="earn3" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn3" name="earn3" required>
             </mat-form-field>
         </div>
     </div>
@@ -83,15 +85,15 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ded 1</mat-label>
-                <input matInput appTitleCase placeholder="Ded 1"  [(ngModel)]="ded1" name="Ded1" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Ded 1"  [(ngModel)]="ded1" name="Ded1" required>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ded 2</mat-label>
-                <input matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded2" name="Ded2" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded2" name="Ded2" required>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ded 3</mat-label>
-                <input matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded3" name="Ded3" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded3" name="Ded3" required>
             </mat-form-field>
         </div>
     </div>

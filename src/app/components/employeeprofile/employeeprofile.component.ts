@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../app.global';
 import { GlobalService } from '../../global.service';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-employeeprofile',
@@ -105,6 +106,7 @@ export class EmployeeprofileComponent implements OnInit{
     private _globals: AppGlobals,
     private globalService: GlobalService,
     private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'EmpProfile';
     this.pTableId = 10;
@@ -290,7 +292,13 @@ export class EmployeeprofileComponent implements OnInit{
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.empService.deleteRecord(dataToSend).subscribe(
+        this.empService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();
@@ -307,97 +315,7 @@ export class EmployeeprofileComponent implements OnInit{
   }
   }
 
-  btnClick=  () => {
-    // this.router.navigate(['/user']);
-    // console.log(this.firstName);
-    var dataToSend: EmployeeModel = { 
-      "EmpProfileId": this.empProfileId,
-      "AppUserName": "JohnDoe",
-      "APIImagePath": "example.com\/images",
-      "APIPath": this.apiPath,
-      "Extension": this.extension,
-      "FileName": this.fileName,
-      "FullPath": this.fullPath,
-      "OriginalFileName": this.originalFileName,
-      "First": this.firstName,
-      "Middle": this.middleName,
-      "Last": this.lastName,
-      "Mail": this.mail,
-      "Phone": Number(this.phone),
-      "Phone2": Number(this.phone2),
-      "Address": this.address,
-      "Department": this.selectedDepartment,
-      "EmployeeId": 987654321,
-      "BiomId": Number(this.biomId),
-      "EmerContact": Number(this.emerContact),
-      "Languages": this.languages,
-      "JobTitle": this.selectedJobTitle,
-      "Nationality": this.selectedNationality,
-      "Gender": true,
-      "MaritStatus": "Married",
-      "Children": 2,
-      "DOB": "1990-01-01T00:00:00Z",
-      "Supervisor": 123456789,
-      "DOJ": "2020-01-01T00:00:00Z",
-      "ContractSt": "2020-01-01T00:00:00Z",
-      "ContractEnd": "2022-01-01T00:00:00Z",
-      "Education": this.education,
-      "Experience": this.experience,
-      "Skills": this.skills,
-      "Trainings": this.trainings,
-      "Certificates": this.certificates,
-      "Basic": 5000.00,
-      "Earn1": 1000.00,
-      "Earn2": 2000.00,
-      "Ded1": 500.00,
-      "Ded2": 300.00,
-      "Attachments": this.attachments,
-      "Insurance": this.insurance,
-      "InDesc": this.inDesc,
-      "InSt": this.inSt,
-      "InEnd": this.inEnd,
-      "LaborCard": this.laborCard,
-      "LaborDesc": this.laborDesc,
-      "LaborSt": this.laborSt,
-      "LaborEn": this.laborEn,
-      "EmiratesId": this.emiratesId,
-      "EmiratesSt": this.emiratesSt,
-      "EmiratesEn": this.emiratesEn,
-      "Passport": this.passport,
-      "PassportSt": this.passportSt,
-      "PassportEn": this.passportEn,
-      "Visa": this.visa,
-      "VisaDesc": this.visaDesc,
-      "VisaSt": this.visaSt,
-      "VisaEn": this.visaEn,
-      "IsTest": this._auth.getIsTest(),
-      "Active": true,
-      "Deleted": false,
-      "UserCR": 1,
-      "Company": 1,
-      "RoleCR": 2,
-      "DateCR": "2024-02-20T00:00:00Z",
-      "Browser": "Chrome",
-      "Device": "Desktop",
-      "Resol": "1920x1080",
-      "TransId": -1 
-    }; // Example data to send
-
-    console.log(dataToSend);
-    
-    this.empService.sendData(dataToSend).subscribe(
-      response => {
-        console.log('API Response:', response);
-        this.refreshMe();
-        this.screenMode = 'index';
-        // Handle the response data here
-      },
-      error => {
-        console.error('API Error:', error);
-        // Handle any errors here
-      }
-    );
-  }
+ 
 
 
 

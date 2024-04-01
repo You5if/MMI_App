@@ -8,6 +8,7 @@ import { PublicHolidayModel } from './public-holiday.model';
 import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
 import { PublicHolidayService } from './public-holiday.service';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-public-holiday',
@@ -48,6 +49,7 @@ export class PublicHolidayComponent {
     private dialog: MatDialog,
     private _globals: AppGlobals,
     private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'PublicHol';
     this.pTableId = 32;
@@ -144,7 +146,13 @@ export class PublicHolidayComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.holidayService.deleteRecord(dataToSend).subscribe(
+        this.holidayService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();

@@ -10,6 +10,7 @@ import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
 import { CommonService } from '../../common.service';
 import { AuthService } from '../../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-agreement-entry',
@@ -37,6 +38,8 @@ export class AgreementEntryComponent {
   empAgreementId: number = 0
  
 
+  submitDisable: boolean = false;
+
   @ViewChild('heroForm') ngForm!: NgForm;
 
   constructor(
@@ -46,7 +49,7 @@ export class AgreementEntryComponent {
     private router: Router,
     private activeRoute: ActivatedRoute,
     private cdref: ChangeDetectorRef,
-    private dialog: MatDialog,
+    private dialog: MatDialog,private toast: HotToastService,
     private _globals: AppGlobals,
     private globalService: GlobalService,
     private _auth: AuthService,
@@ -171,7 +174,13 @@ btnClick=  () => {
 
   console.log(dataToSend);
   
-  this.AgreementServcie.sendData(dataToSend).subscribe(
+  this.AgreementServcie.sendData(dataToSend).pipe(
+    this.toast.observe({
+      loading: 'Saving new record...',
+      success: (data) => `${data.errorMessage}`,
+      error: (error) => `API Error: ${error.message}`,
+    })
+  ).subscribe(
     response => {
       console.log('API Response:', response);
       this.router.navigate(['/system/agreement'], { relativeTo: this.activeRoute.parent });
@@ -179,7 +188,8 @@ btnClick=  () => {
       // Handle the response data here
     },
     error => {
-      console.error('API Error:', error);
+      // console.error('API Error:', error);
+      this.submitDisable = false
       // Handle any errors here
     }
   );

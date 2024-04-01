@@ -3,12 +3,14 @@
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
+    [disabled]="submitDisable"
   >
   Save
 </button>
 <button type="button"
 mat-button
     color="basic"
+    [disabled]="submitDisable"
     (click)="btnClickCancel();"
   >
   Cancel
@@ -17,7 +19,7 @@ mat-button
         <div class="card-head">Personal information</div>
         <div class="card-body">
            
-            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+            <input [disabled]="submitDisable" type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
                     <mat-card class="example-card">
                         <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="Photo of a Shiba Inu">
                         <div class="no-img" *ngIf="user_img === '/path/to/file'"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon></div>
@@ -30,17 +32,17 @@ mat-button
            <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>First name</mat-label>
-                <input matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"  required>
+                <input [disabled]="submitDisable" matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"  required>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Middle name</mat-label>
-                <input matInput appTitleCase placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Last name</mat-label>
-                <input matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
             </mat-form-field>
     
             <!-- <mat-radio-group  name="gender"> -->
@@ -61,27 +63,27 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>E-mail</mat-label>
-                <input matInput appTitleCase placeholder="E-mail"  [(ngModel)]="mail" name="mail">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="E-mail"  [(ngModel)]="mail" name="mail">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Phone</mat-label>
-                <input matInput appTitleCase placeholder="Phone"  type="number" [(ngModel)]="phone" name="phone">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone"  type="number" [(ngModel)]="phone" name="phone">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Phone 2</mat-label>
-                <input matInput appTitleCase placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Emer. contact</mat-label>
-                <input matInput appTitleCase placeholder="Emer. contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emer. contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
             </mat-form-field>
     
             <mat-form-field appearance="fill" style="margin-right: 10px;">
                 <mat-label>Address</mat-label>
-                <textarea matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
@@ -98,21 +100,21 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Department</mat-label>
-                <mat-select [(ngModel)]="selectedDepartment" name="department">
+                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedDepartment" name="department">
                   <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
                 </mat-select>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Job title</mat-label>
-                <mat-select [(ngModel)]="selectedJobTitle" name="department">
+                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedJobTitle" name="department">
                   <mat-option *ngFor="let jobtitle of jobTitles" [value]="jobtitle">{{ jobtitle }}</mat-option>
                 </mat-select>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Biometric Id</mat-label>
-                <input matInput appTitleCase placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
             </mat-form-field>
         </div>
     </div>
@@ -123,7 +125,7 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Supervisor</mat-label>
-                <input matInput appTitleCase placeholder="Supervisor" type="number" [(ngModel)]="supervisorId" name="supervisorId">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Supervisor" type="number" [(ngModel)]="supervisorId" name="supervisorId">
             </mat-form-field>
         </div>
     </div>
@@ -134,24 +136,24 @@ mat-button
             
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Insurance</mat-label>
-                    <input matInput appTitleCase placeholder="Insurance"  [(ngModel)]="insurance" name="insurance">
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Insurance"  [(ngModel)]="insurance" name="insurance">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Description</mat-label>
-                    <input matInput appTitleCase  placeholder="Description" [(ngModel)]="inDesc" name="description">
+                    <input [disabled]="submitDisable" matInput appTitleCase  placeholder="Description" [(ngModel)]="inDesc" name="description">
                 </mat-form-field>
         
                 
                     <mat-form-field style="margin-right: 10px;">
                         <mat-label>Start of Insurance</mat-label>
-                        <input matInput [matDatepicker]="inStpicker" [(ngModel)]="inSt" name="inSt">
+                        <input [disabled]="submitDisable" matInput [matDatepicker]="inStpicker" [(ngModel)]="inSt" name="inSt">
                         
                         <mat-datepicker-toggle matIconSuffix [for]="inStpicker"></mat-datepicker-toggle>
                         <mat-datepicker #inStpicker></mat-datepicker>
                       </mat-form-field >
                       <mat-form-field  style="margin-right: 10px;">
                         <mat-label>End of Insurance</mat-label>
-                        <input matInput [matDatepicker]="inEndpicker" [(ngModel)]="inEnd" name="inEnd">
+                        <input [disabled]="submitDisable" matInput [matDatepicker]="inEndpicker" [(ngModel)]="inEnd" name="inEnd">
                         
                         <mat-datepicker-toggle matIconSuffix [for]="inEndpicker"></mat-datepicker-toggle>
                         <mat-datepicker #inEndpicker></mat-datepicker>
@@ -160,23 +162,23 @@ mat-button
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Labor card</mat-label>
-                    <input matInput appTitleCase placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard">
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Description</mat-label>
-                    <input matInput appTitleCase placeholder="Description" [(ngModel)]="laborDesc" name="laborDescription" >
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Description" [(ngModel)]="laborDesc" name="laborDescription" >
                 </mat-form-field>
 
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Start of Labor</mat-label>
-                    <input matInput [matDatepicker]="laborStpicker" [(ngModel)]="laborSt" name="laborSt">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="laborStpicker" [(ngModel)]="laborSt" name="laborSt">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="laborStpicker"></mat-datepicker-toggle>
                     <mat-datepicker #laborStpicker></mat-datepicker>
                   </mat-form-field >
                   <mat-form-field  style="margin-right: 10px;">
                     <mat-label>End of Labor</mat-label>
-                    <input matInput [matDatepicker]="laborEnpicker" [(ngModel)]="laborEn" name="laborEn">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="laborEnpicker" [(ngModel)]="laborEn" name="laborEn">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="laborEnpicker"></mat-datepicker-toggle>
                     <mat-datepicker #laborEnpicker></mat-datepicker>
@@ -186,19 +188,19 @@ mat-button
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Emirates Id</mat-label>
-                    <input matInput appTitleCase placeholder="Emirates Id"  [(ngModel)]="emiratesId" name="EmiratesId" >
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emirates Id"  [(ngModel)]="emiratesId" name="EmiratesId" >
                 </mat-form-field>
 
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Start of Emirates</mat-label>
-                    <input matInput [matDatepicker]="emiratesStpicker" [(ngModel)]="emiratesSt" name="emiratesSt">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="emiratesStpicker" [(ngModel)]="emiratesSt" name="emiratesSt">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="emiratesStpicker"></mat-datepicker-toggle>
                     <mat-datepicker #emiratesStpicker></mat-datepicker>
                   </mat-form-field >
                   <mat-form-field  style="margin-right: 10px;">
                     <mat-label>End of Emirates</mat-label>
-                    <input matInput [matDatepicker]="emiratesEnpicker" [(ngModel)]="emiratesEn" name="emiratesEn">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="emiratesEnpicker" [(ngModel)]="emiratesEn" name="emiratesEn">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="emiratesEnpicker"></mat-datepicker-toggle>
                     <mat-datepicker #emiratesEnpicker></mat-datepicker>
@@ -208,19 +210,19 @@ mat-button
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Passport</mat-label>
-                    <input matInput appTitleCase placeholder="Passport"  [(ngModel)]="passport" name="Passport">
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Passport"  [(ngModel)]="passport" name="Passport">
                 </mat-form-field>
 
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Start of Passport</mat-label>
-                    <input matInput [matDatepicker]="passportStpicker" [(ngModel)]="passportSt" name="passportSt">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="passportStpicker" [(ngModel)]="passportSt" name="passportSt">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="passportStpicker"></mat-datepicker-toggle>
                     <mat-datepicker #passportStpicker></mat-datepicker>
                   </mat-form-field >
                   <mat-form-field  style="margin-right: 10px;">
                     <mat-label>End of Passport</mat-label>
-                    <input matInput [matDatepicker]="passportEnpicker" [(ngModel)]="passportEn" name="passportEn">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="passportEnpicker" [(ngModel)]="passportEn" name="passportEn">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="passportEnpicker"></mat-datepicker-toggle>
                     <mat-datepicker #passportEnpicker></mat-datepicker>
@@ -230,23 +232,23 @@ mat-button
                   <mat-divider></mat-divider>
                   <mat-form-field style="margin-right: 10px;">
                     <mat-label>Visa</mat-label>
-                    <input matInput appTitleCase placeholder="Visa" name="visa" [(ngModel)]="visa" >
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Visa" name="visa" [(ngModel)]="visa" >
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Description</mat-label>
-                    <input matInput appTitleCase placeholder="Description" name="visaDescription" [(ngModel)]="visaDesc">
+                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Description" name="visaDescription" [(ngModel)]="visaDesc">
                 </mat-form-field>
 
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Start of Visa</mat-label>
-                    <input matInput [matDatepicker]="visaStpicker" [(ngModel)]="visaSt" name="visaSt">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="visaStpicker" [(ngModel)]="visaSt" name="visaSt">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="visaStpicker"></mat-datepicker-toggle>
                     <mat-datepicker #visaStpicker></mat-datepicker>
                   </mat-form-field >
                   <mat-form-field  style="margin-right: 10px;">
                     <mat-label>End of Visa</mat-label>
-                    <input matInput [matDatepicker]="visaEnpicker" [(ngModel)]="visaEn" name="visaEn">
+                    <input [disabled]="submitDisable" matInput [matDatepicker]="visaEnpicker" [(ngModel)]="visaEn" name="visaEn">
                     
                     <mat-datepicker-toggle matIconSuffix [for]="visaEnpicker"></mat-datepicker-toggle>
                     <mat-datepicker #visaEnpicker></mat-datepicker>
@@ -269,11 +271,11 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Experience</mat-label>
-                <input matInput appTitleCase placeholder="Experience" name="experience" type="text" [(ngModel)]="experience">
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Experience" name="experience" type="text" [(ngModel)]="experience">
             </mat-form-field>
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Skills</mat-label>
-                <textarea matInput appTitleCase placeholder="Skills" name="skills" [(ngModel)]="skills"></textarea>
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Skills" name="skills" [(ngModel)]="skills"></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -283,7 +285,7 @@ mat-button
         <div class="card-body">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Languages</mat-label>
-                <textarea matInput appTitleCase placeholder="" name="languages" [(ngModel)]="languages"></textarea>
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="" name="languages" [(ngModel)]="languages"></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -293,7 +295,7 @@ mat-button
         <div class="card-body">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Education</mat-label>
-                    <textarea matInput appTitleCase placeholder="Education" name="education" [(ngModel)]="education"></textarea>
+                    <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Education" name="education" [(ngModel)]="education"></textarea>
                 </mat-form-field>
         </div>
     </div>
@@ -303,11 +305,11 @@ mat-button
         <div class="card-body">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Trainins</mat-label>
-                <textarea matInput appTitleCase placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
             </mat-form-field>
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Certificaties</mat-label>
-                <textarea matInput appTitleCase placeholder="Certificates" name="certificates" [(ngModel)]="certificates"></textarea>
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Certificates" name="certificates" [(ngModel)]="certificates"></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -317,7 +319,7 @@ mat-button
         <div class="card-body">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Attachments</mat-label>
-                <textarea matInput appTitleCase placeholder="Attachments" name="attachments" [(ngModel)]="attachments"></textarea>
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Attachments" name="attachments" [(ngModel)]="attachments"></textarea>
             </mat-form-field>
         </div>
     </div>

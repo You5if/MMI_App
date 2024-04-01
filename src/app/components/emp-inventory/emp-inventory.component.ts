@@ -8,6 +8,7 @@ import { AppGlobals } from '../../app.global';
 import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-emp-inventory',
@@ -48,6 +49,7 @@ export class EmpInventoryComponent {
     private dialog: MatDialog,
     private _globals: AppGlobals,
     private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'EmpInv';
     this.pTableId = 22;
@@ -144,7 +146,13 @@ export class EmpInventoryComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.empInvService.deleteRecord(dataToSend).subscribe(
+        this.empInvService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();

@@ -18,19 +18,19 @@ export class LoanService {
 
   ) { }
 
-  sendData(dataToSend: LoanToSendModel): Observable<LoanToSendModel> {
+  sendData(dataToSend: LoanToSendModel): Observable<any> {
     
     if (dataToSend.loanReqEntry.loanReqId === 0) {
-        return this.httpclient.post<LoanToSendModel>(this._globals.baseAPIUrl + 'LoanReq/create', dataToSend, this._cf.requestOptions());
+        return this.httpclient.post<any>(this._globals.baseAPIUrl + 'LoanReq/create', dataToSend, this._cf.requestOptions());
     } else {
-        return this.httpclient.post<LoanToSendModel>(this._globals.baseAPIUrl + 'LoanReq/edit', dataToSend, this._cf.requestOptions());
+        return this.httpclient.post<any>(this._globals.baseAPIUrl + 'LoanReq/edit', dataToSend, this._cf.requestOptions());
     }
     
 }
-deleteRecord(dataToSend: LoanModel): Observable<LoanModel> {
+deleteRecord(dataToSend: LoanModel): Observable<any> {
   
     
-    return this.httpclient.post<LoanModel>(this._globals.baseAPIUrl + 'LoanReq/delete', dataToSend, this._cf.requestOptions());
+    return this.httpclient.post<any>(this._globals.baseAPIUrl + 'LoanReq/delete', dataToSend, this._cf.requestOptions());
     
 }
 

@@ -8,6 +8,7 @@ import { DayWorkingHoursModel } from './day-working-hours.model';
 import { DayWorkingHoursService } from './day-working-hours.service';
 import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-day-working-hours',
@@ -48,6 +49,7 @@ export class DayWorkingHoursComponent {
     private dialog: MatDialog,
     private _globals: AppGlobals,
     private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'MonthWDay';
     this.pTableId = 36;
@@ -144,7 +146,13 @@ export class DayWorkingHoursComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.dwhService.deleteRecord(dataToSend).subscribe(
+        this.dwhService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();

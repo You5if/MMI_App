@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
           <i *ngIf="item.items && collapsed" class="menu-collapse-icon"
             [ngClass]="!item.expanded ? 'fal fa-angle-right' : 'fal fa-angle-down'"></i>
         </a>
+        <!-- control navigaton down here yousif -->
         <a class="sublevel-nav-link"
           *ngIf="!item.items || (item.items && item.items.length === 0)"
           [routerLink] = "[item.routeLink]"

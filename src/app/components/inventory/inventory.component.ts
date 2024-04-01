@@ -8,6 +8,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { AppGlobals } from '../../app.global';
 import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-inventory',
@@ -48,6 +49,7 @@ export class InventoryComponent {
     private dialog: MatDialog,
     private _globals: AppGlobals,
     private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'EmpInvList';
     this.pTableId = 23;
@@ -144,7 +146,13 @@ export class InventoryComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.holidayService.deleteRecord(dataToSend).subscribe(
+        this.holidayService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();

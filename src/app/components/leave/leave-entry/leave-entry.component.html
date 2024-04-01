@@ -4,12 +4,14 @@
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
+    [disabled]="submitDisable"
   >
   Save
 </button>
 <button type="button"
 mat-button
     color="basic"
+    [disabled]="submitDisable"
     (click)="btnClickCancel();"
   >
   Cancel
@@ -19,12 +21,12 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Leave name</mat-label>
-                <input matInput  placeholder="Leave name" id="firstControl"   [(ngModel)]="leaveName" name="leaveName"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="Leave name" id="firstControl"   [(ngModel)]="leaveName" name="leaveName"  required>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Description</mat-label>
-                <input matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
             </mat-form-field>
            
         </div>
@@ -35,7 +37,7 @@ mat-button
             
             <mat-form-field style="width: 100%;margin-right: 10px;">
                 <mat-label>Leave formula</mat-label>
-                <input matInput appTitleCase placeholder="Leave formula"   [(ngModel)]="leaveFormula" name="leaveFormula" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Leave formula"   [(ngModel)]="leaveFormula" name="leaveFormula" required>
             </mat-form-field>
 
         </div>
@@ -53,7 +55,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="width: 100%; margin-right: 10px;">
                 <mat-label>Pay eval formula</mat-label>
-                <input matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula" required>
             </mat-form-field>
         </div>
     </div>

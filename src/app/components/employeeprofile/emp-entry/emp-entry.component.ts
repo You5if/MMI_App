@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
 import { AuthService } from '../../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-emp-entry',
@@ -51,22 +52,22 @@ export class EmpEntryComponent {
   public certificates = '';
   public insurance = '';
   public inDesc = '';
-  public inSt = new Date();
-  public inEnd = new Date();
+  public inSt = new Date().toDateString();
+  public inEnd = new Date().toDateString();
   public laborCard = '';
   public laborDesc = '';
-  public laborSt = new Date();
-  public laborEn = new Date();
+  public laborSt = new Date().toDateString();
+  public laborEn = new Date().toDateString();
 
-  public emiratesSt = new Date();
-  public emiratesEn = new Date();
+  public emiratesSt = new Date().toDateString();
+  public emiratesEn = new Date().toDateString();
   public passport = '';
-  public passportSt = new Date();
-  public passportEn = new Date();
+  public passportSt = new Date().toDateString();
+  public passportEn = new Date().toDateString();
   public visa = '';
   public visaDesc = '';
-  public visaSt = new Date();
-  public visaEn = new Date();
+  public visaSt = new Date().toDateString();
+  public visaEn = new Date().toDateString();
   public emiratesId = '';
   public supervisorId = 1;
   message: string = "";
@@ -83,6 +84,8 @@ export class EmpEntryComponent {
   fullPath: string = "";
   originalFileName: string = "";
 
+  submitDisable: boolean = false;
+
   @ViewChild('heroForm') ngForm!: NgForm;
 
   constructor(
@@ -96,6 +99,7 @@ export class EmpEntryComponent {
     private _globals: AppGlobals,
     private globalService: GlobalService,
     private _auth: AuthService,
+    private toast: HotToastService,
     ) {
 
   }
@@ -258,7 +262,13 @@ uploadFile = (files:any) => {
       formData.append("file", fileToUpload, fileToUpload.name);
       this.http
         .post(this._globals.baseAPIUrl + "file/upload", formData, this._cf.imageequestOptions())
-        .subscribe((event) => {
+        .pipe(
+          this.toast.observe({
+            loading: 'Uploading image...',
+            success: (data) => 'Image uploaded successfully ...!',
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe((event) => {
           // console.log('valEvent', event);
           // if (event.type === HttpEventType.UploadProgress) {
           //   this.progress = Math.round((100 * event.loaded) / event.total);
@@ -325,6 +335,7 @@ deleteImg = () => {
 
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: EmployeeModel = { 
@@ -371,22 +382,22 @@ btnClick=  () => {
     "Attachments": this.attachments,
     "Insurance": this.insurance,
     "InDesc": this.inDesc,
-    "InSt": this.inSt.toDateString(),
-    "InEnd": this.inEnd.toDateString(),
+    "InSt": this.inSt,
+    "InEnd": this.inEnd,
     "LaborCard": this.laborCard,
     "LaborDesc": this.laborDesc,
-    "LaborSt": this.laborSt.toDateString(),
-    "LaborEn": this.laborEn.toDateString(),
+    "LaborSt": this.laborSt,
+    "LaborEn": this.laborEn,
     "EmiratesId": this.emiratesId,
-    "EmiratesSt": this.emiratesSt.toDateString(),
-    "EmiratesEn": this.emiratesEn.toDateString(),
+    "EmiratesSt": this.emiratesSt,
+    "EmiratesEn": this.emiratesEn,
     "Passport": this.passport,
-    "PassportSt": this.passportSt.toDateString(),
-    "PassportEn": this.passportEn.toDateString(),
+    "PassportSt": this.passportSt,
+    "PassportEn": this.passportEn,
     "Visa": this.visa,
     "VisaDesc": this.visaDesc,
-    "VisaSt": this.visaSt.toDateString(),
-    "VisaEn": this.visaEn.toDateString(),
+    "VisaSt": this.visaSt,
+    "VisaEn": this.visaEn,
     "IsTest": this._auth.getIsTest(),
     "Active": true,
     "Deleted": false,
@@ -402,15 +413,22 @@ btnClick=  () => {
 
   console.log(dataToSend);
   
-  this.empService.sendData(dataToSend).subscribe(
+  this.empService.sendData(dataToSend).pipe(
+    this.toast.observe({
+      loading: 'Saving new record...',
+      success: (data) => `${data.errorMessage}`,
+      error: (error) => `API Error: ${error.message}`,
+    })
+  ).subscribe(
     response => {
-      console.log('API Response:', response);
+      // console.log('API Response:', response);
       this.router.navigate(['/system/employeeprofile'], { relativeTo: this.activeRoute.parent });
       // this.screenMode = 'index';
       // Handle the response data here
     },
     error => {
-      console.error('API Error:', error);
+      // console.error('API Error:', error);
+      this.submitDisable = false
       // Handle any errors here
     }
   );

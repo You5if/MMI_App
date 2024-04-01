@@ -7,6 +7,7 @@ import { AttendanceService } from '../attendance/attendance.service';
 import { FileListModel } from '../employeeprofile/upload-file.model';
 import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-attendance',
@@ -53,6 +54,7 @@ export class AttendanceComponent implements OnInit{
     private http: HttpClient,
     private _globals: AppGlobals,
     private _auth: AuthService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'EmpAtt';
     this.pTableId = 14;
@@ -184,7 +186,13 @@ export class AttendanceComponent implements OnInit{
     
     // console.log(dataToSend);
     
-    // this.empService.sendData(dataToSend).subscribe(
+    // this.empService.sendData(dataToSend).pipe(
+  //   this.toast.observe({
+  //     loading: 'Saving new record...',
+  //     success: (data) => `${data.errorMessage}`,
+  //     error: (error) => `API Error: ${error.message}`,
+  //   })
+  // ).subscribe(
     //   response => {
     //     console.log('API Response:', response);
     //     this.refreshMe();
@@ -247,11 +255,14 @@ alert('Enter key is pressed, form will be submitted');
         const formData = new FormData();
         formData.append("file", fileToUpload, fileToUpload.name);
         this.http
-          .post(this._globals.baseAPIUrl + "EmpAtt/uploadattendance", formData, {
-            reportProgress: true,
-            observe: "events"
-          })
-          .subscribe((event:any) => {
+          .post(this._globals.baseAPIUrl + "EmpAtt/uploadattendance", formData, this._cf.imageequestOptions())
+          .pipe(
+            this.toast.observe({
+              loading: 'Uploading file...',
+              success: (data: any) => `${data.errorMessage}`,
+              error: (error) => `API Error: ${error.message}`,
+            })
+          ).subscribe((event:any) => {
             console.log('valEvent', event);
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round((100 * event.loaded) / event.total);
@@ -313,7 +324,13 @@ alert('Enter key is pressed, form will be submitted');
 
     confirm('This record will be deleted permanently!'); 
     
-    this.empService.deleteRecord(dataToSend).subscribe(
+    this.empService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
       response => {
         console.log('API Response:', response);
         this.refreshMe();

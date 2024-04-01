@@ -9,6 +9,7 @@ import { GlobalService } from '../../global.service';
 import { UsersModel, UsersToDeleteModel } from './users.model';
 import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
 import { ChangePasswordComponent } from './changepassword.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-users',
@@ -55,7 +56,8 @@ export class UsersComponent {
     private http: HttpClient,
     private dialog: MatDialog,
     private _globals: AppGlobals,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private toast: HotToastService,
   ) { 
     this.pTableName = 'AppUser';
     this.pTableId = 2;
@@ -177,7 +179,13 @@ export class UsersComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.usersService.deleteRecord(dataToSend).subscribe(
+        this.usersService.deleteRecord(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
             this.refreshMe();
@@ -212,7 +220,13 @@ export class UsersComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        // this.usersService.deleteRecord(dataToSend).subscribe(
+        // this.usersService.deleteRecord(dataToSend).pipe(
+        //   this.toast.observe({
+        //     loading: 'Deleting record...',
+        //     success: (data) => `${data.errorMessage}`,
+        //     error: (error) => `API Error: ${error.message}`,
+        //   })
+        // ).subscribe(
         //   response => {
         //     console.log('API Response:', response);
             this.refreshMe();

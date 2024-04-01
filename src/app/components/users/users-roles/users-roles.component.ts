@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckDeleteComponent } from '../../loan/tenure-options/check-delete.component';
 import { AddRoleComponent } from '../add-role.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-users-roles',
@@ -22,6 +23,7 @@ export class UsersRolesComponent {
     private activeRoute: ActivatedRoute,
     private cdref: ChangeDetectorRef,
     private dialog: MatDialog,
+    private toast: HotToastService,
   ) {}
 
   ngOnInit(): void {
@@ -113,7 +115,13 @@ export class UsersRolesComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        // this.usersService.deleteRecord(dataToSend).subscribe(
+        // this.usersService.deleteRecord(dataToSend).pipe(
+        //   this.toast.observe({
+        //     loading: 'Deleting record...',
+        //     success: (data) => `${data.errorMessage}`,
+        //     error: (error) => `API Error: ${error.message}`,
+        //   })
+        // ).subscribe(
         //   response => {
         //     console.log('API Response:', response);
             this.refreshMe();

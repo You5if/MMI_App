@@ -3,12 +3,14 @@
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
+    [disabled]="submitDisable"
   >
   Save
 </button>
 <button type="button"
 mat-button
     color="basic"
+    [disabled]="submitDisable"
     (click)="btnClickCancel();"
   >
   Cancel
@@ -19,11 +21,11 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Loan amount</mat-label>
-                <input matInput appTitleCase id="firstName"  placeholder="Loan amount" type="number"  [(ngModel)]="amount" name="amount">
+                <input [disabled]="submitDisable"  matInput appTitleCase id="firstName"  placeholder="Loan amount" type="number"  [(ngModel)]="amount" name="amount">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Request date</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="requestDate" name="requestDate">
+                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="requestDate" name="requestDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -31,7 +33,7 @@ mat-button
             <mat-divider></mat-divider>
             <mat-form-field *ngIf="loadId ===0" style="margin-right: 10px;">
                 <mat-label>Tenure</mat-label>
-                <input matInput type="number" type="number" min="0" appTitleCase placeholder="Tenure"  [(ngModel)]="tenure" name="tenure">
+                <input [disabled]="submitDisable"  matInput type="number" type="number" min="0" appTitleCase placeholder="Tenure"  [(ngModel)]="tenure" name="tenure">
             </mat-form-field>
            
                 <button mat-stroked-button *ngIf="loadId === 0" [disabled]="tenure === 0" type="button" (click)="fetchTenure()">Fetch</button>
@@ -46,19 +48,19 @@ mat-button
             <div class="card-body">
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Amount</mat-label>
-                    <input matInput appTitleCase placeholder="Loan amount" type="number" min="0" [max]="amount"  [(ngModel)]="childTenure.Amount" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Loan amount" type="number" min="0" [max]="amount"  [(ngModel)]="childTenure.Amount" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Month</mat-label>
-                    <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Month" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Month" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Year</mat-label>
-                    <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Year" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Year" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Remarks</mat-label>
-                    <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Remarks" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Remarks" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <button mat-raised-button color="warn" type="button" (click)="deleteTenure(childTenure)">Delete</button>
             </div>

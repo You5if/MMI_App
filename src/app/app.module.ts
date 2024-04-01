@@ -70,6 +70,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { ChangeRoleComponent } from './components/general-operations/change-role.component';
+import { provideHotToastConfig } from '@ngneat/hot-toast';
+
 
 export function getAccessToken(): string {
   return localStorage.getItem("MMI_token")!;
@@ -157,13 +159,14 @@ export const jwtConfig = {
     }),
   ],
   providers: [
-    provideClientHydration(),
+    provideClientHydration(), 
     provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
     EmployeeProfileService,
     AppGlobals,
     AuthGuard,
     AuthService,
+    provideHotToastConfig(),
   ],
   bootstrap: [AppComponent]
 })
