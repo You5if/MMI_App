@@ -3,12 +3,12 @@
                 <div class="login-container">
                     <form #f="ngForm" (ngSubmit)="submit(f)" class="container">
                         <!-- <form #f="ngForm" (ngSubmit)="submit(f)"> -->
+                            <img src="../../../assets/images/mmi-logo.svg" alt="">
                             <h2>Login</h2>
                         <div class="usernamesec">
-                            <label for="username">Username:</label>
                             <div class="input-container">
                                 <!-- SVG circle icon for username -->
-                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                <!-- <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                                 width="50.000000pt" height="50.000000pt" viewBox="0 0 50.000000 50.000000"
                                 preserveAspectRatio="xMidYMid meet">
         
@@ -22,19 +22,20 @@
                                 -66 -26 -89 -25 -11 -52 -18 -60 -15 -23 9 -54 86 -54 134 -1 151 159 255 295
                                 193z"/>
                                 </g>
-                                </svg>
-                                <input placeholder="Email" type="email" email required maxlength="255" #emailInput="ngModel" (ngModel)="pModel.username" name="username">
-    
+                                </svg> -->
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <mat-label>Email or phone</mat-label>
+                                    <input matInput placeholder="Email" type="email" email required maxlength="255" #emailInput="ngModel" (ngModel)="pModel.username" name="username">
+                                </mat-form-field>
                                 <!-- <input type="text" id="username" #emailInput="ngModel" (ngModel)="pModel.username" name="username" required> -->
                                  <!-- <input type="text" id="username"  name="username" required> -->
                                
                             </div>
                         </div>
                         <div class="passwordsec">
-                            <label for="password">Password:</label>
                             <div class="input-container">
                                 
-                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                <!-- <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                                 width="50.000000pt" height="50.000000pt" viewBox="0 0 50.000000 50.000000"
                                 preserveAspectRatio="xMidYMid meet">
         
@@ -47,16 +48,18 @@
                                 -33 25 -113 32 -153 13z m115 -51 c32 -17 60 -61 60 -95 0 -24 -27 -80 -38
                                 -80 -9 0 -152 143 -152 152 0 12 53 37 78 38 13 0 36 -7 52 -15z"/>
                                 </g>
-                                </svg>
+                                </svg> -->
         
         
                                 <!-- <input type="password" id="password" name="password" required> -->
-                                <input placeholder="Password" type="password" required minlength="8" maxlength="50" #passwordInput="ngModel" (ngModel)="pModel.password" name="password">
-    
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput placeholder="Password" type="password" required minlength="8" maxlength="50" #passwordInput="ngModel" (ngModel)="pModel.password" name="password">
+                                </mat-form-field>
                             </div>
                         </div>
                         <div class="submitsec">
-                            <button class="login-btn" type="submit" >Login</button>
+                            <button [class]="submitDisable ? 'login-btn-dis' : 'login-btn'" [disabled]="submitDisable" type="submit" >Login</button>
                         </div>
                         <!-- </form> -->
                     </form>

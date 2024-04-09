@@ -22,6 +22,7 @@ import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { LoginModule } from '../../security/auth/login/login.model';
 import { GlobalService } from '../../global.service';
+import { HotToastService } from '@ngneat/hot-toast';
 // import {
 //   MatSnackBar,
 //   MatSnackBarHorizontalPosition,
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
   googleImagePath = '';
   smallScreen!: boolean;
   loging: boolean = false;
+  submitDisable: boolean = false;
   // horizontalPosition: MatSnackBarHorizontalPosition= 'end'
   // verticalPosition: MatSnackBarVerticalPosition= 'top'
 
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
     // private _signupService: SignUpService,
     private router: Router,
     private breakpointObserver: BreakpointObserver,
+    private toast: HotToastService,
   ) {
     breakpointObserver.observe([
       Breakpoints.XSmall
@@ -116,6 +119,7 @@ this.companyObject = {
 
   submit(form: NgForm) {
     console.log(1);
+    this.submitDisable = true
     
     this.loging = true
     if (form.invalid) {
@@ -138,7 +142,13 @@ this.companyObject = {
       //   if (result[0].id === 1) {
           try {
             form.value.loginType = 1;
-            this._auth.login(form.value).subscribe((data: any) => {
+            this._auth.login(form.value).pipe(
+              this.toast.observe({
+                loading: 'Checking user information...',
+                success: (data) => 'Logged in successfully',
+                error: (error) => `Error: ${error.message}`,
+              })
+            ).subscribe((data: any) => {
               console.log(6);
               if (data !== null) {
                 // localStorage.setItem('sdCompanyId', data.companyId.toString());
@@ -150,20 +160,22 @@ this.companyObject = {
                 // console.log('login data',data);
                 
                 this.loging = false
-                alert("Error!! wrong username or password");
+                // alert("Error!! wrong username or password");
                 // this._msg.showError('Unable to login!');
               }
             }, error => {
+              this.submitDisable = true
               this.loging = false
-              alert("Error!! wrong username or password");
+              // alert("Error!! wrong username or password");
               // console.log('login data');
               // this._msg.showAPIError(error);
               return false;
             });
 
           } catch (error) {
+            this.submitDisable = true
             this.loging = false
-            alert("Error!! wrong username or password");
+            // alert("Error!! wrong username or password");
             // this._msg.showAPIError(error);
             return false;
           }

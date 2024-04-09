@@ -43,6 +43,8 @@ export class EmpInventoryEntryComponent  {
   witnessWDEmp2: number = 2;
   withdrRemarks: string;
   costOfItem: number = 0;
+  employees: any[] = []
+
 
   constructor(
     private empInvServcie: EmpInventoryService,
@@ -61,11 +63,22 @@ export class EmpInventoryEntryComponent  {
   }
 
   ngOnInit():void {
+    this.empInvServcie.getDropdown().subscribe({
+      next: (value) => {
+        this.employees = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.empInvServcie.getRecordEntry(Number(param['id'])).subscribe({
             next: (response: EmpInvModel) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.empInvId = response.empInvId
@@ -84,8 +97,11 @@ export class EmpInventoryEntryComponent  {
               this.withdrRemarks = response.withdrRemarks
               this.costOfItem = response.costOfItem
 
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -146,6 +162,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: EmpInvToSend = {

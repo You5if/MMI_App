@@ -1,0 +1,126 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+    [disabled]="submitDisable"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    [disabled]="submitDisable"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Employee info</div>
+        
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Employee</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+        </div>
+        </div>
+        <div class="card" >
+            <div class="card-head">Final settlement details</div>
+        <div class="card-body">
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Final date</mat-label>
+                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="finalDate" name="leaveDate">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Description</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+            </mat-form-field>
+    
+           
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Reamrks</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks" required>
+            </mat-form-field>
+    
+           
+        </div>
+    </div>
+        <div class="card" >
+            <div class="card-head">Clearances</div>
+        <div class="card-body">
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="gratuityClear" name="gratuityClear">Gratuity</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="leaveClear" name="leaveClear">Leave</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="invClear" name="invClear">Inventory</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="salaryClear" name="salaryClear">Salary</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="handoverCl" name="handoverCl">Handover</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="supervisorCl" name="supervisorCl">Supervisor</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="managerCl" name="managerCl">Manager</mat-checkbox>
+            </div>
+
+        </div>
+    </div>
+        <div class="card" >
+            <div class="card-head">Hand to</div>
+        <div class="card-body">
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Hand to</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="handedTo" name="handedTo">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+    </div>
+        <div class="card" >
+            <div class="card-head">Witnesses</div>
+        <div class="card-body">
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness 1</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="witness1" name="witness1">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness 2</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="witness2" name="witness2">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+    </div>
+ 
+    
+</form>

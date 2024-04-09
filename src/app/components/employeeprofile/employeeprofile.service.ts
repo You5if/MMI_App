@@ -33,6 +33,12 @@ export class EmployeeProfileService {
         
     }
 
+    getDropdown(): Observable<any> {
+        
+        return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
+        
+    }
+
     getEmployeeProfileEntry(id: number): Observable<any> {
         return this.httpclient.get<any>(this._globals.baseAPIUrl + "EmpProfile/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(
         map((result: any) => {

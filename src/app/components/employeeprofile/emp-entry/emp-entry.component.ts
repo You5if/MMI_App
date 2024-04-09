@@ -37,10 +37,11 @@ export class EmpEntryComponent {
 
 
 
-  public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
+  // public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
   public selectedDepartment: string = ''; // Variable to store the selected department
   public jobTitles: string[] = ['Painter', 'Fabricator', 'Wielder', 'Accountant']; // Sample departments
   public selectedJobTitle: string = ''; // Variable to store the selected department
+  public selectedSupervisor: number = 1
   public biomId = '';
 
   public languages = '';
@@ -84,7 +85,18 @@ export class EmpEntryComponent {
   fullPath: string = "";
   originalFileName: string = "";
 
+  supervisors: any[] = []
+
   submitDisable: boolean = false;
+
+  departments: [
+    "HR",
+"Production",
+"Finance",
+"Operation",
+"Engineering and design",
+"Administration"
+  ]
 
   @ViewChild('heroForm') ngForm!: NgForm;
 
@@ -106,11 +118,23 @@ export class EmpEntryComponent {
 
   ngOnInit():void {
     this.globalService.setNavStatus('entry')
+    this.empService.getDropdown().subscribe({
+      next: (value) => {
+        this.supervisors = value
+      },
+      error: (err) => {
+        this.submitDisable = false
+        console.error('API Error:', err);
+      },
+    })
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.empService.getEmployeeProfileEntry(Number(param['id'])).subscribe({
             next: (response) => {
+              this.toast.close()
               // console.log('API Response:', response);
               this.empProfileId = response.empProfileId
               this.firstName = response.first;
@@ -124,6 +148,7 @@ export class EmpEntryComponent {
               this.gender = response.gender
               this.selectedDepartment = response.department;
               this.biomId = response.biomId;
+              this.supervisorId = response.supervisor
               this.languages = response.languages;
               this.education = response.education;
               this.experience = response.experience;
@@ -163,9 +188,12 @@ export class EmpEntryComponent {
               }else {
                 this.user_img = '/path/to/file'
               }
+
+              this.submitDisable = false
       
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -365,7 +393,7 @@ btnClick=  () => {
     "MaritStatus": "Married",
     "Children": 2,
     "DOB": "1990-01-01T00:00:00Z",
-    "Supervisor": 1,
+    "Supervisor": this.supervisorId,
     "DOJ": "2020-01-01T00:00:00Z",
     "ContractSt": "2020-01-01T00:00:00Z",
     "ContractEnd": "2022-01-01T00:00:00Z",

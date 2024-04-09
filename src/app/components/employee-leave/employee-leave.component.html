@@ -1,0 +1,124 @@
+<h1>Employee leave</h1>
+
+<button 
+mat-stroked-button
+color="primary"
+    routerLink="/system/employee-leave-entry/0"
+  >
+  Create
+</button>
+
+<div class="card" *ngIf="!dataIsLoaded" >
+  <!-- <div class="card-head">Employee profile index</div> -->
+  <div class="card-body">
+      <mat-table #table  [dataSource]="[1,2,3,4,5 ,6,7,8]" style="width: 100%">
+
+          <!-- Columns definition here to be displayed -->
+      
+          <ng-container matColumnDef="select">
+            <mat-header-cell class="cbPad"  *matHeaderCellDef>
+              Action
+            </mat-header-cell>
+             <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+              <ngx-skeleton-loader />
+            </mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="EmpId">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+              Emp Id
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="LeaveId">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            LeaveId
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="LeaveDate">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Leave date
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="remarks">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Remarks
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+        
+    
+        <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+    
+      </mat-table>
+      <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+          (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+      </mat-paginator>
+      
+  </div>
+</div>
+
+<div class="card" *ngIf="dataIsLoaded" >
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/employee-leave-entry/{{row.empLeaveId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="EmpId">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Emp Id
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empId}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="LeaveId">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              LeaveId
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leaveId}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LeaveDate">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Leave date
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leaveDate | date:"dd/MMM/yyyy"}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="remarks">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Remarks
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.remarks}}</mat-cell>
+          </ng-container>
+          
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

@@ -41,8 +41,8 @@ export class BodyComponent {
  }
 
  logout() {
-  // this._auth.logout()
-  console.log(this._auth.getRole());
+  this._auth.logout()
+  // console.log(this._auth.getRole());
   
 }
 

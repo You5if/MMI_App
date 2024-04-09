@@ -33,8 +33,11 @@ amount: number = 0;
 requestDate: string = new Date().toString();
 tenures: LoanChildModel[] = [];
 deletedTenures: LoanChildModel[] = [];
-employeeId!: number;
+loanTypeId!: number;
 loadId: number = 0;
+employeeId!: number;
+employees: any[] = []
+loanTypes: any[] = []
 
 
   submitDisable: boolean = false;
@@ -56,22 +59,45 @@ loadId: number = 0;
 
   ngOnInit():void {
     console.log(this.requestDate);
+    this.loanService.getDropdown().subscribe({
+      next: (value) => {
+        this.employees = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
+    this.loanService.getDropdown2().subscribe({
+      next: (value) => {
+        this.loanTypes = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
     
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.loanService.getRecordEntry(Number(param['id'])).subscribe({
             next: (response) => {
+              this.toast.close()
               var res = JSON.parse(response.name)
               console.log('API Response:', res);
               this.amount = res.Amount
               this.requestDate = res.LoanDate
               this.employeeId = res.EmpId
+              this.loanTypeId = res.LoanType
               this.loadId = res.LoanReqId
               this.tenures = res.loanTenEntries
 
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -254,10 +280,10 @@ btnClick=  () => {
     loanReqEntry: {
       "loanReqId": this.loadId,
           "loanDate": this.requestDate,
-          "empId": 33,
+          "empId": this.employeeId,
           "amount": this.amount,
           "remarks": "Emergency medical expenses",
-          "loanType": 1,
+          "loanType": this.loanTypeId,
           "isTest": this._auth.getIsTest(),
           "active": true,
           "userCR": 456,

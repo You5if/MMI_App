@@ -1,25 +1,42 @@
 <h1>User roles</h1>
 <div  >
     <button type="button" 
+    mat-button color="primary"
     (click)="addNewRole(userId)"
     style="margin-right: 5px;"
   >
   New role
 </button>
 <button type="button"
+mat-button
+    color="basic"
     (click)="btnClickCancel();"
   >
   Back to list
 </button>
 
-    <div class="card" *ngFor="let role of roles" >
-        <div class="card-body roles">
-            <div>
-                {{role.appRoleId}}
+    <div *ngIf="dataIsLoaded">
+        <div class="card" *ngFor="let role of roles" >
+            <div class="card-body roles">
+                <div>
+                    {{role.appRoleId}}
+                </div>
+               <div>
+                <button type="button" mat-button color="warn" (click)="onDelete(role)">Remove</button>
+               </div>
             </div>
-           <div>
-            <button type="button" (click)="onDelete(role)">Remove</button>
-           </div>
+        </div>
+    </div>
+    <div *ngIf="!dataIsLoaded">
+        <div class="card" *ngFor="let role of [1,2,3,4,5,6,7,8]" >
+            <div class="card-body roles">
+                <div>
+                    <ngx-skeleton-loader [theme]="{width: '300px'}"/>
+                </div>
+               <div>
+                <ngx-skeleton-loader />
+               </div>
+            </div>
         </div>
     </div>
     

@@ -26,6 +26,9 @@ export class InventoryEntryComponent {
   itemName: string = ''
   description: string = ''
   itemType: number = 0
+
+  invItems: any[] = []
+  invTypes: any[] = []
  
 
   submitDisable: boolean = false;
@@ -48,19 +51,41 @@ export class InventoryEntryComponent {
   }
 
   ngOnInit():void {
+    this.invServcie.getDropdownItem().subscribe({
+      next: (value) => {
+        this.invItems = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
+    this.invServcie.getDropdowntype().subscribe({
+      next: (value) => {
+        this.invTypes = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.invServcie.getRecordEntry(Number(param['id'])).subscribe({
             next: (response: InventoryModel) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.invId = response.empInvListId
               this.itemName = response.itemName
               this.itemType = response.itemType
               this.description = response.description
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -121,6 +146,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: InventoryToSendModel = {

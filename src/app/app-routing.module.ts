@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, provideRouter, withHashLocation } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
@@ -32,6 +32,21 @@ import { EmpInventoryComponent } from './components/emp-inventory/emp-inventory.
 import { EmpInventoryEntryComponent } from './components/emp-inventory/emp-inventory-entry/emp-inventory-entry.component';
 import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveEntryComponent } from './components/leave/leave-entry/leave-entry.component';
+import { EmployeeLeaveComponent } from './components/employee-leave/employee-leave.component';
+import { EmployeeLeaveEntryComponent } from './components/employee-leave/employee-leave-entry/employee-leave-entry.component';
+import { LeaveBalanceComponent } from './components/leave-balance/leave-balance.component';
+import { LeaveBalanceEntryComponent } from './components/leave-balance/leave-balance-entry/leave-balance-entry.component';
+import { AllowanceComponent } from './components/allowance/allowance.component';
+import { AllowanceEntryComponent } from './components/allowance/allowance-entry/allowance-entry.component';
+import { OtherEraningComponent } from './components/other-eraning/other-eraning.component';
+import { OtherEraningEntryComponent } from './components/other-eraning/other-eraning-entry/other-eraning-entry.component';
+import { OtherDeductionComponent } from './components/other-eraning copy/other-eraning.component';
+import { OtherDeductionEntryComponent } from './components/other-eraning copy/other-eraning-entry/other-eraning-entry.component';
+import { PayrollComponent } from './components/payroll/payroll.component';
+import { IncidentComponent } from './components/incident/incident.component';
+import { IncidentEntryComponent } from './components/incident/incident-entry/incident-entry.component';
+import { FinalSettlementComponent } from './components/final-settlement/final-settlement.component';
+import { FinalSettlementEntryComponent } from './components/final-settlement/final-settlement-entry/final-settlement-entry.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -65,6 +80,21 @@ const routes: Routes = [
   {path: 'empinventory-entry/:id', component: EmpInventoryEntryComponent},
   {path: 'leave', component: LeaveComponent},
   {path: 'leave-entry/:id', component: LeaveEntryComponent},
+  {path: 'other-earning', component: OtherEraningComponent},
+  {path: 'other-earning-entry/:id', component: OtherEraningEntryComponent},
+  {path: 'other-deduction', component: OtherDeductionComponent},
+  {path: 'other-deduction-entry/:id', component: OtherDeductionEntryComponent},
+  {path: 'payroll', component: PayrollComponent},
+  {path: 'allowance', component: AllowanceComponent},
+  {path: 'allowance-entry/:id', component: AllowanceEntryComponent},
+  {path: 'incident', component: IncidentComponent},
+  {path: 'incident-entry/:id', component: IncidentEntryComponent},
+  {path: 'final-settlement', component: FinalSettlementComponent},
+  {path: 'final-settlement-entry/:id', component: FinalSettlementEntryComponent},
+  {path: 'employee-leave', component: EmployeeLeaveComponent},
+  {path: 'employee-leave-entry/:id', component: EmployeeLeaveEntryComponent},
+  {path: 'leave-balance', component: LeaveBalanceComponent},
+  {path: 'leave-balance-entry/:id', component: LeaveBalanceEntryComponent},
   {path: 'users', component: UsersComponent},
   {path: 'users-entry/:id', component: UsersEntryComponent},
   {path: 'user-roles/:id', component: UsersRolesComponent},
@@ -84,6 +114,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes),],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    provideRouter(routes, withHashLocation())
+  ]
 })
 export class AppRoutingModule { }

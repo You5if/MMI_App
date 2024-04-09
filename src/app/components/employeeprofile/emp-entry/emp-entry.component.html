@@ -123,9 +123,15 @@ mat-button
         <div class="card-head">Supervisor</div>
         <div class="card-body">
     
-            <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Supervisor</mat-label>
                 <input [disabled]="submitDisable" matInput appTitleCase placeholder="Supervisor" type="number" [(ngModel)]="supervisorId" name="supervisorId">
+            </mat-form-field> -->
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Supervisor</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="supervisorId" name="supervisor">
+                  <mat-option *ngFor="let supervisor of supervisors" [value]="supervisor.id">{{ supervisor.name }}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
     </div>

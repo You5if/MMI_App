@@ -12,7 +12,7 @@ import { MatTableModule } from '@angular/material/table'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { LoginComponent } from './components/login/login.component';
 import { TestworkComponent } from './components/testwork/testwork.component';
 import { BodyComponent } from './components/body/body.component';
@@ -71,6 +71,22 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { ChangeRoleComponent } from './components/general-operations/change-role.component';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { EmployeeLeaveEntryComponent } from './components/employee-leave/employee-leave-entry/employee-leave-entry.component';
+import { EmployeeLeaveComponent } from './components/employee-leave/employee-leave.component';
+import { LeaveBalanceComponent } from './components/leave-balance/leave-balance.component';
+import { LeaveBalanceEntryComponent } from './components/leave-balance/leave-balance-entry/leave-balance-entry.component';
+import { AllowanceComponent } from './components/allowance/allowance.component';
+import { AllowanceEntryComponent } from './components/allowance/allowance-entry/allowance-entry.component';
+import { OtherEraningComponent } from './components/other-eraning/other-eraning.component';
+import { OtherEraningEntryComponent } from './components/other-eraning/other-eraning-entry/other-eraning-entry.component';
+import { OtherDeductionComponent } from './components/other-eraning copy/other-eraning.component';
+import { OtherDeductionEntryComponent } from './components/other-eraning copy/other-eraning-entry/other-eraning-entry.component';
+import { PayrollComponent } from './components/payroll/payroll.component';
+import { IncidentComponent } from './components/incident/incident.component';
+import { IncidentEntryComponent } from './components/incident/incident-entry/incident-entry.component';
+import { FinalSettlementComponent } from './components/final-settlement/final-settlement.component';
+import { FinalSettlementEntryComponent } from './components/final-settlement/final-settlement-entry/final-settlement-entry.component';
 
 
 export function getAccessToken(): string {
@@ -129,7 +145,22 @@ export const jwtConfig = {
     EmpInventoryEntryComponent,
     LeaveComponent,
     LeaveEntryComponent,
-    ChangeRoleComponent
+    ChangeRoleComponent,
+    EmployeeLeaveComponent,
+    EmployeeLeaveEntryComponent,
+    LeaveBalanceComponent,
+    LeaveBalanceEntryComponent,
+    AllowanceComponent,
+    AllowanceEntryComponent,
+    OtherEraningComponent,
+    OtherEraningEntryComponent,
+    OtherDeductionComponent,
+    OtherDeductionEntryComponent,
+    PayrollComponent,
+    IncidentComponent,
+    IncidentEntryComponent,
+    FinalSettlementComponent,
+    FinalSettlementEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -152,6 +183,16 @@ export const jwtConfig = {
     MatCheckboxModule,
     MatToolbarModule,
     MatMenuModule,
+    NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...',
+     theme:{ 
+      extendsFromRoot: true,
+      'border-radius': '5px',
+      height: '30px',
+      width: '100px',
+      margin: '5px 0 0',
+      duration: 2000,
+    }
+  }),
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -167,6 +208,7 @@ export const jwtConfig = {
     AuthGuard,
     AuthService,
     provideHotToastConfig(),
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

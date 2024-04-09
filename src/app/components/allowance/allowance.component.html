@@ -1,0 +1,155 @@
+<h1>Allowance</h1>
+
+<button 
+mat-stroked-button
+color="primary"
+    routerLink="/system/allowance-entry/0"
+  >
+  Create
+</button>
+
+<div class="card" *ngIf="!dataIsLoaded" >
+  <!-- <div class="card-head">Employee profile index</div> -->
+  <div class="card-body">
+      <mat-table #table  [dataSource]="[1,2,3,4,5 ,6,7,8]" style="width: 100%">
+
+          <!-- Columns definition here to be displayed -->
+      
+          <ng-container matColumnDef="select">
+            <mat-header-cell class="cbPad"  *matHeaderCellDef>
+              Action
+            </mat-header-cell>
+             <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+              <ngx-skeleton-loader />
+            </mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="leaveName">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+              Name
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="description">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Type
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LeaveFormula">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Formula
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="RunFreq">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                RunFreq
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="isPaid">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Param
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="payEvalFormula">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Param type
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container> -->
+    
+        <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+    
+      </mat-table>
+      <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+          (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+      </mat-paginator>
+      
+  </div>
+</div>
+
+<div class="card" *ngIf="dataIsLoaded" >
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/allowance-entry/{{row.allowanceId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="leaveName">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Name
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allowName}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="description">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Type
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allowType}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LeaveFormula">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Formula
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allowFormula}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="RunFreq">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                RunFreq
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.runFreq}}</mat-cell>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="isPaid">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Param
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                {{row.allowParam}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="payEvalFormula">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Param type
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allowParamType}}</mat-cell>
+          </ng-container> -->
+          
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

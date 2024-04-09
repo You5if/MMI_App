@@ -38,5 +38,12 @@ export class InventoryService {
       }), catchError(this._cf.handleError)
       );
   }
+
+  getDropdowntype(): Observable<any> { 
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/miscdetailid/miscdetail/misctext/miscid=18/false', this._cf.requestOptions());
+  }
+  getDropdownItem(): Observable<any> { 
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empinvlistid/empinvlist/itemname/active=1 and empinvlistid>1/false', this._cf.requestOptions());
+  }
   
 }

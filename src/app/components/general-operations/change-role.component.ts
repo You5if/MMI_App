@@ -10,17 +10,26 @@ import {
 import { UsersService } from "../users/users.service";
 import { AuthService } from "../../security/auth/auth.service";
 import { AppGlobals } from "../../app.global";
+import { HotToastService } from "@ngneat/hot-toast";
 
 @Component({
     selector: 'app-save-changes',
     styleUrl: './change-role.component.css',
     template: `<h2 mat-dialog-title>Select your role</h2>
     <mat-dialog-content>
+      <div *ngIf="!dataIsLoaded">
+      <div class="example-margin" >
+      <ngx-skeleton-loader [theme]="{width: '200px'}"/>
+      <ngx-skeleton-loader />
+                </div>
+      </div>
+      <div *ngIf="dataIsLoaded">
       <div *ngFor="let role of roles">
       <div class="example-margin" *ngIf="role.appRoleId != roleLS">
-                    <h3>role: {{role.appRoleId}}</h3>
-                    <button mat-raised-button color="primary" (click)="onToggle(role.appRoleId)">Activate</button>
+                    <h3 class="roleW">role: {{role.appRoleId}}</h3>
+                    <button mat-button color="primary" (click)="onToggle(role.appRoleId)">Activate</button>
                 </div>
+      </div>
       </div>
     </mat-dialog-content>
     <mat-dialog-actions>
@@ -30,18 +39,27 @@ import { AppGlobals } from "../../app.global";
 })
 export class ChangeRoleComponent {
   roles: any[]
+  dataIsLoaded: boolean = false
   roleLS: number = Number(localStorage.getItem(this._globals.baseAppName + '_role'))
     constructor(
       private service: UsersService,
       private _auth: AuthService,
       private _globals: AppGlobals,
-      public dialogRef: MatDialogRef<ChangeRoleComponent>
+      public dialogRef: MatDialogRef<ChangeRoleComponent>,
+      private toast: HotToastService,
       ) {
 
     }
 
     ngOnInit() {
-      this.service.getUserRoles(this._auth.getUserId()).subscribe((reponse) => {
+      this.service.getUserRoles(this._auth.getUserId()).pipe(
+        this.toast.observe({
+          loading: 'Just a moment while getting roles...',
+          success: (data) => 'Roles loaded successfully ...!',
+          error: (error) => `API Error: ${error.message}`,
+        })
+      ).subscribe((reponse) => {
+        this.dataIsLoaded = true
         this.roles = reponse
       })
     }

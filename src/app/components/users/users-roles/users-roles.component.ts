@@ -17,6 +17,8 @@ export class UsersRolesComponent {
 
   userId: number;
 
+  dataIsLoaded: boolean = false
+
   constructor(
     private usersService: UsersService,
     private router: Router,
@@ -37,11 +39,14 @@ export class UsersRolesComponent {
           this.userId = Number(param['id'])
           this.usersService.getUserRoles(Number(param['id'])).subscribe({
             next: (response) => {
+              this.dataIsLoaded = true
               this.roles = response
               console.log('API Response:', this.roles);
               
+              // this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
               console.error('API Error:', err);
             },
           });
@@ -70,7 +75,13 @@ export class UsersRolesComponent {
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
       if (result) {
-        this.usersService.deleteRole(dataToSend).subscribe(
+        this.usersService.deleteRole(dataToSend).pipe(
+          this.toast.observe({
+            loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
           response => {
             console.log('API Response:', response);
            this.refreshMe()

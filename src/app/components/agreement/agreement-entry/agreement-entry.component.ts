@@ -36,6 +36,7 @@ export class AgreementEntryComponent {
   public ded3 = 0;
 
   empAgreementId: number = 0
+employees: any[] = []
  
 
   submitDisable: boolean = false;
@@ -58,16 +59,28 @@ export class AgreementEntryComponent {
   }
 
   ngOnInit():void {
+    this.AgreementServcie.getDropdown().subscribe({
+      next: (value) => {
+        this.employees = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.AgreementServcie.getRecordEntry(Number(param['id'])).subscribe({
             next: (response) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.empAgreementId = response.empAgreementId
               this.agStart = response.agStart
               this.agEnd = response.agEnd
+              this.empId = response.empId
               this.department = response.department
               this.jobTitle = response.jobTitle
               this.description = response.description
@@ -80,8 +93,11 @@ export class AgreementEntryComponent {
               this.ded2 = response.ded2
               this.ded3 = response.ded3
 
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -142,6 +158,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: AggToSendModel = {

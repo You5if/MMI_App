@@ -50,8 +50,11 @@ export class DayWorkingHoursEntryComponent {
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.dwhServcie.getRecordEntry(Number(param['id'])).subscribe({
             next: (response) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.FromDate = response.fromDate
@@ -59,8 +62,11 @@ export class DayWorkingHoursEntryComponent {
               this.DayHours = response.dayHours
               this.MonthWDayId = response.monthWDayId
 
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -121,6 +127,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: DayWorkingHoursModel = {

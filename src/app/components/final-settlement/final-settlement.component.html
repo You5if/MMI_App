@@ -1,0 +1,215 @@
+<h1>Final settlement</h1>
+
+<button 
+mat-stroked-button
+color="primary"
+    routerLink="/system/final-settlement-entry/0"
+  >
+  Create
+</button>
+
+<div class="card" *ngIf="!dataIsLoaded" >
+  <!-- <div class="card-head">Employee profile index</div> -->
+  <div class="card-body">
+      <mat-table #table  [dataSource]="[1,2,3,4,5 ,6,7,8]" style="width: 100%">
+
+          <!-- Columns definition here to be displayed -->
+      
+          <ng-container matColumnDef="select">
+            <mat-header-cell class="cbPad"  *matHeaderCellDef>
+              Action
+            </mat-header-cell>
+             <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+              <ngx-skeleton-loader />
+            </mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="EmpId">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+              Emp Id
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="GratuityClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Gratuity
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LeaveClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Leave
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="SalaryClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Salary
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="InvClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Inventory
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="HandoverCl">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Handover
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="SupervisorCl">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Supervisor
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="ManagerCl">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Manager
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+        
+    
+        <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+    
+      </mat-table>
+      <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+          (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+      </mat-paginator>
+      
+  </div>
+</div>
+
+<div class="card" *ngIf="dataIsLoaded" >
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/final-settlement-entry/{{row.finalSettleId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="EmpId">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Emp Id
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empId}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="GratuityClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Gratuity
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.gratuityClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.gratuityClear" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LeaveClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Leave
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.leaveClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.leaveClear" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="SalaryClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Salary
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.salaryClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.salaryClear" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="InvClear">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Inventory
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.invClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.invClear" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="HandoverCl">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Handover
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.handoverCl" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.handoverCl" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="SupervisorCl">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Supervisor
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.supervisorCl" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.supervisorCl" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="ManagerCl">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Manager
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <mat-icon *ngIf="row.managerCl" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+                <mat-icon *ngIf="!row.managerCl" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

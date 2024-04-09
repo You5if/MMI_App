@@ -34,6 +34,14 @@ deleteRecord(dataToSend: LoanModel): Observable<any> {
     
 }
 
+getDropdown(): Observable<any> { 
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
+}
+getDropdown2(): Observable<any> { 
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/miscdetailid/miscdetail/misctext/miscid=17/false', this._cf.requestOptions());
+}
+
+
 getRecordEntry(id: number): Observable<any> {
   
     return this.httpclient.get<any>(this._globals.baseAPIUrl + "LoanReq/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(

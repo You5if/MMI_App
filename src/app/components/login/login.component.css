@@ -23,10 +23,13 @@
     justify-content: space-between;
     font-family: 'MyFont', sans-serif;
 }
-
+.example-full-width {
+    width: 100%;
+    margin-top: 10px;
+  }
 h2 {
     color: #333;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     font-family: 'MyFont', sans-serif;
 }
 
@@ -63,7 +66,7 @@ label {
 
 input {
     width: 100%;
-    padding: 10px 10px 10px 40px; /* Adjusted padding for the icon */
+    padding: 10px 10px 10px 10px; /* Adjusted padding for the icon */
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
@@ -73,6 +76,20 @@ input {
 
 .login-btn {
     background: #3B3E79;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'MyFont', sans-serif;
+    font-weight: bold;
+    /* margin-top: 10px; */
+}
+.login-btn-dis {
+    background: #d3d3d3;
     color: #fff;
     cursor: pointer;
     padding: 10px;
@@ -93,7 +110,7 @@ input[type="button"]:hover {
     display: grid;
     height: 60vh;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 
         "formtitle"
         "usernamecontrol"
@@ -102,6 +119,8 @@ input[type="button"]:hover {
     place-items: center center;
     font-family: 'MyFont', sans-serif;
 }
+
+
 
 .usernamesec, .passwordsec, .submitsec {
     width: 100%;

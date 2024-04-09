@@ -50,8 +50,11 @@ export class PublicHolidayEntryComponent {
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.holidayServcie.getRecordEntry(Number(param['id'])).subscribe({
             next: (response) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.month = response.month
@@ -59,8 +62,11 @@ export class PublicHolidayEntryComponent {
               this.holiday = response.holiday
               this.holidayId = response.publicHolId
 
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -121,6 +127,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: PublicHolidayModel = {

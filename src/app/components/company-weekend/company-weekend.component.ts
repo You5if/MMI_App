@@ -59,9 +59,17 @@ export class CompanyWeekendComponent {
   }
 
   refreshMe() {
-   
-          this.holidayServcie.getRecordEntry(1).subscribe({
+  
+    this.submitDisable = false
+          this.holidayServcie.getRecordEntry(1).pipe(
+            this.toast.observe({
+              loading: 'Just a moment while getting the data...',
+              success: (data) => 'Data loaded successfully ...!',
+              error: (error) => `API Error: ${error.message}`,
+            })
+          ).subscribe({
             next: (response) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.days[0].day = response.satDay
@@ -72,8 +80,11 @@ export class CompanyWeekendComponent {
               this.days[5].day = response.thuDay
               this.days[6].day = response.friDay
 
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -132,6 +143,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: CompanyWeekendModel = {

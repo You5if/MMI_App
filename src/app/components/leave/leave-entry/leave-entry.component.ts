@@ -24,7 +24,7 @@ export class LeaveEntryComponent  {
 
   invId: number = 0
   description: string = ''
-  
+  leaves: any[] = []
  
 
   submitDisable: boolean = false;
@@ -52,11 +52,22 @@ export class LeaveEntryComponent  {
   }
 
   ngOnInit():void {
+    this.leaveServcie.getDropdown().subscribe({
+      next: (value) => {
+        this.leaves = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
+          this.submitDisable = true
+          this.toast.loading('Wait just a moment ...')
           this.leaveServcie.getRecordEntry(Number(param['id'])).subscribe({
             next: (response: LeaveModel) => {
+              this.toast.close()
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.leaveId = response.leaveId
@@ -65,8 +76,11 @@ export class LeaveEntryComponent  {
               this.leaveName = response.leaveName
               this.description = response.description
               this.payEvalFormula = response.payEvalFormula
+              this.submitDisable = false
+      
             },
-            error(err) {
+            error: (err) => {
+              this.submitDisable = false
               console.error('API Error:', err);
             },
           });
@@ -127,6 +141,7 @@ confirm('Enter key is pressed, form will be submitted');
 }
 
 btnClick=  () => {
+  this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
   var dataToSend: LeaveToSendModel = {

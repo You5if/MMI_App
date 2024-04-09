@@ -8,7 +8,64 @@ color="primary"
   Create
 </button>
 
-<div class="card"  >
+<div class="card" *ngIf="!dataIsLoaded" >
+  <!-- <div class="card-head">Employee profile index</div> -->
+  <div class="card-body">
+      <mat-table #table  [dataSource]="[1,2,3,4,5 ,6,7,8]" style="width: 100%">
+
+          <!-- Columns definition here to be displayed -->
+      
+          <ng-container matColumnDef="select">
+            <mat-header-cell class="cbPad"  *matHeaderCellDef>
+              Action
+            </mat-header-cell>
+             <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+              <ngx-skeleton-loader />
+            </mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="agStart">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+              Start
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="agEnd">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            End
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="department">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Department
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="jobTitle">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Job title
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+    
+        <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+    
+      </mat-table>
+      <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+          (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+      </mat-paginator>
+      
+  </div>
+</div>
+
+<div class="card" *ngIf="dataIsLoaded" >
     <!-- <div class="card-head">Agreement index</div> -->
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">

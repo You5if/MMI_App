@@ -20,9 +20,15 @@ mat-button
 
 <div class="card-body">
 
-    <mat-form-field style="margin-right: 10px;">
+    <!-- <mat-form-field style="margin-right: 10px;">
         <mat-label>Employee</mat-label>
         <input [disabled]="submitDisable"  id="firstControl" matInput  placeholder="Employee"   [(ngModel)]="empId" type="number" name="Employee"  required>
+    </mat-form-field> -->
+    <mat-form-field style="margin-right: 10px;">
+        <mat-label>Employee</mat-label>
+        <mat-select [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
+          <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+        </mat-select>
     </mat-form-field>
 
     <mat-form-field style="margin-right: 10px;">
@@ -37,7 +43,7 @@ mat-button
 
     <mat-form-field style="margin-right: 10px;">
         <mat-label>Specifications</mat-label>
-        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Specifications"  [(ngModel)]="specs" name="specs" required>
+        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Specifications"  [(ngModel)]="specs" name="specs">
     </mat-form-field>
 
     
@@ -65,7 +71,7 @@ mat-button
 
               <mat-form-field style="margin-right: 10px;">
                 <mat-label>Allocation remarks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocation remarks"  [(ngModel)]="allocRemarks" name="allocRemarks" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocation remarks"  [(ngModel)]="allocRemarks" name="allocRemarks" >
             </mat-form-field>
         </div>
         </div>
@@ -73,13 +79,25 @@ mat-button
     <div class="card" >
         <div class="card-head">Witnesses</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness Employee 1</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness Employee 1" type="number"  [(ngModel)]="witnessEmp1" name="witnessEmp1" required>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness Employee 2</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness Employee 2"  type="number"  [(ngModel)]="witnessEmp2" name="witnessEmp2" required>
+            </mat-form-field> -->
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness Employee 1</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="witnessEmp1" name="Witness Employee 1">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness Employee 2</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="witnessEmp2" name="Witness Employee 2">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
     </div>
@@ -93,17 +111,29 @@ mat-button
                 <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
               </mat-form-field>
-              <mat-form-field style="margin-right: 10px;">
+              <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness withdraw 1</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness withdraw 1" type="number"  [(ngModel)]="witnessWDEmp1" name="witnessWDEmp1" required>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness withdraw 2</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness withdraw 2"  type="number"  [(ngModel)]="witnessWDEmp2" name="witnessWDEmp2" required>
+            </mat-form-field> -->
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness withdraw 1</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="witnessWDEmp1" name="witnessWDEmp1">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Witness withdraw 2</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="witnessWDEmp2" name="witnessWDEmp2">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Withdraw remarks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Withdraw remarks"  [(ngModel)]="withdrRemarks" name="withdrRemarks" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Withdraw remarks"  [(ngModel)]="withdrRemarks" name="withdrRemarks" >
             </mat-form-field>
         </div>
     </div>

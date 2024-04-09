@@ -30,6 +30,10 @@ export class LeaveService {
       return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Leave/delete', dataToSend, this._cf.requestOptions());
       
   }
+
+  getDropdown(): Observable<any> { 
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/leaveid/leave/leavename/active=1 and leaveid>1/false', this._cf.requestOptions());
+  }
   
   getRecordEntry(id: number): Observable<any> {
       return this.httpclient.get<any>(this._globals.baseAPIUrl + "Leave/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(

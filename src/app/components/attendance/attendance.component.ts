@@ -36,7 +36,8 @@ export class AttendanceComponent implements OnInit{
   totalRecords!: number;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageData: any
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataIsLoaded: boolean = false
   message: string = "";
   @Output() public onUploadFinished = new EventEmitter();
   user_img: string = "/path/to/file";
@@ -113,6 +114,8 @@ export class AttendanceComponent implements OnInit{
   refreshMe() {
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: any) => {
+      // this._ui.loadingStateChanged.next(false);
+      this.dataIsLoaded = true
       // this._ui.loadingStateChanged.next(false);
       this.totalRecords = result[0].totalRecords;
       this.recordsPerPage = this.recordsPerPage;

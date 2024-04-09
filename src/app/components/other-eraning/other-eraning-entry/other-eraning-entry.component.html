@@ -1,0 +1,60 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+    [disabled]="submitDisable"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    [disabled]="submitDisable"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Employees information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Employee</mat-label>
+                <mat-select [disabled]="submitDisable" name="employee">
+                  <mat-option *ngFor="let employee of employees" (click)="selectedEmp(employee)" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+           
+            <mat-divider></mat-divider>
+            <div *ngFor="let emp of earnEmp; index as i">
+                <div class="emp">{{emp}} <div><button (click)="onRemoveEmp(i)" class="Btn" mat-button color="warn">Remove</button></div></div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="card" >
+        <div class="card-head">Earning information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <input [disabled]="submitDisable"  matInput  placeholder="Month"   [(ngModel)]="month" name="month"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Year"  [(ngModel)]="getYear" name="year" required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Amount</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Amount"  [(ngModel)]="amount" name="amount" required>
+              </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Remarks</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks" required>
+              </mat-form-field>
+           
+        </div>
+    </div>
+    
+</form>

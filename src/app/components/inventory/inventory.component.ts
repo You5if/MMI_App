@@ -37,7 +37,8 @@ export class InventoryComponent {
   totalRecords!: number;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageData: any
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataIsLoaded: boolean = false
   message: string = "";
   user_img: string = "/path/to/file";
   
@@ -85,6 +86,8 @@ export class InventoryComponent {
   refreshMe() {
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: InventoryModel[]) => {
+      // this._ui.loadingStateChanged.next(false);
+      this.dataIsLoaded = true
       // this._ui.loadingStateChanged.next(false);
       this.totalRecords = result[0].totalRecords;
       this.recordsPerPage = this.recordsPerPage;
