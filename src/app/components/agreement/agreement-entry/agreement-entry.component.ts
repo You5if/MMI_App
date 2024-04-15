@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { AggToSendModel } from '../agreement.model';
 import { AgreementService } from '../agreement.service';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';

@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../app.global';
 import { DayWorkingHoursModel } from './day-working-hours.model';
 import { DayWorkingHoursService } from './day-working-hours.service';
-import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -84,6 +84,7 @@ export class DayWorkingHoursComponent {
   }
 
   refreshMe() {
+    this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: any[]) => {
       // this._ui.loadingStateChanged.next(false);

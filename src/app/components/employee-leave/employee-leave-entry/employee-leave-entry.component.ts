@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { EmpLeaveToSendModel } from '../employee-leave.model';
 import { EmployeeLeaveService } from '../employee-leave.service';
 import { HttpClient } from '@angular/common/http';

@@ -6,7 +6,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { CommonService } from '../../common.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';

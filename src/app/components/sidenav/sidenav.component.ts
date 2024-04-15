@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { INavbarData, fadeInOut } from './helper';
 import { GlobalService } from '../../global.service';
 import { MatDialog } from '@angular/material/dialog';
-import { SaveChangesComponent } from '../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../general-operations/tenure-options/save-changes.component';
 
 
 interface SideNavToggle {

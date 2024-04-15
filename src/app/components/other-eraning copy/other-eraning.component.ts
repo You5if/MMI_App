@@ -8,7 +8,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { CommonService } from '../common.service';
-import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 
 @Component({
   selector: 'app-other-deduction',
@@ -84,6 +84,7 @@ export class OtherDeductionComponent {
   }
 
   refreshMe() {
+    this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: EarnModel[]) => {
       // this._ui.loadingStateChanged.next(false);

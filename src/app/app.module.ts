@@ -37,16 +37,16 @@ import { LoanEntryComponent } from './components/loan/loan-entry/loan-entry.comp
 import { LoanComponent } from './components/loan/loan.component';
 import { LoanEntryChildComponent } from './components/loan/loan-entry/loan-entry-child/loan-entry-child.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { CheckTenuresComponent } from './components/loan/tenure-options/check-tenures.component';
-import { AmountIsLessComponent } from './components/loan/tenure-options/AmountIsLess.component copy';
-import { SaveChangesComponent } from './components/loan/tenure-options/save-changes.component';
-import { CheckDeleteComponent } from './components/loan/tenure-options/check-delete.component';
+import { CheckTenuresComponent } from './components/general-operations/tenure-options/check-tenures.component';
+import { AmountIsLessComponent } from './components/general-operations/tenure-options/AmountIsLess.component copy';
+import { SaveChangesComponent } from './components/general-operations/tenure-options/save-changes.component';
+import { CheckDeleteComponent } from './components/general-operations/tenure-options/check-delete.component';
 import { Login2Component } from './security/auth/login/login.component';
 import { AppGlobals } from './app.global';
 import { AuthGuard } from './security/auth/auth-guard';
 import { AuthService } from './security/auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
-import { NavigateCheckComponent } from './components/loan/tenure-options/navigation-check.component';
+import { NavigateCheckComponent } from './components/general-operations/tenure-options/navigation-check.component';
 import { UsersComponent } from './components/users/users.component';
 import { UsersEntryComponent } from './components/users/users-entry/users-entry.component';
 import { UsersRolesComponent } from './components/users/users-roles/users-roles.component';
@@ -87,6 +87,10 @@ import { IncidentComponent } from './components/incident/incident.component';
 import { IncidentEntryComponent } from './components/incident/incident-entry/incident-entry.component';
 import { FinalSettlementComponent } from './components/final-settlement/final-settlement.component';
 import { FinalSettlementEntryComponent } from './components/final-settlement/final-settlement-entry/final-settlement-entry.component';
+import { ChartOfAccountsComponent } from './components/chart-of-accounts/chart-of-accounts.component';
+import { ChartOfAccountsEntryComponent } from './components/chart-of-accounts/chart-of-accounts-entry/chart-of-accounts-entry.component';
+import { JournalEntryComponent } from './components/journal-entry/journal-entry.component';
+import { JournalEntryEntryComponent } from './components/journal-entry/journal-entry-entry/journal-entry-entry.component';
 
 
 export function getAccessToken(): string {
@@ -160,7 +164,11 @@ export const jwtConfig = {
     IncidentComponent,
     IncidentEntryComponent,
     FinalSettlementComponent,
-    FinalSettlementEntryComponent
+    FinalSettlementEntryComponent,
+    ChartOfAccountsComponent,
+    ChartOfAccountsEntryComponent,
+    JournalEntryComponent,
+    JournalEntryEntryComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../app.global';
 import { GlobalService } from '../../global.service';
 import { UsersModel, UsersToDeleteModel } from './users.model';
-import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { ChangePasswordComponent } from './changepassword.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -117,6 +117,7 @@ export class UsersComponent {
   // }
 
   refreshMe() {
+    this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: any) => {
       // this._ui.loadingStateChanged.next(false);

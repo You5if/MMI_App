@@ -9,7 +9,7 @@ import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
 import { AuthService } from '../../../security/auth/auth.service';
 import { CommonService } from '../../common.service';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { OtherDeductionService } from '../other-eraning.service';
 
 @Component({

@@ -15,9 +15,9 @@ import {
   MatDialogTitle,
   MatDialogContent,
 } from '@angular/material/dialog';
-import { CheckTenuresComponent } from '../tenure-options/check-tenures.component';
-import { AmountIsLessComponent } from '../tenure-options/AmountIsLess.component copy';
-import { SaveChangesComponent } from '../tenure-options/save-changes.component';
+import { CheckTenuresComponent } from '../../general-operations/tenure-options/check-tenures.component';
+import { AmountIsLessComponent } from '../../general-operations/tenure-options/AmountIsLess.component copy';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { AuthService } from '../../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
 

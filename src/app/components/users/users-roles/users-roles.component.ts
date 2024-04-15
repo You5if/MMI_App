@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { UsersService } from '../users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckDeleteComponent } from '../../loan/tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../../general-operations/tenure-options/check-delete.component';
 import { AddRoleComponent } from '../add-role.component';
 import { HotToastService } from '@ngneat/hot-toast';
 

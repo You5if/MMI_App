@@ -7,7 +7,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { CommonService } from '../common.service';
-import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { OtherEraningService } from '../other-eraning/other-eraning.service';
 import { PayrollService } from './payroll.service';
 
@@ -85,6 +85,7 @@ export class PayrollComponent {
   }
 
   refreshMe() {
+    this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: PayrollModel[]) => {
       // this._ui.loadingStateChanged.next(false);

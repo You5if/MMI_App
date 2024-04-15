@@ -10,7 +10,7 @@ import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
 import { AuthService } from '../../../security/auth/auth.service';
 import { CommonService } from '../../common.service';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 
 @Component({
   selector: 'app-final-settlement-entry',
@@ -180,7 +180,7 @@ btnClick=  () => {
   "Remarks": this.remarks,
   "Witness1": this.witness1,
   "Witness2": this.witness2,
-  "IsTest": true,
+  "IsTest": this._auth.getIsTest(),
   "Active": true,
   "Deleted": false,
   "UserCR": 456,

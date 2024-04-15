@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoanModel } from './loan-models/loan.model';
 import { FileListModel } from '../employeeprofile/upload-file.model';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckDeleteComponent } from './tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -118,6 +118,7 @@ export class LoanComponent {
   }
 
   refreshMe() {
+    this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: LoanModel[]) => {
       // this._ui.loadingStateChanged.next(false);

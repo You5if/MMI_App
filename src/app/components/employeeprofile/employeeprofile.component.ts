@@ -7,7 +7,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { FileListModel } from './upload-file.model';
 import { EmployeeModel } from './employeeprofile.model';
 import { log } from 'console';
-import { CheckDeleteComponent } from '../loan/tenure-options/check-delete.component';
+import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../app.global';
 import { GlobalService } from '../../global.service';
@@ -167,6 +167,7 @@ export class EmployeeprofileComponent implements OnInit{
   // }
 
   refreshMe() {
+    this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: any) => {
       this.dataIsLoaded = true

@@ -47,6 +47,10 @@ import { IncidentComponent } from './components/incident/incident.component';
 import { IncidentEntryComponent } from './components/incident/incident-entry/incident-entry.component';
 import { FinalSettlementComponent } from './components/final-settlement/final-settlement.component';
 import { FinalSettlementEntryComponent } from './components/final-settlement/final-settlement-entry/final-settlement-entry.component';
+import { ChartOfAccountsComponent } from './components/chart-of-accounts/chart-of-accounts.component';
+import { ChartOfAccountsEntryComponent } from './components/chart-of-accounts/chart-of-accounts-entry/chart-of-accounts-entry.component';
+import { JournalEntryComponent } from './components/journal-entry/journal-entry.component';
+import { JournalEntryEntryComponent } from './components/journal-entry/journal-entry-entry/journal-entry-entry.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -62,6 +66,7 @@ const routes: Routes = [
     children: [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'system', component: TestworkComponent, children: [
+     // HRD screens
     { path: '', redirectTo: 'employeeprofile', pathMatch: 'full' },
     {path: 'employeeprofile', component: EmployeeprofileComponent},
   {path: 'employeeprofile-entry/:id', component: EmpEntryComponent},
@@ -95,10 +100,17 @@ const routes: Routes = [
   {path: 'employee-leave-entry/:id', component: EmployeeLeaveEntryComponent},
   {path: 'leave-balance', component: LeaveBalanceComponent},
   {path: 'leave-balance-entry/:id', component: LeaveBalanceEntryComponent},
+  {path: 'companyweekend', component: CompanyWeekendComponent},
+  // Finance screens
+  {path: 'chart-of-accounts', component: ChartOfAccountsComponent},
+  {path: 'chart-of-accounts-entry/:id', component: ChartOfAccountsEntryComponent},
+  {path: 'journal', component: JournalEntryComponent},
+  {path: 'journal-entry/:id', component: JournalEntryEntryComponent},
+  // User management screens
   {path: 'users', component: UsersComponent},
   {path: 'users-entry/:id', component: UsersEntryComponent},
   {path: 'user-roles/:id', component: UsersRolesComponent},
-  {path: 'companyweekend', component: CompanyWeekendComponent},
+
   ]},
   {path: 'products', component: ProductsComponent},
   {path: 'statistics', component: StatisticsComponent},

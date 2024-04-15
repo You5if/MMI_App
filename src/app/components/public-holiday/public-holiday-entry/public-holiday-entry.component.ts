@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { PublicHolidayModel } from '../public-holiday.model';
 import { NgForm } from '@angular/forms';
 import { PublicHolidayService } from '../public-holiday.service';

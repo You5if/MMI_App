@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
 import { UsersModel, UsersToSendModel } from '../users.model';
-import { SaveChangesComponent } from '../../loan/tenure-options/save-changes.component';
+import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
