@@ -1,0 +1,98 @@
+<!-- <p>inventory-entry works!</p> -->
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+    [disabled]="submitDisable"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    [disabled]="submitDisable"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">Bank information</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Bank name</mat-label>
+                <input [disabled]="submitDisable"  matInput  placeholder="Bank name" id="firstControl"   [(ngModel)]="bankName" name="bankName"  required>
+            </mat-form-field>
+            <!-- <mat-form-field style="margin-right: 10px;">
+                <mat-label>Leave type</mat-label>
+                <mat-select id="firstControl"  [disabled]="submitDisable" [(ngModel)]="leaveName" name="leaveName">
+                  <mat-option *ngFor="let employee of leaves" [value]="employee.name">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Branch</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Branch"  [(ngModel)]="branch" name="branch" required>
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Address</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address" required>
+            </mat-form-field>
+           
+        </div>
+    </div>
+    <div class="card" >
+    <div class="card-head">Contact</div>
+        <div class="card-body">
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Contact person</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Contact person"   [(ngModel)]="contactPer" name="contactPer" required>
+            </mat-form-field>
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Email</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Email" type="email"   [(ngModel)]="email" name="email" required>
+            </mat-form-field>
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Phone</mat-label>
+                <input [disabled]="submitDisable" type="tel"  matInput appTitleCase placeholder="Phone"   [(ngModel)]="phone1" name="phone1" required>
+            </mat-form-field>
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Phone 2</mat-label>
+                <input [disabled]="submitDisable" type="tel"  matInput appTitleCase placeholder="Phone 2"   [(ngModel)]="phone2" name="phone2" required>
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="card" >
+    <div class="card-head">Account details</div>
+    <div class="card-body">
+        <mat-form-field style="margin-right: 10px;">
+            <mat-label>Account no</mat-label>
+            <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Account no"   [(ngModel)]="accNo" name="accNo" required>
+        </mat-form-field>
+
+        <mat-form-field style="margin-right: 10px;">
+                <mat-label>Account</mat-label>
+                <mat-select   [disabled]="submitDisable" [(ngModel)]="accountId" name="accountId">
+                  <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+    </div>
+
+    </div>
+    <!-- <div class="card" >
+    <div class="card-head">Payment formula</div>
+        <div class="card-body">
+            <mat-form-field style=" margin-right: 10px;">
+                <mat-label>Pay eval formula</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula" required>
+            </mat-form-field>
+        </div>
+    </div> -->
+    
+</form>

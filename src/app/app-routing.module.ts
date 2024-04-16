@@ -51,6 +51,16 @@ import { ChartOfAccountsComponent } from './components/chart-of-accounts/chart-o
 import { ChartOfAccountsEntryComponent } from './components/chart-of-accounts/chart-of-accounts-entry/chart-of-accounts-entry.component';
 import { JournalEntryComponent } from './components/journal-entry/journal-entry.component';
 import { JournalEntryEntryComponent } from './components/journal-entry/journal-entry-entry/journal-entry-entry.component';
+import { TransactionComponent } from './components/transaction/transaction.component';
+import { TransactionEntryComponent } from './components/transaction/transaction-entry/transaction-entry.component';
+import { BankComponent } from './components/bank/bank.component';
+import { BankEntryComponent } from './components/bank/bank-entry/bank-entry.component';
+import { CostCenterGroupComponent } from './components/cost-center-group/cost-center-group.component';
+import { CostCenterGroupEntryComponent } from './components/cost-center-group/cost-center-group-entry/cost-center-group-entry.component';
+import { CostCenterComponent } from './components/cost-center/cost-center.component';
+import { CostCenterEntryComponent } from './components/cost-center/cost-center-entry/cost-center-entry.component';
+import { CostCenterAccountComponent } from './components/cost-center-account/cost-center-account.component';
+import { CostCenterAccountEntryComponent } from './components/cost-center-account/cost-center-account-entry/cost-center-account-entry.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -106,6 +116,16 @@ const routes: Routes = [
   {path: 'chart-of-accounts-entry/:id', component: ChartOfAccountsEntryComponent},
   {path: 'journal', component: JournalEntryComponent},
   {path: 'journal-entry/:id', component: JournalEntryEntryComponent},
+  {path: 'transaction', component: TransactionComponent},
+  {path: 'transaction-entry/:id', component: TransactionEntryComponent},
+  {path: 'bank', component: BankComponent},
+  {path: 'bank-entry/:id', component: BankEntryComponent},
+  {path: 'cost-center-group', component: CostCenterGroupComponent},
+  {path: 'cost-center-group-entry/:id', component: CostCenterGroupEntryComponent},
+  {path: 'cost-center', component: CostCenterComponent},
+  {path: 'cost-center-entry/:id', component: CostCenterEntryComponent},
+  {path: 'cost-center-account', component: CostCenterAccountComponent},
+  {path: 'cost-center-account-entry/:id', component: CostCenterAccountEntryComponent},
   // User management screens
   {path: 'users', component: UsersComponent},
   {path: 'users-entry/:id', component: UsersEntryComponent},

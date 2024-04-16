@@ -91,6 +91,17 @@ import { ChartOfAccountsComponent } from './components/chart-of-accounts/chart-o
 import { ChartOfAccountsEntryComponent } from './components/chart-of-accounts/chart-of-accounts-entry/chart-of-accounts-entry.component';
 import { JournalEntryComponent } from './components/journal-entry/journal-entry.component';
 import { JournalEntryEntryComponent } from './components/journal-entry/journal-entry-entry/journal-entry-entry.component';
+import { TransactionEntryComponent } from './components/transaction/transaction-entry/transaction-entry.component';
+import { TransactionComponent } from './components/transaction/transaction.component';
+import { CostCenterGroupComponent } from './components/cost-center-group/cost-center-group.component';
+import { CostCenterGroupEntryComponent } from './components/cost-center-group/cost-center-group-entry/cost-center-group-entry.component';
+import { BankComponent } from './components/bank/bank.component';
+import { BankEntryComponent } from './components/bank/bank-entry/bank-entry.component';
+import { CostCenterComponent } from './components/cost-center/cost-center.component';
+import { CostCenterEntryComponent } from './components/cost-center/cost-center-entry/cost-center-entry.component';
+import { CostCenterAccountComponent } from './components/cost-center-account/cost-center-account.component';
+import { CostCenterAccountEntryComponent } from './components/cost-center-account/cost-center-account-entry/cost-center-account-entry.component';
+
 
 
 export function getAccessToken(): string {
@@ -168,7 +179,17 @@ export const jwtConfig = {
     ChartOfAccountsComponent,
     ChartOfAccountsEntryComponent,
     JournalEntryComponent,
-    JournalEntryEntryComponent
+    JournalEntryEntryComponent,
+    TransactionComponent,
+    TransactionEntryComponent,
+    CostCenterGroupComponent,
+    CostCenterGroupEntryComponent,
+    BankComponent,
+    BankEntryComponent,
+    CostCenterComponent,
+    CostCenterEntryComponent,
+    CostCenterAccountComponent,
+    CostCenterAccountEntryComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Employee</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="employeeId" name="employee">
+                <mat-select id="firstName"  [disabled]="submitDisable" [(ngModel)]="employeeId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -33,7 +33,7 @@ mat-button
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Loan amount</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase id="firstName"  placeholder="Loan amount" type="number"  [(ngModel)]="amount" name="amount">
+                <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Loan amount" type="number"  [(ngModel)]="amount" name="amount">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Request date</mat-label>
