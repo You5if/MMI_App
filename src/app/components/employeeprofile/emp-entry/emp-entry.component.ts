@@ -87,6 +87,8 @@ export class EmpEntryComponent {
 
   supervisors: any[] = []
 
+  links: any[] = []
+
   submitDisable: boolean = false;
 
   departments: [
@@ -152,7 +154,8 @@ export class EmpEntryComponent {
               this.languages = response.languages;
               this.education = response.education;
               this.experience = response.experience;
-              this.attachments = response.attachments
+              this.attachments = response.attachments;
+              this.links = JSON.parse(this.attachments);
               this.skills = response.skills;
               this.trainings = response.trainings;
               this.certificates = response.certificates;
@@ -255,6 +258,113 @@ confirm('Enter key is pressed, form will be submitted');
   
 }
 
+uploadAttachments(files:any)  {
+  console.log(files);
+  let fileValidations = 1;
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].type === "image/jpeg" || files[i].type === "image/png") {
+      // do nothing
+    } else {
+      // fileValidations = 0;
+      // console.log("here attavh");
+      
+    }
+  }
+  if (fileValidations === 0) {
+    files = [];
+    // this._msg.showInfoError(
+    //   "Info",
+    //   "File types not accepted! Upload only JPEG or PNG Images!!"
+    // );
+    console.log('val');
+    
+    return;
+  }
+  // this.uploadStatus = false;
+  if (files.length === 0) {
+    return false;
+  }
+  // tslint:disable-next-line:prefer-const
+
+  // this.ng2ImgMax.resizeImage(fileToUpload, 400, 300).subscribe( // first way
+  // this.ng2ImgMax.compressImage(image, 0.075).subscribe( // second way
+  try {
+    for (let i = 0; i < files.length; i++) {
+      // this._ui.loadingStateChanged.next(true);
+      let fileToUpload = <File>files[i];
+      const formData = new FormData();
+      formData.append("file", fileToUpload, fileToUpload.name);
+      this.http
+        .post(this._globals.baseAPIUrl + "file/upload", formData, this._cf.imageequestOptions())
+        .pipe(
+          this.toast.observe({
+            loading: 'Uploading attachment...',
+            success: (data) => 'Attachment uploaded successfully ...!',
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe((event) => {
+          // console.log('valEvent', event);
+          // if (event.type === HttpEventType.UploadProgress) {
+          //   this.progress = Math.round((100 * event.loaded) / event.total);
+          //   this.uploadStatus = false;
+          // } else if (event.type === HttpEventType.Response) {
+            const res: any = event;
+            const uploadedFile = {
+              apiPath: res.apiPath,
+              extension: res.extention,
+              fileName: res.fileName,
+              fullPath: res.fullPath,
+              originalFileName: res.originalFileName,
+              // apiImagePath: this._globals.baseAPIRootUrl + res.apiPath
+              apiImagePath: res.apiImagePath
+            };
+            this.uploadStatus = true;
+            // this.onUploadFinished.emit(event.body);
+            // this.tmpFilesList.push(this.uploadedFile);
+            // this.myFiles.push(this.uploadedFile);
+            // console.log(JSON.stringify(this.uploadedFile));
+            this.links.push({
+              APIImagePath: uploadedFile.apiImagePath,
+              APIPath: uploadedFile.apiPath,
+              Extension: uploadedFile.extension,
+              FileName: uploadedFile.fileName,
+              FullPath: uploadedFile.fullPath,
+              OriginalFileName: uploadedFile.originalFileName,
+              Link: "https://" + uploadedFile.fullPath.substring(39)
+              })
+            // this.user_img = "https://" + this.uploadedFile.fullPath.substring(39)
+            // this.apiImagePath = this.uploadedFile.apiImagePath
+            // this.apiPath = this.uploadedFile.apiPath
+            // this.extension = this.uploadedFile.extension
+            // this.fileName = this.uploadedFile.fileName
+            // this.fullPath = this.uploadedFile.fullPath
+            // this.originalFileName = this.uploadedFile.originalFileName
+
+            // this.btnClick()
+            // this.businessService.imageChange2(this.uploadedFile)
+            // this.businessService.imageChange(this.uploadedFile)
+            this.message = fileToUpload.name + " upload success!";
+          
+          // this.myFiles = this.tmpFilesList;
+
+          // this.childFileListComponent.refreshMe();
+          // this._ui.loadingStateChanged.next(false);
+        });
+      // this.ng2ImgMax.compressImage(fileToUpload, 0.5).subscribe(
+      //   result => {
+      //     fileToUpload = result;
+
+      // });
+    }
+    return;
+  } catch (error:any) {
+    // this._ui.loadingStateChanged.next(false);
+    // this._msg.showAPIError(error);
+    console.log('catch');
+    files = [];
+    return false;
+  }
+};
 uploadFile = (files:any) => {
   let fileValidations = 1;
   for (let i = 0; i < files.length; i++) {
@@ -297,7 +407,7 @@ uploadFile = (files:any) => {
             error: (error) => `API Error: ${error.message}`,
           })
         ).subscribe((event) => {
-          // console.log('valEvent', event);
+          console.log('valEvent', event);
           // if (event.type === HttpEventType.UploadProgress) {
           //   this.progress = Math.round((100 * event.loaded) / event.total);
           //   this.uploadStatus = false;
@@ -361,6 +471,9 @@ deleteImg = () => {
             this.originalFileName = ''
 }
 
+deleteAttach(id: number) {
+  this.links.splice(id, 1)
+}
 
 btnClick=  () => {
   this.submitDisable = true
@@ -407,7 +520,7 @@ btnClick=  () => {
     "Earn2": 2000.00,
     "Ded1": 500.00,
     "Ded2": 300.00,
-    "Attachments": this.attachments,
+    "Attachments": JSON.stringify(this.links),
     "Insurance": this.insurance,
     "InDesc": this.inDesc,
     "InSt": this.inSt,

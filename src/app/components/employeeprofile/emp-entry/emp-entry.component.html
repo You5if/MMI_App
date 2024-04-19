@@ -19,7 +19,8 @@ mat-button
         <div class="card-head">Personal information</div>
         <div class="card-body">
            
-            <input [disabled]="submitDisable" type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+            <input [disabled]="submitDisable" type="file" name="first" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" accept="image/png, image/jpeg">
+            <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple accept="image/png, image/jpeg">
                     <mat-card class="example-card">
                         <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="Photo of a Shiba Inu">
                         <div class="no-img" *ngIf="user_img === '/path/to/file'"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon></div>
@@ -321,12 +322,16 @@ mat-button
     </div>
     
     <div class="card" >
-        <div class="card-head">Attachments</div>
+        
+        <div class="card-head">Attachments <button class="Btn" type="button" mat-button color="primary" (click)="file2.click()">Upload</button></div>
         <div class="card-body">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>Attachments</mat-label>
-                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Attachments" name="attachments" [(ngModel)]="attachments"></textarea>
-            </mat-form-field>
+            <div *ngFor="let link of links; let i = index">
+                <div class="attach-links">
+                    <a [href]="link.Link" [download]="link.OriginalFileName" target="_blank">{{link.OriginalFileName}}</a>
+                    <button class="Btn" mat-button color="warn" (click)="deleteAttach(i)" type="button">Delete</button>
+                </div>
+                <mat-divider *ngIf="i+1 != links.length"></mat-divider>
+            </div>
         </div>
     </div>
 </form>
