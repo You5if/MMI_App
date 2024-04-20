@@ -1,0 +1,109 @@
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+    [disabled]="submitDisable"
+  >
+  Save
+</button>
+<button type="button"
+mat-button
+    color="basic"
+    [disabled]="submitDisable"
+    (click)="btnClickCancel();"
+  >
+  Cancel
+</button>
+    <div class="card" >
+        <div class="card-head">General attendace info</div>
+        
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Employee</mat-label>
+                <mat-select id="firstControl" [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <input [disabled]="submitDisable"  matInput  placeholder="Month"  [(ngModel)]="month" name="month"  required>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Year"  [(ngModel)]="year" name="year" required>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Attendance date</mat-label>
+                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="attDate" name="attDate">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              
+        </div>
+        </div>
+    <div class="card" >
+        <div class="card-head">Work details</div>
+        
+        <div class="card-body">
+
+            <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="present" name="Present">Present</mat-checkbox>
+            
+            <mat-divider></mat-divider>
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Hours worked</mat-label>
+                <input [disabled]="submitDisable" type="number"  matInput  placeholder="Hours worked"   [(ngModel)]="hrsWorked" name="hrsWorked"  >
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Overtime</mat-label>
+                <input [disabled]="submitDisable" type="number"  matInput  placeholder="Overtime"   [(ngModel)]="overtimeElig" name="Overtime"  >
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+    
+            <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="isWorkDay" name="Present">Is workday</mat-checkbox>
+            
+            
+
+            
+        </div>
+        </div>
+        
+        <div class="card" >
+            <div class="card-head">Leave details</div>
+        <div class="card-body">
+
+            <div class="card-body">
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="onLeave" name="managerCl">On leave</mat-checkbox>
+                <mat-divider></mat-divider>
+                <mat-form-field style="margin-right: 10px;">
+                    <mat-label>Leave type</mat-label>
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="leaveType"  [(ngModel)]="leaveType" name="leaveType" required>
+                </mat-form-field>
+            </div>
+
+        </div>
+    </div>
+       
+    <div class="card" >
+        <div class="card-head">Remarks details</div>
+    <div class="card-body">
+       
+        <mat-form-field style="margin-right: 10px;">
+            <mat-label>Reamrks</mat-label>
+            <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks" required>
+        </mat-form-field>
+
+       
+    </div>
+</div>
+ 
+    
+</form>
