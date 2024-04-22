@@ -1,11 +1,11 @@
 <h1>Company weekend</h1>
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <!-- <button type="submit" 
     mat-button
 color="primary"
   >
   Save
-</button>
+</button> -->
 <!-- <button type="button"
     (click)="btnClickCancel();"
   >
@@ -20,6 +20,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="satDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[0].day">
                     Saturday
                 </mat-slide-toggle>
@@ -30,7 +31,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="satDay"
-                    (click)="toggleDay(0)"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[0].day">
                     Saturday
                 </mat-slide-toggle>
@@ -41,6 +42,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="sunDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[1].day">
                     Sunday
                 </mat-slide-toggle>
@@ -51,6 +53,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="monDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[2].day">
                     Monday
                 </mat-slide-toggle>
@@ -61,6 +64,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="tueDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[3].day">
                     Tuesday
                 </mat-slide-toggle>
@@ -71,6 +75,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="wedDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[4].day">
                     Wednesday
                 </mat-slide-toggle>
@@ -81,6 +86,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="thuDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[5].day">
                     Thursday
                 </mat-slide-toggle>
@@ -91,6 +97,7 @@ color="primary"
                     class="example-margin"
                     [disabled]="submitDisable"
                     name="friDay"
+                    (click)="toggleDay()"
                     [(ngModel)]="days[6].day">
                     Friday
                 </mat-slide-toggle>

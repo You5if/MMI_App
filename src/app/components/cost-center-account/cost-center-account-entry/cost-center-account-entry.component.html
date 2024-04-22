@@ -1,10 +1,10 @@
 <!-- <p>inventory-entry works!</p> -->
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -21,7 +21,7 @@ mat-button
         <div class="card-body">
             <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Account</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="Group name" id="firstControl"   [(ngModel)]="centerName" name="groupName"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="Group name" id="firstControl"   [(ngModel)]="centerName" name="groupName"   >
             </mat-form-field> -->
             
             
@@ -41,7 +41,7 @@ mat-button
             
                     <mat-form-field style="margin-right: 10px;">
                         <mat-label>Description</mat-label>
-                        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+                        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
                     </mat-form-field>
            
         </div>
@@ -52,7 +52,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style=" margin-right: 10px;">
                 <mat-label>Pay eval formula</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula"  >
             </mat-form-field>
         </div>
     </div> -->

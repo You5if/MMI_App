@@ -3,7 +3,7 @@ export interface AttendanceSummaryModel  {
     empId: number
     month: number
     year: number
-    attDate: string
+    attDate: any
     present: boolean
     hrsWorked: number
     overtimeElig: number
@@ -31,7 +31,7 @@ export interface AttendanceSummaryModel  {
         EmpId: number
         Month: number
         Year: number
-        AttDate: string
+        AttDate: any
         Present: boolean
         HrsWorked: number
         OvertimeElig: number

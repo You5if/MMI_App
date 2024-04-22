@@ -53,22 +53,22 @@ export class EmpEntryComponent {
   public certificates = '';
   public insurance = '';
   public inDesc = '';
-  public inSt = new Date().toDateString();
-  public inEnd = new Date().toDateString();
+  public inSt = new Date();
+  public inEnd = new Date();
   public laborCard = '';
   public laborDesc = '';
-  public laborSt = new Date().toDateString();
-  public laborEn = new Date().toDateString();
+  public laborSt = new Date();
+  public laborEn = new Date();
 
-  public emiratesSt = new Date().toDateString();
-  public emiratesEn = new Date().toDateString();
+  public emiratesSt = new Date();
+  public emiratesEn = new Date();
   public passport = '';
-  public passportSt = new Date().toDateString();
-  public passportEn = new Date().toDateString();
+  public passportSt = new Date();
+  public passportEn = new Date();
   public visa = '';
   public visaDesc = '';
-  public visaSt = new Date().toDateString();
-  public visaEn = new Date().toDateString();
+  public visaSt = new Date();
+  public visaEn = new Date();
   public emiratesId = '';
   public supervisorId = 1;
   message: string = "";
@@ -137,6 +137,7 @@ export class EmpEntryComponent {
           this.empService.getEmployeeProfileEntry(Number(param['id'])).subscribe({
             next: (response) => {
               this.toast.close()
+              this.submitDisable = false
               // console.log('API Response:', response);
               this.empProfileId = response.empProfileId
               this.firstName = response.first;
@@ -192,7 +193,6 @@ export class EmpEntryComponent {
                 this.user_img = '/path/to/file'
               }
 
-              this.submitDisable = false
       
             },
             error: (err) => {
@@ -245,15 +245,23 @@ export class EmpEntryComponent {
 
   }
 
-  EnterSubmit(event: any) { 
+  EnterSubmit(event: KeyboardEvent) { 
+    // event.preventDefault();
+    const target = event.target as HTMLElement;
+    const tagName = target.tagName.toLowerCase();
     //keycode for Enter is 13 
-    if (event.keyCode === 13) {
-confirm('Enter key is pressed, form will be submitted'); 
+    console.log(target, tagName);
+    if (event.key === "Enter" && tagName !== "input" && tagName !== "mat-select" && tagName !== "mat-checkbox") {
+      
+        event.preventDefault();
+        this.btnClick();
+    
+// confirm('Enter key is pressed, form will be submitted'); 
 //calling submit method if key pressed is Enter.
- } if (event.keyCode === 27) {
+ } if (event.key === "Escape") {
   this.btnClickCancel()
  }
- console.log(event.keyCode);
+//  console.log(event.keyCode);
 //function to submit the form submitit(form){
   
 }

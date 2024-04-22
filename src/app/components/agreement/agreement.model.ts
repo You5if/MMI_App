@@ -1,8 +1,8 @@
 export interface AgreementModel {
     empAgreementId: number
     empId: number
-    agStart: string
-    agEnd: string
+    agStart: any
+    agEnd: any
     department: string
     jobTitle: string
     description: string
@@ -30,8 +30,8 @@ export interface AgreementModel {
   export interface AggToSendModel {
     EmpAgreementId: number
     EmpId: number
-    AgStart: string
-    AgEnd: string
+    AgStart: any
+    AgEnd: any
     Department: string
     JobTitle: string
     Description: string

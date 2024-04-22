@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -28,7 +28,7 @@ mat-button
             
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>EmpAgreementId</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="empAgreementId" name="EmpAgreementId" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="empAgreementId" name="EmpAgreementId"  >
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Leave</mat-label>
@@ -46,11 +46,11 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Allocated</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocated" [(ngModel)]="allocated" name="allocated" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocated" [(ngModel)]="allocated" name="allocated"  >
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Taken</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Taken"  [(ngModel)]="taken" name="Taken" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Taken"  [(ngModel)]="taken" name="Taken"  >
             </mat-form-field>
     
            

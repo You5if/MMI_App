@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -42,13 +42,13 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Description</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
     
            
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Reamrks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
             </mat-form-field>
     
            

@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -48,22 +48,22 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Department</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="Department"   [(ngModel)]="department" name="department"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="Department"   [(ngModel)]="department" name="department"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>jobTitle</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle"  >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Description</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="description"  [(ngModel)]="description" name="description" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
-                <mat-label>Reamrks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="remarks" name="remarks" required>
+                <mat-label>Remarks</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
             </mat-form-field>
     
            
@@ -74,15 +74,18 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Earn 1</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Earn 1"  [(ngModel)]="earn1" name="earn1" required>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 1"  [(ngModel)]="earn1" name="earn1"  >
+                <mat-error *ngIf="earn1 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Earn 2</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn2" name="earn2" required>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 2"  [(ngModel)]="earn2" name="earn2"  >
+                <mat-error *ngIf="earn2 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Earn 3</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Earn 2"  [(ngModel)]="earn3" name="earn3" required>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 2"  [(ngModel)]="earn3" name="earn3"  >
+                <mat-error *ngIf="earn3 < 0">Negative value</mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -91,15 +94,18 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ded 1</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Ded 1"  [(ngModel)]="ded1" name="Ded1" required>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 1"  [(ngModel)]="ded1" name="Ded1"  >
+                <mat-error *ngIf="ded1 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ded 2</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded2" name="Ded2" required>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 2"  [(ngModel)]="ded2" name="Ded2"  >
+                <mat-error *ngIf="ded2 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ded 3</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Ded 2"  [(ngModel)]="ded3" name="Ded3" required>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 2"  [(ngModel)]="ded3" name="Ded3"  >
+                <mat-error *ngIf="ded3 < 0">Negative value</mat-error>
             </mat-form-field>
         </div>
     </div>

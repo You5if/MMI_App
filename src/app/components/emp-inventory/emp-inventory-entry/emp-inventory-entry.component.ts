@@ -31,17 +31,17 @@ export class EmpInventoryEntryComponent  {
 
 
   empInvListId: number = 2;
-  modelNo: string;
-  specs: string;
-  expiry: string;
-  allocationDate: string;
+  modelNo: string = '';
+  specs: string = '';
+  expiry: string = '';
+  allocationDate = new Date();
   witnessEmp1: number = 2;
   witnessEmp2: number = 2;
-  allocRemarks: string;
-  withdrawDate: string;
+  allocRemarks: string = '';
+  withdrawDate = new Date();
   witnessWDEmp1: number = 2;
   witnessWDEmp2: number = 2;
-  withdrRemarks: string;
+  withdrRemarks: string = '';
   costOfItem: number = 0;
   employees: any[] = []
 
@@ -148,15 +148,23 @@ export class EmpInventoryEntryComponent  {
 
   }
 
-  EnterSubmit(event: any) { 
+  EnterSubmit(event: KeyboardEvent) { 
+    // event.preventDefault();
+    const target = event.target as HTMLElement;
+    const tagName = target.tagName.toLowerCase();
     //keycode for Enter is 13 
-    if (event.keyCode === 13) {
-confirm('Enter key is pressed, form will be submitted'); 
+    console.log(target, tagName);
+    if (event.key === "Enter" && tagName !== "input" && tagName !== "mat-select" && tagName !== "mat-checkbox") {
+      
+        event.preventDefault();
+        this.btnClick();
+    
+// confirm('Enter key is pressed, form will be submitted'); 
 //calling submit method if key pressed is Enter.
- } if (event.keyCode === 27) {
+ } if (event.key === "Escape") {
   this.btnClickCancel()
  }
- console.log(event.keyCode);
+//  console.log(event.keyCode);
 //function to submit the form submitit(form){
   
 }

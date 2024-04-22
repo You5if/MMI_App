@@ -1,7 +1,7 @@
 export interface JournalModel {
     journEntryId: number
     journCode: string
-    journDate: string
+    journDate: any
     costCenId: number
     isTest: boolean
     active: boolean
@@ -19,7 +19,7 @@ export interface JournalModel {
 export interface JournalToReqModel {
         JournEntryId: number
         JournCode: string
-        JournDate: string
+        JournDate: any
         CostCenId: number
         IsTest: boolean
         Active: boolean

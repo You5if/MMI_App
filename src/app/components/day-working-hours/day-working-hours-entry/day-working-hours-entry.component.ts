@@ -21,8 +21,8 @@ export class DayWorkingHoursEntryComponent {
 
   // local variables 
   public DayHours = 1;
-  public FromDate :string;
-  public ToDate: string;
+  public FromDate = new Date();
+  public ToDate = new Date();
 
   MonthWDayId: number = 0
  
@@ -113,15 +113,23 @@ export class DayWorkingHoursEntryComponent {
 
   }
 
-  EnterSubmit(event: any) { 
+  EnterSubmit(event: KeyboardEvent) { 
+    // event.preventDefault();
+    const target = event.target as HTMLElement;
+    const tagName = target.tagName.toLowerCase();
     //keycode for Enter is 13 
-    if (event.keyCode === 13) {
-confirm('Enter key is pressed, form will be submitted'); 
+    console.log(target, tagName);
+    if (event.key === "Enter" && tagName !== "input" && tagName !== "mat-select" && tagName !== "mat-checkbox") {
+      
+        event.preventDefault();
+        this.btnClick();
+    
+// confirm('Enter key is pressed, form will be submitted'); 
 //calling submit method if key pressed is Enter.
- } if (event.keyCode === 27) {
+ } if (event.key === "Escape") {
   this.btnClickCancel()
  }
- console.log(event.keyCode);
+//  console.log(event.keyCode);
 //function to submit the form submitit(form){
   
 }

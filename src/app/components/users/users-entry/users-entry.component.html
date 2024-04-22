@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -20,17 +20,17 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>User name</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="First name" id="firstControl"   [(ngModel)]="appUserName" name="firstName"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="First name" id="firstControl"   [(ngModel)]="appUserName" name="firstName"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Display name</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Display name"  [(ngModel)]="displayName" name="displayName" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Display name"  [(ngModel)]="displayName" name="displayName"  >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Password</mat-label>
-                <input [disabled]="submitDisable"  matInput placeholder="passwrd"  [(ngModel)]="password" name="password" required>
+                <input [disabled]="submitDisable"  matInput placeholder="passwrd"  [(ngModel)]="password" name="password"  >
             </mat-form-field>
            
         </div>

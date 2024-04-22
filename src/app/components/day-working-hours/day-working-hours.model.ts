@@ -1,7 +1,7 @@
 export interface DayWorkingHoursModel {
     MonthWDayId: number
-    FromDate: string
-    ToDate: string
+    FromDate: any
+    ToDate: any
     DayHours: number
     IsTest: boolean
     Active: boolean

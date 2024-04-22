@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -20,12 +20,12 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Account code</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Account code" id="firstControl"   [(ngModel)]="code" name="code"  required>
+                <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Account code" id="firstControl"   [(ngModel)]="code" name="code"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Account name</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Account name"  [(ngModel)]="name" name="name" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Account name"  [(ngModel)]="name" name="name"  >
             </mat-form-field>
     
         </div>
@@ -35,12 +35,12 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Account category</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Account category"  [(ngModel)]="category" name="category"  required>
+                <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Account category"  [(ngModel)]="category" name="category"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>ParentAccId</mat-label>
-                <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="ParentAccId"  [(ngModel)]="parentId" name="parentId" required>
+                <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="ParentAccId"  [(ngModel)]="parentId" name="parentId"  >
             </mat-form-field>
     
         </div>

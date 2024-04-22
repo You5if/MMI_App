@@ -5,6 +5,7 @@ export const navbarData: INavbarData[] = [
         routeLink: 'Human resource management',
         icon: 'fal fa-home',
         label: 'HRM',
+        roles: ["2", "4"],
         svgicon: {
             style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -18,6 +19,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'employeeprofile',
                 label: 'Employee profile',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -31,6 +33,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'employeeattendance',
                 label: 'Attendance check-ins',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -44,6 +47,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'attendance-summary',
                 label: 'Attendance summary',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -57,6 +61,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'loan',
                 label: 'Loan',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -70,6 +75,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'publicholiday',
                 label: 'Public holiday',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -83,6 +89,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'companyweekend',
                 label: 'Weekend',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -96,6 +103,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'dayworkinghours',
                 label: 'Day hours',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -109,6 +117,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'agreement',
                 label: 'Agreement',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -122,6 +131,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'inventory',
                 label: 'Inventory',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -135,6 +145,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'empinventory',
                 label: 'Employee inventory',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -148,6 +159,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'leave',
                 label: 'Leave',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -161,6 +173,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'employee-leave',
                 label: 'Employee leave',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -174,6 +187,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'leave-balance',
                 label: 'Leave balance',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -187,6 +201,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'allowance',
                 label: 'Allowance',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -200,6 +215,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'other-earning',
                 label: 'Other earning',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -213,6 +229,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'other-deduction',
                 label: 'Other deduction',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -226,6 +243,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'payroll',
                 label: 'Monthly payroll',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -239,6 +257,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'incident',
                 label: 'Incident',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -252,6 +271,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'final-settlement',
                 label: 'Final settlement',
+                roles: ["2", "4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -268,6 +288,7 @@ export const navbarData: INavbarData[] = [
         routeLink: 'Users management',
         icon: 'fal fa-home',
         label: 'Management',
+        roles: ["2", "3"],
         svgicon: {
             style: 'width: 95%; height: 95%;',
             preserveAspectRatio: 'xMidYMid meet',
@@ -281,6 +302,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'users',
                 label: 'Users',
+                roles: ["2", "3"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -297,6 +319,7 @@ export const navbarData: INavbarData[] = [
         routeLink: 'Finance',
         icon: 'fal fa-home',
         label: 'Finance',
+        roles: ["2", "6"],
         svgicon: {
             style: 'width: 95%; height: 95%;',
             preserveAspectRatio: 'xMidYMid meet',
@@ -309,7 +332,8 @@ export const navbarData: INavbarData[] = [
         items: [
             {
                 routeLink: 'chart-of-accounts',
-                label: 'Chart of accounts',
+                label: 'Accounts',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -323,6 +347,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'journal',
                 label: 'Journal entry',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -336,6 +361,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'transaction',
                 label: 'Transaction',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -349,6 +375,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'bank',
                 label: 'Bank',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -362,6 +389,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cost-center-group',
                 label: 'Cost center group',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -375,6 +403,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cost-center',
                 label: 'Cost center',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -388,6 +417,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cost-center-account',
                 label: 'Cost center account',
+                roles: ["2", "6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',

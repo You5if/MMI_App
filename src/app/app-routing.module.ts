@@ -63,6 +63,7 @@ import { CostCenterAccountComponent } from './components/cost-center-account/cos
 import { CostCenterAccountEntryComponent } from './components/cost-center-account/cost-center-account-entry/cost-center-account-entry.component';
 import { AttendanceSummaryComponent } from './components/attendance-summary/attendance-summary.component';
 import { AttendanceSummaryEntryComponent } from './components/attendance-summary/attendance-summary-entry/attendance-summary-entry.component';
+import { MainHomeComponent } from './components/main-home/main-home.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -79,7 +80,8 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'system', component: TestworkComponent, children: [
      // HRD screens
-    { path: '', redirectTo: 'employeeprofile', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {path: 'home', component: MainHomeComponent},
     {path: 'employeeprofile', component: EmployeeprofileComponent},
   {path: 'employeeprofile-entry/:id', component: EmpEntryComponent},
   {path: 'employeeattendance', component: AttendanceComponent},

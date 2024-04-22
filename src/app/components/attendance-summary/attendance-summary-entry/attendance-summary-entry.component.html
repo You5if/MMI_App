@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -28,12 +28,12 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Month</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="Month"  [(ngModel)]="month" name="month"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="Month"  [(ngModel)]="month" name="month"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Year</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Year"  [(ngModel)]="year" name="year" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Year"  [(ngModel)]="year" name="year"  >
             </mat-form-field>
     
             <mat-form-field>
@@ -58,17 +58,19 @@ mat-button
             
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Hours worked</mat-label>
-                <input [disabled]="submitDisable" type="number"  matInput  placeholder="Hours worked"   [(ngModel)]="hrsWorked" name="hrsWorked"  >
+                <input [disabled]="submitDisable" type="number" min="0"  matInput  placeholder="Hours worked"   [(ngModel)]="hrsWorked" name="hrsWorked"  >
+                <mat-error *ngIf="hrsWorked < 0">Negative value</mat-error>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Overtime</mat-label>
-                <input [disabled]="submitDisable" type="number"  matInput  placeholder="Overtime"   [(ngModel)]="overtimeElig" name="Overtime"  >
+                <input [disabled]="submitDisable" type="number" min="0"  matInput  placeholder="Overtime"   [(ngModel)]="overtimeElig" name="Overtime"  >
+                <mat-error *ngIf="overtimeElig < 0">Negative value</mat-error>
             </mat-form-field>
 
             <mat-divider></mat-divider>
     
-            <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="isWorkDay" name="Present">Is workday</mat-checkbox>
+            <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="isWorkDay" name="isWorkDay">Is workday</mat-checkbox>
             
             
 
@@ -81,11 +83,11 @@ mat-button
         <div class="card-body">
 
             <div class="card-body">
-                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="onLeave" name="managerCl">On leave</mat-checkbox>
+                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="onLeave" name="onLeave">On leave</mat-checkbox>
                 <mat-divider></mat-divider>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Leave type</mat-label>
-                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="leaveType"  [(ngModel)]="leaveType" name="leaveType" required>
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="leaveType"  [(ngModel)]="leaveType" name="leaveType"  >
                 </mat-form-field>
             </div>
 
@@ -98,7 +100,7 @@ mat-button
        
         <mat-form-field style="margin-right: 10px;">
             <mat-label>Reamrks</mat-label>
-            <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks" required>
+            <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
         </mat-form-field>
 
        

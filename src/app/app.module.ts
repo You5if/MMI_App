@@ -103,6 +103,7 @@ import { CostCenterAccountComponent } from './components/cost-center-account/cos
 import { CostCenterAccountEntryComponent } from './components/cost-center-account/cost-center-account-entry/cost-center-account-entry.component';
 import { AttendanceSummaryComponent } from './components/attendance-summary/attendance-summary.component';
 import { AttendanceSummaryEntryComponent } from './components/attendance-summary/attendance-summary-entry/attendance-summary-entry.component';
+import { MainHomeComponent } from './components/main-home/main-home.component';
 
 
 
@@ -193,7 +194,8 @@ export const jwtConfig = {
     CostCenterAccountComponent,
     CostCenterAccountEntryComponent,
     AttendanceSummaryComponent,
-    AttendanceSummaryEntryComponent
+    AttendanceSummaryEntryComponent,
+    MainHomeComponent
   ],
   imports: [
     BrowserModule,

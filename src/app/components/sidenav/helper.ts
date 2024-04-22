@@ -7,6 +7,7 @@ export interface INavbarData {
     expanded?: boolean;
     items?: INavbarData[];
     svgicon: svgicon;
+    roles: string[];
 }
 
 export interface svgicon {

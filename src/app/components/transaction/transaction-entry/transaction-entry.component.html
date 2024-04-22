@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -22,17 +22,17 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Fund code</mat-label>
-                <input [disabled]="submitDisable" matInput  id="firstName"  appTitleCase placeholder="Fund code"  [(ngModel)]="fundCode" name="fundCode" required>
+                <input [disabled]="submitDisable" matInput  id="firstName"  appTitleCase placeholder="Fund code"  [(ngModel)]="fundCode" name="fundCode"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Trans type</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Trans type"  [(ngModel)]="transType" name="transType" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Trans type"  [(ngModel)]="transType" name="transType"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>journEntryId</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="journEntryId" type="number"  [(ngModel)]="journEntryId" name="journEntryId" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="journEntryId" type="number"  [(ngModel)]="journEntryId" name="journEntryId"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;">
@@ -58,19 +58,19 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Description</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
     
            
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Payment type</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Payment type"  [(ngModel)]="paymentType" name="paymentType" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Payment type"  [(ngModel)]="paymentType" name="paymentType"  >
             </mat-form-field>
     
            
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Trans amount</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase type="number" placeholder="Trans amount"  [(ngModel)]="transAmt" name="transAmt" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase type="number" placeholder="Trans amount"  [(ngModel)]="transAmt" name="transAmt"  >
             </mat-form-field>
     
            
@@ -82,7 +82,7 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Cheque no</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque no"  [(ngModel)]="chequeNo" name="chequeNo" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque no"  [(ngModel)]="chequeNo" name="chequeNo"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;">
@@ -110,12 +110,12 @@ mat-button
             
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Cheque status</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque status"  [(ngModel)]="cheqStatus" name="cheqStatus" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque status"  [(ngModel)]="cheqStatus" name="cheqStatus"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Cheque remarks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque remarks"  [(ngModel)]="cheqRemarks" name="cheqRemarks" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque remarks"  [(ngModel)]="cheqRemarks" name="cheqRemarks"  >
             </mat-form-field>
 
 
@@ -127,23 +127,23 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Reference </mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Reference"  [(ngModel)]="reference" name="reference" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Reference"  [(ngModel)]="reference" name="reference"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Narration </mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Narration"  [(ngModel)]="narration" name="narration" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Narration"  [(ngModel)]="narration" name="narration"  >
             </mat-form-field>
 
             
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ref to</mat-label>
-                <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="Ref to"  [(ngModel)]="refTo" name="refTo" required>
+                <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="Ref to"  [(ngModel)]="refTo" name="refTo"  >
             </mat-form-field>
             
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Ref key</mat-label>
-                <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="Ref key"  [(ngModel)]="refKey" name="refKey" required>
+                <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="Ref key"  [(ngModel)]="refKey" name="refKey"  >
             </mat-form-field>
 
             

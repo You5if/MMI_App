@@ -2,7 +2,7 @@ export interface PublicHolidayModel {
     publicHolId: number
     month: number
     year: number
-    holiday: string
+    holiday: any
     isTest: boolean
     active: boolean
     userCR: number

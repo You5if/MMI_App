@@ -64,7 +64,7 @@ export class CompanyWeekendComponent {
           this.holidayServcie.getRecordEntry(1).pipe(
             this.toast.observe({
               loading: 'Just a moment while getting the data...',
-              success: (data) => 'Data loaded successfully ...!',
+              success: 'Data loaded successfully ...!',
               error: (error) => `API Error: ${error.message}`,
             })
           ).subscribe({
@@ -129,15 +129,23 @@ export class CompanyWeekendComponent {
 
 
 
-  EnterSubmit(event: any) { 
+  EnterSubmit(event: KeyboardEvent) { 
+    // event.preventDefault();
+    const target = event.target as HTMLElement;
+    const tagName = target.tagName.toLowerCase();
     //keycode for Enter is 13 
-    if (event.keyCode === 13) {
-confirm('Enter key is pressed, form will be submitted'); 
+    console.log(target, tagName);
+    if (event.key === "Enter" && tagName !== "input" && tagName !== "mat-select" && tagName !== "mat-checkbox") {
+      
+        event.preventDefault();
+        this.btnClick();
+    
+// confirm('Enter key is pressed, form will be submitted'); 
 //calling submit method if key pressed is Enter.
- } if (event.keyCode === 27) {
+ } if (event.key === "Escape") {
   this.btnClickCancel()
  }
- console.log(event.keyCode);
+//  console.log(event.keyCode);
 //function to submit the form submitit(form){
   
 }
@@ -171,12 +179,15 @@ btnClick=  () => {
   console.log(dataToSend);
   
   this.holidayServcie.sendData(dataToSend).pipe(
-    this.toast.observe({
-      loading: 'Saving new record...',
-      success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
-    })
-  ).subscribe(
+  //   this.toast.observe({
+  //     loading: 'Saving new record...',
+  //     success: (data) => `${data.errorMessage}`,
+  //     error: (error) => `API Error: ${error.message}`,
+  //   })
+  // )
+    
+  )
+  .subscribe(
     response => {
       console.log('API Response:', response);
       // this.router.navigate(['/system/publicholiday'], { relativeTo: this.activeRoute.parent });
@@ -207,15 +218,18 @@ btnClick=  () => {
   
 //   // console.log(this.firstName);
 // }
-toggleDay(id: number) {
-  for (let i = 0; i < this.days.length; i++) {
-    if (id == i) {
-      this.days[i].day = true
-    }else {
-      this.days[i].day = false
-    }
-  }
+toggleDay() {
+  this.btnClick()
 }
+// toggleDay(id: number) {
+//   for (let i = 0; i < this.days.length; i++) {
+//     if (id == i) {
+//       this.days[i].day = true
+//     }else {
+//       this.days[i].day = false
+//     }
+//   }
+// }
 
 
 btnClickCancel=  () => {

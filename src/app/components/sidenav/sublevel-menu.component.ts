@@ -86,6 +86,7 @@ export class SublevelMenuComponent implements OnInit{
     icon: '',
     label: '',
     items: [],
+    roles: [],
     svgicon: {
       style: '',
       preserveAspectRatio: '',

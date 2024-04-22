@@ -5,11 +5,11 @@ export interface EmpInvToSend {
     ModelNo: string
     Specs: string
     Expiry: string
-    AllocationDate: string
+    AllocationDate: any
     WitnessEmp1: number
     WitnessEmp2: number
     AllocRemarks: string
-    WithdrawDate: string
+    WithdrawDate: any
     WitnessWDEmp1: number
     WitnessWDEmp2: number
     WithdrRemarks: string
@@ -35,11 +35,11 @@ export interface EmpInvToSend {
     modelNo: string
     specs: string
     expiry: string
-    allocationDate: string
+    allocationDate: any
     witnessEmp1: number
     witnessEmp2: number
     allocRemarks: string
-    withdrawDate: string
+    withdrawDate: any
     witnessWDEmp1: number
     witnessWDEmp2: number
     withdrRemarks: string

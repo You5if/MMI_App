@@ -42,22 +42,22 @@ export interface EmployeeModel {
     Attachments: string
     Insurance: string
     InDesc: string
-    InSt: string
-    InEnd: string
+    InSt: any
+    InEnd: any
     LaborCard: string
     LaborDesc: string
-    LaborSt: string
-    LaborEn: string
+    LaborSt: any
+    LaborEn: any
     EmiratesId: string
-    EmiratesSt: string
-    EmiratesEn: string
+    EmiratesSt: any
+    EmiratesEn: any
     Passport: string
-    PassportSt: string
-    PassportEn: string
+    PassportSt: any
+    PassportEn: any
     Visa: string
     VisaDesc: string
-    VisaSt: string
-    VisaEn: string
+    VisaSt: any
+    VisaEn: any
     IsTest: boolean
     Active: boolean
     Deleted: boolean

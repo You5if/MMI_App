@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -33,7 +33,7 @@ mat-button
            <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>First name</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"  required>
+                <input [disabled]="submitDisable" matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;">
@@ -43,7 +43,7 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Last name</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName" required>
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName"  >
             </mat-form-field>
     
             <!-- <mat-radio-group  name="gender"> -->
@@ -51,8 +51,11 @@ mat-button
                 <mat-radio-button [(ngModel)]="!gender" (ngModelChange)="changeGender(false)" name="female">Female</mat-radio-button> -->
             <!-- </mat-radio-group> -->
             <mat-radio-group [(ngModel)]="gender" name="gender">
-                <mat-radio-button value="true">Male</mat-radio-button>
-                <mat-radio-button value="false">Female</mat-radio-button>
+                <mat-radio-button [disabled]="submitDisable" [value]="true">Male</mat-radio-button>
+            </mat-radio-group>
+            
+            <mat-radio-group [(ngModel)]="gender" name="gender">
+                <mat-radio-button [disabled]="submitDisable" [value]="false">Female</mat-radio-button>
             </mat-radio-group>
            </div>
             

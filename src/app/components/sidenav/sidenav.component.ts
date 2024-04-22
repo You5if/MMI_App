@@ -7,6 +7,7 @@ import { INavbarData, fadeInOut } from './helper';
 import { GlobalService } from '../../global.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveChangesComponent } from '../general-operations/tenure-options/save-changes.component';
+import { AppGlobals } from '../../app.global';
 
 
 interface SideNavToggle {
@@ -63,13 +64,27 @@ export class SidenavComponent implements OnInit {
   constructor(
     public router: Router,
     private globalService: GlobalService,
-    private dialog: MatDialog
+    private _globals: AppGlobals,
+    private dialog: MatDialog,
     ) {
 
   }
 
   ngOnInit(): void {
     this.screenWidth = getWindow().innerWidth;
+  }
+
+  showMenuItem(data: any): boolean {
+    return data.roles.includes(localStorage.getItem(this._globals.baseAppName + '_role'));
+  }
+  filterItemsByRole(data: any): any {
+    if (data && data.items && data.items.length > 0) {
+      return {
+        ...data,
+        items: data.items.filter((item: any) => item.roles.includes(localStorage.getItem(this._globals.baseAppName + '_role')))
+      };
+    }
+    return data;
   }
 
   toggleCollapse(): void {

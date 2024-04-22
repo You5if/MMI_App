@@ -248,7 +248,7 @@
             </a>
         </li>
     </ul> -->
-    <div class="scrollwrap scrollwrap_delayed">
+    <!-- <div class="scrollwrap scrollwrap_delayed">
         <ul class="sidenav-nav">
             
            
@@ -258,7 +258,7 @@
                     [ngClass]="getActiveClass(data)"
                 >
                     <div class="sidenav-link-icon">
-                        <!-- <img src="../../../assets/images/bullet.svg" width="100%" height="100%"/> -->
+                        
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                             attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
                             attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
@@ -273,13 +273,6 @@
                     <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
                 </a>
     
-                
-                <!-- <a class="sidenav-nav-link"
-                    *ngIf="!data.items || (data.items && data.items.length === 0)"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}"
-                    (click)="shrinkItems(data)"
-                > -->
                 <a class="sidenav-nav-link"
                     *ngIf="!data.items || (data.items && data.items.length === 0)"
                 [routerLink]="[data.routeLink]"
@@ -289,7 +282,6 @@
                 >
                     
                 <div class="sidenav-link-icon">
-                    <!-- <img src="../../../assets/images/bullet.svg" width="100%" height="100%"/> -->
                     <svg *ngIf="data.svgicon.d !== ''" version="1.0" xmlns="http://www.w3.org/2000/svg"
                         attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
                         attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
@@ -319,6 +311,62 @@
                
             </li>
         </ul>
-    </div>
+    </div> -->
+    <div class="scrollwrap scrollwrap_delayed">
+        <ul class="sidenav-nav">
+          <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" (click)="handleClick(data)"
+              *ngIf="showMenuItem(data)"
+              [ngClass]="getActiveClass(data)"
+            >
+              <div class="sidenav-link-icon">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                  attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
+                  attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
+                  <g attr.transform="{{data.svgicon.transform}}"
+                    fill="#000000" class="mysvgfill" stroke="none">
+                    <path attr.d="{{data.svgicon.d}}"></path>
+                  </g>
+                </svg>
+              </div>
+              <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+            </a>
+      
+            <a class="sidenav-nav-link"
+              *ngIf="showMenuItem(data) && (!data.items || data.items.length === 0)"
+              [routerLink]="[data.routeLink]"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}"
+              (click)="shrinkItems(data)"
+            >
+              <div class="sidenav-link-icon">
+                <svg *ngIf="data.svgicon.d !== ''" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                  attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
+                  attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
+                  <g attr.transform="{{data.svgicon.transform}}"
+                    fill="#000000" class="mysvgfill" stroke="none">
+                    <path attr.d="{{data.svgicon.d}}"></path>
+                  </g>
+                </svg>
+                <svg *ngIf="data.svgicon.src !== ''" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                  attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
+                  attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
+                  <image attr.xlink:href="./../../../assets/images/{{data.svgicon.src}}" width="100%" height="100%"></image>
+                </svg>
+              </div>
+              <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+            </a>
+      
+            <div *ngIf="collapsed && data.items && data.items.length > 0">
+                <app-sublevel-menu
+                  [data]="filterItemsByRole(data)"
+                  [collapsed]="collapsed"
+                  [multiple]="multiple"
+                  [expanded]="data.expanded"
+                ></app-sublevel-menu>
+              </div>
+          </li>
+        </ul>
+      </div>
     
 </div>

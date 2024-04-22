@@ -1,6 +1,6 @@
 export interface LoanModel {
     loanReqId: number
-  loanDate: string
+  loanDate: any
   empId: number
   amount: number
   remarks: string

@@ -1,10 +1,10 @@
 <!-- <p>inventory-entry works!</p> -->
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -21,7 +21,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Allowance name</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="Allowance name" id="firstControl"   [(ngModel)]="allowName" name="allowanceName"  required>
+                <input [disabled]="submitDisable"  matInput  placeholder="Allowance name" id="firstControl"   [(ngModel)]="allowName" name="allowanceName"   >
             </mat-form-field>
             <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Leave type</mat-label>
@@ -32,7 +32,7 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Allowance type</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="type"  [(ngModel)]="allowType" name="allowType" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="type"  [(ngModel)]="allowType" name="allowType"  >
             </mat-form-field>
            
         </div>
@@ -43,7 +43,7 @@ mat-button
             
             <mat-form-field style="width: 100%;margin-right: 10px;">
                 <mat-label>Allowance formula</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allowance formula"   [(ngModel)]="allowFormula" name="allowFormula" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allowance formula"   [(ngModel)]="allowFormula" name="allowFormula"  >
             </mat-form-field>
 
         </div>
@@ -53,7 +53,7 @@ mat-button
     <div class="card-body">
         <mat-form-field style="width: 100%;margin-right: 10px;">
             <mat-label>RunFreq</mat-label>
-            <input [disabled]="submitDisable"  matInput appTitleCase placeholder="RunFreq"   [(ngModel)]="runFreq" name="runFreq" required>
+            <input [disabled]="submitDisable"  matInput appTitleCase placeholder="RunFreq"   [(ngModel)]="runFreq" name="runFreq"  >
         </mat-form-field>
     </div>
 
@@ -63,7 +63,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="width: 100%; margin-right: 10px;">
                 <mat-label>Pay eval formula</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Pay eval formula"  [(ngModel)]="payEvalFormula" name="payEvalFormula"  >
             </mat-form-field>
         </div>
     </div> -->

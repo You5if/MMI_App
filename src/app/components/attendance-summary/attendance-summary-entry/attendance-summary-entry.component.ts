@@ -23,7 +23,7 @@ export class AttendanceSummaryEntryComponent {
   public empId = 31;
   public witness1 = 31;
   public witness2 = 31;
-  public finalDate = new Date().toUTCString();
+  public finalDate = new Date();
 
   public description = '';
   public remarks = '';
@@ -47,7 +47,7 @@ employees: any[] = []
 
   @ViewChild('heroForm') ngForm!: NgForm;
   empAttActId: number = 0;
-  attDate: string = new Date().toString();
+  attDate = new Date();
   month: number = 0;
   year: number = 0;
   present: boolean;
@@ -155,15 +155,23 @@ employees: any[] = []
 
   }
 
-  EnterSubmit(event: any) { 
+  EnterSubmit(event: KeyboardEvent) { 
+    // event.preventDefault();
+    const target = event.target as HTMLElement;
+    const tagName = target.tagName.toLowerCase();
     //keycode for Enter is 13 
-    if (event.keyCode === 13) {
-confirm('Enter key is pressed, form will be submitted'); 
+    console.log(target, tagName);
+    if (event.key === "Enter" && tagName !== "input" && tagName !== "mat-select" && tagName !== "mat-checkbox") {
+      
+        event.preventDefault();
+        this.btnClick();
+    
+// confirm('Enter key is pressed, form will be submitted'); 
 //calling submit method if key pressed is Enter.
- } if (event.keyCode === 27) {
+ } if (event.key === "Escape") {
   this.btnClickCancel()
  }
- console.log(event.keyCode);
+//  console.log(event.keyCode);
 //function to submit the form submitit(form){
   
 }

@@ -5,6 +5,7 @@ import { AuthService } from '../../security/auth/auth.service';
 import { ChangeRoleComponent } from '../general-operations/change-role.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-body',
@@ -18,7 +19,8 @@ export class BodyComponent {
     private cdref: ChangeDetectorRef,
     private _auth: AuthService,
     private dialog: MatDialog,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private router: Router,
   ) {}
 
   navClass: string = 'body'
@@ -78,7 +80,8 @@ changeRole() {
    dialogRef.afterClosed().subscribe((result: boolean) => {
     console.log(result);
     if (result) {
-      location.reload()
+      this.router.navigate(['/system']);
+      // location.reload()
     }
    })
 }

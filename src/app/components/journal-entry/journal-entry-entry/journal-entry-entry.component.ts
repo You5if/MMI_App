@@ -20,7 +20,7 @@ export class JournalEntryEntryComponent {
 
   tenure: number = 0;
   amount: number = 0;
-  requestDate: string = new Date().toString();
+  requestDate = new Date();
   childs: JournalChildModel[] = [];
   deletedChilds: JournalChildModel[] = [];
   loanTypeId!: number;
@@ -30,7 +30,7 @@ export class JournalEntryEntryComponent {
   costCens: any[] = []
 
   journaCode: string = ''
-  journaDate: string =  new Date().toString();
+  journaDate =  new Date();
   costCenId: number = 1
 
   
@@ -177,7 +177,7 @@ export class JournalEntryEntryComponent {
     EnterSubmit(event: any) { 
       //keycode for Enter is 13 
       if (event.keyCode === 13) {
-  confirm('Enter key is pressed, form will be submitted'); 
+  // confirm('Enter key is pressed, form will be submitted'); 
   //calling submit method if key pressed is Enter.
    } if (event.keyCode === 27) {
     this.btnClickCancel()
@@ -189,7 +189,12 @@ export class JournalEntryEntryComponent {
   
   
   btnClick=  () => {
-    this.submitDisable = true
+    if (this.childs.length >= 2) {
+      const debits = this.childs.reduce((sum, child) => sum + child.DrAmt, 0);
+    const credits = this.childs.reduce((sum, child) => sum + child.CrAmt, 0);
+
+    if (debits === credits) {
+        this.submitDisable = true
     this.deletedChilds.map((item): any => {
       this.childs.push(item)
     })
@@ -235,6 +240,12 @@ export class JournalEntryEntryComponent {
         // Handle any errors here
       }
     );
+      }else {
+        this.toast.error("Debits and Credits are not equal")
+      }
+    }else {
+      this.toast.error("Entry records are less than 2")
+    }
   }
   
   

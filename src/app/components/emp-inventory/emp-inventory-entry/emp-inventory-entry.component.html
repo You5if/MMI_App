@@ -1,9 +1,9 @@
-<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+     <button type="submit" 
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable"
+    [disabled]="submitDisable || !heroForm.valid"
   >
   Save
 </button>
@@ -22,7 +22,7 @@ mat-button
 
     <!-- <mat-form-field style="margin-right: 10px;">
         <mat-label>Employee</mat-label>
-        <input [disabled]="submitDisable"  id="firstControl" matInput  placeholder="Employee"   [(ngModel)]="empId" type="number" name="Employee"  required>
+        <input [disabled]="submitDisable"  id="firstControl" matInput  placeholder="Employee"   [(ngModel)]="empId" type="number" name="Employee"   >
     </mat-form-field> -->
     <mat-form-field style="margin-right: 10px;">
         <mat-label>Employee</mat-label>
@@ -33,12 +33,12 @@ mat-button
 
     <mat-form-field style="margin-right: 10px;">
         <mat-label>Inventory list</mat-label>
-        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Inventory list"  [(ngModel)]="empInvListId" type="number" name="empInvListId" required>
+        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Inventory list"  [(ngModel)]="empInvListId" type="number" name="empInvListId"  >
     </mat-form-field>
 
     <mat-form-field style="margin-right: 10px;">
         <mat-label>Model no</mat-label>
-        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Model no"  [(ngModel)]="modelNo" name="modelNo" required>
+        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Model no"  [(ngModel)]="modelNo" name="modelNo"  >
     </mat-form-field>
 
     <mat-form-field style="margin-right: 10px;">
@@ -81,11 +81,11 @@ mat-button
         <div class="card-body">
             <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness Employee 1</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness Employee 1" type="number"  [(ngModel)]="witnessEmp1" name="witnessEmp1" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness Employee 1" type="number"  [(ngModel)]="witnessEmp1" name="witnessEmp1"  >
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness Employee 2</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness Employee 2"  type="number"  [(ngModel)]="witnessEmp2" name="witnessEmp2" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness Employee 2"  type="number"  [(ngModel)]="witnessEmp2" name="witnessEmp2"  >
             </mat-form-field> -->
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness Employee 1</mat-label>
@@ -102,7 +102,7 @@ mat-button
         </div>
     </div>
     <div class="card" >
-        <div class="card-head">withdraw details</div>
+        <div class="card-head">Withdraw details</div>
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Withdraw date</mat-label>
@@ -113,11 +113,11 @@ mat-button
               </mat-form-field>
               <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness withdraw 1</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness withdraw 1" type="number"  [(ngModel)]="witnessWDEmp1" name="witnessWDEmp1" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness withdraw 1" type="number"  [(ngModel)]="witnessWDEmp1" name="witnessWDEmp1"  >
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness withdraw 2</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness withdraw 2"  type="number"  [(ngModel)]="witnessWDEmp2" name="witnessWDEmp2" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Witness withdraw 2"  type="number"  [(ngModel)]="witnessWDEmp2" name="witnessWDEmp2"  >
             </mat-form-field> -->
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Witness withdraw 1</mat-label>
@@ -144,7 +144,7 @@ mat-button
             
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Cost of item</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cost of item"  type="number"  [(ngModel)]="costOfItem" name="costOfItem" required>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cost of item"  type="number"  [(ngModel)]="costOfItem" name="costOfItem"  >
             </mat-form-field>
         </div>
     </div>
