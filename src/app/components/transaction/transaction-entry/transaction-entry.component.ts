@@ -23,7 +23,7 @@ export class TransactionEntryComponent {
   public empId = 31;
   public witness1 = 31;
   public witness2 = 31;
-  public incDate = new Date().toUTCString();
+  public incDate = new Date();
 
   public description = '';
   public remarks = '';
@@ -44,22 +44,22 @@ employees: any[] = []
 
   @ViewChild('heroForm') ngForm!: NgForm;
   fundTransId: number = 0;
-  fundCode: string;
-  transType: string;
-  transDate: string =  new Date().toUTCString();
-  paymentType: string;
-  transAmt: number;
-  chequeNo: string;
-  chequeDate: string =  new Date().toUTCString();
-  fromAccount: number;
-  toAccount: number;
-  cheqStatus: string;
-  cheqRemarks: string;
-  reference: string;
-  narration: string;
-  refTo: number;
-  refKey: number;
-  journEntryId: number;
+  fundCode: string = '';
+  transType: string = '';
+  transDate =  new Date();
+  paymentType: string = '';
+  transAmt: number = 0;
+  chequeNo: string = '';
+  chequeDate =  new Date();
+  fromAccount: number = 0;
+  toAccount: number = 0;
+  cheqStatus: string = '';
+  cheqRemarks: string = '';
+  reference: string = '';
+  narration: string = '';
+  refTo: number = 0;
+  refKey: number = 0;
+  journEntryId: number = 0;
 
   constructor(
     private incService: TransactionService,

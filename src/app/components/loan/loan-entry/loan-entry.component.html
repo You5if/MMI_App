@@ -1,4 +1,4 @@
-<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+<form #heroForm="ngForm" (keydown)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
     <button type="submit" 
     mat-raised-button
     color="primary"
@@ -33,7 +33,7 @@ mat-button
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Loan amount</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase min="0"  placeholder="Loan amount" type="number"  [(ngModel)]="amount" name="amount">
+                <input [disabled]="submitDisable"  matInput appTitleCase min="0"  placeholder="Loan amount" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="amount" name="amount">
                 <mat-error *ngIf="amount < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field>
@@ -61,7 +61,7 @@ mat-button
             <div class="card-body">
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Amount</mat-label>
-                    <input [disabled]="submitDisable"  matInput appTitleCase min="0" placeholder="Loan amount" type="number" min="0" [max]="amount"  [(ngModel)]="childTenure.Amount" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Loan amount" type="number" min="0" [max]="amount" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Amount" [ngModelOptions]="{standalone: true}">
                     <mat-error *ngIf="childTenure.Amount < 0">Negative value</mat-error>
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">

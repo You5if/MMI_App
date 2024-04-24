@@ -2,7 +2,7 @@ export interface EmpLeaveModel  {
   empLeaveId: number
   empId: number
   leaveId: number
-  leaveDate: string
+  leaveDate: any
   remarks: string
   isTest: boolean
   active: boolean
@@ -23,7 +23,7 @@ export interface EmpLeaveModel  {
     EmpLeaveId: number
     EmpId: number
     LeaveId: number
-    LeaveDate: string
+    LeaveDate: any
     Remarks: string
     IsTest: boolean
     Active: boolean

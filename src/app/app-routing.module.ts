@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, provideRouter, withHashLocation } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductsComponent } from './components/products/products.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { CoupensComponent } from './components/coupens/coupens.component';
 import { PagesComponent } from './components/pages/pages.component';
@@ -64,6 +63,14 @@ import { CostCenterAccountEntryComponent } from './components/cost-center-accoun
 import { AttendanceSummaryComponent } from './components/attendance-summary/attendance-summary.component';
 import { AttendanceSummaryEntryComponent } from './components/attendance-summary/attendance-summary-entry/attendance-summary-entry.component';
 import { MainHomeComponent } from './components/main-home/main-home.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
+import { SupplierEntryComponent } from './components/supplier/supplier-entry/supplier-entry.component';
+import { WarehouseComponent } from './components/warehouse/warehouse.component';
+import { WarehouseEntryComponent } from './components/warehouse/warehouse-entry/warehouse-entry.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductEntryComponent } from './components/product/product-entry/product-entry.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { CustomerEntryComponent } from './components/customer/customer-entry/customer-entry.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -136,9 +143,18 @@ const routes: Routes = [
   {path: 'users', component: UsersComponent},
   {path: 'users-entry/:id', component: UsersEntryComponent},
   {path: 'user-roles/:id', component: UsersRolesComponent},
+  // Inventory screens
+  {path: 'supplier', component: SupplierComponent},
+  {path: 'supplier-entry/:id', component: SupplierEntryComponent},
+  {path: 'warehouse', component: WarehouseComponent},
+  {path: 'warehouse-entry/:id', component: WarehouseEntryComponent},
+  {path: 'product', component: ProductComponent},
+  {path: 'product-entry/:id', component: ProductEntryComponent},
+  {path: 'customer', component: CustomerComponent},
+  {path: 'customer-entry/:id', component: CustomerEntryComponent},
 
   ]},
-  {path: 'products', component: ProductsComponent},
+  // {path: 'products', component: ProductsComponent},
   {path: 'statistics', component: StatisticsComponent},
   {
     path: 'coupens',

@@ -23,7 +23,7 @@ export class FinalSettlementEntryComponent {
   public empId = 31;
   public witness1 = 31;
   public witness2 = 31;
-  public finalDate = new Date().toUTCString();
+  public finalDate = new Date();
 
   public description = '';
   public remarks = '';

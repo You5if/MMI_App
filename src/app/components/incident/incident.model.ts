@@ -1,7 +1,7 @@
 export interface IncidentModel  {
     empIncidentId: number
     empId: number
-    incDate: string
+    incDate: any
     description: string
     remarks: string
     witness1: number
@@ -24,7 +24,7 @@ export interface IncidentModel  {
     export interface incidentToSendModel {
         EmpIncidentId: number
         EmpId: number
-        IncDate: string
+        IncDate: any
         Description: string
         Remarks: string
         Witness1: number

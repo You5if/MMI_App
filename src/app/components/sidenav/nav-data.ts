@@ -5,7 +5,7 @@ export const navbarData: INavbarData[] = [
         routeLink: 'Human resource management',
         icon: 'fal fa-home',
         label: 'HRM',
-        roles: ["2", "4"],
+        roles: ["2", "3","4"],
         svgicon: {
             style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -19,7 +19,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'employeeprofile',
                 label: 'Employee profile',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -33,7 +33,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'employeeattendance',
                 label: 'Attendance check-ins',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -47,7 +47,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'attendance-summary',
                 label: 'Attendance summary',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -61,7 +61,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'loan',
                 label: 'Loan',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -75,7 +75,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'publicholiday',
                 label: 'Public holiday',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -89,7 +89,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'companyweekend',
                 label: 'Weekend',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -103,7 +103,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'dayworkinghours',
                 label: 'Day hours',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -117,7 +117,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'agreement',
                 label: 'Agreement',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -131,7 +131,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'inventory',
                 label: 'Inventory',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -145,7 +145,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'empinventory',
                 label: 'Employee inventory',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -159,7 +159,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'leave',
                 label: 'Leave',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -173,7 +173,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'employee-leave',
                 label: 'Employee leave',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -187,7 +187,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'leave-balance',
                 label: 'Leave balance',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -201,7 +201,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'allowance',
                 label: 'Allowance',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -215,7 +215,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'other-earning',
                 label: 'Other earning',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -229,7 +229,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'other-deduction',
                 label: 'Other deduction',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -243,7 +243,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'payroll',
                 label: 'Monthly payroll',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -257,7 +257,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'incident',
                 label: 'Incident',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -271,7 +271,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'final-settlement',
                 label: 'Final settlement',
-                roles: ["2", "4"],
+                roles: ["2", "3","4"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -319,7 +319,7 @@ export const navbarData: INavbarData[] = [
         routeLink: 'Finance',
         icon: 'fal fa-home',
         label: 'Finance',
-        roles: ["2", "6"],
+        roles: ["2", "3","6"],
         svgicon: {
             style: 'width: 95%; height: 95%;',
             preserveAspectRatio: 'xMidYMid meet',
@@ -333,7 +333,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'chart-of-accounts',
                 label: 'Accounts',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -347,7 +347,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'journal',
                 label: 'Journal entry',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -361,7 +361,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'transaction',
                 label: 'Transaction',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -375,7 +375,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'bank',
                 label: 'Bank',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -389,7 +389,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cost-center-group',
                 label: 'Cost center group',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -403,7 +403,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cost-center',
                 label: 'Cost center',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',
@@ -417,7 +417,80 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cost-center-account',
                 label: 'Cost center account',
-                roles: ["2", "6"],
+                roles: ["2", "3","6"],
+                svgicon: {
+                    style: 'width: 95%; height: 95%;',
+                    preserveAspectRatio: 'xMidYMid meet',
+                    transform: 'translate(0.000000,512.000000) scale(0.100000,-0.100000)',
+                    fill: '',
+                    stroke: '',
+                    d: 'M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337 -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462 355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167 651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355 651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29 185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3 -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57 -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229 230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z',
+                    src: ''
+                }
+            }
+        ]
+    },
+    {
+        routeLink: 'Inventory',
+        icon: 'fal fa-home',
+        label: 'Inventory',
+        roles: ["2", "3", "5"],
+        svgicon: {
+            style: 'width: 95%; height: 95%;',
+            preserveAspectRatio: 'xMidYMid meet',
+            transform: 'translate(0.000000,512.000000) scale(0.100000,-0.100000)',
+            fill: '',
+            stroke: '',
+            d: 'M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337 -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462 355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167 651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355 651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29 185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3 -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57 -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229 230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z',
+            src: ''
+        }, 
+        items: [
+            {
+                routeLink: 'supplier',
+                label: 'Supplier',
+                roles: ["2", "3", "5"],
+                svgicon: {
+                    style: 'width: 95%; height: 95%;',
+                    preserveAspectRatio: 'xMidYMid meet',
+                    transform: 'translate(0.000000,512.000000) scale(0.100000,-0.100000)',
+                    fill: '',
+                    stroke: '',
+                    d: 'M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337 -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462 355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167 651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355 651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29 185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3 -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57 -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229 230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z',
+                    src: ''
+                }
+            },
+            {
+                routeLink: 'warehouse',
+                label: 'Warehouse',
+                roles: ["2", "3", "5"],
+                svgicon: {
+                    style: 'width: 95%; height: 95%;',
+                    preserveAspectRatio: 'xMidYMid meet',
+                    transform: 'translate(0.000000,512.000000) scale(0.100000,-0.100000)',
+                    fill: '',
+                    stroke: '',
+                    d: 'M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337 -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462 355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167 651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355 651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29 185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3 -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57 -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229 230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z',
+                    src: ''
+                }
+            },
+            {
+                routeLink: 'product',
+                label: 'Product',
+                roles: ["2", "3", "5"],
+                svgicon: {
+                    style: 'width: 95%; height: 95%;',
+                    preserveAspectRatio: 'xMidYMid meet',
+                    transform: 'translate(0.000000,512.000000) scale(0.100000,-0.100000)',
+                    fill: '',
+                    stroke: '',
+                    d: 'M2420 3834 c-208 -27 -407 -101 -580 -217 -96 -64 -273 -241 -337 -337 -95 -142 -163 -302 -199 -470 -26 -119 -26 -381 0 -500 56 -259 167 -462 355 -651 185 -186 394 -300 651 -355 119 -26 381 -26 500 0 259 56 462 167 651 355 186 185 300 394 355 651 26 119 26 381 0 500 -56 259 -167 463 -355 651 -185 185 -379 293 -631 350 -83 19 -331 33 -410 23z m330 -663 c93 -29 185 -86 260 -161 75 -76 121 -148 158 -252 23 -64 26 -88 26 -198 0 -110 -3 -134 -26 -198 -37 -104 -83 -176 -158 -252 -76 -76 -167 -132 -265 -163 -57 -18 -93 -22 -190 -22 -104 1 -130 5 -193 27 -104 37 -176 83 -252 158 -229 230 -253 573 -57 837 83 111 231 207 369 238 86 20 243 13 328 -14z',
+                    src: ''
+                }
+            },
+            {
+                routeLink: 'customer',
+                label: 'Customer',
+                roles: ["2", "3", "5"],
                 svgicon: {
                     style: 'width: 95%; height: 95%;',
                     preserveAspectRatio: 'xMidYMid meet',

@@ -26,7 +26,7 @@ import { HotToastService } from "@ngneat/hot-toast";
       <div *ngIf="dataIsLoaded">
       <div *ngFor="let role of roles">
       <div class="example-margin" *ngIf="role.appRoleId != roleLS">
-                    <h3 class="roleW">role: {{role.appRoleId}}</h3>
+                    <h3 class="roleW">{{role.appRoleId == 2 ? "Developer" : role.appRoleId == 3 ? "Management" : role.appRoleId == 4 ? "HR manager" : role.appRoleId == 5 ? "Inventory manager" : role.appRoleId == 6 ? "Finance manager" : "IT Role"}}</h3>
                     <button mat-button color="primary" (click)="onToggle(role.appRoleId)">Activate</button>
                 </div>
       </div>
@@ -61,6 +61,8 @@ export class ChangeRoleComponent {
       ).subscribe((reponse) => {
         this.dataIsLoaded = true
         this.roles = reponse
+        console.log(this.roles);
+        
       })
     }
 

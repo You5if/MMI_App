@@ -1,7 +1,7 @@
 export interface FinalSettleModel  {
     finalSettleId: number
     empId: number
-    finalDate: string
+    finalDate: any
     description: string
     gratuityClear: boolean
     leaveClear: boolean
@@ -32,7 +32,7 @@ export interface FinalSettleModel  {
     export interface FinalSettleToSendModel {
         FinalSettleId: number
         EmpId: number
-        FinalDate: string
+        FinalDate: any
         Description: string
         GratuityClear: boolean
         LeaveClear: boolean

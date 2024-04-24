@@ -3,12 +3,12 @@ export interface TransactionModel  {
     fundCode: string
     transType: string
     journEntryId: number
-    transDate: string
+    transDate: any
     description: string
     paymentType: string
     transAmt: number
     chequeNo: string
-    chequeDate: string
+    chequeDate: any
     fromAccount: number
     toAccount: number
     cheqStatus: string
@@ -38,12 +38,12 @@ export interface TransactionModel  {
         FundCode: string
         TransType: string
         JournEntryId: number
-        TransDate: string
+        TransDate: any
         Description: string
         PaymentType: string
         TransAmt: number
         ChequeNo: string
-        ChequeDate: string
+        ChequeDate: any
         FromAccount: number
         ToAccount: number
         CheqStatus: string

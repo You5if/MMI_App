@@ -30,10 +30,10 @@ export class LeaveEntryComponent  {
   submitDisable: boolean = false;
 
   @ViewChild('heroForm') ngForm!: NgForm;
-  leaveFormula: string;
+  leaveFormula: string = '';
   isPaid: boolean = false;
-  leaveName: string;
-  payEvalFormula: string;
+  leaveName: string = '';
+  payEvalFormula: string = '';
   leaveId: number = 0;
 
   constructor(

@@ -23,7 +23,7 @@ export class IncidentEntryComponent {
   public empId = 31;
   public witness1 = 31;
   public witness2 = 31;
-  public incDate = new Date().toUTCString();
+  public incDate = new Date();
 
   public description = '';
   public remarks = '';

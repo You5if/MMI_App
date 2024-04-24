@@ -21,7 +21,7 @@ export class EmployeeLeaveEntryComponent {
 
   // local variables 
   public empId = 31;
-  public leaveDate = new Date().toString();
+  public leaveDate = new Date();
   public agEnd = new Date().toString();
   public department = '';
   public jobTitle = '';

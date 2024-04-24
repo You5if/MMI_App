@@ -272,6 +272,21 @@ loanTypes: any[] = []
   
 }
 
+// preventNegativeInput(event: KeyboardEvent) {
+//   if (event.key === '-' || event.key === '−') {
+//     event.preventDefault();
+//   }
+// }
+
+handleInput(event: any) {
+  const inputValue = event.target.value;
+  const parsedValue = parseFloat(inputValue);
+  
+  if (isNaN(parsedValue) || parsedValue < 0) {
+    event.target.value = inputValue.replace(/[^0-9.]/g, ''); // Remove negative sign and non-numeric characters
+    this.amount = parseFloat(event.target.value); // Update the bound property value
+  }
+}
 
 btnClick=  () => {
   var tenureAmount: number = 0

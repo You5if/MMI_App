@@ -30,11 +30,11 @@ export class AllowanceEntryComponent {
   submitDisable: boolean = false;
 
   @ViewChild('heroForm') ngForm!: NgForm;
-  allowFormula: string;
+  allowFormula: string = '';
   isPaid: boolean = false;
-  allowName: string;
-  allowType: number;
-  runFreq: number;
+  allowName: string = '';
+  allowType: number = 0;
+  runFreq: number = 0;
   allowanceId: number = 0;
 
   constructor(

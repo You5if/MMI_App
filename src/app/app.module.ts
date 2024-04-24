@@ -17,7 +17,6 @@ import { LoginComponent } from './components/login/login.component';
 import { TestworkComponent } from './components/testwork/testwork.component';
 import { BodyComponent } from './components/body/body.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductsComponent } from './components/products/products.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { PagesComponent } from './components/pages/pages.component';
 import { MediaComponent } from './components/media/media.component';
@@ -104,6 +103,15 @@ import { CostCenterAccountEntryComponent } from './components/cost-center-accoun
 import { AttendanceSummaryComponent } from './components/attendance-summary/attendance-summary.component';
 import { AttendanceSummaryEntryComponent } from './components/attendance-summary/attendance-summary-entry/attendance-summary-entry.component';
 import { MainHomeComponent } from './components/main-home/main-home.component';
+import { OnlyNumber } from './directives/RemoveNegativeNumbers';
+import { SupplierComponent } from './components/supplier/supplier.component';
+import { SupplierEntryComponent } from './components/supplier/supplier-entry/supplier-entry.component';
+import { WarehouseComponent } from './components/warehouse/warehouse.component';
+import { WarehouseEntryComponent } from './components/warehouse/warehouse-entry/warehouse-entry.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductEntryComponent } from './components/product/product-entry/product-entry.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { CustomerEntryComponent } from './components/customer/customer-entry/customer-entry.component';
 
 
 
@@ -126,7 +134,6 @@ export const jwtConfig = {
     BodyComponent,
     SidenavComponent,
     DashboardComponent,
-    ProductsComponent,
     StatisticsComponent,
     PagesComponent,
     MediaComponent,
@@ -136,6 +143,7 @@ export const jwtConfig = {
     AttendanceComponent,
     EmpEntryComponent,
     TitleCaseDirective,
+    OnlyNumber,
     LoanComponent,
     LoanEntryComponent,
     LoanEntryChildComponent,
@@ -195,7 +203,15 @@ export const jwtConfig = {
     CostCenterAccountEntryComponent,
     AttendanceSummaryComponent,
     AttendanceSummaryEntryComponent,
-    MainHomeComponent
+    MainHomeComponent,
+    SupplierComponent,
+    SupplierEntryComponent,
+    WarehouseComponent,
+    WarehouseEntryComponent,
+    ProductComponent,
+    ProductEntryComponent,
+    CustomerComponent,
+    CustomerEntryComponent
   ],
   imports: [
     BrowserModule,

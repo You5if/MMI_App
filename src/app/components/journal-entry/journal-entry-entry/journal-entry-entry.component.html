@@ -74,12 +74,12 @@ mat-button
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Debit</mat-label>
-                    <input [disabled]="submitDisable  || childTenure.CrAmt > 0"  matInput appTitleCase placeholder="Debit amount" type="number"  [(ngModel)]="childTenure.DrAmt" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable  || childTenure.CrAmt > 0"  matInput appTitleCase placeholder="Debit amount" type="number"  [(ngModel)]="childTenure.DrAmt" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" [ngModelOptions]="{standalone: true}">
                     <mat-error *ngIf="childTenure.DrAmt < 0">Negative value</mat-error>
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;">
                     <mat-label>Credit</mat-label>
-                    <input [disabled]="submitDisable || childTenure.DrAmt > 0"  matInput appTitleCase placeholder="Credit amount" type="number" min="0"  [(ngModel)]="childTenure.CrAmt" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable || childTenure.DrAmt > 0"  matInput appTitleCase placeholder="Credit amount" type="number" min="0"  [(ngModel)]="childTenure.CrAmt" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" [ngModelOptions]="{standalone: true}">
                     <mat-error *ngIf="childTenure.CrAmt < 0">Negative value</mat-error>
                 </mat-form-field>
                 <!-- <mat-form-field style="margin-right: 10px;">
