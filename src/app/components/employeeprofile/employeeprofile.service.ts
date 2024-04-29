@@ -4,6 +4,7 @@ import { Observable, catchError, map } from "rxjs";
 import { CommonService } from "../common.service";
 import { EmployeeModel } from "./employeeprofile.model";
 import { AppGlobals } from "../../app.global";
+import { AuthService } from "../../security/auth/auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,7 @@ export class EmployeeProfileService {
     constructor(
         private httpclient: HttpClient,
         private _cf: CommonService,
+        private _auth: AuthService,
         private _globals: AppGlobals
     ) {     
     }
@@ -35,8 +37,16 @@ export class EmployeeProfileService {
 
     getDropdown(): Observable<any> {
         
-        return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
+        return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1 and istest='+ this.getIsTest() +'/false', this._cf.requestOptions());
         
+    }
+
+    getIsTest(): number {
+        if (this._auth.getIsTest() === true) {
+            return 1;
+        }else {
+            return 0;
+        }
     }
 
     getEmployeeProfileEntry(id: number): Observable<any> {

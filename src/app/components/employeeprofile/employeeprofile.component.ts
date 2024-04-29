@@ -34,9 +34,9 @@ export class EmployeeprofileComponent implements OnInit{
   public emerContact = '';
   public address = '';
 
-  public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
+  public departments: string[] = ['Administration', 'Finance', 'Human Resources', 'Engineering and Designing', 'Marketing and Sales', 'Procurements', 'Public Relations', 'Operations', 'Production', 'Services']; // Sample departments
   public selectedDepartment: string = ''; // Variable to store the selected department
-  public jobTitles: string[] = ['Painter', 'Fabricator', 'Wielder', 'Accountant']; // Sample departments
+  public jobTitles: string[] = ['Accountant', 'Human Resources Officer', 'Draftsman', 'Purchasing Officer', 'Operation Manager', 'Production Manager', 'Foreman', 'Machine Operator', 'Painter', 'Fabricator', 'Wielder', 'Electrition', 'Store Keeper', 'Office Boy', 'Helper']; // Sample departments
   public selectedJobTitle: string = ''; // Variable to store the selected department
   public biomId = '';
 

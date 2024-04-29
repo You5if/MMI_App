@@ -33,6 +33,7 @@ export class UsersRolesComponent {
   }
 
   refreshMe() {
+    this.dataIsLoaded = false
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {

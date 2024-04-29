@@ -1,0 +1,146 @@
+<h1>Stock movement</h1>
+
+<button 
+mat-stroked-button
+color="primary"
+    routerLink="/system/stock-move-entry/0"
+  >
+  Create
+</button>
+<!-- <button 
+    (click)="logout()"
+  >
+  logout
+</button> -->
+
+<div class="card" *ngIf="!dataIsLoaded" >
+  <!-- <div class="card-head">Employee profile index</div> -->
+  <div class="card-body">
+      <mat-table #table  [dataSource]="[1,2,3,4,5 ,6,7,8]" style="width: 100%">
+
+          <!-- Columns definition here to be displayed -->
+      
+          <ng-container matColumnDef="select">
+            <mat-header-cell class="cbPad"  *matHeaderCellDef>
+              Action
+            </mat-header-cell>
+             <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+              <ngx-skeleton-loader />
+            </mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="journCode">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Invoice code
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="journDate">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Date
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="tax">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Tax
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="warehouse2">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Warehouse 2
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+        
+          
+          <ng-container matColumnDef="remarks">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Remarks
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+        
+    
+        <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    
+        <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+    
+      </mat-table>
+      <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+          (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+      </mat-paginator>
+      
+  </div>
+</div>
+
+<div class="card" *ngIf="dataIsLoaded" >
+    <div class="card-body">
+        <mat-table #table [dataSource]="dataSource"  style="width: 100%">
+  
+            <!-- Columns definition here to be displayed -->
+        
+            <ng-container matColumnDef="select">
+              <mat-header-cell class="cbPad"  *matHeaderCellDef>
+                Action
+              </mat-header-cell>
+               <mat-cell class="cbPad" *matCellDef="let row; let i = index">
+                <button routerLink="/system/stock-move-entry/{{row.stockMoveId}}" class="Btn" mat-button color="primary">Edit</button>
+                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+              </mat-cell>
+          </ng-container>
+        
+          <ng-container matColumnDef="journCode">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Code
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.moveCode}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="journDate">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Date
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.moveDate | date:"dd/MMM/yyyy HH:mm"}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="tax">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              From warehouse
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.fromWarehouse}}</mat-cell>
+          </ng-container>
+          
+
+          <ng-container matColumnDef="warehouse2">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              To warehouse
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.toWarehouse}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="remarks">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Remarks
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.remarks}}</mat-cell>
+          </ng-container>
+          
+      
+          <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      
+          <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
+      
+        </mat-table>
+        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+        </mat-paginator>
+        
+    </div>
+</div>

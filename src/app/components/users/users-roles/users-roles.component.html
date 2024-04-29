@@ -19,7 +19,7 @@ mat-button
         <div class="card" *ngFor="let role of roles" >
             <div class="card-body roles">
                 <div>
-                    {{role.appRoleId}}
+                    {{role.appRoleId == 2 ? "Developer" : role.appRoleId == 3 ? "Management" : role.appRoleId == 4 ? "HR manager" : role.appRoleId == 5 ? "Inventory manager" : role.appRoleId == 6 ? "Finance manager" : "IT Role"}}
                 </div>
                <div>
                 <button type="button" mat-button color="warn" (click)="onDelete(role)">Remove</button>

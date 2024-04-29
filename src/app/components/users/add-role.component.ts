@@ -17,7 +17,10 @@ import { UsersService } from "./users.service";
       <!-- <p>Add a new role for this user</p> -->
   <mat-form-field>
     <mat-label>Role</mat-label>
-    <input matInput type="number" [(ngModel)]="data.appRoleId" name="appRoleId">
+    <!-- <input matInput type="number" [(ngModel)]="data.appRoleId" name="appRoleId"> -->
+    <mat-select   [(ngModel)]="data.appRoleId" name="employee">
+                  <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</mat-option>
+                </mat-select>
   </mat-form-field>
 </mat-dialog-content>
     <mat-dialog-actions>
@@ -27,6 +30,13 @@ import { UsersService } from "./users.service";
 })
 export class AddRoleComponent {
   newPassword: string;
+  roles:any[] = [
+    {id: 2, name: "Developer"},
+    {id: 3, name: "Management"},
+    {id: 4, name: "HR manager"},
+    {id: 5, name: "Inventory manager"},
+    {id: 6, name: "Finance manager"}
+  ]
     constructor(
       @Inject(MAT_DIALOG_DATA) public data: {
         appUserRoleId: number

@@ -112,7 +112,18 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductEntryComponent } from './components/product/product-entry/product-entry.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CustomerEntryComponent } from './components/customer/customer-entry/customer-entry.component';
-
+import { PurchaseOrderEntryComponent } from './components/purchase-order/purchase-order-entry/purchase-order-entry.component';
+import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
+import { SaleOrderComponent } from './components/sale-order/sale-order.component';
+import { SaleOrderEntryComponent } from './components/sale-order/sale-order-entry/sale-order-entry.component';
+import { StockOutComponent } from './components/stock-out/stock-out.component';
+import { StockOutEntryComponent } from './components/stock-out/stock-out-entry/stock-out-entry.component';
+import { StockMoveComponent } from './components/stock-move/stock-move.component';
+import { StockMoveEntryComponent } from './components/stock-move/stock-move-entry/stock-move-entry.component';
+import { StockReturnComponent } from './components/stock-return/stock-return.component';
+import { StockReturnEntryComponent } from './components/stock-return/stock-return-entry/stock-return-entry.component';
+import { CreditNoteComponent } from './components/credit-note/credit-note.component';
+import { CreditNoteEntryComponent } from './components/credit-note/credit-note-entry/credit-note-entry.component';
 
 
 export function getAccessToken(): string {
@@ -211,7 +222,20 @@ export const jwtConfig = {
     ProductComponent,
     ProductEntryComponent,
     CustomerComponent,
-    CustomerEntryComponent
+    CustomerEntryComponent,
+    PurchaseOrderComponent,
+    PurchaseOrderEntryComponent,
+    SaleOrderComponent,
+    SaleOrderEntryComponent,
+    StockOutComponent,
+    StockOutEntryComponent,
+    StockMoveComponent,
+    StockMoveEntryComponent,
+    StockReturnComponent,
+    StockReturnEntryComponent,
+    CreditNoteComponent,
+    CreditNoteEntryComponent,
+    // ChangePasswordGeneralComponent
   ],
   imports: [
     BrowserModule,

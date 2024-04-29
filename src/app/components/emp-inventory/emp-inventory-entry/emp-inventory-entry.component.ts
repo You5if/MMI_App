@@ -44,6 +44,7 @@ export class EmpInventoryEntryComponent  {
   withdrRemarks: string = '';
   costOfItem: number = 0;
   employees: any[] = []
+  invItems: any[] = []
 
 
   constructor(
@@ -66,6 +67,14 @@ export class EmpInventoryEntryComponent  {
     this.empInvServcie.getDropdown().subscribe({
       next: (value) => {
         this.employees = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
+    this.empInvServcie.getDropdownItem().subscribe({
+      next: (value) => {
+        this.invItems = value
       },
       error: (err) => {
         console.error('API Error:', err);

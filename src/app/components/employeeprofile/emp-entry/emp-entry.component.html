@@ -79,12 +79,7 @@ mat-button
                 <mat-label>Phone 2</mat-label>
                 <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
             </mat-form-field>
-    
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>Emer. contact</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emer. contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
-            </mat-form-field>
-    
+
             <mat-form-field appearance="fill" style="margin-right: 10px;">
                 <mat-label>Address</mat-label>
                 <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
@@ -96,6 +91,24 @@ mat-button
                   <mat-option *ngFor="let nationality of nationalitites" [value]="nationality">{{ nationality }}</mat-option>
                 </mat-select>
             </mat-form-field>
+
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Emergency contact</mat-label>
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Emergency person</mat-label>
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency person"  type="text" [(ngModel)]="emerPerson" name="emerPerson">
+            </mat-form-field>
+    
+
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Emergency relation</mat-label>
+                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency relation"  type="text" [(ngModel)]="emerRelation" name="emerRelation">
+            </mat-form-field>
+    
         </div>
     </div>
     

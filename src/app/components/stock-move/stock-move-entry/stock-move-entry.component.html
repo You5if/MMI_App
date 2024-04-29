@@ -1,0 +1,134 @@
+<form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
+    <button type="submit" 
+   mat-raised-button
+   color="primary"
+   style="margin-right: 10px;"
+   [disabled]="submitDisable || !heroForm.valid"
+ >
+ Save
+</button>
+<button type="button"
+mat-button
+   color="basic"
+   [disabled]="submitDisable"
+   (click)="btnClickCancel();"
+ >
+ Cancel
+</button>
+   
+   <div class="card" >
+       <div class="card-head">Sale order data</div>
+       <div class="card-body">
+           
+           <!-- <mat-form-field style="margin-right: 10px;">
+               <mat-label>Journal code</mat-label>
+               <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Journal code"  [(ngModel)]="journaCode" name="journaCode"  [readonly]="true">
+           </mat-form-field> -->
+           <mat-form-field style="margin-right: 10px;">
+               <mat-label>Stock move code</mat-label>
+               <input disabled  matInput appTitleCase placeholder="Stock move code"  [(ngModel)]="StockMoveCode" name="journaCode"  [readonly]="true">
+           </mat-form-field>
+
+           <mat-form-field style="margin-right: 10px;">
+               <mat-label>Stock move date</mat-label>
+               <input id="firstName" [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="StockMoveDate" name="journaDate">
+               <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-datepicker #picker></mat-datepicker>
+             </mat-form-field>
+           <mat-divider></mat-divider>
+           <!-- <mat-form-field style="margin-right: 10px;">
+               <mat-label>Cost center</mat-label>
+               <mat-select [disabled]="submitDisable" [(ngModel)]="costCenId" name="constCenId">
+                 <mat-option *ngFor="let employee of costCens" [value]="employee.id">{{ employee.name }}</mat-option>
+               </mat-select>
+           </mat-form-field> -->
+           <!-- <mat-form-field style="margin-right: 10px;">
+               <mat-label>CustomerId</mat-label>
+               <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="SupplierId"  [(ngModel)]="CustomerId" name="SupplierId">
+           </mat-form-field> -->
+
+           
+           <mat-form-field style="margin-right: 10px;">
+            <mat-label>From warehouse</mat-label>
+            <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="From warehouse"  [(ngModel)]="fromWarehouse" name="fromWarehouse">
+        </mat-form-field>
+           <mat-form-field style="margin-right: 10px;">
+            <mat-label>To warehouse</mat-label>
+            <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="To warehouse"  [(ngModel)]="toWarehouse" name="toWarehouse">
+        </mat-form-field>
+        
+        <mat-form-field style="margin-right: 10px;">
+            <mat-label>Remarks</mat-label>
+            <input [disabled]="submitDisable"  matInput  appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="Remarks">
+        </mat-form-field>
+        
+          
+               <!-- <button mat-stroked-button *ngIf="loadId === 0" [disabled]="tenure === 0" type="button" (click)="fetchTenure()">Fetch</button> -->
+       </div>
+   </div>
+   <div fxLayout fxLayoutGap="5px">
+       <button mat-stroked-button type="button" (click)="addNewChild()">Add Entry</button>
+   </div>
+
+   <div *ngFor="let childTenure of childs">
+       <div class="card">
+           <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>ProductId</mat-label>
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="ProductId"  [(ngModel)]="childTenure.ProductId"  [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Quantity</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Qty" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Qty" [ngModelOptions]="{standalone: true}">
+                <mat-error *ngIf="childTenure.Qty < 0">Negative value</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Expiry</mat-label>
+                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="childTenure.Expiry" [ngModelOptions]="{standalone: true}">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Cost price</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cost price" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.CostPrice" [ngModelOptions]="{standalone: true}">
+                <mat-error *ngIf="childTenure.CostPrice < 0">Negative value</mat-error>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Sale price</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Sale price" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.SalePrice" [ngModelOptions]="{standalone: true}">
+                <mat-error *ngIf="childTenure.SalePrice < 0">Negative value</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Remarks</mat-label>
+                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"   [(ngModel)]="childTenure.Remarks" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Reference</mat-label>
+                <input [disabled]="submitDisable" type="text"  matInput appTitleCase placeholder="Reference"   [(ngModel)]="childTenure.Reference" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        
+            
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Narration</mat-label>
+                <input [disabled]="submitDisable" type="text"  matInput appTitleCase placeholder="Narration"   [(ngModel)]="childTenure.Narration" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        
+              
+               <!-- <mat-form-field style="margin-right: 10px;">
+                   <mat-label>Cost center</mat-label>
+                   <mat-select [disabled]="submitDisable" [(ngModel)]="childTenure.CostCenId" [ngModelOptions]="{standalone: true}">
+                     <mat-option *ngFor="let employee of costCens" [value]="employee.id">{{ employee.name }}</mat-option>
+                   </mat-select>
+               </mat-form-field> -->
+               <button mat-raised-button color="warn" type="button" (click)="deleteTenure(childTenure)">Delete</button>
+           </div>
+       </div>
+   </div>
+   
+  
+</form>

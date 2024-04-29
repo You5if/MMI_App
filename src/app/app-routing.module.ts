@@ -71,6 +71,18 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductEntryComponent } from './components/product/product-entry/product-entry.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CustomerEntryComponent } from './components/customer/customer-entry/customer-entry.component';
+import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
+import { PurchaseOrderEntryComponent } from './components/purchase-order/purchase-order-entry/purchase-order-entry.component';
+import { SaleOrderComponent } from './components/sale-order/sale-order.component';
+import { SaleOrderEntryComponent } from './components/sale-order/sale-order-entry/sale-order-entry.component';
+import { StockOutComponent } from './components/stock-out/stock-out.component';
+import { StockOutEntryComponent } from './components/stock-out/stock-out-entry/stock-out-entry.component';
+import { StockMoveComponent } from './components/stock-move/stock-move.component';
+import { StockMoveEntryComponent } from './components/stock-move/stock-move-entry/stock-move-entry.component';
+import { StockReturnComponent } from './components/stock-return/stock-return.component';
+import { StockReturnEntryComponent } from './components/stock-return/stock-return-entry/stock-return-entry.component';
+import { CreditNoteComponent } from './components/credit-note/credit-note.component';
+import { CreditNoteEntryComponent } from './components/credit-note/credit-note-entry/credit-note-entry.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -152,6 +164,18 @@ const routes: Routes = [
   {path: 'product-entry/:id', component: ProductEntryComponent},
   {path: 'customer', component: CustomerComponent},
   {path: 'customer-entry/:id', component: CustomerEntryComponent},
+  {path: 'purchase-order', component: PurchaseOrderComponent},
+  {path: 'purchase-order-entry/:id', component: PurchaseOrderEntryComponent},
+  {path: 'sale-order', component: SaleOrderComponent},
+  {path: 'sale-order-entry/:id', component: SaleOrderEntryComponent},
+  {path: 'stock-out', component: StockOutComponent},
+  {path: 'stock-out-entry/:id', component: StockOutEntryComponent},
+  {path: 'stock-move', component: StockMoveComponent},
+  {path: 'stock-move-entry/:id', component: StockMoveEntryComponent},
+  {path: 'stock-return', component: StockReturnComponent},
+  {path: 'stock-return-entry/:id', component: StockReturnEntryComponent},
+  {path: 'credit-note', component: CreditNoteComponent},
+  {path: 'credit-note-entry/:id', component: CreditNoteEntryComponent},
 
   ]},
   // {path: 'products', component: ProductsComponent},

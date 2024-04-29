@@ -6,6 +6,7 @@ import { ChangeRoleComponent } from '../general-operations/change-role.component
 import { MatDialog } from '@angular/material/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
+import { ChangePasswordComponent } from '../users/changepassword.component';
 
 @Component({
   selector: 'app-body',
@@ -55,6 +56,48 @@ showToast() {
   this.toast.warning('Boo!');
   this.toast.error('Oh no!');
   this.toast.info('Something...');
+}
+
+changePassword=  () => {
+  // this.router.navigate(['/user']);
+  // console.log(this.firstName);
+  // var dataToSend: UsersToDeleteModel = data // Example data to send
+  // dataToSend.TransId = 0
+  // console.log(dataToSend);
+
+  if(this.dialog.openDialogs.length==0){
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+     disableClose: true,
+     data: { 
+      appUserId: this._auth.getUserId(),
+      password: ''
+     }, 
+   });
+
+   dialogRef.afterClosed().subscribe((result: boolean) => {
+    console.log(result);
+    if (result) {
+      // this.usersService.deleteRecord(dataToSend).pipe(
+      //   this.toast.observe({
+      //     loading: 'Deleting record...',
+      //     success: (data) => `${data.errorMessage}`,
+      //     error: (error) => `API Error: ${error.message}`,
+      //   })
+      // ).subscribe(
+      //   response => {
+      //     console.log('API Response:', response);
+          // this.refreshMe();
+      //     this.screenMode = 'index';
+      //     // Handle the response data here
+      //   },
+      //   error => {
+      //     console.error('API Error:', error);
+      //     // Handle any errors here
+      //   }
+      // );
+    }
+   })
+}
 }
 
 update() {

@@ -58,6 +58,8 @@ export interface EmployeeModel {
     VisaDesc: string
     VisaSt: any
     VisaEn: any
+    EmerPerson: string
+    EmerRelation: string
     IsTest: boolean
     Active: boolean
     Deleted: boolean
