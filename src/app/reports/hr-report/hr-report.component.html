@@ -1,0 +1,85 @@
+<h1>HR reports</h1>
+
+<form >
+    <div class="card" >
+        <div class="card-head">Employee attendance details</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="empAttDetMonth" name="empAttDetMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="empAttDetYear" name="empAttDetYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(3, empAttDetMonth, empAttDetYear)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+    <div class="card" >
+        <div class="card-head">Employee attendance summary</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="empAttSumMonth" name="empAttSumMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="empAttSumYear" name="empAttSumYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(4, empAttSumMonth, empAttSumYear)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+    <div class="card" >
+        <div class="card-head">Employee payslips</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="empPayMonth" name="empPayMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="empPayYear" name="empPayYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(5, empPayMonth, empPayYear)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+    <div class="card" >
+        <div class="card-head">Payroll statment</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="payRollMonth" name="payRollMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="payRollYear" name="payRollYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(6, payRollMonth, payRollYear)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+</form>
+

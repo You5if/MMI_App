@@ -8,6 +8,15 @@ color="primary"
   Create
 </button>
 
+<button 
+mat-button
+color="basic"
+type="button"
+    (click)="openRefreshAtt()"
+  >
+  Refresh attendance
+</button>
+
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
   <div class="card-body">

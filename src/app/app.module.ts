@@ -125,6 +125,11 @@ import { StockReturnEntryComponent } from './components/stock-return/stock-retur
 import { CreditNoteComponent } from './components/credit-note/credit-note.component';
 import { CreditNoteEntryComponent } from './components/credit-note/credit-note-entry/credit-note-entry.component';
 
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import { RefreshAttendanceComponent } from './components/general-operations/refresh-attendance/refresh-attendance.component';
+import { HrReportComponent } from './reports/hr-report/hr-report.component';
+import { ReportPageComponent, SafePipe } from './reports/report-page/report-page.component';
+
 
 export function getAccessToken(): string {
   return localStorage.getItem("MMI_token")!;
@@ -142,11 +147,12 @@ export const jwtConfig = {
     AppComponent,
     LoginComponent,
     TestworkComponent,
+    SafePipe,
     BodyComponent,
     SidenavComponent,
     DashboardComponent,
     StatisticsComponent,
-    PagesComponent,
+    PagesComponent, 
     MediaComponent,
     SettingsComponent,
     SublevelMenuComponent,
@@ -235,6 +241,10 @@ export const jwtConfig = {
     StockReturnEntryComponent,
     CreditNoteComponent,
     CreditNoteEntryComponent,
+    RefreshAttendanceComponent,
+    HrReportComponent,
+    ReportPageComponent,
+    // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],
   imports: [
@@ -283,7 +293,8 @@ export const jwtConfig = {
     AuthGuard,
     AuthService,
     provideHotToastConfig(),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    provideMomentDateAdapter(undefined, {useUtc:true}),
+       {provide: MAT_DATE_LOCALE, useValue: 'it-IT'}
   ],
   bootstrap: [AppComponent]
 })

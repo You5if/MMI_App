@@ -10,6 +10,7 @@ import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { AttendanceService } from '../attendance/attendance.service';
 import { AttendanceSummaryService } from './attendance-summary.service';
+import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
 
 @Component({
   selector: 'app-attendance-summary',
@@ -134,6 +135,19 @@ export class AttendanceSummaryComponent {
     }
   }
 
+  openRefreshAtt() {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(RefreshAttendanceComponent, {
+       // disableClose: true  
+       
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log(result);
+      // this.adjustLoanDistribution(result);
+     })
+    }
+  }
   
   onDelete=  (data: AttendanceSummaryModel) => {
     // this.router.navigate(['/user']);

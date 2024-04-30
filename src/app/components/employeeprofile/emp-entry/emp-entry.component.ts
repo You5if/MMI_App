@@ -249,22 +249,22 @@ export class EmpEntryComponent {
   public certificates = '';
   public insurance = '';
   public inDesc = '';
-  public inSt = new Date();
-  public inEnd = new Date();
+  public inSt : Date = new Date();
+  public inEnd: Date = new Date();
   public laborCard = '';
   public laborDesc = '';
-  public laborSt = new Date();
-  public laborEn = new Date();
-
-  public emiratesSt = new Date();
-  public emiratesEn = new Date();
+  public laborSt : Date = new Date();
+  public laborEn : Date = new Date();
+ 
+  public emiratesSt : Date= new Date();
+  public emiratesEn : Date = new Date();
   public passport = '';
-  public passportSt = new Date();
-  public passportEn = new Date();
+  public passportSt : Date = new Date();
+  public passportEn : Date = new Date();
   public visa = '';
   public visaDesc = '';
-  public visaSt = new Date();
-  public visaEn = new Date();
+  public visaSt : Date = new Date();
+  public visaEn : Date = new Date();
   public emiratesId = '';
   public supervisorId = 1;
   message: string = "";

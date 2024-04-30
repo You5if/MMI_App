@@ -8,13 +8,15 @@ import { FileListModel } from '../employeeprofile/upload-file.model';
 import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { MatDialog } from '@angular/material/dialog';
+import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
 
 @Component({
   selector: 'app-attendance',
   templateUrl: './attendance.component.html',
   styleUrl: './attendance.component.css'
 })
-export class AttendanceComponent implements OnInit{
+export class AttendanceComponent implements OnInit {
   // local variables 
   
   uploadStatus!: boolean;
@@ -55,6 +57,7 @@ export class AttendanceComponent implements OnInit{
     private http: HttpClient,
     private _globals: AppGlobals,
     private _auth: AuthService,
+    private dialog: MatDialog,
     private toast: HotToastService,
   ) { 
     this.pTableName = 'EmpAtt';
@@ -181,6 +184,20 @@ export class AttendanceComponent implements OnInit{
         // Handle any errors here
       }
     );
+  }
+
+  openRefreshAtt() {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(RefreshAttendanceComponent, {
+       // disableClose: true  
+       
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      // console.log(result);
+      // this.adjustLoanDistribution(result);
+     })
+    }
   }
 
 
