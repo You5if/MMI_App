@@ -84,6 +84,7 @@ export class LeaveBalanceComponent {
   }
 
   refreshMe() {
+    this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: LeaveBalanceModel[]) => {

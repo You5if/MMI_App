@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import {
     MatDialog,
     MatDialogRef,
@@ -6,6 +6,7 @@ import {
     MatDialogClose,
     MatDialogTitle,
     MatDialogContent,
+    MAT_DIALOG_DATA,
   } from '@angular/material/dialog';
 import { HotToastService } from "@ngneat/hot-toast";
 import { AppGlobals } from "../../../app.global";
@@ -50,6 +51,9 @@ export class RefreshAttendanceComponent {
   roleLS: number = Number(localStorage.getItem(this._globals.baseAppName + '_role'))
     constructor(
       private _auth: AuthService,
+      @Inject(MAT_DIALOG_DATA) public data: {
+        parentScreen: string
+      },
       private _globals: AppGlobals,
       private service: RefreshAttanceService,
       public dialogRef: MatDialogRef<RefreshAttendanceComponent>,
@@ -99,16 +103,31 @@ export class RefreshAttendanceComponent {
       }
 
     onSubmit () {
-      this.service.refreshAtt(this.objToSend).pipe(
-        this.toast.observe({
-          loading: 'Refreshing attendance...',
-          success: (dataR) => `${dataR.errorMessage}`,
-          error: (error) => `API Error: ${error.message}`,
+      if (this.data.parentScreen === "Attendance") {
+        this.service.refreshAtt(this.objToSend).pipe(
+          this.toast.observe({
+            loading: 'Refreshing attendance...',
+            success: (dataR) => `${dataR.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe((result) => {
+          console.log(result);
+          this.dialogRef.close(true)
+          
         })
-      ).subscribe((result) => {
-        console.log(result);
-        this.dialogRef.close(true)
-        
-      })
+      }else if (this.data.parentScreen === "Payroll") {
+        this.service.payrollRun(this.objToSend).pipe(
+          this.toast.observe({
+            loading: 'Refreshing attendance...',
+            success: (dataR) => `${dataR.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe((result) => {
+          console.log(result);
+          this.dialogRef.close(true)
+          
+        })
+      } 
+      
     }
 }

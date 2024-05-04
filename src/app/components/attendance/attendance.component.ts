@@ -115,6 +115,7 @@ export class AttendanceComponent implements OnInit {
   // }
 
   refreshMe() {
+    this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: any) => {
@@ -189,7 +190,11 @@ export class AttendanceComponent implements OnInit {
   openRefreshAtt() {
     if(this.dialog.openDialogs.length==0){
       const dialogRef = this.dialog.open(RefreshAttendanceComponent, {
-       // disableClose: true  
+       disableClose: true,
+       data: {
+        parentScreen: "Attendance"
+       }
+         
        
      });
 

@@ -40,14 +40,22 @@ color="primary"
 
         <ng-container matColumnDef="department">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-            Department
+            Employee
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="jobTitle">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-            Job title
+            Basic
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="allowance">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Allowance
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
@@ -99,16 +107,23 @@ color="primary"
 
           <ng-container matColumnDef="department">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Department
+              Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.department}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="jobTitle">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Job title
+              Basic
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.jobTitle}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.earn1}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="allowance">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Allowance
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.earn2}}</mat-cell>
           </ng-container>
 
           

@@ -86,6 +86,7 @@ export class AttendanceSummaryComponent {
   }
 
   refreshMe() {
+    this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: AttendanceSummaryModel[]) => {
@@ -138,7 +139,10 @@ export class AttendanceSummaryComponent {
   openRefreshAtt() {
     if(this.dialog.openDialogs.length==0){
       const dialogRef = this.dialog.open(RefreshAttendanceComponent, {
-       // disableClose: true  
+       disableClose: true,
+       data: {
+        parentScreen: "Attendance"
+       }  
        
      });
 

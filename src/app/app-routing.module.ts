@@ -84,6 +84,7 @@ import { StockReturnEntryComponent } from './components/stock-return/stock-retur
 import { CreditNoteComponent } from './components/credit-note/credit-note.component';
 import { CreditNoteEntryComponent } from './components/credit-note/credit-note-entry/credit-note-entry.component';
 import { HrReportComponent } from './reports/hr-report/hr-report.component';
+import { ReportPageComponent } from './reports/report-page/report-page.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -179,7 +180,8 @@ const routes: Routes = [
   {path: 'credit-note-entry/:id', component: CreditNoteEntryComponent},
 
   //Reports
-  {path: 'hr-report', component: HrReportComponent}
+  { path: "report-page", component: ReportPageComponent },
+  {path: 'hr-report', component: HrReportComponent},
 
   ]},
   // {path: 'products', component: ProductsComponent},

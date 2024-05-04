@@ -29,7 +29,7 @@ export class AgreementComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'agStart', 'agEnd', 'department', 'jobTitle'];
+  displayedColumns: string[] = ['select', 'agStart', 'agEnd', 'department', 'jobTitle', 'allowance'];
   dataSource: AgreementModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -83,6 +83,7 @@ export class AgreementComponent {
   }
 
   refreshMe() {
+    this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: AgreementModel[]) => {

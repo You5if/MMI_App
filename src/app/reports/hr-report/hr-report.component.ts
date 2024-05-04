@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ReportPageService } from '../report-page/report-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hr-report',
@@ -21,7 +22,8 @@ export class HrReportComponent {
    payRollYear: number = 2024
 
    constructor(
-    private _report: ReportPageService
+    private _report: ReportPageService,
+    private router: Router
    ) {}
 
    fetchReport(id: number, month: number, year: number) {
@@ -31,6 +33,7 @@ export class HrReportComponent {
       restOfUrl = 'month=' + month; 
       restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      this.router.navigate(['system/report-page']);
    }
 
 }

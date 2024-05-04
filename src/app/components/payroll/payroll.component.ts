@@ -10,6 +10,7 @@ import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { OtherEraningService } from '../other-eraning/other-eraning.service';
 import { PayrollService } from './payroll.service';
+import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
 
 @Component({
   selector: 'app-payroll',
@@ -85,6 +86,7 @@ export class PayrollComponent {
   }
 
   refreshMe() {
+    this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
     this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: PayrollModel[]) => {
@@ -131,6 +133,23 @@ export class PayrollComponent {
       //this._msg.showAPIError(error);
       console.log(error);
       return false;
+    }
+  }
+
+  openRefreshAtt() {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(RefreshAttendanceComponent, {
+       disableClose: true,
+       data: {
+        parentScreen: "Payroll"
+       }
+       
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      // console.log(result);
+      // this.adjustLoanDistribution(result);
+     })
     }
   }
 
