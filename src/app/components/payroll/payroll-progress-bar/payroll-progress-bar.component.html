@@ -1,0 +1,7 @@
+<div class="main-line" *ngIf="isProgressActive">
+  <div class="progress-bar" >
+    <div class="progress" [style.width.%]="progressPercentage"></div>
+  </div>
+  <span style="margin-left: 10px;">{{message}}</span>
+</div>
+  <!-- <button *ngIf="isProgressActive" mat-button (click)="cancelProgress()" >Cancel</button> -->

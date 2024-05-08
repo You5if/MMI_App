@@ -22,7 +22,7 @@ export class RefreshAttanceService {
         return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/refreshatt', obj, this._cf.requestOptions());
     }
     payrollRun(obj: any): Observable<any> {
-        return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Payrun/runpayroll', obj, this._cf.requestOptions());
+        return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Payrun/runpayroll',obj , this._cf.requestOptions());
     }
 
 

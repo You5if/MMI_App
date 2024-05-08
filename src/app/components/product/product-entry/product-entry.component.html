@@ -1,6 +1,7 @@
 <!-- <p>inventory-entry works!</p> -->
 <form #heroForm="ngForm" (keyup)="EnterSubmit($event);" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+    <div class="action-container">
+        <button type="submit" 
    mat-raised-button
    color="primary"
    style="margin-right: 10px;"
@@ -16,7 +17,8 @@ mat-button
  >
  Cancel
 </button>
-   <div class="card" >
+    </div>
+   <div class="card first-card" >
        <div class="card-head">Cost center group information</div>
        <div class="card-body">
            <mat-form-field style="margin-right: 10px;">

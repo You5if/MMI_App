@@ -1,6 +1,6 @@
-<h1>Employee attendance</h1>
+<h1 class="first-card-home">Employee attendance</h1>
 
-<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple>
 
 <button 
 mat-button
@@ -11,7 +11,16 @@ type="file"
   Upload CSV
 </button>
 
-<button 
+<!-- <button 
+mat-button
+color="basic"
+type="button"
+    (click)="openRefreshAtt()"
+  >
+  Refresh attendance
+</button> -->
+<button  
+*ngIf="!showLoading2"
 mat-button
 color="basic"
 type="button"
@@ -19,6 +28,9 @@ type="button"
   >
   Refresh attendance
 </button>
+
+<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
+
 <!-- <button *ngIf="screenMode === 'index'"
     (click)="btnClickCreate();"
   >

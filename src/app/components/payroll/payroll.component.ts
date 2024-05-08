@@ -18,6 +18,9 @@ import { RefreshAttendanceComponent } from '../general-operations/refresh-attend
   styleUrl: './payroll.component.css'
 })
 export class PayrollComponent {
+
+  showLoading: boolean = false
+  showLoading2: boolean = false
   
   public middleName = '';
   public lastName = '';
@@ -136,6 +139,11 @@ export class PayrollComponent {
     }
   }
 
+  onProgressCanceled() {
+    // Handle the canceled event
+    this.showLoading2 = false
+  }
+
   openRefreshAtt() {
     if(this.dialog.openDialogs.length==0){
       const dialogRef = this.dialog.open(RefreshAttendanceComponent, {
@@ -148,6 +156,10 @@ export class PayrollComponent {
 
      dialogRef.afterClosed().subscribe((result: boolean) => {
       // console.log(result);
+      // if (result) {
+        this.showLoading = result
+        this.showLoading2 = result
+      // }
       // this.adjustLoanDistribution(result);
      })
     }

@@ -13,6 +13,8 @@ import { AppGlobals } from "../../../app.global";
 import { AuthService } from "../../../security/auth/auth.service";
 import { UsersService } from "../../users/users.service";
 import { RefreshAttanceService } from "./refresh-attendance.service";
+import { PayrollService } from "../../payroll/payroll.service";
+import { PayrollProgressBarService } from "../../payroll/payroll-progress-bar/payroll-progress-bar.service";
 
 @Component({
     selector: 'app-save-changes',
@@ -56,6 +58,7 @@ export class RefreshAttendanceComponent {
       },
       private _globals: AppGlobals,
       private service: RefreshAttanceService,
+      private payrollService: PayrollProgressBarService,
       public dialogRef: MatDialogRef<RefreshAttendanceComponent>,
       private toast: HotToastService,
       ) {
@@ -104,29 +107,31 @@ export class RefreshAttendanceComponent {
 
     onSubmit () {
       if (this.data.parentScreen === "Attendance") {
-        this.service.refreshAtt(this.objToSend).pipe(
-          this.toast.observe({
-            loading: 'Refreshing attendance...',
-            success: (dataR) => `${dataR.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
-          })
-        ).subscribe((result) => {
-          console.log(result);
+        // this.service.refreshAtt(this.objToSend).pipe(
+        //   this.toast.observe({
+        //     loading: 'Refreshing attendance...',
+        //     success: (dataR) => `${dataR.errorMessage}`,
+        //     error: (error) => `API Error: ${error.message}`,
+        //   })
+        // ).subscribe((result) => {
+        //   console.log(result);
+        this.payrollService.body = this.objToSend
           this.dialogRef.close(true)
           
-        })
+        // })
       }else if (this.data.parentScreen === "Payroll") {
-        this.service.payrollRun(this.objToSend).pipe(
-          this.toast.observe({
-            loading: 'Refreshing attendance...',
-            success: (dataR) => `${dataR.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
-          })
-        ).subscribe((result) => {
-          console.log(result);
+        // this.service.payrollRun(this.objToSend).pipe(
+        //   this.toast.observe({
+        //     loading: 'Refreshing attendance...',
+        //     success: (dataR) => `${dataR.errorMessage}`,
+        //     error: (error) => `API Error: ${error.message}`,
+        //   })
+        // ).subscribe((result) => {
+        //   console.log(result);
+          this.payrollService.body = this.objToSend
           this.dialogRef.close(true)
           
-        })
+        // })
       } 
       
     }

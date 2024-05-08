@@ -50,6 +50,9 @@ export class AttendanceComponent implements OnInit {
   fullPath: string = "";
   originalFileName: string = "";
 
+  showLoading: boolean = false
+  showLoading2: boolean = false
+
 
   constructor(
     private empService: AttendanceService,
@@ -130,6 +133,13 @@ export class AttendanceComponent implements OnInit {
     })
   }
 
+  onProgressCanceled() {
+    // Handle the canceled event
+    this.showLoading2 = false
+  }
+
+  
+
   onKey(event: any) { 
     // if (this.screenMode === 'entry') {
       console.log(event);
@@ -200,6 +210,8 @@ export class AttendanceComponent implements OnInit {
 
      dialogRef.afterClosed().subscribe((result: boolean) => {
       // console.log(result);
+      this.showLoading = result
+        this.showLoading2 = result
       // this.adjustLoanDistribution(result);
      })
     }
@@ -286,7 +298,7 @@ alert('Enter key is pressed, form will be submitted');
             this.toast.observe({
               loading: 'Uploading file...',
               success: (data: any) => `${data.errorMessage}`,
-              error: (error) => `API Error: ${error.message}`,
+              error: (error) => `API Error: ${error.message}` ,
             })
           ).subscribe((event:any) => {
             console.log('valEvent', event);

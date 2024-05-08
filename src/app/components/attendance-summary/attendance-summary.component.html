@@ -1,4 +1,4 @@
-<h1>Attendance summary</h1>
+<h1 class="first-card-home">Attendance summary</h1>
 
 <button 
 mat-stroked-button
@@ -8,7 +8,17 @@ color="primary"
   Create
 </button>
 
-<button 
+<!-- <button 
+mat-button
+color="basic"
+type="button"
+    (click)="openRefreshAtt()"
+  >
+  Refresh attendance
+</button> -->
+
+<button  
+*ngIf="!showLoading2"
 mat-button
 color="basic"
 type="button"
@@ -16,6 +26,9 @@ type="button"
   >
   Refresh attendance
 </button>
+
+<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
+
 
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
@@ -35,7 +48,7 @@ type="button"
       
         <ng-container matColumnDef="EmpId">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-              Emp Id
+              Employee
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
@@ -135,9 +148,9 @@ type="button"
           
           <ng-container matColumnDef="EmpId">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Emp Id
+              Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empId}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.employeeName}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="GratuityClear">      

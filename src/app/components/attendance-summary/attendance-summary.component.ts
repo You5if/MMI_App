@@ -43,6 +43,9 @@ export class AttendanceSummaryComponent {
   dataIsLoaded: boolean = false
   message: string = "";
   user_img: string = "/path/to/file";
+
+  showLoading: boolean = false
+  showLoading2: boolean = false
   
 
   constructor(
@@ -148,9 +151,16 @@ export class AttendanceSummaryComponent {
 
      dialogRef.afterClosed().subscribe((result: boolean) => {
       console.log(result);
+      this.showLoading = result
+        this.showLoading2 = result
       // this.adjustLoanDistribution(result);
      })
     }
+  }
+
+  onProgressCanceled() {
+    // Handle the canceled event
+    this.showLoading2 = false
   }
   
   onDelete=  (data: AttendanceSummaryModel) => {

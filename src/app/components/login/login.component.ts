@@ -173,7 +173,7 @@ this.companyObject = {
             });
 
           } catch (error) {
-            this.submitDisable = true
+            this.submitDisable = false
             this.loging = false
             // alert("Error!! wrong username or password");
             // this._msg.showAPIError(error);

@@ -10,6 +10,13 @@ mat-divider {
     margin-bottom: 20px;
 }
 
+.first-card-home {
+    margin-top: 65px;
+}
+.first-card {
+    margin-top: 120px;
+}
+
 .no-img {
     height: 150px;
     display: flex;

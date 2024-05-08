@@ -129,6 +129,7 @@ import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { RefreshAttendanceComponent } from './components/general-operations/refresh-attendance/refresh-attendance.component';
 import { HrReportComponent } from './reports/hr-report/hr-report.component';
 import { ReportPageComponent, SafePipe } from './reports/report-page/report-page.component';
+import { PayrollProgressBarComponent } from './components/payroll/payroll-progress-bar/payroll-progress-bar.component';
 
 
 export function getAccessToken(): string {
@@ -244,6 +245,7 @@ export const jwtConfig = {
     RefreshAttendanceComponent,
     HrReportComponent,
     ReportPageComponent,
+    PayrollProgressBarComponent,
     // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],

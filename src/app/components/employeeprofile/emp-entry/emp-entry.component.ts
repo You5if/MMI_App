@@ -235,7 +235,23 @@ export class EmpEntryComponent {
 
   // public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
   public selectedDepartment: string = ''; // Variable to store the selected department
-  public jobTitles: string[] = ['Painter', 'Fabricator', 'Wielder', 'Accountant']; // Sample departments
+  public jobTitles: string[] = [
+    "Acountant" ,    
+"Humen Resourses Officer",     
+"Draftsman",     
+"Purchasing Officer",     
+"Oparation Manager",     
+"Production Manager",    
+"Foreman",     
+"Machine Oparator",     
+"Fabracator",     
+"Painter",     
+"Welder",     
+"Electrition",      
+"Store keeper",     
+"Office Boy",     
+"Helper"
+  ]; // Sample departments
   public selectedJobTitle: string = ''; // Variable to store the selected department
   public selectedSupervisor: number = 1
   public biomId = '';
@@ -287,13 +303,17 @@ export class EmpEntryComponent {
 
   submitDisable: boolean = false;
 
-  departments: [
-    "HR",
-"Production",
-"Finance",
-"Operation",
-"Engineering and design",
-"Administration"
+  departments: string[] = [
+    "Administration",      
+ "Finance" ,    
+ "Hummen Resourses"  ,   
+ "Enginering and designing",    
+ "Marketing and Sales",      
+ "Procurments",     
+ "Public Relations",     
+ "Oparations",      
+ "Production",      
+ "Services"
   ]
 
   @ViewChild('heroForm') ngForm!: NgForm;

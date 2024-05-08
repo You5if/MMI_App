@@ -12,6 +12,10 @@
 }
 .navItem {
     background: #f4f7fa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 .login-body {
     width: 100%;

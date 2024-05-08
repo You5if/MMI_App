@@ -1,0 +1,42 @@
+.main-line {
+    display: flex;
+    flex-direction: row;
+}
+.progress-bar {
+    width: 250px;
+    height: 10px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: rgba(100, 255, 95, 0.8);
+    transition: width 3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .progress::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(116, 202, 113, 0.8), transparent);
+    animation: shimmer 3s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
