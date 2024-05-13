@@ -19,7 +19,7 @@ mat-button
     </div>
    
    <div class="card first-card" >
-       <div class="card-head">Sale order data</div>
+       <div class="card-head">Stock consumption</div>
        <div class="card-body">
            
            <!-- <mat-form-field style="margin-right: 10px;">
@@ -39,22 +39,22 @@ mat-button
                <mat-datepicker #picker></mat-datepicker>
              </mat-form-field>
            <mat-divider></mat-divider>
-           <!-- <mat-form-field style="margin-right: 10px;">
-               <mat-label>Cost center</mat-label>
-               <mat-select [disabled]="submitDisable" [(ngModel)]="costCenId" name="constCenId">
-                 <mat-option *ngFor="let employee of costCens" [value]="employee.id">{{ employee.name }}</mat-option>
+           <mat-form-field style="margin-right: 10px;">
+               <mat-label>Warehouse</mat-label>
+               <mat-select [disabled]="submitDisable" [(ngModel)]="warehouseId" name="warehouseId">
+                 <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse.name }}</mat-option>
                </mat-select>
-           </mat-form-field> -->
+           </mat-form-field>
            <!-- <mat-form-field style="margin-right: 10px;">
                <mat-label>CustomerId</mat-label>
                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="SupplierId"  [(ngModel)]="CustomerId" name="SupplierId">
            </mat-form-field> -->
 
            
-           <mat-form-field style="margin-right: 10px;">
+           <!-- <mat-form-field style="margin-right: 10px;">
             <mat-label>WarehouseId</mat-label>
             <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="WarehouseId"  [(ngModel)]="warehouseId" name="WarehouseId">
-        </mat-form-field>
+        </mat-form-field> -->
         
         <mat-form-field style="margin-right: 10px;">
             <mat-label>Remarks</mat-label>
@@ -69,13 +69,19 @@ mat-button
        <button mat-stroked-button type="button" (click)="addNewChild()">Add Entry</button>
    </div>
 
-   <div *ngFor="let childTenure of childs">
+   <div *ngFor="let childTenure of childs; let i = index">
        <div class="card">
            <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
+                <mat-label>Product</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="childTenure.ProductId" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>ProductId</mat-label>
                 <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="ProductId"  [(ngModel)]="childTenure.ProductId"  [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Quantity</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Qty" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Qty" [ngModelOptions]="{standalone: true}">

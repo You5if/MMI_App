@@ -85,6 +85,7 @@ import { CreditNoteComponent } from './components/credit-note/credit-note.compon
 import { CreditNoteEntryComponent } from './components/credit-note/credit-note-entry/credit-note-entry.component';
 import { HrReportComponent } from './reports/hr-report/hr-report.component';
 import { ReportPageComponent } from './reports/report-page/report-page.component';
+import { InvReportComponent } from './reports/inv-report/inv-report.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -182,6 +183,7 @@ const routes: Routes = [
   //Reports
   { path: "report-page", component: ReportPageComponent },
   {path: 'hr-report', component: HrReportComponent},
+  {path: 'inv-report', component: InvReportComponent},
 
   ]},
   // {path: 'products', component: ProductsComponent},

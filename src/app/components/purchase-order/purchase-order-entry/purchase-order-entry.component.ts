@@ -27,8 +27,9 @@ export class PurchaseOrderEntryComponent {
   loanTypeId!: number;
   purInvId: number = 0;
   employeeId!: number;
-  accounts: any[] = []
-  costCens: any[] = []
+  warehouses: any[] = []
+  suppliers: any[] = []
+  products: any[] = []
 
   invCode: string = ''
   invDate =  new Date();
@@ -62,17 +63,26 @@ export class PurchaseOrderEntryComponent {
   
     ngOnInit():void {
       console.log(this.requestDate);
-      this.journalService.getDropdown().subscribe({
+      console.log(this.requestDate);
+      this.journalService.getWarehouses().subscribe({
         next: (value) => {
-          this.accounts = value
+          this.warehouses = value
         },
         error: (err) => {
           console.error('API Error:', err);
         },
       })
-      this.journalService.getDropdown2().subscribe({
+      this.journalService.getSuppliers().subscribe({
         next: (value) => {
-          this.costCens = value
+          this.suppliers = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
+      this.journalService.getProducts().subscribe({
+        next: (value) => {
+          this.products = value
         },
         error: (err) => {
           console.error('API Error:', err);
@@ -164,6 +174,7 @@ export class PurchaseOrderEntryComponent {
       } else {
         console.log("Invalid loan tenure specified.");
       }
+      this.updateTaxAmount()
     }
   
     addNewChild() {
@@ -172,16 +183,41 @@ export class PurchaseOrderEntryComponent {
             "PurInvDetId": 0,
               "PurInvId": 0,
               "ProductId": 1,
-              "Qty": 20.00,
-              "CostPrice": 15.50,
-              "Discount": 2.00,
-              "NetCost": 153.00,
-              "SalePrice": 20.00,
+              "Qty": 0.00,
+              "CostPrice": 0.00,
+              "Discount": 0.00,
+              "NetCost": 0.00,
+              "SalePrice": 0.00,
               "Deleted" : false
           };
   
           this.childs.push(additionalLoanChild)
     
+    }
+
+    calculateNetCost(childTenure: any, i: number) {
+      const quantity = Number(childTenure.Qty) || 0;
+      const costPrice = Number(childTenure.CostPrice) || 0;
+      const discount = Number(childTenure.Discount) || 0;
+
+      childTenure.NetCost = (quantity * costPrice) - discount;
+      this.updateTaxAmount()
+    }
+
+    calculateTotalNetCost() {
+      let totalNetCost = 0;
+      for (const child of this.childs) {
+        totalNetCost += child.NetCost;
+      }
+      return totalNetCost;
+    }
+
+    updateTaxAmount() {
+      if (this.isTaxable) {
+        this.tax = this.calculateTotalNetCost();
+      } else {
+        this.tax = 0;
+      }
     }
   
    

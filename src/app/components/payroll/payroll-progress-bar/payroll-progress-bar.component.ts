@@ -13,7 +13,7 @@ export class PayrollProgressBarComponent implements OnInit {
   @Input() timeLoad = 0;
   @Input() refreshScreen = false;
   @Output() canceled = new EventEmitter<void>();
-  message: string = "Processing payroll!"
+  @Input() message: string = ""
 
 
 
@@ -42,37 +42,41 @@ export class PayrollProgressBarComponent implements OnInit {
     this.progressPercentage = 0;
     this.isProgressComplete = false;
     const increment = 100 / (this.timeLoad * 10); // 150 steps in 15 seconds
+    this.progressInterval = setInterval(() => {
+      this.progressPercentage += increment;
+      if (this.progressPercentage > 100) {
+        this.progressPercentage = 100;
+        this.isProgressComplete = true;
+        this.message = "Success!"
+        clearInterval(this.progressInterval);
+        this.canceled.emit();
+      }
+    }, 100);
     if (this.refreshScreen) {
       this.service.getStatusRefresh().subscribe((response) => {
-        this.progressInterval = setInterval(() => {
-          this.progressPercentage += increment;
-          if (this.progressPercentage > 100) {
-            this.progressPercentage = 100;
-            this.isProgressComplete = true;
-            this.message = "Success!"
-            clearInterval(this.progressInterval);
-            this.canceled.emit();
-          }
-        }, 100);
+        console.log(response);
+        
       }, (error) => {
-        this.message = " Error!"
-        this.cancelProgress()
+        // this.message = " Error!"
+        // this.cancelProgress()
       })
     }else {
       this.service.getStatusPayroll().subscribe((response) => {
-        this.progressInterval = setInterval(() => {
-          this.progressPercentage += increment;
-          if (this.progressPercentage > 100) {
-            this.progressPercentage = 100;
-            this.isProgressComplete = true;
-            this.message = "Success!"
-            clearInterval(this.progressInterval);
-            this.canceled.emit();
-          }
-        }, 100);
+        console.log(response);
+        
+        // this.progressInterval = setInterval(() => {
+        //   this.progressPercentage += increment;
+        //   if (this.progressPercentage > 100) {
+        //     this.progressPercentage = 100;
+        //     this.isProgressComplete = true;
+        //     this.message = "Success!"
+        //     clearInterval(this.progressInterval);
+        //     this.canceled.emit();
+        //   }
+        // }, 100);
       }, (error) => {
-        this.message = " Error!"
-        this.cancelProgress()
+        // this.message = " Error!"
+        // this.cancelProgress()
       })
     }
   }

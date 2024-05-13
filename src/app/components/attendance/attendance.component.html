@@ -29,7 +29,7 @@ type="button"
   Refresh attendance
 </button>
 
-<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
+<app-payroll-progress-bar [isProgressActive]="showLoading" [message]="'Processing attendance !'"  [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
 
 <!-- <button *ngIf="screenMode === 'index'"
     (click)="btnClickCreate();"

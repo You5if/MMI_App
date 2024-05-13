@@ -45,6 +45,10 @@ export class StockMoveEntryComponent {
   tax: number = 0.00;
   description: string = '';
   isTaxable: boolean = false;
+
+  warehouses: any[] = []
+  suppliers: any[] = []
+  products: any[] = []
   
     constructor(
       private journalService: StockMoveService,
@@ -62,6 +66,30 @@ export class StockMoveEntryComponent {
   
     ngOnInit():void {
       console.log(this.requestDate);
+      this.journalService.getWarehouses().subscribe({
+        next: (value) => {
+          this.warehouses = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
+      // this.journalService.getSuppliers().subscribe({
+      //   next: (value) => {
+      //     this.suppliers = value
+      //   },
+      //   error: (err) => {
+      //     console.error('API Error:', err);
+      //   },
+      // })
+      this.journalService.getProducts().subscribe({
+        next: (value) => {
+          this.products = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
       // this.journalService.getDropdown().subscribe({
       //   next: (value) => {
       //     this.accounts = value

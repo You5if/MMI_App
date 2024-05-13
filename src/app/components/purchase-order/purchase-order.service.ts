@@ -40,6 +40,15 @@ getDropdown(): Observable<any> {
 getDropdown2(): Observable<any> { 
   return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/costcenid/costcen/centername/active=1 and costcenid>1/false', this._cf.requestOptions());
 }
+getWarehouses(): Observable<any> { 
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/warehouseid/warehouse/warename/active=1 and warehouseid>1/false', this._cf.requestOptions());
+}
+getProducts(): Observable<any> { 
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/productid/product/prodname/active=1 and productid>1/false', this._cf.requestOptions());
+}
+getSuppliers(): Observable<any> { 
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/supplierid/supplier/suppname/active=1 and supplierid>1/false', this._cf.requestOptions());
+}
 
 
 getRecordEntry(id: number): Observable<any> {

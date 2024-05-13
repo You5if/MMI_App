@@ -614,7 +614,7 @@ export const navbarData: INavbarData[] = [
                 } 
             },
             {
-                routeLink: 'inventory-report',
+                routeLink: 'inv-report',
                 label: 'Report',
                 roles: ["2", "3", "5"],
                 svgicon: {

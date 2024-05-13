@@ -49,13 +49,26 @@ mat-button
            </mat-form-field> -->
 
            
-           <mat-form-field style="margin-right: 10px;">
+           <!-- <mat-form-field style="margin-right: 10px;">
             <mat-label>From warehouse</mat-label>
             <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="From warehouse"  [(ngModel)]="fromWarehouse" name="fromWarehouse">
         </mat-form-field>
            <mat-form-field style="margin-right: 10px;">
             <mat-label>To warehouse</mat-label>
             <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="To warehouse"  [(ngModel)]="toWarehouse" name="toWarehouse">
+        </mat-form-field> -->
+
+        <mat-form-field style="margin-right: 10px;">
+            <mat-label>From warehouse</mat-label>
+            <mat-select [disabled]="submitDisable" [(ngModel)]="fromWarehouse" name="fromWarehouse">
+              <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field style="margin-right: 10px;">
+            <mat-label>To arehouse</mat-label>
+            <mat-select [disabled]="submitDisable" [(ngModel)]="toWarehouse" name="toWarehouse">
+              <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse.name }}</mat-option>
+            </mat-select>
         </mat-form-field>
         
         <mat-form-field style="margin-right: 10px;">
@@ -74,9 +87,15 @@ mat-button
    <div *ngFor="let childTenure of childs">
        <div class="card">
            <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;">
                 <mat-label>ProductId</mat-label>
                 <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="ProductId"  [(ngModel)]="childTenure.ProductId"  [ngModelOptions]="{standalone: true}">
+            </mat-form-field> -->
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Product</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="childTenure.ProductId" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Quantity</mat-label>

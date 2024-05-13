@@ -75,12 +75,12 @@ mat-button
         <div class="card-head">Agreement earning</div>
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
-                <mat-label>Earn 1</mat-label>
+                <mat-label>Basic</mat-label>
                 <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 1" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="earn1" name="earn1"  >
                 <mat-error *ngIf="earn1 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
-                <mat-label>Earn 2</mat-label>
+                <mat-label>Allowance</mat-label>
                 <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 2" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="earn2" name="earn2"  >
                 <mat-error *ngIf="earn2 < 0">Negative value</mat-error>
             </mat-form-field>
@@ -91,7 +91,7 @@ mat-button
             </mat-form-field>
         </div>
     </div>
-    <div class="card" >
+    <!-- <div class="card" >
         <div class="card-head">Agreement deduction</div>
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
@@ -110,6 +110,6 @@ mat-button
                 <mat-error *ngIf="ded3 < 0">Negative value</mat-error>
             </mat-form-field>
         </div>
-    </div>
+    </div> -->
     
 </form>

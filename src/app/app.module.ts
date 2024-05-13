@@ -130,6 +130,7 @@ import { RefreshAttendanceComponent } from './components/general-operations/refr
 import { HrReportComponent } from './reports/hr-report/hr-report.component';
 import { ReportPageComponent, SafePipe } from './reports/report-page/report-page.component';
 import { PayrollProgressBarComponent } from './components/payroll/payroll-progress-bar/payroll-progress-bar.component';
+import { InvReportComponent } from './reports/inv-report/inv-report.component';
 
 
 export function getAccessToken(): string {
@@ -238,7 +239,7 @@ export const jwtConfig = {
     StockOutEntryComponent,
     StockMoveComponent,
     StockMoveEntryComponent,
-    StockReturnComponent,
+    StockReturnComponent, 
     StockReturnEntryComponent,
     CreditNoteComponent,
     CreditNoteEntryComponent,
@@ -246,6 +247,7 @@ export const jwtConfig = {
     HrReportComponent,
     ReportPageComponent,
     PayrollProgressBarComponent,
+    InvReportComponent,
     // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],

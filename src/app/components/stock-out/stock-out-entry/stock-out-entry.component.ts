@@ -27,6 +27,9 @@ export class StockOutEntryComponent {
   stockOutId: number = 0;
   employeeId!: number;
   accounts: any[] = []
+  warehouses: any[] = []
+  suppliers: any[] = []
+  products: any[] = []
   costCens: any[] = []
 
   stockOutCode: string = ''
@@ -61,22 +64,30 @@ export class StockOutEntryComponent {
   
     ngOnInit():void {
       console.log(this.requestDate);
-      // this.journalService.getDropdown().subscribe({
+      this.journalService.getWarehouses().subscribe({
+        next: (value) => {
+          this.warehouses = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
+      // this.journalService.getSuppliers().subscribe({
       //   next: (value) => {
-      //     this.accounts = value
+      //     this.suppliers = value
       //   },
       //   error: (err) => {
       //     console.error('API Error:', err);
       //   },
       // })
-      // this.journalService.getDropdown2().subscribe({
-      //   next: (value) => {
-      //     this.costCens = value
-      //   },
-      //   error: (err) => {
-      //     console.error('API Error:', err);
-      //   },
-      // })
+      this.journalService.getProducts().subscribe({
+        next: (value) => {
+          this.products = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
       
       this.activeRoute.params.subscribe(
         param => {
