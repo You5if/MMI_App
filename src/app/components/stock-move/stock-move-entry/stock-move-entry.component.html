@@ -65,7 +65,7 @@ mat-button
             </mat-select>
         </mat-form-field>
         <mat-form-field style="margin-right: 10px;">
-            <mat-label>To arehouse</mat-label>
+            <mat-label>To warehouse</mat-label>
             <mat-select [disabled]="submitDisable" [(ngModel)]="toWarehouse" name="toWarehouse">
               <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse.name }}</mat-option>
             </mat-select>

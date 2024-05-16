@@ -51,6 +51,13 @@ color="primary"
             <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
           </ng-container>
         
+          <ng-container matColumnDef="Remarks">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Remarks
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+        
     
         <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     
@@ -99,6 +106,13 @@ color="primary"
               Tax
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.tax}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Remarks">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Remarks
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.remarks}}</mat-cell>
           </ng-container>
           
       

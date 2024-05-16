@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ReportPageService } from '../report-page/report-page.service';
 import { Router } from '@angular/router';
+import { ProductService } from '../../components/product/product.service';
 
 @Component({
   selector: 'app-hr-report',
@@ -21,10 +22,17 @@ export class HrReportComponent {
    payRollMonth: number = 1
    payRollYear: number = 2024
 
+   fromDate: Date = new Date()
+   toDate: Date = new Date()
+
+   products: any[] = []
+
    constructor(
     private _report: ReportPageService,
     private router: Router
    ) {}
+
+   
 
    fetchReport(id: number, month: number, year: number) {
     console.log(id, month, year);
@@ -32,6 +40,22 @@ export class HrReportComponent {
     let restOfUrl: string; 
       restOfUrl = 'month=' + month; 
       restOfUrl = restOfUrl + '&year=' + year;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      this.router.navigate(['system/report-page']);
+   }
+
+   fetchIdReport(id: number) {
+    
+    let restOfUrl: string = '';
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      this.router.navigate(['system/report-page']);
+   }
+
+   fetchDateReport(id: number, fromDate: Date, toDate: Date) {
+    
+    let restOfUrl: string;
+    restOfUrl = 'from=' + fromDate; 
+    restOfUrl = restOfUrl + '&to=' + toDate; 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       this.router.navigate(['system/report-page']);
    }

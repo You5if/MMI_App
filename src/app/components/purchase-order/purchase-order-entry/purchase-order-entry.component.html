@@ -49,7 +49,7 @@ mat-button
                <mat-label>SupplierId</mat-label>
                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="SupplierId"  [(ngModel)]="supplierId" name="SupplierId">
            </mat-form-field> -->
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;width: 100%;">
             <mat-label>Supplier</mat-label>
             <mat-select [disabled]="submitDisable" [(ngModel)]="supplierId" name="supplierId">
               <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</mat-option>
@@ -95,7 +95,7 @@ mat-button
    <div *ngFor="let childTenure of childs; let i = index">
        <div class="card">
            <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
                 <mat-label>Product</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="childTenure.ProductId" [ngModelOptions]="{standalone: true}">
                   <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>

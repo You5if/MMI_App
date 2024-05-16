@@ -34,6 +34,10 @@ export class ProductService {
   getDropdown(): Observable<any> { 
     return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/accountid/account/accname/active=1 and accountid>1/false', this._cf.requestOptions());
   }
+
+  getProducts(): Observable<any> { 
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/productid/product/prodname/active=1 and productid>1/false', this._cf.requestOptions());
+  }
   
   getRecordEntry(id: number): Observable<any> {
       return this.httpclient.get<any>(this._globals.baseAPIUrl + "Product/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(

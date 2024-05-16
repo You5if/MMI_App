@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReportPageService } from '../report-page/report-page.service';
+import { ProductService } from '../../components/product/product.service';
 
 @Component({
   selector: 'app-inv-report',
@@ -21,16 +22,37 @@ export class InvReportComponent {
    payRollMonth: number = 1
    payRollYear: number = 2024
 
+   productId: number = 1
+
+   products: any[] = []
+
    constructor(
     private _report: ReportPageService,
+    private productService: ProductService,
     private router: Router
    ) {}
 
-   fetchReport(id: number, month: number, year: number) {
-    console.log(id, month, year);
+   ngOnInit(): void {
+    this.productService.getProducts().subscribe({
+      next: (value) => {
+        this.products = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
+   }
+
+   fetchIdReport(id: number) {
     
     let restOfUrl: string = ''; 
-      // restOfUrl = 'month=' + month; 
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      this.router.navigate(['system/report-page']);
+   }
+   fetchProductReport(id: number, productId: number) {
+    
+    let restOfUrl: string = ''; 
+      restOfUrl = 'productid=' + productId; 
       // restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       this.router.navigate(['system/report-page']);
