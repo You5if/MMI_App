@@ -41,6 +41,10 @@ getDropdown2(): Observable<any> {
   return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/costcenid/costcen/centername/active=1 and costcenid>1/false', this._cf.requestOptions());
 }
 
+getProducts(): Observable<any> { 
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/productid/product/prodname/active=1 and productid>1/false', this._cf.requestOptions());
+}
+
 
 getRecordEntry(id: number): Observable<any> {
   

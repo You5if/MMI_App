@@ -95,19 +95,49 @@
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>From date</mat-label>
-                <input id="firstName"  matInput [matDatepicker]="picker" [(ngModel)]="fromDate" name="fromDate">
+                <input   matInput [matDatepicker]="picker1" [(ngModel)]="fromDate" name="fromDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>To date</mat-label>
-                <input id="firstName"  matInput [matDatepicker]="picker" [(ngModel)]="toDate" name="toDate">
+                <input   matInput [matDatepicker]="picker2" [(ngModel)]="toDate" name="toDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
             <button mat-stroked-button color="primary"  (click)="fetchDateReport(9, fromDate, toDate)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Employee profile</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="empIdReport11" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(11, empIdReport11)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Final settlement</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="empIdReport12" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(12, empIdReport12)" type="button" >Fetch</button>
 
         </div>
       </div>

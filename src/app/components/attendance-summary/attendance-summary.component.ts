@@ -11,6 +11,7 @@ import { CheckDeleteComponent } from '../general-operations/tenure-options/check
 import { AttendanceService } from '../attendance/attendance.service';
 import { AttendanceSummaryService } from './attendance-summary.service';
 import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
+import { FilterByComponent } from '../general-operations/filter-by/filter-by.component';
 
 @Component({
   selector: 'app-attendance-summary',
@@ -27,7 +28,12 @@ export class AttendanceSummaryComponent {
   // screen mode
   screenMode = 'index';
 
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
   // index variables
+  sort: string = ""
+  filter: string  =""
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
@@ -92,7 +98,7 @@ export class AttendanceSummaryComponent {
     this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
-    this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: AttendanceSummaryModel[]) => {
+    this._cf.newGetPageData(this.pTableName, this.pageData, this.sort, this.filter).subscribe((result: AttendanceSummaryModel[]) => {
       // this._ui.loadingStateChanged.next(false);
       this.dataIsLoaded = true
       // this._ui.loadingStateChanged.next(false);
@@ -111,13 +117,112 @@ export class AttendanceSummaryComponent {
     // }
   }
 
+  onSearch() {
+    console.log(this.searchText);
+    const term = "'%"+this.searchText+"%'"
+    const encodedSearchTerm = encodeURIComponent(term);
+    this.nameFilter = "employeeName like "+encodedSearchTerm
+    if (this.dateFilter === "") {
+      this.filter = this.nameFilter
+      console.log(this.filter);
+      
+      this.refreshMe()
+    }else {
+      this.filter = this.nameFilter + " and "+ this.dateFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }
+
+  }
+  onClearSearch() {
+    this.searchText = ''
+    this.nameFilter = ""
+    if (this.nameFilter === "" && this.dateFilter != "") {
+      this.filter = this.dateFilter
+      console.log(this.filter);
+      
+      this.refreshMe()
+    }else if (this.nameFilter != "" && this.dateFilter === "") {
+      this.filter = this.nameFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }else if (this.nameFilter != "" && this.dateFilter != "") {
+      this.filter = this.nameFilter + " and "+ this.dateFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }else if (this.nameFilter === "" && this.dateFilter === "") {
+      this.filter = ""
+      console.log(this.filter);
+      this.refreshMe()
+    }
+      console.log(this.filter);
+      
+      this.refreshMe()
+  }
+
+  onAsc() {
+    this.sort = 'employeeName asc'
+    this.refreshMe()
+    }
+    onDesc() {
+    this.sort = 'employeeName desc'
+    this.refreshMe()
+    }
+    onClearSort() {
+    this.sort = ""
+    this.refreshMe()
+    }
+
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
+
+    onFilterByDate() {
+      if(this.dialog.openDialogs.length==0){
+        const dialogRef = this.dialog.open(FilterByComponent, {
+         disableClose: true,
+        //  data: {
+        //   parentScreen: "Attendance"
+        //  }
+       });
+  
+       dialogRef.afterClosed().subscribe((result: string) => {
+        console.log(result);
+        this.dateFilter = "AttDate "+result
+        if (this.nameFilter === "" && this.dateFilter != "") {
+          this.filter = this.dateFilter
+          console.log(this.filter);
+          
+          this.refreshMe()
+        }else if (this.nameFilter != "" && this.dateFilter === "") {
+          this.filter = this.nameFilter
+          console.log(this.filter);
+          this.refreshMe()
+        }else if (this.nameFilter != "" && this.dateFilter != "") {
+          this.filter = this.nameFilter + " and "+ this.dateFilter
+          console.log(this.filter);
+          this.refreshMe()
+        }else if (this.nameFilter === "" && this.dateFilter === "") {
+          this.filter = ""
+          console.log(this.filter);
+          this.refreshMe()
+        }
+        // this.adjustLoanDistribution(result);
+       })
+      }
+    }
+
   paginatoryOperation(event: PageEvent ): any {
     console.log(event);
     try {
       this.pageData.recordsPerPage = event.pageSize
       this.pageData.pageNo = event.pageIndex+1;
       console.log('records: ', event.pageSize);
-      this._cf.newGetPageDataOnPaginatorOperation(event, this.pTableName, this.pageData).subscribe(
+      this._cf.newGetPageDataOnPaginatorOperation(event, this.pTableName, this.pageData, this.sort, this.filter).subscribe(
           (result: any) => {
             //this._ui.loadingStateChanged.next(false);
             this.totalRecords = result[0].totalRecords;

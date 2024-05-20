@@ -20,7 +20,6 @@
 } */
 body {
     position: relative;
-    font-family: 'Roboto', sans-serif;
     background-color: #f4f7fa;
     /* font-family: 'MyFont', sans-serif; */
     
@@ -30,6 +29,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 .card {

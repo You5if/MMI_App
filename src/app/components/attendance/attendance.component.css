@@ -1,3 +1,61 @@
+.upload_icon {
+    color: #141E46;
+    /* color: #00ADB5; */
+}
+.refresh_icon {
+    color: #141E46;
+}
+.refresh_icon2 {
+    color: #141E46;
+    margin-right: 10px;
+}
+.action-input {
+    border: none;
+    background: #f4f7fa;
+    border-bottom: 1px solid lightgray; /* Change the color as desired */
+    outline: none;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .search-button {
+    background: #00ADB5;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .search-button:hover {
+    background: #007c83;
+    color: white;
+  }
+.action-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+.action-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+@media (max-width: 600px) {
+    .action-bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+}
 .example-card {
     width: 210px;
     margin: 1rem 1.5rem;

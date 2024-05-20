@@ -29,6 +29,7 @@ export class StockReturnEntryComponent {
   employeeId!: number;
   accounts: any[] = []
   costCens: any[] = []
+  products: any[] = []
 
   StockReturnCode: string = ''
   StockReturnDate =  new Date();
@@ -72,6 +73,14 @@ export class StockReturnEntryComponent {
       this.journalService.getDropdown().subscribe({
         next: (value) => {
           this.accounts = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
+      this.journalService.getProducts().subscribe({
+        next: (value) => {
+          this.products = value
         },
         error: (err) => {
           console.error('API Error:', err);

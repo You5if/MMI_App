@@ -45,6 +45,7 @@ export class SaleOrderEntryComponent {
   tax: number = 0.00;
   description: string = '';
   isTaxable: boolean = false;
+  warehouses: any[] = []
   
     constructor(
       private journalService: SaleOrderService,
@@ -62,6 +63,14 @@ export class SaleOrderEntryComponent {
   
     ngOnInit():void {
       console.log(this.requestDate);
+      this.journalService.getWarehouses().subscribe({
+        next: (value) => {
+          this.warehouses = value
+        },
+        error: (err) => {
+          console.error('API Error:', err);
+        },
+      })
       // this.journalService.getDropdown().subscribe({
       //   next: (value) => {
       //     this.accounts = value

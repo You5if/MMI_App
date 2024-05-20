@@ -214,7 +214,8 @@ export class PurchaseOrderEntryComponent {
 
     updateTaxAmount() {
       if (this.isTaxable) {
-        this.tax = this.calculateTotalNetCost();
+        const totalNetCost = this.calculateTotalNetCost();
+        this.tax = totalNetCost * 0.05; // 5% of total net cost
       } else {
         this.tax = 0;
       }

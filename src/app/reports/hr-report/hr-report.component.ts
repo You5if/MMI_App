@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ReportPageService } from '../report-page/report-page.service';
 import { Router } from '@angular/router';
 import { ProductService } from '../../components/product/product.service';
+import { AgreementService } from '../../components/agreement/agreement.service';
 
 @Component({
   selector: 'app-hr-report',
@@ -26,11 +27,27 @@ export class HrReportComponent {
    toDate: Date = new Date()
 
    products: any[] = []
+   employees: any[] = []
+
+   empIdReport11: number = 1
+   empIdReport12: number = 1
 
    constructor(
+    private AgreementServcie: AgreementService,
     private _report: ReportPageService,
     private router: Router
    ) {}
+
+   ngOnInit(): void {
+    this.AgreementServcie.getDropdown().subscribe({
+      next: (value) => {
+        this.employees = value
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+      },
+    })
+   }
 
    
 
@@ -59,5 +76,15 @@ export class HrReportComponent {
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       this.router.navigate(['system/report-page']);
    }
+
+   fetchEmpReport(id: number, empId: number) {
+    
+    let restOfUrl: string = ''; 
+      restOfUrl = 'empid=' + empId; 
+      // restOfUrl = restOfUrl + '&year=' + year;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      this.router.navigate(['system/report-page']);
+   }
+
 
 }

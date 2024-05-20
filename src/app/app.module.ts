@@ -1,18 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { MatFormField, MatFormFieldControl, MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from '@angular/material/input';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators, FormControl, FormGroupDirective, NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from "@angular/material/card";
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { LoginComponent } from './components/login/login.component';
 import { TestworkComponent } from './components/testwork/testwork.component';
 import { BodyComponent } from './components/body/body.component';
@@ -26,16 +18,12 @@ import { SublevelMenuComponent } from './components/sidenav/sublevel-menu.compon
 import { EmployeeprofileComponent } from './components/employeeprofile/employeeprofile.component';
 import { EmployeeProfileService } from './components/employeeprofile/employeeprofile.service';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { EmpEntryComponent } from './components/employeeprofile/emp-entry/emp-entry.component';
 import { TitleCaseDirective } from './directives/TitleCaseDirective';
 import { LoanEntryComponent } from './components/loan/loan-entry/loan-entry.component';
 import { LoanComponent } from './components/loan/loan.component';
 import { LoanEntryChildComponent } from './components/loan/loan-entry/loan-entry-child/loan-entry-child.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { CheckTenuresComponent } from './components/general-operations/tenure-options/check-tenures.component';
 import { AmountIsLessComponent } from './components/general-operations/tenure-options/AmountIsLess.component copy';
 import { SaveChangesComponent } from './components/general-operations/tenure-options/save-changes.component';
@@ -54,7 +42,6 @@ import { AddRoleComponent } from './components/users/add-role.component';
 import { PublicHolidayComponent } from './components/public-holiday/public-holiday.component';
 import { PublicHolidayEntryComponent } from './components/public-holiday/public-holiday-entry/public-holiday-entry.component';
 import { CompanyWeekendComponent } from './components/company-weekend/company-weekend.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { DayWorkingHoursComponent } from './components/day-working-hours/day-working-hours.component';
 import { DayWorkingHoursEntryComponent } from './components/day-working-hours/day-working-hours-entry/day-working-hours-entry.component';
 import { AgreementComponent } from './components/agreement/agreement.component';
@@ -65,9 +52,6 @@ import { EmpInventoryComponent } from './components/emp-inventory/emp-inventory.
 import { EmpInventoryEntryComponent } from './components/emp-inventory/emp-inventory-entry/emp-inventory-entry.component';
 import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveEntryComponent } from './components/leave/leave-entry/leave-entry.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
 import { ChangeRoleComponent } from './components/general-operations/change-role.component';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -131,6 +115,8 @@ import { HrReportComponent } from './reports/hr-report/hr-report.component';
 import { ReportPageComponent, SafePipe } from './reports/report-page/report-page.component';
 import { PayrollProgressBarComponent } from './components/payroll/payroll-progress-bar/payroll-progress-bar.component';
 import { InvReportComponent } from './reports/inv-report/inv-report.component';
+import { MaterialModule } from './material.module';
+import { FilterByComponent } from './components/general-operations/filter-by/filter-by.component';
 
 
 export function getAccessToken(): string {
@@ -248,6 +234,7 @@ export const jwtConfig = {
     ReportPageComponent,
     PayrollProgressBarComponent,
     InvReportComponent,
+    FilterByComponent,
     // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],
@@ -255,23 +242,8 @@ export const jwtConfig = {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatIconModule,
-    MatDialogModule,
     ReactiveFormsModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatDividerModule,
-    MatSlideToggleModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatMenuModule,
+    
     NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...',
      theme:{ 
       extendsFromRoot: true,
@@ -283,6 +255,7 @@ export const jwtConfig = {
     }
   }),
     FormsModule,
+    MaterialModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: jwtConfig

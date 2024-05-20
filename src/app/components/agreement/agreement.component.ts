@@ -26,6 +26,8 @@ export class AgreementComponent {
   screenMode = 'index';
 
   // index variables
+  sort: string = ""
+  filter: string  =""
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
@@ -86,7 +88,7 @@ export class AgreementComponent {
     this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
-    this._cf.newGetPageData(this.pTableName, this.pageData).subscribe((result: AgreementModel[]) => {
+    this._cf.newGetPageData(this.pTableName, this.pageData, this.sort, this.filter).subscribe((result: AgreementModel[]) => {
       // this._ui.loadingStateChanged.next(false);
       this.dataIsLoaded = true
       // this._ui.loadingStateChanged.next(false);
@@ -111,7 +113,7 @@ export class AgreementComponent {
       this.pageData.recordsPerPage = event.pageSize
       this.pageData.pageNo = event.pageIndex+1;
       console.log('records: ', event.pageSize);
-      this._cf.newGetPageDataOnPaginatorOperation(event, this.pTableName, this.pageData).subscribe(
+      this._cf.newGetPageDataOnPaginatorOperation(event, this.pTableName, this.pageData, this.sort, this.filter).subscribe(
           (result: any) => {
             //this._ui.loadingStateChanged.next(false);
             this.totalRecords = result[0].totalRecords;

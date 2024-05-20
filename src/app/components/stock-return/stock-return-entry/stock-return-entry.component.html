@@ -28,7 +28,7 @@ mat-button
            </mat-form-field> -->
            <mat-form-field style="margin-right: 10px;">
                <mat-label>PurInvId</mat-label>
-               <input disabled id="firstName" matInput appTitleCase placeholder="Stock move code"  [(ngModel)]="purInvId" name="PurInvId"  [readonly]="true">
+               <input disabled id="firstName" matInput appTitleCase placeholder="Stock move code"  [(ngModel)]="purInvId" name="PurInvId" >
            </mat-form-field>
 
            <mat-form-field style="margin-right: 10px;">
@@ -93,9 +93,11 @@ mat-button
    <div *ngFor="let childTenure of childs">
        <div class="card">
            <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>ProductId</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="ProductId"  [(ngModel)]="childTenure.ProductId"  [ngModelOptions]="{standalone: true}">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Product</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="childTenure.ProductId" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;">
                 <mat-label>Quantity</mat-label>
