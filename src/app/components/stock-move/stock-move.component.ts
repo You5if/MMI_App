@@ -32,7 +32,7 @@ export class StockMoveComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'journCode', 'journDate', 'tax', 'warehouse2','remarks'];
+  displayedColumns: string[] = [ 'journCode', 'journDate', 'tax', 'warehouse2','remarks'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

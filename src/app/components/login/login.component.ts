@@ -126,10 +126,12 @@ this.companyObject = {
       // this._msg.FillRequired();
       this.loging = false
       console.log(2);
+      this.submitDisable = false
       return false;
     }
     if (this.validateForm(form) !== true) {
       this.loging = false
+      this.submitDisable = false
       console.log(3);
       return false;
     }
@@ -159,12 +161,13 @@ this.companyObject = {
               } else {
                 // console.log('login data',data);
                 
+                this.submitDisable = false
                 this.loging = false
                 // alert("Error!! wrong username or password");
                 // this._msg.showError('Unable to login!');
               }
             }, error => {
-              this.submitDisable = true
+              this.submitDisable = false
               this.loging = false
               // alert("Error!! wrong username or password");
               // console.log('login data');

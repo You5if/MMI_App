@@ -3,6 +3,7 @@ import { ReportPageService } from '../report-page/report-page.service';
 import { Router } from '@angular/router';
 import { ProductService } from '../../components/product/product.service';
 import { AgreementService } from '../../components/agreement/agreement.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-hr-report',
@@ -20,6 +21,8 @@ export class HrReportComponent {
    empAttSumYear: number = 2024
    empPayMonth: number = 1
    empPayYear: number = 2024
+   IncentiveMonth: number = 1
+   IncentiveYear: number = 2024
    payRollMonth: number = 1
    payRollYear: number = 2024
 
@@ -71,8 +74,8 @@ export class HrReportComponent {
    fetchDateReport(id: number, fromDate: Date, toDate: Date) {
     
     let restOfUrl: string;
-    restOfUrl = 'from=' + fromDate; 
-    restOfUrl = restOfUrl + '&to=' + toDate; 
+    restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       this.router.navigate(['system/report-page']);
    }

@@ -15,18 +15,16 @@ export class PayrollProgressBarService {
 
   getStatusPayroll(): Observable<any> {
       
-    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Payrun/runpayroll', this._cf.requestOptions());
+    return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Payrun/runpayroll',this.body, this._cf.requestOptions());
     
 }
-  getStatusRefresh(): Observable<any> {
-      
-    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'EmpAtt/refreshatt', this._cf.requestOptions());
-    
+getStatusRefresh(): Observable<any> {
+  // console.log(obj);
+  
+  return this.httpclient.post<any>(this._globals.baseAPIUrl + 'EmpAtt/refreshatt', this.body, this._cf.requestOptions());
 }
-  notRunning(): Observable<any> {
-      
-    return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Payrun/runpayroll', this._cf.requestOptions());
-    
+notRunning(): Observable<any> {
+  return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Payrun/runpayroll',this.body , this._cf.requestOptions());
 }
   cancelProgress(): Observable<any> {
       

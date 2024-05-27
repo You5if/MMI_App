@@ -1,5 +1,6 @@
 <form #heroForm="ngForm" (keyup)="EnterSubmit($event)" (ngSubmit)="btnClick()" >
-    <button type="submit" 
+    <div class="action-container">
+        <button type="submit" 
    mat-raised-button
    color="primary"
    style="margin-right: 10px;"
@@ -15,6 +16,7 @@ mat-button
  >
  Cancel
 </button>
+    </div>
    
    <div class="card first-card" >
        <div class="card-head">Sale order data</div>

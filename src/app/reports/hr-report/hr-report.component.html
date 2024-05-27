@@ -83,6 +83,27 @@
       </div>
 
       <div class="card" >
+        <div class="card-head">Incentive report</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="IncentiveMonth" name="IncentiveMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="IncentiveYear" name="IncentiveYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(13, IncentiveMonth, IncentiveYear)" type="button" >Fetch</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
         <div class="card-head">Expiration report</div>
         <div class="card-body">
             <button mat-stroked-button color="primary"  (click)="fetchIdReport(8)" type="button" >Fetch</button>
