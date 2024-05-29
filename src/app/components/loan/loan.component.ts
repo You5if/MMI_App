@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { FilterByComponent } from '../general-operations/filter-by/filter-by.component';
 
 @Component({
   selector: 'app-loan',
@@ -25,7 +26,9 @@ export class LoanComponent {
 
   // screen mode
   screenMode = 'index';
-
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
   // index variables
   sort: string = ""
   filter: string  =""
@@ -74,13 +77,13 @@ export class LoanComponent {
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
-      userId: this.pUserId, //later to change to take from token _auth.getUserId(),
+      userId: Number(this._auth.getUserId()), //later to change to take from token _auth.getUserId(),
       recordsPerPage: this.recordsPerPage,
       pageNo: 1,
       transId: 1,
       lastPage: this.isLastPage,
       company: 1,
-      roleId: 1,
+      roleId: Number(this._auth.getRole()),
       browser: '',
       resol: '',
       device: '',
@@ -115,9 +118,104 @@ export class LoanComponent {
 
   // }
 
-  logout() {
-    this._auth.logout()
-  }
+  onAsc(text: string) {
+    this.sort = text + ' asc'
+    this.refreshMe()
+    }
+    onDesc(text: string) {
+    this.sort = text + ' desc'
+    this.refreshMe()
+    }
+    onClearSort() {
+    this.sort = ""
+    this.refreshMe()
+    }
+
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
+
+    onSearch() {
+      console.log(this.searchText);
+      const term = "'%"+this.searchText+"%'"
+      const encodedSearchTerm = encodeURIComponent(term);
+      this.nameFilter = "empName like "+encodedSearchTerm
+      if (this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }
+  
+    }
+    onClearSearch() {
+      this.searchText = ''
+      this.nameFilter = ""
+      if (this.nameFilter === "" && this.dateFilter != "") {
+        this.filter = this.dateFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter != "") {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter === "" && this.dateFilter === "") {
+        this.filter = ""
+        console.log(this.filter);
+        this.refreshMe()
+      }
+        console.log(this.filter);
+        
+        this.refreshMe()
+    }
+
+    onFilterByDate() {
+      if(this.dialog.openDialogs.length==0){
+        const dialogRef = this.dialog.open(FilterByComponent, {
+         disableClose: true,
+        //  data: {
+        //   parentScreen: "Attendance"
+        //  }
+       });
+  
+       dialogRef.afterClosed().subscribe((result: string) => {
+        console.log(result);
+        this.dateFilter = "loanDate "+result
+        if (this.nameFilter === "" && this.dateFilter != "") {
+          this.filter = this.dateFilter
+          console.log(this.filter);
+          
+          this.refreshMe()
+        }else if (this.nameFilter != "" && this.dateFilter === "") {
+          this.filter = this.nameFilter
+          console.log(this.filter);
+          this.refreshMe()
+        }else if (this.nameFilter != "" && this.dateFilter != "") {
+          this.filter = this.nameFilter + " and "+ this.dateFilter
+          console.log(this.filter);
+          this.refreshMe()
+        }else if (this.nameFilter === "" && this.dateFilter === "") {
+          this.filter = ""
+          console.log(this.filter);
+          this.refreshMe()
+        }
+        // this.adjustLoanDistribution(result);
+       })
+      }
+    }
 
   refreshMe() {
     this.dataSource = []

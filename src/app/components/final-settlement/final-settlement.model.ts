@@ -14,6 +14,7 @@ export interface FinalSettleModel  {
     remarks: string
     witness1: number
     witness2: number
+    attachments: string
     isTest: boolean
     active: boolean
     userCR: number
@@ -45,6 +46,7 @@ export interface FinalSettleModel  {
         Remarks: string
         Witness1: number
         Witness2: number
+        Attachments: string
         IsTest: boolean
         Active: boolean
         Deleted: boolean

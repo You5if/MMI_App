@@ -69,7 +69,7 @@ changePassword=  () => {
     const dialogRef = this.dialog.open(ChangePasswordComponent, {
      disableClose: true,
      data: { 
-      appUserId: this._auth.getUserId(),
+      appuserId: Number(this._auth.getUserId()),
       password: ''
      }, 
    });

@@ -17,6 +17,7 @@ export interface TransactionModel  {
     narration: string
     refTo: number
     refKey: number
+    attachments: string
     isTest: boolean
     active: boolean
     userCR: number
@@ -52,6 +53,7 @@ export interface TransactionModel  {
         Narration: string
         RefTo: number
         RefKey: number
+        Attachments: string
         IsTest: boolean
         Active: boolean
         Deleted: boolean

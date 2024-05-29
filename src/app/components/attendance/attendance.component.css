@@ -9,23 +9,32 @@
     color: #141E46;
     margin-right: 10px;
 }
+.sort-title {
+    margin: 0 20px;
+  }
 .action-input {
     border: none;
-    background: #f4f7fa;
-    border-bottom: 1px solid lightgray; /* Change the color as desired */
-    outline: none;
-    margin-right: 10px;
-    padding-bottom: 10px;
+    /* background: #f4f7fa; */
+    border: 1px solid lightgray;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    /* margin-right: 10px; */
+    /* padding-bottom: 10px; */
+    padding-left: 5px;
+    height: 29px;
     font-size: 14px;
+    outline: none;
   }
 
   .search-button {
     background: #00ADB5;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 6px 15px;
+    /* border-radius: 5px; */
     color: white;
     font-weight: bold;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
     font-size: 14px;
     letter-spacing: 1px;
     cursor: pointer;

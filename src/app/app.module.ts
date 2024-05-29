@@ -117,6 +117,7 @@ import { PayrollProgressBarComponent } from './components/payroll/payroll-progre
 import { InvReportComponent } from './reports/inv-report/inv-report.component';
 import { MaterialModule } from './material.module';
 import { FilterByComponent } from './components/general-operations/filter-by/filter-by.component';
+import { CheckLockComponent } from './components/general-operations/tenure-options/check-lock.component';
 
 
 export function getAccessToken(): string {
@@ -235,6 +236,7 @@ export const jwtConfig = {
     PayrollProgressBarComponent,
     InvReportComponent,
     FilterByComponent,
+    CheckLockComponent,
     // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],

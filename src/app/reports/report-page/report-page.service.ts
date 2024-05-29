@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AppGlobals } from '../../app.global';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,20 @@ export class ReportPageService {
   reportId!: number;
   restOfUrl!: string;
 
-  constructor() { }
+  constructor(
+    private global: AppGlobals
+  ) { }
 
   passReportData(data: any) {
-    this.reportId = data.reportId;
-    this.restOfUrl = data.restOfUrl;
+    localStorage.setItem(this.global.baseAPIUrl + 'reportId', data.reportId)
+    localStorage.setItem(this.global.baseAPIUrl + 'restOfUrl', data.restOfUrl)
+    // this.reportId = Number(localStorage.getItem(this.global.baseAPIUrl + 'reportId'));
+    // this.restOfUrl = localStorage.getItem(this.global.baseAPIUrl + 'restOfUrl') || '';
   }
 
   getReportData() {
+    this.reportId = Number(localStorage.getItem(this.global.baseAPIUrl + 'reportId'));
+    this.restOfUrl = localStorage.getItem(this.global.baseAPIUrl + 'restOfUrl') || '';
     const data = { reportId: this.reportId, restOfUrl: this.restOfUrl };
     return data;
   }

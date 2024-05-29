@@ -11,7 +11,7 @@ color="primary"
 <div class="action-bar">
   
   <div class="action-btns">
-    <mat-form-field style="margin-right: 10px;" class="example-form-field">
+    <!-- <mat-form-field style="margin-right: 10px;" class="example-form-field">
       <mat-label>Search employee</mat-label>
       <input matInput type="text" [(ngModel)]="searchText">
       @if (nameFilter) {
@@ -19,10 +19,25 @@ color="primary"
           <mat-icon>close</mat-icon>
         </button>
       }
-    </mat-form-field>
+    </mat-form-field> -->
+     <!-- <mat-form-field style="margin-right: 10px;" class="example-form-field">
+        <mat-label>Search employee</mat-label> -->
+        <input matInput type="text" placeholder="Search by name" class="action-input" [(ngModel)]="searchText">
+        <!-- @if (nameFilter) { -->
+          
+        <!-- } -->
+      <!-- </mat-form-field> -->
+      <!-- <input type="text" matInput placeholder="Search employee" class="action-input" name="sortText" [(ngModel)]="searchText">
+           <button class="upload_icon" mat-icon-button color="basic" *ngIf="nameFilter != ''" (click)="onClearSearch()"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="cancel"></mat-icon></button> -->
+           <button class="search-button" (click)="onSearch()">Search</button>
+            @if (nameFilter) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
     <!-- <input type="text" matInput placeholder="Search employee" class="action-input" name="sortText" [(ngModel)]="searchText">
          <button class="upload_icon" mat-icon-button color="basic" *ngIf="nameFilter != ''" (click)="onClearSearch()"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="cancel"></mat-icon></button> -->
-         <button class="search-button" (click)="onSearch()">Search</button>
+         <!-- <button class="search-button" (click)="onSearch()">Search</button> -->
   </div>
 <div class="action-btns">
   
@@ -66,13 +81,27 @@ class="refresh_icon"
 
 </button>
 <mat-menu #sortMenu="matMenu">
-  <button (click)="onAsc()" mat-menu-item>
-    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-    <span>Asc</span>
+  <button disabled mat-menu-item>
+    <span>Sort by name</span>
   </button>
-  <button (click)="onDesc()" mat-menu-item >
+  <button (click)="onAsc('employeeName')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Ascending</span>
+  </button>
+  <button (click)="onDesc('employeeName')" mat-menu-item >
     <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-    <span>Desc</span>
+    <span>Descending</span>
+  </button>
+  <button disabled mat-menu-item>
+    <span>Sort by date</span>
+  </button>
+  <button (click)="onAsc('attDate')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Ascending</span>
+  </button>
+  <button (click)="onDesc('attDate')" mat-menu-item >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+    <span>Descending</span>
   </button>
   <button (click)="onClearSort()" mat-menu-item>
     <button mat-raised-button color="warn">Clear</button>

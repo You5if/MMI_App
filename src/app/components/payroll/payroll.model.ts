@@ -7,6 +7,7 @@ export interface PayrollModel  {
     amount: number
     remarks: string
     realAmount: number
+    locked: boolean
     isTest: boolean
     active: boolean
     userCR: number

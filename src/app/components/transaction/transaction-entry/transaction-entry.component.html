@@ -153,6 +153,21 @@ mat-button
 
         </div>
     </div>
+
+    <div class="card" >
+        
+        <div class="card-head">Attachments <button class="Btn" type="button" mat-button color="primary" (click)="file2.click()">Upload</button></div>
+        <div class="card-body">
+            <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+            <div *ngFor="let link of links; let i = index">
+                <div class="attach-links">
+                    <a [href]="link.Link" [download]="link.OriginalFileName" target="_blank">{{link.OriginalFileName}}</a>
+                    <button class="Btn" mat-button color="warn" (click)="deleteAttach(i)" type="button">Delete</button>
+                </div>
+                <mat-divider *ngIf="i+1 != links.length"></mat-divider>
+            </div>
+        </div>
+    </div>
  
     
 </form>

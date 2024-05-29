@@ -4,3 +4,22 @@
 .first-card {
     margin-top: 120px;
 }
+.lock-button {
+    background: #141E46;
+    border: none;
+    height: 29px;
+    padding: 0px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.3s;
+  }
+
+  .lock-button:hover{
+    background: #141e46d3;
+    color: white;
+  }

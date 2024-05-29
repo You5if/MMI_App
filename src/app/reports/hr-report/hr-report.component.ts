@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../components/product/product.service';
 import { AgreementService } from '../../components/agreement/agreement.service';
 import moment from 'moment';
+import { AppGlobals } from '../../app.global';
 
 @Component({
   selector: 'app-hr-report',
@@ -38,6 +39,7 @@ export class HrReportComponent {
    constructor(
     private AgreementServcie: AgreementService,
     private _report: ReportPageService,
+    private global: AppGlobals,
     private router: Router
    ) {}
 
@@ -61,14 +63,16 @@ export class HrReportComponent {
       restOfUrl = 'month=' + month; 
       restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      this.router.navigate(['system/report-page']);
+      // this.router.navigate(['system/report-page']);
+      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
    }
 
    fetchIdReport(id: number) {
     
     let restOfUrl: string = '';
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      this.router.navigate(['system/report-page']);
+      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      // this.router.navigate(['system/report-page']);
    }
 
    fetchDateReport(id: number, fromDate: Date, toDate: Date) {
@@ -77,7 +81,8 @@ export class HrReportComponent {
     restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
     restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      this.router.navigate(['system/report-page']);
+      // this.router.navigate(['system/report-page']);
+      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
    }
 
    fetchEmpReport(id: number, empId: number) {
@@ -86,7 +91,8 @@ export class HrReportComponent {
       restOfUrl = 'empid=' + empId; 
       // restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      this.router.navigate(['system/report-page']);
+      // this.router.navigate(['system/report-page']);
+      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
    }
 
 

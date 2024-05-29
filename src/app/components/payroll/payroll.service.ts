@@ -26,6 +26,13 @@ export class PayrollService {
       }
       
   }
+  lockRecord(dataToSend: any): Observable<any> {
+    return this.httpclient.post<any>(this._globals.baseAPIUrl + "PayrollLock/create", dataToSend, this._cf.requestOptions()).pipe(
+        map((result: any) => {
+        return result;
+        }), catchError(this._cf.handleError)
+        );
+  }
   deleteRecord(dataToSend: PayrollModel): Observable<any> {
       
       return this.httpclient.post<any>(this._globals.baseAPIUrl + 'Payrun/delete', dataToSend, this._cf.requestOptions());

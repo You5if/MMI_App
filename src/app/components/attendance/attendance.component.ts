@@ -82,13 +82,13 @@ export class AttendanceComponent implements OnInit {
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
-      userId: this.pUserId, //later to change to take from token _auth.getUserId(),
+      userId: Number(this._auth.getUserId()), //later to change to take from token _auth.getUserId(),
       recordsPerPage: this.recordsPerPage,
       pageNo: 1,
       transId: 1,
       lastPage: this.isLastPage,
       company: 1,
-      roleId: 1,
+      roleId: Number(this._auth.getRole()),
       browser: '',
       resol: '',
       device: '',
@@ -187,12 +187,12 @@ export class AttendanceComponent implements OnInit {
       this.refreshMe()
   }
 
-  onAsc() {
-    this.sort = 'empname asc'
+  onAsc(text: string) {
+    this.sort = text + ' asc'
     this.refreshMe()
     }
-    onDesc() {
-    this.sort = 'empname desc'
+    onDesc(text: string) {
+    this.sort = text + ' desc'
     this.refreshMe()
     }
     onClearSort() {

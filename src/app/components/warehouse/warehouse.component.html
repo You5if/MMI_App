@@ -8,6 +8,52 @@ color="primary"
   Create
 </button>
 
+<div class="action-bar">
+  
+  <div class="action-btns">
+        <input matInput type="text" placeholder="Search by name" class="action-input" [(ngModel)]="searchText">
+           <button class="search-button" (click)="onSearch()">Search</button>
+            @if (nameFilter) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+
+  </div>
+<div class="action-btns">
+
+
+<button  
+mat-icon-button
+matTooltip="Sort"
+[matTooltipShowDelay]="50"
+color="basic"
+type="button"
+class="refresh_icon"
+[matMenuTriggerFor]="sortMenu"
+>
+<mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="swap_vert"></mat-icon>
+
+</button>
+<mat-menu #sortMenu="matMenu">
+  <button disabled mat-menu-item>
+    <span>Sort by name</span>
+  </button>
+  <button (click)="onAsc('wareName')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Ascending</span>
+  </button>
+  <button (click)="onDesc('wareName')" mat-menu-item >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+    <span>Descending</span>
+  </button>
+</mat-menu>
+
+
+<button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+</div>
+</div>
+
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
   <div class="card-body">
@@ -26,7 +72,7 @@ color="primary"
        
         <ng-container matColumnDef="supplier">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Supplier
+                Warehouse
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
           </ng-container>

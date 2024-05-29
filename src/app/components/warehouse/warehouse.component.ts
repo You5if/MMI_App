@@ -24,7 +24,9 @@ export class WarehouseComponent {
 
   // screen mode
   screenMode = 'index';
-
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
   // index variables
   sort: string = ""
   filter: string  =""
@@ -68,13 +70,13 @@ export class WarehouseComponent {
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
-      userId: this.pUserId, //later to change to take from token _auth.getUserId(),
+      userId: Number(this._auth.getUserId()), //later to change to take from token _auth.getUserId(),
       recordsPerPage: this.recordsPerPage,
       pageNo: 1,
       transId: 1,
       lastPage: this.isLastPage,
       company: 1,
-      roleId: 1,
+      roleId: Number(this._auth.getRole()),
       browser: '',
       resol: '',
       device: '',
@@ -101,6 +103,69 @@ export class WarehouseComponent {
     })
   }
 
+  onAsc(text: string) {
+    this.sort = text + ' asc'
+    this.refreshMe()
+    }
+    onDesc(text: string) {
+    this.sort = text + ' desc'
+    this.refreshMe()
+    }
+    onClearSort() {
+    this.sort = ""
+    this.refreshMe()
+    }
+
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
+
+    onSearch() {
+      console.log(this.searchText);
+      const term = "'%"+this.searchText+"%'"
+      const encodedSearchTerm = encodeURIComponent(term);
+      this.nameFilter = "wareName like "+encodedSearchTerm
+      if (this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }
+  
+    }
+    onClearSearch() {
+      this.searchText = ''
+      this.nameFilter = ""
+      if (this.nameFilter === "" && this.dateFilter != "") {
+        this.filter = this.dateFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter != "") {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter === "" && this.dateFilter === "") {
+        this.filter = ""
+        console.log(this.filter);
+        this.refreshMe()
+      }
+        console.log(this.filter);
+        
+        this.refreshMe()
+    }
   onKey(event: any) { 
     // if (this.screenMode === 'entry') {
       console.log(event);

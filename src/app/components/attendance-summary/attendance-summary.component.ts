@@ -77,13 +77,13 @@ export class AttendanceSummaryComponent {
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
-      userId: this.pUserId, //later to change to take from token _auth.getUserId(),
+      userId: Number(this._auth.getUserId()), //later to change to take from token _auth.getUserId(),
       recordsPerPage: this.recordsPerPage,
       pageNo: 1,
       transId: 1,
       lastPage: this.isLastPage,
       company: 1,
-      roleId: 1,
+      roleId: Number(this._auth.getRole()),
       browser: '',
       resol: '',
       device: '',
@@ -160,14 +160,15 @@ export class AttendanceSummaryComponent {
       this.refreshMe()
   }
 
-  onAsc() {
-    this.sort = 'employeeName asc'
-    this.refreshMe()
-    }
-    onDesc() {
-    this.sort = 'employeeName desc'
-    this.refreshMe()
-    }
+  
+    onAsc(text: string) {
+      this.sort = text + ' asc'
+      this.refreshMe()
+      }
+      onDesc(text: string) {
+      this.sort = text + ' desc'
+      this.refreshMe()
+      }
     onClearSort() {
     this.sort = ""
     this.refreshMe()

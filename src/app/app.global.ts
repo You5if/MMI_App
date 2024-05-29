@@ -27,6 +27,7 @@ export class AppGlobals {
   //   readonly baseAPIRootUrl: string = 'https://localhost:44377/api/';
 
   /* Development Server */
+  readonly realappUrl: string = "https://mmi.autopay-mcs.com/";
   readonly baseAPIFileUrl: string = "https://inventoryapi.autopay-mcs.com/";
   readonly baseAPIUrl: string = "https://inventoryapi.autopay-mcs.com/api/";
   readonly baseAPIRootUrl: string = "https://inventoryapi.autopay-mcs.com/api/";

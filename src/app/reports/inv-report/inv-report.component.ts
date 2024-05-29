@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReportPageService } from '../report-page/report-page.service';
 import { ProductService } from '../../components/product/product.service';
+import { AppGlobals } from '../../app.global';
 
 @Component({
   selector: 'app-inv-report',
@@ -29,6 +30,7 @@ export class InvReportComponent {
    constructor(
     private _report: ReportPageService,
     private productService: ProductService,
+    private global: AppGlobals,
     private router: Router
    ) {}
 
@@ -47,7 +49,8 @@ export class InvReportComponent {
     
     let restOfUrl: string = ''; 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      this.router.navigate(['system/report-page']);
+      // this.router.navigate(['system/report-page']);
+      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
    }
    fetchProductReport(id: number, productId: number) {
     
@@ -55,7 +58,8 @@ export class InvReportComponent {
       restOfUrl = 'productid=' + productId; 
       // restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      this.router.navigate(['system/report-page']);
+      // this.router.navigate(['system/report-page']);
+      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
    }
 
 }

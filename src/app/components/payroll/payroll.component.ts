@@ -11,6 +11,7 @@ import { CheckDeleteComponent } from '../general-operations/tenure-options/check
 import { OtherEraningService } from '../other-eraning/other-eraning.service';
 import { PayrollService } from './payroll.service';
 import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
+import { CheckLockComponent } from '../general-operations/tenure-options/check-lock.component';
 
 @Component({
   selector: 'app-payroll',
@@ -36,7 +37,7 @@ export class PayrollComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['Employee', 'Allowance', 'Month', 'Year', 'Amount',  'RealAmount','Remarks'];
+  displayedColumns: string[] = ['Month', 'Year', 'Locked'];
   dataSource: PayrollModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -73,13 +74,13 @@ export class PayrollComponent {
     // preparing index call parameters
     this.pageData = {
       tableId: this.pTableId,
-      userId: this.pUserId, //later to change to take from token _auth.getUserId(),
+      userId: Number(this._auth.getUserId()), //later to change to take from token _auth.getUserId(),
       recordsPerPage: this.recordsPerPage,
       pageNo: 1,
       transId: 1,
       lastPage: this.isLastPage,
       company: 1,
-      roleId: 1,
+      roleId: Number(this._auth.getRole()),
       browser: '',
       resol: '',
       device: '',
@@ -187,6 +188,64 @@ export class PayrollComponent {
         this.payrollService.deleteRecord(dataToSend).pipe(
           this.toast.observe({
             loading: 'Deleting record...',
+            success: (data) => `${data.errorMessage}`,
+            error: (error) => `API Error: ${error.message}`,
+          })
+        ).subscribe(
+          response => {
+            console.log('API Response:', response);
+            this.refreshMe();
+            this.screenMode = 'index';
+            // Handle the response data here
+          },
+          error => {
+            console.error('API Error:', error);
+            // Handle any errors here
+          }
+        );
+      }
+     })
+  }
+  }
+  onLock=  (data: PayrollModel) => {
+    // this.router.navigate(['/user']);
+    // console.log(this.firstName);
+    var dataToSend: PayrollModel = data // Example data to send
+    dataToSend.transId = 0
+    console.log(dataToSend);
+
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(CheckLockComponent, {
+       disableClose: true,
+      //  data: dataToSend 
+       
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      // console.log(result);
+      if (result) {
+        const lockedRecord = {
+          "PayrollLockId": 0,
+          "Month": dataToSend.month,
+          "Year": dataToSend.year,
+          "Remarks": "",
+          "Locked": true,
+          "DeductionColl": true,
+          "IsTest": this._auth.getIsTest(),
+          "Active": true,  
+          "Deleted": false,
+          "UserCR": Number(this._auth.getUserId()),   
+          "Company": 789,
+          "RoleCR": Number(this._auth.getRole()),   
+          "DateCR": "2024-02-28T09:10:00",
+          "Browser": "Firefox",   
+          "Device": "Laptop",
+          "Resol": "1366x768", 
+          "TransId": 0
+        }
+        this.payrollService.lockRecord(lockedRecord).pipe(
+          this.toast.observe({
+            loading: 'Locking payroll...',
             success: (data) => `${data.errorMessage}`,
             error: (error) => `API Error: ${error.message}`,
           })

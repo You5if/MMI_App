@@ -86,6 +86,13 @@ type="button"
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row"> <ngx-skeleton-loader /></mat-cell>
           </ng-container>
+      
+          <ng-container matColumnDef="Locked">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Locked
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"> <ngx-skeleton-loader /></mat-cell>
+          </ng-container>
           
         
     
@@ -168,6 +175,18 @@ type="button"
               Remarks
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.remarks}}</mat-cell>
+          </ng-container>
+          
+          
+      
+          <ng-container matColumnDef="Locked">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Locked
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+              <mat-icon *ngIf="row.leaveClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+              <button (click)="onLock(row)" class="lock-button" >Lock</button>
+            </mat-cell>
           </ng-container>
           
       
