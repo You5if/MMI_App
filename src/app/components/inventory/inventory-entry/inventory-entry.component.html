@@ -21,25 +21,25 @@ mat-button
     <div class="card first-card" >
         <div class="card-head">Inventory information</div>
         <div class="card-body">
-            <!-- <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Item name</mat-label>
                 <input [disabled]="submitDisable"  matInput  placeholder="Item name" id="firstControl"   [(ngModel)]="itemName" name="itemName"   >
             </mat-form-field> -->
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Inventory name</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Inventory name"  [(ngModel)]="itemName" name="description"  >
             </mat-form-field>
     
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Description</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
 
-            <!-- <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Item type</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Item type" type="number"  [(ngModel)]="itemType" name="itemType"  >
             </mat-form-field> -->
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Inventory type</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="itemType" name="employee">
                   <mat-option *ngFor="let employee of invTypes" [value]="employee.id">{{ employee.name }}</mat-option>

@@ -193,6 +193,7 @@ export class LoanComponent {
   
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
+        if (result != "false") {
         this.dateFilter = "loanDate "+result
         if (this.nameFilter === "" && this.dateFilter != "") {
           this.filter = this.dateFilter
@@ -213,6 +214,7 @@ export class LoanComponent {
           this.refreshMe()
         }
         // this.adjustLoanDistribution(result);
+      }
        })
       }
     }

@@ -50,7 +50,7 @@ export class InvReportComponent {
     let restOfUrl: string = ''; 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
-      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
    }
    fetchProductReport(id: number, productId: number) {
     
@@ -59,7 +59,7 @@ export class InvReportComponent {
       // restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
-      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
    }
 
 }

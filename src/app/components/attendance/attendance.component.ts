@@ -219,6 +219,7 @@ export class AttendanceComponent implements OnInit {
   
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
+        if (result != "false") {
         this.dateFilter = "checkin "+result
         if (this.nameFilter === "" && this.dateFilter != "") {
           this.filter = this.dateFilter
@@ -239,6 +240,7 @@ export class AttendanceComponent implements OnInit {
           this.refreshMe()
         }
         // this.adjustLoanDistribution(result);
+      }
        })
       }
     }

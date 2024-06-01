@@ -22,15 +22,15 @@ import moment from "moment";
     styleUrl: './filter-by.component.css',
     template: `<h2 mat-dialog-title>Select month and year</h2>
     <mat-dialog-content>
-      <form>
-      <mat-form-field style="margin-right: 10px;">
+      <form class="form-controls">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>From date</mat-label>
                 <input   matInput [matDatepicker]="picker1" [(ngModel)]="fromDate" name="fromDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>To date</mat-label>
                 <input   matInput [matDatepicker]="picker2" [(ngModel)]="toDate" name="toDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -39,10 +39,12 @@ import moment from "moment";
               </mat-form-field>
       </form>
     </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button type="button" (click)="onSubmit()" >Submit</button>
-      <button mat-button type="button" [mat-dialog-close]="false" >Close</button>
+    <mat-dialog-actions class="sc-actions">
       <button mat-raised-button color="warn" type="button" (click)="onClear()" >Clear filter</button>
+      <div>
+      <button mat-button type="button" (click)="onClose()" >Close</button>
+      <button mat-button type="button" (click)="onSubmit()" >Submit</button>
+      </div>
     </mat-dialog-actions>`
 })
 export class FilterByComponent {
@@ -130,6 +132,10 @@ export class FilterByComponent {
         const toDate = moment(this.toDate, 'MM-DD-YYYY HH:mm:ss', true).format("YYYY-MM-DD HH:mm:ss");
         const dateFilter = "between '" + fromDate + "' and '" + toDate + "'";
         this.dialogRef.close(dateFilter);
+      }
+
+      onClose() {
+        this.dialogRef.close("false")
       }
 
       onClear() {

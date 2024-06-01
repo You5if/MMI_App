@@ -213,6 +213,7 @@ export class PurchaseOrderComponent {
   
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
+        if (result != "false") {
         this.dateFilter = "invdate "+result
         if (this.nameFilter === "" && this.dateFilter != "") {
           this.filter = this.dateFilter
@@ -233,6 +234,7 @@ export class PurchaseOrderComponent {
           this.refreshMe()
         }
         // this.adjustLoanDistribution(result);
+      }
        })
       }
     }

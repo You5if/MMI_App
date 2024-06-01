@@ -184,8 +184,8 @@ type="button"
               Locked
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row">
-              <mat-icon *ngIf="row.leaveClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
-              <button (click)="onLock(row)" class="lock-button" >Lock</button>
+              <mat-icon *ngIf="row.locked" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+              <button *ngIf="!row.locked" (click)="onLock(row)" class="lock-button" >Lock</button>
             </mat-cell>
           </ng-container>
           

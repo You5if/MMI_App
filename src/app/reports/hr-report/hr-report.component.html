@@ -4,13 +4,13 @@
     <div class="card" >
         <div class="card-head">Employee attendance details</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="empAttDetMonth" name="empAttDetMonth">
                     <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                 </mat-select>
             </mat-form-field>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
                 <mat-select  [(ngModel)]="empAttDetYear" name="empAttDetYear">
                     <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
@@ -24,13 +24,13 @@
     <div class="card" >
         <div class="card-head">Employee attendance summary</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="empAttSumMonth" name="empAttSumMonth">
                     <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                 </mat-select>
             </mat-form-field>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
                 <mat-select  [(ngModel)]="empAttSumYear" name="empAttSumYear">
                     <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
@@ -44,13 +44,13 @@
     <div class="card" >
         <div class="card-head">Employee payslips</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="empPayMonth" name="empPayMonth">
                     <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                 </mat-select>
             </mat-form-field>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
                 <mat-select  [(ngModel)]="empPayYear" name="empPayYear">
                     <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
@@ -64,13 +64,13 @@
     <div class="card" >
         <div class="card-head">Payroll statment</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="payRollMonth" name="payRollMonth">
                     <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                 </mat-select>
             </mat-form-field>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
                 <mat-select  [(ngModel)]="payRollYear" name="payRollYear">
                     <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
@@ -85,13 +85,13 @@
       <div class="card" >
         <div class="card-head">Incentive report</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="IncentiveMonth" name="IncentiveMonth">
                     <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                 </mat-select>
             </mat-form-field>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
                 <mat-select  [(ngModel)]="IncentiveYear" name="IncentiveYear">
                     <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
@@ -114,14 +114,14 @@
       <div class="card" >
         <div class="card-head">Attendance status</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>From date</mat-label>
                 <input   matInput [matDatepicker]="picker1" [(ngModel)]="fromDate" name="fromDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>To date</mat-label>
                 <input   matInput [matDatepicker]="picker2" [(ngModel)]="toDate" name="toDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->

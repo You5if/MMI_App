@@ -21,18 +21,18 @@ mat-button
     <div class="card first-card">
         <div class="card-head">Allowance information</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allowance name</mat-label>
                 <input [disabled]="submitDisable"  matInput  placeholder="Allowance name" id="firstControl"   [(ngModel)]="allowName" name="allowanceName"   >
             </mat-form-field>
-            <!-- <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Leave type</mat-label>
                 <mat-select id="firstControl"  [disabled]="submitDisable" [(ngModel)]="leaveName" name="leaveName">
                   <mat-option *ngFor="let employee of leaves" [value]="employee.name">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field> -->
     
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allowance type</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="type"  [(ngModel)]="allowType" name="allowType"  >
             </mat-form-field>

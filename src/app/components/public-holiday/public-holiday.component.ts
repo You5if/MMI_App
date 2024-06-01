@@ -9,6 +9,7 @@ import { CheckDeleteComponent } from '../general-operations/tenure-options/check
 import { PublicHolidayService } from './public-holiday.service';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { FilterByComponent } from '../general-operations/filter-by/filter-by.component';
 
 @Component({
   selector: 'app-public-holiday',
@@ -24,7 +25,9 @@ export class PublicHolidayComponent {
 
   // screen mode
   screenMode = 'index';
-
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
   // index variables
   sort: string = ""
   filter: string  =""
@@ -135,6 +138,107 @@ export class PublicHolidayComponent {
       return false;
     }
   }
+
+  onAsc(text: string) {
+    this.sort = text + ' asc'
+    this.refreshMe()
+    }
+    onDesc(text: string) {
+    this.sort = text + ' desc'
+    this.refreshMe()
+    }
+    onClearSort() {
+    this.sort = ""
+    this.refreshMe()
+    }
+
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
+
+    onSearch() {
+      console.log(this.searchText);
+      const term = "'%"+this.searchText+"%'"
+      const encodedSearchTerm = encodeURIComponent(term);
+      this.nameFilter = "invcode like "+encodedSearchTerm
+      if (this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }
+  
+    }
+    onClearSearch() {
+      this.searchText = ''
+      this.nameFilter = ""
+      if (this.nameFilter === "" && this.dateFilter != "") {
+        this.filter = this.dateFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter != "") {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter === "" && this.dateFilter === "") {
+        this.filter = ""
+        console.log(this.filter);
+        this.refreshMe()
+      }
+        console.log(this.filter);
+        
+        this.refreshMe()
+    }
+
+    onFilterByDate() {
+      if(this.dialog.openDialogs.length==0){
+        const dialogRef = this.dialog.open(FilterByComponent, {
+         disableClose: true,
+        //  data: {
+        //   parentScreen: "Attendance"
+        //  }
+       });
+  
+       dialogRef.afterClosed().subscribe((result: string) => {
+        console.log(result);
+        if (result != "false") {
+          this.dateFilter = "holiday "+result
+        if (this.nameFilter === "" && this.dateFilter != "") {
+          this.filter = this.dateFilter
+          console.log(this.filter);
+          
+          this.refreshMe()
+        }else if (this.nameFilter != "" && this.dateFilter === "") {
+          this.filter = this.nameFilter
+          console.log(this.filter);
+          this.refreshMe()
+        }else if (this.nameFilter != "" && this.dateFilter != "") {
+          this.filter = this.nameFilter + " and "+ this.dateFilter
+          console.log(this.filter);
+          this.refreshMe()
+        }else if (this.nameFilter === "" && this.dateFilter === "") {
+          this.filter = ""
+          console.log(this.filter);
+          this.refreshMe()
+        }
+        // this.adjustLoanDistribution(result);
+      }
+       })
+      }
+    }
 
   
   onDelete=  (data: PublicHolidayModel) => {

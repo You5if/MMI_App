@@ -20,17 +20,17 @@ mat-button
     <div class="card first-card" >
         <div class="card-head">User information</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>User name</mat-label>
                 <input [disabled]="submitDisable"  matInput  placeholder="First name" id="firstControl"   [(ngModel)]="appUserName" name="firstName"   >
             </mat-form-field>
     
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Display name</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Display name"  [(ngModel)]="displayName" name="displayName"  >
             </mat-form-field>
     
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input [disabled]="submitDisable"  matInput placeholder="passwrd"  [(ngModel)]="password" name="password"  >
             </mat-form-field>

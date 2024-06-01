@@ -8,6 +8,75 @@ color="primary"
   Create
 </button>
 
+<div class="action-bar">
+  
+  <!-- <div class="action-btns">
+        <input matInput type="text" placeholder="Search by code" class="action-input" [(ngModel)]="searchText">
+           <button class="search-button" (click)="onSearch()">Search</button>
+            @if (nameFilter) {
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+                <mat-icon>close</mat-icon>
+              </button>
+            }
+
+  </div> -->
+<div class="action-btns">
+
+
+<!-- <button  
+mat-icon-button
+matTooltip="Sort"
+[matTooltipShowDelay]="50"
+color="basic"
+type="button"
+class="refresh_icon"
+[matMenuTriggerFor]="sortMenu"
+>
+<mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="swap_vert"></mat-icon>
+
+</button>
+<mat-menu #sortMenu="matMenu">
+  <button disabled mat-menu-item>
+    <span>Sort by code</span>
+  </button>
+  <button (click)="onAsc('invCode')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Ascending</span>
+  </button>
+  <button (click)="onDesc('invCode')" mat-menu-item >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+    <span>Descending</span>
+  </button>
+  <button disabled mat-menu-item>
+    <span>Sort by date</span>
+  </button>
+  <button (click)="onAsc('invDate')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Ascending</span>
+  </button>
+  <button (click)="onDesc('invDate')" mat-menu-item >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+    <span>Descending</span>
+  </button>
+</mat-menu> -->
+
+<button  
+mat-icon-button
+matTooltip="Filter by"
+[matTooltipShowDelay]="50"
+color="basic"
+type="button"
+class="refresh_icon2"
+(click)="onFilterByDate()"
+  >
+  <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+</button>
+
+
+<button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+</div>
+</div>
+
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
   <div class="card-body">

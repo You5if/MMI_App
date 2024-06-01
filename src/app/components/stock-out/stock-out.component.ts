@@ -193,6 +193,7 @@ export class StockOutComponent {
   
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
+        if (result != "false") {
         this.dateFilter = "stockoutdate "+result
         if (this.nameFilter === "" && this.dateFilter != "") {
           this.filter = this.dateFilter
@@ -213,6 +214,7 @@ export class StockOutComponent {
           this.refreshMe()
         }
         // this.adjustLoanDistribution(result);
+      }
        })
       }
     }

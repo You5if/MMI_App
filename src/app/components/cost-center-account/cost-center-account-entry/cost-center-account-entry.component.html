@@ -21,27 +21,27 @@ mat-button
     <div class="card first-card" >
         <div class="card-head">Cost center account information</div>
         <div class="card-body">
-            <!-- <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Account</mat-label>
                 <input [disabled]="submitDisable"  matInput  placeholder="Group name" id="firstControl"   [(ngModel)]="centerName" name="groupName"   >
             </mat-form-field> -->
             
             
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Account</mat-label>
                 <mat-select  [disabled]="submitDisable"  id="firstControl" [(ngModel)]="accountId" name="accountId">
                     <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cost center</mat-label>
                 <mat-select  [disabled]="submitDisable" [(ngModel)]="costCenId" name="costCenId">
                     <mat-option *ngFor="let center of centers" [value]="center.id">{{ center.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             
-                    <mat-form-field style="margin-right: 10px;">
+                    <mat-form-field style="margin-right: 10px;" appearance="outline">
                         <mat-label>Description</mat-label>
                         <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
                     </mat-form-field>

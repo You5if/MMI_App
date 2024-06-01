@@ -14,7 +14,7 @@ import { UsersService } from "./users.service";
     selector: 'app-amount-less',
     template: `<h2 mat-dialog-title>Change password</h2>
     <mat-dialog-content>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>New password</mat-label>
     <input matInput [(ngModel)]="data.password" name="newPassword">
   </mat-form-field>

@@ -22,7 +22,7 @@ mat-button
        <div class="card-head">Warehouse information</div>
        <div class="card-body">
            
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Name</mat-label>
             <input [disabled]="submitDisable" id="firstControl" matInput appTitleCase placeholder="Name"  [(ngModel)]="warehouseName" name="name"  >
         </mat-form-field>
@@ -35,24 +35,24 @@ mat-button
        <div class="card-head">Contact details</div>
        <div class="card-body">
            
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Contact person</mat-label>
             <input [disabled]="submitDisable" matInput appTitleCase placeholder="Contact person"  [(ngModel)]="contactPer" name="contactPer"  >
         </mat-form-field>
            
 
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Email</mat-label>
             <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Email" type="email"  [(ngModel)]="email" name="email"  >
         </mat-form-field>
 
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Phone</mat-label>
             <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone"  [(ngModel)]="phone1" name="phone1"  >
         </mat-form-field>
            
 
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Phone 2</mat-label>
             <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone 2"  [(ngModel)]="phone2" name="phone2"  >
         </mat-form-field>
@@ -64,7 +64,7 @@ mat-button
        <div class="card-head">Account details</div>
        <div class="card-body">
            
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Account</mat-label>
             <mat-select  [disabled]="submitDisable"  id="firstControl" [(ngModel)]="accountId" name="accountId">
                 <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>

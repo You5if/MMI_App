@@ -22,16 +22,16 @@ mat-button
        <div class="card-head">Purchase order</div>
        <div class="card-body">
            
-           <!-- <mat-form-field style="margin-right: 10px;">
+           <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Journal code</mat-label>
                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Journal code"  [(ngModel)]="journaCode" name="journaCode"  [readonly]="true">
            </mat-form-field> -->
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Invoice code</mat-label>
                <input disabled  matInput appTitleCase placeholder="Invoice code"  [(ngModel)]="invCode" name="journaCode"  [readonly]="true">
            </mat-form-field>
 
-           <mat-form-field>
+           <mat-form-field appearance="outline">
                <mat-label>Incoice date</mat-label>
                <input id="firstName" [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="invDate" name="journaDate">
                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -39,13 +39,13 @@ mat-button
                <mat-datepicker #picker></mat-datepicker>
              </mat-form-field>
            <mat-divider></mat-divider>
-           <!-- <mat-form-field style="margin-right: 10px;">
+           <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Cost center</mat-label>
                <mat-select [disabled]="submitDisable" [(ngModel)]="costCenId" name="constCenId">
                  <mat-option *ngFor="let employee of costCens" [value]="employee.id">{{ employee.name }}</mat-option>
                </mat-select>
            </mat-form-field> -->
-           <!-- <mat-form-field style="margin-right: 10px;">
+           <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>SupplierId</mat-label>
                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="SupplierId"  [(ngModel)]="supplierId" name="SupplierId">
            </mat-form-field> -->
@@ -56,12 +56,12 @@ mat-button
             </mat-select>
         </mat-form-field>
 
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Remarks</mat-label>
                <input [disabled]="submitDisable"  matInput  appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="Remarks">
            </mat-form-field>
 
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Warehouse</mat-label>
             <mat-select [disabled]="submitDisable" [(ngModel)]="warehouseId" name="warehouseId">
               <mat-option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse.name }}</mat-option>
@@ -69,7 +69,7 @@ mat-button
         </mat-form-field>
         
 
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Tax</mat-label>
             <!-- <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Tax" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="tax" [ngModelOptions]="{standalone: true}"> -->
             <!-- <mat-error *ngIf="tax < 0">Negative value</mat-error> -->
@@ -77,7 +77,7 @@ mat-button
         </mat-form-field>
 
         
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Description</mat-label>
             <input [disabled]="submitDisable"  matInput  appTitleCase placeholder="Description"  [(ngModel)]="description" name="Description">
         </mat-form-field>
@@ -101,35 +101,35 @@ mat-button
                   <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Quantity</mat-label>
                 <input [disabled]="submitDisable" (input)="calculateNetCost(childTenure, i)"  matInput appTitleCase placeholder="Qty" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Qty" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.Qty < 0">Negative value</mat-error>
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cost price</mat-label>
                 <input [disabled]="submitDisable" (input)="calculateNetCost(childTenure, i)"  matInput appTitleCase placeholder="Cost price" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.CostPrice" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.CostPrice < 0">Negative value</mat-error>
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Discount</mat-label>
                 <input [disabled]="submitDisable" (input)="calculateNetCost(childTenure, i)"  matInput appTitleCase placeholder="Discount" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Discount" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.Discount < 0">Negative value</mat-error>
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Net cost</mat-label>
                 <input disabled  matInput appTitleCase placeholder="Net cost" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.NetCost" [ngModelOptions]="{standalone: true}" [readonly]="true">
                 <!-- <input disabled  matInput appTitleCase placeholder="Invoice code"  [(ngModel)]="invCode" name="journaCode"  [readonly]="true"> -->
                 <!-- <mat-error *ngIf="childTenure.NetCost < 0">Negative value</mat-error> -->
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Sale price</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Sale price" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.SalePrice" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.SalePrice < 0">Negative value</mat-error>
             </mat-form-field>
         
               
-               <!-- <mat-form-field style="margin-right: 10px;">
+               <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                    <mat-label>Cost center</mat-label>
                    <mat-select [disabled]="submitDisable" [(ngModel)]="childTenure.CostCenId" [ngModelOptions]="{standalone: true}">
                      <mat-option *ngFor="let employee of costCens" [value]="employee.id">{{ employee.name }}</mat-option>

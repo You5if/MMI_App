@@ -20,21 +20,21 @@ mat-button
     <div class="card first-card" >
         <div class="card-head">Day working hours information</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Day hours</mat-label>
                 <input [disabled]="submitDisable"  matInput type="number" min="0" placeholder="Month" id="firstControl" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"   [(ngModel)]="DayHours" name="DayHours"   >
                 <mat-error *ngIf="DayHours < 0">Negative value</mat-error>
             </mat-form-field>
     
             
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>From date</mat-label>
                 <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="FromDate" name="FromDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>To date</mat-label>
                 <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="ToDate" name="ToDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->

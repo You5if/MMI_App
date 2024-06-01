@@ -22,22 +22,22 @@ mat-button
         
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Fund code</mat-label>
                 <input [disabled]="submitDisable" matInput  id="firstName"  appTitleCase placeholder="Fund code"  [(ngModel)]="fundCode" name="fundCode"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Trans type</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Trans type"  [(ngModel)]="transType" name="transType"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>journEntryId</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="journEntryId" type="number"  [(ngModel)]="journEntryId" name="journEntryId"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Trans date</mat-label>
                 <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="transDate" name="transDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -45,7 +45,7 @@ mat-button
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
 
-            <!-- <mat-form-field style="margin-right: 10px;">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
@@ -58,19 +58,19 @@ mat-button
             <div class="card-head">Transaction details</div>
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Description</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
     
            
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Payment type</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Payment type"  [(ngModel)]="paymentType" name="paymentType"  >
             </mat-form-field>
     
            
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Trans amount</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase type="number" min="0" placeholder="Trans amount" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="transAmt" name="transAmt"  >
             </mat-form-field>
@@ -82,12 +82,12 @@ mat-button
             <div class="card-head">Cheque details</div>
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cheque no</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque no"  [(ngModel)]="chequeNo" name="chequeNo"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cheque date</mat-label>
                 <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="chequeDate" name="chequeDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -95,14 +95,14 @@ mat-button
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>From account</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="fromAccount" name="fromAccount">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>To account</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="toAccount" name="toAccount">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
@@ -110,12 +110,12 @@ mat-button
             </mat-form-field>
 
             
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cheque status</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque status"  [(ngModel)]="cheqStatus" name="cheqStatus"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cheque remarks</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cheque remarks"  [(ngModel)]="cheqRemarks" name="cheqRemarks"  >
             </mat-form-field>
@@ -127,23 +127,23 @@ mat-button
             <div class="card-head">Refrence & narration</div>
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Reference </mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Reference"  [(ngModel)]="reference" name="reference"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Narration </mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Narration"  [(ngModel)]="narration" name="narration"  >
             </mat-form-field>
 
             
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Ref to</mat-label>
                 <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="Ref to"  [(ngModel)]="refTo" name="refTo"  >
             </mat-form-field>
             
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Ref key</mat-label>
                 <input [disabled]="submitDisable" type="number"  matInput appTitleCase placeholder="Ref key"  [(ngModel)]="refKey" name="refKey"  >
             </mat-form-field>

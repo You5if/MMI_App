@@ -37,7 +37,7 @@ export class AttendanceSummaryComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'EmpId', 'GratuityClear', 'LeaveClear', 'SalaryClear', 'InvClear', 'HandoverCl', 'SupervisorCl', 'ManagerCl'];
+  displayedColumns: string[] = ['EmpId', 'GratuityClear', 'LeaveClear', 'SalaryClear', 'InvClear', 'HandoverCl', 'SupervisorCl', 'ManagerCl'];
   dataSource: AttendanceSummaryModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -193,6 +193,7 @@ export class AttendanceSummaryComponent {
   
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
+        if (result != "false") {
         this.dateFilter = "AttDate "+result
         if (this.nameFilter === "" && this.dateFilter != "") {
           this.filter = this.dateFilter
@@ -213,6 +214,7 @@ export class AttendanceSummaryComponent {
           this.refreshMe()
         }
         // this.adjustLoanDistribution(result);
+      }
        })
       }
     }

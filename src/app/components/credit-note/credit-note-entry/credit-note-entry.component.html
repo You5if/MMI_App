@@ -21,23 +21,23 @@ mat-button
    <div class="card first-card" >
        <div class="card-head">Credit note information</div>
        <div class="card-body">
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Prod for</mat-label>
                <input [disabled]="submitDisable"  matInput  placeholder="Prod for" id="firstControl"   [(ngModel)]="prodFor" name="prodFor"   >
            </mat-form-field>
 
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Ref Id</mat-label>
                <input [disabled]="submitDisable"  matInput type="number"  placeholder="Ref iId"    [(ngModel)]="refId" name="refId"   >
            </mat-form-field>
-           <!-- <mat-form-field style="margin-right: 10px;">
+           <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                <mat-label>Leave type</mat-label>
                <mat-select id="firstControl"  [disabled]="submitDisable" [(ngModel)]="leaveName" name="leaveName">
                  <mat-option *ngFor="let employee of leaves" [value]="employee.name">{{ employee.name }}</mat-option>
                </mat-select>
            </mat-form-field> -->
 
-           <mat-form-field style="margin-right: 10px;">
+           <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Credit date</mat-label>
             <input [disabled]="submitDisable" matInput [matDatepicker]="inStpicker" [(ngModel)]="credDate" name="credDate">
             
@@ -46,18 +46,18 @@ mat-button
           </mat-form-field >
    
            
-          <mat-form-field style="margin-right: 10px;">
+          <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Description</mat-label>
             <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
         </mat-form-field>
 
        
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Remarks</mat-label>
             <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
         </mat-form-field>
        
-        <mat-form-field style="margin-right: 10px;">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
             <mat-label>Amount</mat-label>
             <input [disabled]="submitDisable"  matInput appTitleCase min="0"  placeholder="Amount" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="amount" name="amount">
             <mat-error *ngIf="amount < 0">Negative value</mat-error>

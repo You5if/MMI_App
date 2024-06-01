@@ -22,13 +22,13 @@ import { PayrollProgressBarService } from "../../payroll/payroll-progress-bar/pa
     template: `<h2 mat-dialog-title>Select month and year</h2>
     <mat-dialog-content>
       <form>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="objToSend.month" name="month">
                     <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
                 </mat-select>
             </mat-form-field>
-      <mat-form-field style="margin-right: 10px;">
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
                 <mat-select  [(ngModel)]="objToSend.year" name="year">
                     <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>

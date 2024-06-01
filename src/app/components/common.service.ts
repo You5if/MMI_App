@@ -27,12 +27,50 @@ export class CommonService {
         }
         if (filter === "") {
           filter = "''"
+        } else {
+          filter = this.insertWhitespaceBeforeB(filter)
         }
         return this.httpClient.post(this._globals.baseAPIUrl + tableName +"/getpagedata/"+arr.tableId+"/1/"+arr.recordsPerPage+"/"+arr.pageNo+"/1/"+arr.lastPage+"/1/2/''/''/''/"+arr.isTest+"/"+sort+"/"+filter,arr, this.requestOptions()).pipe(
           map((res: any) => res),
           catchError(this.handleError)
         );;
      }
+
+     insertWhitespaceBeforeB(str: string): string {
+      const lowercaseIndex = str.indexOf('b');
+      const uppercaseIndex = str.indexOf('B');
+      
+      if (lowercaseIndex !== -1 && uppercaseIndex !== -1) {
+        if (lowercaseIndex < uppercaseIndex) {
+          if (!this.hasWhiteSpace(str.charAt(lowercaseIndex - 1))) {
+            return str.slice(0, lowercaseIndex) + ' ' + str.slice(lowercaseIndex);
+          }
+        } else {
+          if (!str.charAt(uppercaseIndex - 1)) {
+            return str.slice(0, uppercaseIndex) + ' ' + str.slice(uppercaseIndex);
+          }
+        }
+      } else if (lowercaseIndex !== -1) {
+        if (!this.hasWhiteSpace(str.charAt(lowercaseIndex - 1))) {
+          return str.slice(0, lowercaseIndex) + ' ' + str.slice(lowercaseIndex);
+        }
+      } else if (uppercaseIndex !== -1) {
+        if (!str.charAt(uppercaseIndex - 1)) {
+          return str.slice(0, uppercaseIndex) + ' ' + str.slice(uppercaseIndex);
+        }
+      }
+      
+      return str;
+    }
+
+    hasWhiteSpace(s: string): boolean {
+      if (/\s/g.test(s)) {
+        
+        return true;
+      }
+      return false;
+
+    }
 
 
      public requestOptions() {

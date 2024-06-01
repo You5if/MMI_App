@@ -15,7 +15,7 @@ import { UsersService } from "./users.service";
     template: `<h2 mat-dialog-title>Add new role for this user</h2>
     <mat-dialog-content>
       <!-- <p>Add a new role for this user</p> -->
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Role</mat-label>
     <!-- <input matInput type="number" [(ngModel)]="data.appRoleId" name="appRoleId"> -->
     <mat-select   [(ngModel)]="data.appRoleId" name="employee">

@@ -21,7 +21,7 @@ mat-button
         <div class="card-head">Employee info</div>
         
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
                 <mat-select  id="firstName" [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
@@ -34,7 +34,7 @@ mat-button
             <div class="card-head">Incident details</div>
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Incident date</mat-label>
                 <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="incDate" name="leaveDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -42,13 +42,13 @@ mat-button
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
     
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Description</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
     
            
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Remarks</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
             </mat-form-field>
@@ -60,14 +60,14 @@ mat-button
             <div class="card-head">Witnesses</div>
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Witness 1</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="witness1" name="witness1">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Witness 2</mat-label>
                 <mat-select [disabled]="submitDisable" [(ngModel)]="witness2" name="witness2">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>

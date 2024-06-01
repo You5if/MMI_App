@@ -21,18 +21,18 @@ mat-button
     <div class="card first-card" >
         <div class="card-head">Cost center information</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Center name</mat-label>
                 <input [disabled]="submitDisable"  matInput  placeholder="Group name" id="firstControl"   [(ngModel)]="centerName" name="groupName"   >
             </mat-form-field>
             
     
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Description</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
 
-            <mat-form-field style="margin-right: 10px;">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Center group</mat-label>
                 <mat-select  [disabled]="submitDisable" [(ngModel)]="costCenGrId" name="leaveName">
                   <mat-option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</mat-option>

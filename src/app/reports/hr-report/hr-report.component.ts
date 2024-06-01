@@ -64,14 +64,14 @@ export class HrReportComponent {
       restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
-      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
    }
 
    fetchIdReport(id: number) {
     
     let restOfUrl: string = '';
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
-      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
       // this.router.navigate(['system/report-page']);
    }
 
@@ -82,7 +82,7 @@ export class HrReportComponent {
     restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
-      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
    }
 
    fetchEmpReport(id: number, empId: number) {
@@ -92,7 +92,7 @@ export class HrReportComponent {
       // restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
-      window.open(this.global.realappUrl+'/#/system/report-page', '_blank');
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
    }
 
 
