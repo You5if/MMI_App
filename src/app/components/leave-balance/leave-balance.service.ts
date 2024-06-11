@@ -45,6 +45,14 @@ export class LeaveBalanceService {
       }), catchError(this._cf.handleError)
       );
   }
+
+  getLeaveData(id: number): Observable<any> {
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + "Leave/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(
+    map((result: any) => {
+    return result;
+    }), catchError(this._cf.handleError)
+    );
+}
   
 }
 

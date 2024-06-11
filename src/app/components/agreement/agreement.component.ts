@@ -9,6 +9,7 @@ import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { FilterByComponent } from '../general-operations/filter-by/filter-by.component';
 
 @Component({
   selector: 'app-agreement',
@@ -24,14 +25,18 @@ export class AgreementComponent {
 
   // screen mode
   screenMode = 'index';
-
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
+  toDateFilter: string = ""
+  fromDateFilter: string = ""
   // index variables
   sort: string = ""
   filter: string  =""
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'agStart', 'agEnd', 'department', 'jobTitle', 'allowance'];
+  displayedColumns: string[] = ['department', 'agStart', 'agEnd', 'jobTitle', 'allowance', 'select'];
   dataSource: AgreementModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -99,6 +104,159 @@ export class AgreementComponent {
       // console.log(result);
     })
   }
+
+  onAsc(text: string) {
+    this.sort = text + ' asc'
+    this.refreshMe()
+    }
+    onDesc(text: string) {
+    this.sort = text + ' desc'
+    this.refreshMe()
+    }
+    onClearSort() {
+    this.sort = ""
+    this.refreshMe()
+    }
+
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
+
+    onSearch() {
+      console.log(this.searchText);
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
+      const encodedSearchTerm = encodeURIComponent(term);
+      this.nameFilter = "empName like "+encodedSearchTerm
+      if (this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }
+  
+    }
+    onClearSearch() {
+      this.searchText = ''
+      this.nameFilter = ""
+      if (this.nameFilter === "" && this.dateFilter != "") {
+        this.filter = this.dateFilter
+        console.log(this.filter);
+        
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter === "") {
+        this.filter = this.nameFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter != "" && this.dateFilter != "") {
+        this.filter = this.nameFilter + " and "+ this.dateFilter
+        console.log(this.filter);
+        this.refreshMe()
+      }else if (this.nameFilter === "" && this.dateFilter === "") {
+        this.filter = ""
+        console.log(this.filter);
+        this.refreshMe()
+      }
+        console.log(this.filter);
+        
+        this.refreshMe()
+    }
+
+    onFilterByFromDate() {
+      if(this.dialog.openDialogs.length==0){
+        const dialogRef = this.dialog.open(FilterByComponent, {
+         disableClose: true,
+        //  data: {
+        //   parentScreen: "Attendance"
+        //  }
+       });
+  
+       dialogRef.afterClosed().subscribe((result: string) => {
+        console.log(result);
+        if (result != "false") {
+        if (this.toDateFilter === "") {
+          this.fromDateFilter = result
+          if (result != "") {
+            this.dateFilter = "agStart "+ this.fromDateFilter
+          }else {
+            this.dateFilter = this.fromDateFilter
+          }
+        }else {
+          this.fromDateFilter = result
+          if (result != "") {
+            this.dateFilter = "agStart "+ this.fromDateFilter + " and "+ "agEnd "+ this.toDateFilter
+          }else {
+            this.dateFilter = "agEnd "+ this.toDateFilter
+          }
+        }
+        this.checkSearchString(this.dateFilter)
+        this.refreshMe()
+       
+        // this.adjustLoanDistribution(result);
+      }
+       })
+      }
+    }
+    onFilterByToDate() {
+      if(this.dialog.openDialogs.length==0){
+        const dialogRef = this.dialog.open(FilterByComponent, {
+         disableClose: true,
+        //  data: {
+        //   parentScreen: "Attendance"
+        //  }
+       });
+  
+       dialogRef.afterClosed().subscribe((result: string) => {
+        console.log(result);
+        if (result != "false") {
+        if (this.fromDateFilter === "") {
+          this.toDateFilter = result
+          if (result != "") {
+            this.dateFilter = "agEnd "+ this.toDateFilter
+          }else {
+            this.dateFilter = this.toDateFilter
+          }
+        }else {
+          this.toDateFilter = result
+          if (result != "") {
+            this.dateFilter = "agStart "+ this.fromDateFilter + " and "+ "agEnd "+ this.toDateFilter
+          }else {
+            this.dateFilter = "agStart "+ this.fromDateFilter
+          }
+        }
+        this.checkSearchString(this.dateFilter)
+        this.refreshMe()
+       
+        // this.adjustLoanDistribution(result);
+      }
+       })
+      }
+    }
+    
+
+    checkSearchString(text: string): string {
+      this.dateFilter = text
+      if (this.nameFilter === "" && this.dateFilter != "") {
+        console.log(this.filter);
+        return this.filter = this.dateFilter
+      }else if (this.nameFilter != "" && this.dateFilter === "") {
+        return this.filter = this.nameFilter
+      }else if (this.nameFilter != "" && this.dateFilter != "") {
+        console.log(this.filter);
+        return this.filter = this.nameFilter + " and "+ this.dateFilter
+      }else {
+        console.log(this.filter);
+        return this.filter = ""
+      }
+    }
 
   onKey(event: any) { 
     // if (this.screenMode === 'entry') {

@@ -34,7 +34,7 @@ export class PublicHolidayComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'Month', 'Year', 'Holiday'];
+  displayedColumns: string[] = ['Month', 'Year', 'Holiday', 'select'];
   dataSource: PublicHolidayModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -162,7 +162,8 @@ export class PublicHolidayComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "invcode like "+encodedSearchTerm
       if (this.dateFilter === "") {

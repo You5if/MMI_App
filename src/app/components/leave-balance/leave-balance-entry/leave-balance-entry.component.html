@@ -28,13 +28,19 @@ mat-button
                 </mat-select>
             </mat-form-field> -->
             
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>EmpAgreementId</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="empAgreementId" name="EmpAgreementId"  >
+            </mat-form-field> -->
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Employee</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="empAgreementId" name="EmpAgreementId">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Leave</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="leaveId" name="leave">
+                <mat-select [disabled]="submitDisable" [(ngModel)]="leaveId" name="leave" (selectionChange)="onLeaveChange(leaveId)">
                   <mat-option *ngFor="let employee of leaves" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -48,12 +54,12 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allocated</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocated" [(ngModel)]="allocated" name="allocated"  >
+                <input [disabled]="submitDisable" readonly  matInput appTitleCase placeholder="Allocated" positiveNumberOnly type="number" min="0" [(ngModel)]="allocated" name="allocated"  >
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Taken</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Taken"  [(ngModel)]="taken" name="Taken"  >
-            </mat-form-field>
+            </mat-form-field> -->
     
            
         </div>

@@ -101,7 +101,7 @@ mat-button
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Quantity</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Qty" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Qty" [ngModelOptions]="{standalone: true}">
+                <input [disabled]="submitDisable"  matInput  placeholder="Qty" type="number" min="0"  decimalOnly  [(ngModel)]="childTenure.Qty" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.Qty < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
@@ -113,12 +113,12 @@ mat-button
               </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Cost price</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Cost price" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.CostPrice" [ngModelOptions]="{standalone: true}">
+                <input [disabled]="submitDisable"  matInput  placeholder="Cost price" type="number" min="0"  decimalOnly  [(ngModel)]="childTenure.CostPrice" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.CostPrice < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Sale price</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Sale price" type="number" min="0"  oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.SalePrice" [ngModelOptions]="{standalone: true}">
+                <input [disabled]="submitDisable"  matInput  placeholder="Sale price" type="number" min="0"  decimalOnly  [(ngModel)]="childTenure.SalePrice" [ngModelOptions]="{standalone: true}">
                 <mat-error *ngIf="childTenure.SalePrice < 0">Negative value</mat-error>
             </mat-form-field>
             

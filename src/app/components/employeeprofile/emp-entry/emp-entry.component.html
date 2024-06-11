@@ -22,7 +22,8 @@ mat-button
         <div class="card-body">
            
             <input [disabled]="submitDisable" type="file" name="first" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" accept="image/png, image/jpeg">
-            <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+            <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple>
+            
                     <mat-card class="example-card">
                         <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="Photo of a Shiba Inu">
                         <div class="no-img" *ngIf="user_img === '/path/to/file'"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon></div>
@@ -33,6 +34,19 @@ mat-button
                       </mat-card>
            
            <div class="card-body">
+            <!-- <input type="file" (change)="fileChangeEvent($event)" />
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="false"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<img [src]="croppedImage" /> -->
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>First name</mat-label>
                 <input [disabled]="submitDisable" matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"   >
@@ -47,11 +61,29 @@ mat-button
                 <mat-label>Last name</mat-label>
                 <input [disabled]="submitDisable" matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName"  >
             </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Date of birth</mat-label>
+                <input [disabled]="submitDisable" matInput [matDatepicker]="dobpicker" [(ngModel)]="dob" name="dop">
+                
+                <mat-datepicker-toggle matIconSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                <mat-datepicker #dobpicker></mat-datepicker>
+              </mat-form-field >
     
             <!-- <mat-radio-group  name="gender"> -->
                 <!-- <mat-radio-button [(ngModel)]="gender" onclick="changeGender(true)"  name="male">Male</mat-radio-button>
                 <mat-radio-button [(ngModel)]="!gender" (ngModelChange)="changeGender(false)" name="female">Female</mat-radio-button> -->
             <!-- </mat-radio-group> -->
+            
+           </div>
+            
+        </div>
+    </div>
+    <div class="card" >
+        <div class="card-head">Gender</div>
+        <div class="card-body">
+           
+            
             <mat-radio-group [(ngModel)]="gender" name="gender">
                 <mat-radio-button [disabled]="submitDisable" [value]="true">Male</mat-radio-button>
             </mat-radio-group>
@@ -61,8 +93,7 @@ mat-button
             </mat-radio-group>
            </div>
             
-        </div>
-    </div>
+    </div> 
     
     <div class="card" >
         <div class="card-head">Contact</div>
@@ -74,12 +105,12 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Phone</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone"  type="number" [(ngModel)]="phone" name="phone">
+                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Phone"   [(ngModel)]="phone" name="phone">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Phone 2</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Phone 2"  type="number" [(ngModel)]="phone2"  name="phone2">
+                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Phone 2"  [(ngModel)]="phone2"  name="phone2">
             </mat-form-field>
 
             <mat-form-field appearance="outline" style="margin-right: 10px;">
@@ -94,16 +125,16 @@ mat-button
                 </mat-select>
             </mat-form-field>
 
-            
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Emergency contact</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency contact"  type="number" [(ngModel)]="emerContact" name="emercontact">
-            </mat-form-field>
-
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Emergency person</mat-label>
                 <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency person"  type="text" [(ngModel)]="emerPerson" name="emerPerson">
             </mat-form-field>
+            
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Emergency contact</mat-label>
+                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Emergency contact"  [(ngModel)]="emerContact" name="emercontact">
+            </mat-form-field>
+
     
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -123,18 +154,60 @@ mat-button
                   <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
                 </mat-select>
             </mat-form-field>
-    
+
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Job title</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedJobTitle" name="department">
+                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedJobTitle" name="jobtitle">
                   <mat-option *ngFor="let jobtitle of jobTitles" [value]="jobtitle">{{ jobtitle }}</mat-option>
                 </mat-select>
             </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Staff type</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedStaffType" name="staffType">
+                  <mat-option *ngFor="let staff of staffTypes" [value]="staff">{{ staff }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            
+               
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Start of contract</mat-label>
+                <input [disabled]="submitDisable" matInput [matDatepicker]="contractStpicker" [(ngModel)]="contractSt" name="inSt">
+                
+                <mat-datepicker-toggle matIconSuffix [for]="contractStpicker"></mat-datepicker-toggle>
+                <mat-datepicker #contractStpicker></mat-datepicker>
+              </mat-form-field >
+              <mat-form-field  style="margin-right: 10px;" appearance="outline">
+                <mat-label>End of contract</mat-label>
+                <input [disabled]="submitDisable" matInput [matDatepicker]="contractEndpicker" [(ngModel)]="contractEnd" name="inEnd">
+                
+                <mat-datepicker-toggle matIconSuffix [for]="contractEndpicker"></mat-datepicker-toggle>
+                <mat-datepicker #contractEndpicker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Date of join</mat-label>
+                <input [disabled]="submitDisable" matInput [matDatepicker]="dojpicker" [(ngModel)]="doj" name="doj">
+                
+                <mat-datepicker-toggle matIconSuffix [for]="dojpicker"></mat-datepicker-toggle>
+                <mat-datepicker #dojpicker></mat-datepicker>
+              </mat-form-field >
+    
+
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Biometric Id</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Biometric Id" type="number" [(ngModel)]="biomId" name="biomid">
+                <input [disabled]="submitDisable" matInput placeholder="Biometric Id" type="number" positiveNumberOnly min="0" [(ngModel)]="biomId" name="biomid">
             </mat-form-field>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-head">Overtime eligible</div>
+        <div class="card-body">
+            <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="overtimeElig" name="overtimeElig">Eligible</mat-checkbox>
+            
         </div>
     </div>
     
@@ -329,7 +402,7 @@ mat-button
         <div class="card-head">Training and certifications</div>
         <div class="card-body">
             <mat-form-field appearance="outline" style="width: 100%;">
-                <mat-label>Trainins</mat-label>
+                <mat-label>Trainings</mat-label>
                 <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%;">

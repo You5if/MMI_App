@@ -31,7 +31,7 @@ export class CreditNoteComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'leaveName', 'date', 'description', 'amount'];
+  displayedColumns: string[] = ['leaveName', 'date', 'description', 'amount', 'select'];
   dataSource: CreditNoteModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

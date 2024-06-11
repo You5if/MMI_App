@@ -31,7 +31,7 @@ export class CustomerComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'supplier', 'contact', 'email', 'phone'];
+  displayedColumns: string[] = ['supplier', 'contact', 'email', 'phone', 'select'];
   dataSource: CustomerModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

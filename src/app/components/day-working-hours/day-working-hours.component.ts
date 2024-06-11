@@ -36,7 +36,7 @@ export class DayWorkingHoursComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'Month', 'Year', 'Holiday'];
+  displayedColumns: string[] = ['Month', 'Year', 'Holiday', 'select'];
   dataSource: DayWorkingHoursModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -136,7 +136,8 @@ export class DayWorkingHoursComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "invcode like "+encodedSearchTerm
       if (this.dateFilter === "") {
@@ -189,12 +190,20 @@ export class DayWorkingHoursComponent {
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
         if (result != "false") {
-        if (this.dateFilter === "") {
-          this.fromDateFilter = "fromDate "+ result
-          this.dateFilter = "fromDate "+ result
+        if (this.toDateFilter === "") {
+          this.fromDateFilter = result
+          if (result != "") {
+            this.dateFilter = "fromDate "+ this.fromDateFilter
+          }else {
+            this.dateFilter = this.fromDateFilter
+          }
         }else {
-          this.fromDateFilter = "fromDate "+ result
-          this.dateFilter = "fromDate "+ result + " and "+ this.dateFilter
+          this.fromDateFilter = result
+          if (result != "") {
+            this.dateFilter = "fromDate "+ this.fromDateFilter + " and "+ "toDate "+ this.toDateFilter
+          }else {
+            this.dateFilter = "toDate "+ this.toDateFilter
+          }
         }
         this.checkSearchString(this.dateFilter)
         this.refreshMe()
@@ -216,10 +225,20 @@ export class DayWorkingHoursComponent {
        dialogRef.afterClosed().subscribe((result: string) => {
         console.log(result);
         if (result != "false") {
-        if (this.dateFilter === "") {
-          this.dateFilter = "toDate "+ result
+        if (this.fromDateFilter === "") {
+          this.toDateFilter = result
+          if (result != "") {
+            this.dateFilter = "toDate "+ this.toDateFilter
+          }else {
+            this.dateFilter = this.toDateFilter
+          }
         }else {
-          this.dateFilter = this.dateFilter + " and "+ "toDate "+ result
+          this.toDateFilter = result
+          if (result != "") {
+            this.dateFilter = "fromDate "+ this.fromDateFilter + " and "+ "toDate "+ this.toDateFilter
+          }else {
+            this.dateFilter = "fromDate "+ this.fromDateFilter
+          }
         }
         this.checkSearchString(this.dateFilter)
         this.refreshMe()
@@ -229,6 +248,7 @@ export class DayWorkingHoursComponent {
        })
       }
     }
+    
 
     checkSearchString(text: string): string {
       this.dateFilter = text

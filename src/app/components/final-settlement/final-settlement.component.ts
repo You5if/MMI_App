@@ -31,7 +31,7 @@ export class FinalSettlementComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'EmpId', 'GratuityClear', 'LeaveClear', 'SalaryClear', 'InvClear', 'HandoverCl', 'SupervisorCl', 'ManagerCl'];
+  displayedColumns: string[] = ['EmpId', 'GratuityClear', 'LeaveClear', 'SalaryClear', 'InvClear', 'HandoverCl', 'SupervisorCl', 'ManagerCl', 'select'];
   dataSource: FinalSettleModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

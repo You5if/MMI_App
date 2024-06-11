@@ -1,4 +1,4 @@
-<h1 class="first-card-home">Employee attendance</h1>
+<h1 class="first-card-home">Attendance check-ins</h1>
 
 <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display: none;" multiple>
 
@@ -37,7 +37,6 @@ class="upload_icon"
 </button>
 
 <button  
-*ngIf="!showLoading2"
 mat-icon-button
 matTooltip="Refresh attendance"
 [matTooltipShowDelay]="50"
@@ -66,25 +65,29 @@ class="refresh_icon"
     <button disabled mat-menu-item>
       <span>Sort by name</span>
     </button>
+    <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
     <button (click)="onAsc('empname')" mat-menu-item>
       <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-      <span>Ascending</span>
+      <span>Asc</span>
     </button>
     <button (click)="onDesc('empname')" mat-menu-item >
       <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-      <span>Descending</span>
-    </button>
+      <span>Desc</span>
+  </button>
+  </div>
     <button disabled mat-menu-item>
       <span>Sort by date</span>
     </button>
+    <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
     <button (click)="onAsc('checkin')" mat-menu-item>
       <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-      <span>Ascending</span>
+      <span>Asc</span>
     </button>
     <button (click)="onDesc('checkin')" mat-menu-item >
       <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-      <span>Descending</span>
-    </button>
+      <span>Desc</span>
+  </button>
+  </div>
     <button (click)="onClearSort()" mat-menu-item>
       <button mat-raised-button color="warn">Clear</button>
     </button>
@@ -101,7 +104,9 @@ class="refresh_icon2"
   <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
 </button>
 
-<button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+@if (sort != "" || filter != "") {
+  <button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+}
 </div>
 </div>
 
@@ -156,6 +161,12 @@ class="refresh_icon2"
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
+        <ng-container matColumnDef="Leave">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Leave
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
         
     
         <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
@@ -182,7 +193,7 @@ class="refresh_icon2"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         
@@ -214,12 +225,25 @@ class="refresh_icon2"
             <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.checkIn | date:"dd/MMM/yyyy HH:mm"}}</mat-cell>
           </ng-container>
           
+          <ng-container matColumnDef="Leave">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Leave
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leave}}</mat-cell>
+          </ng-container>
+          
       
           <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
       
           <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
       
         </mat-table>
+        @if (dataSource.length === 0 && (filter != '' || sort != '') && dataIsLoaded) {
+          <h2 class="empty-records">Record is not found</h2>
+        } 
+        @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
+          <h2 class="empty-records">No records yet</h2>
+        }
         <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
             (page)="paginatoryOperation($any($event))" showFirstLastButtons>
         </mat-paginator>

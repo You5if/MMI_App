@@ -35,7 +35,7 @@ export class LoanComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'empName', 'department', 'jobTitle', 'loanDate', 'amount'];
+  displayedColumns: string[] = ['empName', 'department', 'jobTitle', 'loanDate', 'amount', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -141,7 +141,8 @@ export class LoanComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "empName like "+encodedSearchTerm
       if (this.dateFilter === "") {

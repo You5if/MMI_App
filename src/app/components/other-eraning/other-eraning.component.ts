@@ -31,7 +31,7 @@ export class OtherEraningComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'Employees', 'Month', 'Year', 'Amount', 'Remarks'];
+  displayedColumns: string[] = ['Employees', 'Month', 'Year', 'Amount', 'Remarks', 'select'];
   dataSource: EarnModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

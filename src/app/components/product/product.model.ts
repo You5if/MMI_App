@@ -2,6 +2,7 @@ export interface ProductModel  {
     productId: number
     prodName: string
     prodDesc: string
+    prodCat: string
     isTest: boolean
     active: boolean
     userCR: number
@@ -20,6 +21,7 @@ export interface ProductModel  {
     ProductId: number
     ProdName: string
     ProdDesc: string
+    ProdCat: string
     IsTest: boolean
     Active: boolean
     Deleted: boolean

@@ -33,7 +33,14 @@ color="primary"
         
         <ng-container matColumnDef="Year">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-            Specifications
+            Product code
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Product
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
@@ -41,6 +48,21 @@ color="primary"
         <ng-container matColumnDef="Holiday">      
           <mat-header-cell class="centH" *matHeaderCellDef>
             Cost
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Allocation">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Allocation
+          </mat-header-cell>     
+          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="Withdrawal">      
+          <mat-header-cell class="centH" *matHeaderCellDef>
+            Withdrawal
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
@@ -70,8 +92,8 @@ color="primary"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/empinventory-entry/{{row.empInvId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+                <button routerLink="/system/empinventory-entry/{{row.empInvId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         
@@ -85,16 +107,39 @@ color="primary"
           
           <ng-container matColumnDef="Year">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Specifications
+              Product code
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.specs}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.prodCode}}</mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="name">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Product
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.prodName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="Holiday">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Cost
+              Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.costOfItem}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.employeeName}}</mat-cell>
+          </ng-container>
+          
+
+          <ng-container matColumnDef="Allocation">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Allocation
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allocationDate | date}}</mat-cell>
+          </ng-container>
+          
+
+          <ng-container matColumnDef="Withdrawal">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Withdrawal
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.withdrawDate | date}}</mat-cell>
           </ng-container>
           
       
@@ -103,6 +148,12 @@ color="primary"
           <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
       
         </mat-table>
+        @if (dataSource.length === 0 && (filter != '' || sort != '') && dataIsLoaded) {
+          <h2 class="empty-records">Record is not found</h2>
+        } 
+        @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
+          <h2 class="empty-records">No records yet</h2>
+        }
         <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
             (page)="paginatoryOperation($any($event))" showFirstLastButtons>
         </mat-paginator>

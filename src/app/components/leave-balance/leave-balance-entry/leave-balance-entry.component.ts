@@ -21,7 +21,7 @@ export class LeaveBalanceEntryComponent {
 
   // local variables 
   public empAgreementId = 0;
-  public allocated = '';
+  public allocated = 0;
   public taken = '';
 
 
@@ -63,6 +63,14 @@ leaves: any[] = []
       next: (value) => {
         this.leaves = value
         this.leaveId = value[0].id
+        this.empLeaveService.getLeaveData(this.leaveId).subscribe({
+          next: (value) => {
+            this.allocated = value.days
+          },
+          error:(err) => {
+              console.error('API Error:', err);
+          },
+        })
       },
       error: (err) => {
         console.error('API Error:', err);
@@ -96,6 +104,21 @@ leaves: any[] = []
       }
     )
    
+  }
+
+  onLeaveChange(id: number) {
+    // console.log("leave:", id);
+    this.submitDisable = true
+    this.empLeaveService.getLeaveData(id).subscribe({
+      next: (value) => {
+        this.submitDisable = false
+        this.allocated = value.days
+      },
+      error:(err) => {
+        this.submitDisable = false
+        console.error('API Error:', err);
+      },
+    })
   }
 
   
@@ -165,7 +188,7 @@ btnClick=  () => {
   "EmpAgreementId": this.empAgreementId,
     "LeaveId": this.leaveId,
     "Allocated": this.allocated,
-    "Taken": this.taken,
+    "Taken": 0,
     "IsTest": this._auth.getIsTest(),
     "Active": true,
     "Deleted": false,

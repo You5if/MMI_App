@@ -23,8 +23,13 @@ export class ProductEntryComponent {
   
 
   invId: number = 0
+  selecetedCategory: string
   description: string = ''
   accounts: any[] = []
+
+  public categories: string[] = [
+    "Asset", "HR", "Project"
+  ]; // Sample staff type
  
 
   submitDisable: boolean = false;
@@ -81,6 +86,7 @@ export class ProductEntryComponent {
               this.ProductId = response.productId
               this.ProdName = response.prodName
               this.description = response.prodDesc
+              this.selecetedCategory = response.prodCat
               
               
               // this.description = response.description
@@ -165,6 +171,7 @@ btnClick=  () => {
     "ProductId": this.ProductId,
         "ProdName": this.ProdName,
         "ProdDesc": this.description,
+        "ProdCat": this.selecetedCategory,
     "IsTest": this._auth.getIsTest(),
     "Active": true,
     "Deleted": false,

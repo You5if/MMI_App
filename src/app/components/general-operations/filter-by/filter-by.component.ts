@@ -20,18 +20,18 @@ import moment from "moment";
 @Component({
     selector: 'app-save-changes',
     styleUrl: './filter-by.component.css',
-    template: `<h2 mat-dialog-title>Select month and year</h2>
+    template: `<h2 mat-dialog-title>Select date range</h2>
     <mat-dialog-content>
       <form class="form-controls">
       <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>From date</mat-label>
+                <mat-label>From</mat-label>
                 <input   matInput [matDatepicker]="picker1" [(ngModel)]="fromDate" name="fromDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>To date</mat-label>
+                <mat-label>To</mat-label>
                 <input   matInput [matDatepicker]="picker2" [(ngModel)]="toDate" name="toDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -122,14 +122,14 @@ export class FilterByComponent {
        
     // }
     onSubmit() {
-        if (this.toDate <= this.fromDate) {
+        if (this.toDate < this.fromDate) {
           // Show an error message or perform any action for invalid input
           this.toast.error('Invalid date range. "To date" cannot be less than "From date".');
           return;
         }
       
         const fromDate = moment(this.fromDate, 'MM-DD-YYYY HH:mm:ss', true).format("YYYY-MM-DD HH:mm:ss");
-        const toDate = moment(this.toDate, 'MM-DD-YYYY HH:mm:ss', true).format("YYYY-MM-DD HH:mm:ss");
+        const toDate = moment(this.toDate, 'MM-DD-YYYY HH:mm:ss', true).endOf('day').format("YYYY-MM-DD HH:mm:ss");
         const dateFilter = "between '" + fromDate + "' and '" + toDate + "'";
         this.dialogRef.close(dateFilter);
       }

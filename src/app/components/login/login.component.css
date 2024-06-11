@@ -59,6 +59,10 @@ label {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-tr-moz-transform: translateY(-50%);
+    -o-tr-moz-transform: translateY(-50%);
     width: 20px;
     height: 20px;
     fill: #555;

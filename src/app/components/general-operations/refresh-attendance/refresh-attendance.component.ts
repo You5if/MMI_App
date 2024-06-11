@@ -21,7 +21,7 @@ import { PayrollProgressBarService } from "../../payroll/payroll-progress-bar/pa
     styleUrl: './refresh-attendance.component.css',
     template: `<h2 mat-dialog-title>Select month and year</h2>
     <mat-dialog-content>
-      <form>
+      <form style="margin-top: 10px;">
       <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select  id="firstControl" [(ngModel)]="objToSend.month" name="month">

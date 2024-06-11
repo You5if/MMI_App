@@ -9,6 +9,7 @@ import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
+import { SearchFilterComponent } from '../general-operations/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-supplier',
@@ -20,18 +21,23 @@ export class SupplierComponent {
   public middleName = '';
   public lastName = '';
 
+  suppNameFilter: string = ''
+  contactperFilter: string = ''
+
   
 
   // screen mode
   screenMode = 'index';
-
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
   // index variables
   sort: string = ""
   filter: string  =""
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'supplier', 'contact', 'email', 'phone'];
+  displayedColumns: string[] = ['supplier', 'contact', 'email', 'phone', 'select'];
   dataSource: SupplierModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -107,6 +113,103 @@ export class SupplierComponent {
       
     // }
   }
+
+  onSearch() {
+    // console.log(searchData.text);
+    // const term = "'%"+searchData.text+"%'"
+    // const encodedSearchTerm = encodeURIComponent(term);
+    // this.nameFilter = searchData.query+" like "+encodedSearchTerm
+    this.nameFilter = ''
+    if (this.suppNameFilter != '') {
+      this.nameFilter += this.suppNameFilter
+    }
+    if (this.contactperFilter != '') {
+      if (this.nameFilter != '') {
+        this.nameFilter += " and "+this.contactperFilter
+      }else {
+        this.nameFilter += this.contactperFilter
+      }
+    }
+   
+    if (this.dateFilter === "") {
+      this.filter = this.nameFilter
+      console.log(this.filter);
+      
+      this.refreshMe()
+    }else {
+      this.filter = this.nameFilter + " and "+ this.dateFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }
+
+  }
+  onClearSearch() {
+    this.searchText = ''
+    this.nameFilter = ""
+    if (this.nameFilter === "" && this.dateFilter != "") {
+      this.filter = this.dateFilter
+      console.log(this.filter);
+      
+      this.refreshMe()
+    }else if (this.nameFilter != "" && this.dateFilter === "") {
+      this.filter = this.nameFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }else if (this.nameFilter != "" && this.dateFilter != "") {
+      this.filter = this.nameFilter + " and "+ this.dateFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }else if (this.nameFilter === "" && this.dateFilter === "") {
+      this.filter = ""
+      console.log(this.filter);
+      this.refreshMe()
+    }
+      console.log(this.filter);
+      this.refreshMe()
+  }
+
+  onFilterBySearch(table: string, title: string) {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(SearchFilterComponent, {
+       disableClose: true,
+       data: {
+        screenTable: table,
+        screenTitle: title
+       }
+     });
+
+     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(result);
+      if (result.tableName === 'suppname') {
+        // console.log(result.text);
+        if (result.text != '') {
+          const term = "'%"+result.text+"%'"
+        const encodedSearchTerm = encodeURIComponent(term);
+        this.suppNameFilter = result.tableName+" like "+encodedSearchTerm
+        }else {
+          this.suppNameFilter = ''
+        }
+      }else if (result.tableName === 'contactper') {
+        if (result.text != '') {
+        // console.log(result.text);
+        const term = "'%"+result.text+"%'"
+        const encodedSearchTerm = encodeURIComponent(term);
+        this.contactperFilter = result.tableName+" like "+encodedSearchTerm
+        }else {
+          this.contactperFilter = ''
+        }
+      }
+      this.onSearch()
+    }
+     )}
+    }
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
 
   paginatoryOperation(event: PageEvent ): any {
     console.log(event);

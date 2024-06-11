@@ -60,3 +60,8 @@ mat-divider {
     padding: 0;
     min-height: 30px;
 }
+.empty-records {
+    text-align: center;
+    color: lightgrey;
+    margin: 20px 0;
+}

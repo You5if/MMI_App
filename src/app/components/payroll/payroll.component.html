@@ -9,9 +9,10 @@ color="primary"
 </button> -->
 <button  
 *ngIf="!showLoading2"
-mat-button
-color="basic"
+mat-raised-button
+color="primary"
 type="button"
+style="margin-top: 10px;"
     (click)="openRefreshAtt()"
   >
   Payroll run
@@ -119,8 +120,8 @@ type="button"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/other-earning-entry/{{row.earnAllowId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+                <button routerLink="/system/other-earning-entry/{{row.earnAllowId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         
@@ -143,7 +144,7 @@ type="button"
             <mat-header-cell class="centH" *matHeaderCellDef>
                 Month
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.month}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.month | month}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="Year">      
@@ -195,6 +196,12 @@ type="button"
           <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
       
         </mat-table>
+        @if (dataSource.length === 0 && (filter != '' || sort != '') && dataIsLoaded) {
+          <h2 class="empty-records">Record is not found</h2>
+        } 
+        @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
+          <h2 class="empty-records">No records yet</h2>
+        }
         <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
             (page)="paginatoryOperation($any($event))" showFirstLastButtons>
         </mat-paginator>

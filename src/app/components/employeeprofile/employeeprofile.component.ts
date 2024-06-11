@@ -13,6 +13,8 @@ import { AppGlobals } from '../../app.global';
 import { GlobalService } from '../../global.service';
 import { AuthService } from '../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { SearchInTableComponent } from '../general-operations/search-in-table/search-in-table.component';
+import { SearchFilterComponent } from '../general-operations/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-employeeprofile',
@@ -73,14 +75,16 @@ export class EmployeeprofileComponent implements OnInit{
 
   // screen mode
   screenMode = 'index';
-
+  searchText: string = ''
+  nameFilter: string = ""
+  dateFilter: string = ""
   // index variables
   sort: string = ""
   filter: string  =""
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'photo', 'empName', 'department', 'jobTitle', 'supervisor', 'biomId', 'phone'];
+  displayedColumns: string[] = ['photo', 'empName', 'department', 'jobTitle', 'supervisor', 'biomId', 'phone', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -99,6 +103,19 @@ export class EmployeeprofileComponent implements OnInit{
   fileName: string = "";
   fullPath: string = "";
   originalFileName: string = "";
+
+  // screachByArray = [
+  //   {title: 'Employee name', table: 'empName', resultList: []},
+  //   {title: 'Biometric Id', table: 'biomId', resultList: []},
+  //   {title: 'Department', table: 'department', resultList: []},
+  //   {title: 'Job title', table: 'jobTitle', resultList: []},
+  // ]
+  // @ViewChild(SearchInTableComponent) searchCmp:SearchInTableComponent;
+
+  empNameFilter: string = ''
+  bioIdFilter: string = ''
+  departmentFilter: string = ''
+  jobTitleFilter: string = ''
 
 
 
@@ -189,6 +206,140 @@ export class EmployeeprofileComponent implements OnInit{
       
     // }
   }
+
+  handleSearchOutputEvent(data: any) {
+    console.log('Received search output:', data);
+    // Perform actions based on the emitted data
+    // this.onSearch(data)
+  }
+
+  onSearch() {
+    // console.log(searchData.text);
+    // const term = "'%"+searchData.text+"%'"
+    // const encodedSearchTerm = encodeURIComponent(term);
+    // this.nameFilter = searchData.query+" like "+encodedSearchTerm
+    this.nameFilter = ''
+    if (this.jobTitleFilter != '') {
+      this.nameFilter += this.jobTitleFilter
+    }
+    if (this.empNameFilter != '') {
+      if (this.nameFilter != '') {
+        this.nameFilter += " and "+this.empNameFilter
+      }else {
+        this.nameFilter += this.empNameFilter
+      }
+    }
+    if (this.bioIdFilter != '') {
+      if (this.nameFilter != '') {
+        this.nameFilter += " and "+this.bioIdFilter
+      }else {
+        this.nameFilter += this.bioIdFilter
+      }
+    }
+    if (this.departmentFilter != '') {
+      if (this.nameFilter != '') {
+        this.nameFilter += " and "+this.departmentFilter
+      }else {
+        this.nameFilter += this.departmentFilter
+      }
+    }
+    if (this.dateFilter === "") {
+      this.filter = this.nameFilter
+      console.log(this.filter);
+      
+      this.refreshMe()
+    }else {
+      this.filter = this.nameFilter + " and "+ this.dateFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }
+
+  }
+  onClearSearch() {
+    this.searchText = ''
+    this.nameFilter = ""
+    if (this.nameFilter === "" && this.dateFilter != "") {
+      this.filter = this.dateFilter
+      console.log(this.filter);
+      
+      this.refreshMe()
+    }else if (this.nameFilter != "" && this.dateFilter === "") {
+      this.filter = this.nameFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }else if (this.nameFilter != "" && this.dateFilter != "") {
+      this.filter = this.nameFilter + " and "+ this.dateFilter
+      console.log(this.filter);
+      this.refreshMe()
+    }else if (this.nameFilter === "" && this.dateFilter === "") {
+      this.filter = ""
+      console.log(this.filter);
+      this.refreshMe()
+    }
+      console.log(this.filter);
+      this.refreshMe()
+  }
+
+  onFilterBySearch(table: string, title: string) {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(SearchFilterComponent, {
+       disableClose: true,
+       data: {
+        screenTable: table,
+        screenTitle: title
+       }
+     });
+
+     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(result);
+      if (result.tableName === 'empname') {
+        // console.log(result.text);
+        if (result.text != '') {
+          const term = "'%"+result.text+"%'"
+        const encodedSearchTerm = encodeURIComponent(term);
+        this.empNameFilter = result.tableName+" like "+encodedSearchTerm
+        }else {
+          this.empNameFilter = ''
+        }
+      }else if (result.tableName === 'biomId') {
+        if (result.text != '') {
+        // const term = "'%"+result.text+"%'"
+        // const encodedSearchTerm = encodeURIComponent(term);
+        this.bioIdFilter = result.tableName+"="+result.text
+        }else {
+          this.bioIdFilter = ''
+        }
+      }else if (result.tableName === 'department') {
+        if (result.text != '') {
+        // console.log(result.text);
+        const term = "'%"+result.text+"%'"
+        const encodedSearchTerm = encodeURIComponent(term);
+        this.departmentFilter = result.tableName+" like "+encodedSearchTerm
+        }else {
+          this.departmentFilter = ''
+        }
+      }else if (result.tableName === 'jobTitle') {
+        if (result.text != '') {
+        // console.log(result.text);
+        const term = "'%"+result.text+"%'"
+        const encodedSearchTerm = encodeURIComponent(term);
+        this.jobTitleFilter = result.tableName+" like "+encodedSearchTerm
+        }else {
+          this.jobTitleFilter = ''
+        }
+      }
+      this.onSearch()
+    }
+     )}
+    }
+
+    onClearAll() {
+      this.searchText = ''
+    this.sort = ""
+    this.filter = ""
+    this.refreshMe()
+    }
+
 
   paginatoryOperation(event: PageEvent ): any {
     console.log(event);

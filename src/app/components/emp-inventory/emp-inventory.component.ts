@@ -31,7 +31,7 @@ export class EmpInventoryComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'Month', 'Year', 'Holiday'];
+  displayedColumns: string[] = ['Month', 'Year', 'name', 'Holiday', 'Allocation', 'Withdrawal', 'select'];
   dataSource: EmpInvModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

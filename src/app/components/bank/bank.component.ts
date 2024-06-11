@@ -31,7 +31,7 @@ export class BankComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'leaveName', 'description', 'LeaveFormula'];
+  displayedColumns: string[] = ['leaveName', 'description', 'LeaveFormula', 'select'];
   dataSource: BankModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

@@ -35,7 +35,7 @@ export class StockOutComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'journCode', 'journDate', 'tax', 'remarks'];
+  displayedColumns: string[] = ['journCode', 'journDate', 'tax', 'remarks', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -141,7 +141,8 @@ export class StockOutComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "code like "+encodedSearchTerm
       if (this.dateFilter === "") {

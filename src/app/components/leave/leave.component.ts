@@ -31,7 +31,7 @@ export class LeaveComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'leaveName', 'description', 'LeaveFormula', 'isPaid', 'payEvalFormula'];
+  displayedColumns: string[] = ['leaveName', 'description', 'days', 'isPaid', 'select'];
   dataSource: LeaveModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

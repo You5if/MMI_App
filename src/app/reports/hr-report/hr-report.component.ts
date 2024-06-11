@@ -26,6 +26,10 @@ export class HrReportComponent {
    IncentiveYear: number = 2024
    payRollMonth: number = 1
    payRollYear: number = 2024
+   overtimeMonth: number = 1
+   overtimeYear: number = 2024
+   leavesMonth: number = 1
+   leavesYear: number = 2024
 
    fromDate: Date = new Date()
    toDate: Date = new Date()
@@ -35,6 +39,10 @@ export class HrReportComponent {
 
    empIdReport11: number = 1
    empIdReport12: number = 1
+   empLeaveIdReport: number = 1
+   empLoanIdReport: number = 1
+   empInvIdReport: number = 1
+   empIncidentIdReport: number = 1
 
    constructor(
     private AgreementServcie: AgreementService,

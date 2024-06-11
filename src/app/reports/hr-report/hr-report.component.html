@@ -82,6 +82,48 @@
         </div>
       </div>
 
+    <div class="card" >
+        <div class="card-head">Monthly overtime</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="overtimeMonth" name="overtimeMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="overtimeYear" name="overtimeYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(14, overtimeMonth, overtimeYear)" type="button" >Get report</button>
+
+        </div>
+      </div>
+      
+    <div class="card" >
+        <div class="card-head">Monthly leaves</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Month</mat-label>
+                <mat-select  id="firstControl" [(ngModel)]="leavesMonth" name="leavesMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="leavesYear" name="leavesYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchReport(15, leavesMonth, leavesYear)" type="button" >Get report</button>
+
+        </div>
+      </div>
+
       <div class="card" >
         <div class="card-head">Incentive report</div>
         <div class="card-body">
@@ -107,6 +149,14 @@
         <div class="card-head">Expiration report</div>
         <div class="card-body">
             <button mat-stroked-button color="primary"  (click)="fetchIdReport(8)" type="button" >Get report</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Inventory allocation</div>
+        <div class="card-body">
+            <button mat-stroked-button color="primary"  (click)="fetchIdReport(18)" type="button" >Get report</button>
 
         </div>
       </div>
@@ -144,6 +194,66 @@
             </mat-form-field>
 
             <button mat-stroked-button color="primary"  (click)="fetchEmpReport(11, empIdReport11)" type="button" >Get report</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Employee leave summary</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="empLeaveIdReport" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(16, empLeaveIdReport)" type="button" >Get report</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Employee incidents</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="empIncidentIdReport" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(21, empIncidentIdReport)" type="button" >Get report</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Loan</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="empLoanIdReport" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(17, empLoanIdReport)" type="button" >Get report</button>
+
+        </div>
+      </div>
+
+      <div class="card" >
+        <div class="card-head">Employee inventory</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px; width: 100%;">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="empInvIdReport" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(19, empInvIdReport)" type="button" >Get report</button>
 
         </div>
       </div>

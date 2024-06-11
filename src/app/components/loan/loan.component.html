@@ -11,7 +11,7 @@ color="primary"
 <div class="action-bar">
   
   <div class="action-btns">
-        <input matInput type="text" placeholder="Search by code" class="action-input" [(ngModel)]="searchText">
+        <input matInput type="text" placeholder="Search by name" class="action-input" [(ngModel)]="searchText">
            <button class="search-button" (click)="onSearch()">Search</button>
             @if (nameFilter) {
               <button matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
@@ -39,25 +39,29 @@ class="refresh_icon"
   <button disabled mat-menu-item>
     <span>Sort by name</span>
   </button>
-  <button (click)="onAsc('empName')" mat-menu-item>
+  <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
+    <button (click)="onAsc('empName')" mat-menu-item>
     <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-    <span>Ascending</span>
+    <span>Asc</span>
   </button>
   <button (click)="onDesc('empName')" mat-menu-item >
     <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-    <span>Descending</span>
+    <span>Desc</span>
   </button>
+  </div>
   <button disabled mat-menu-item>
     <span>Sort by date</span>
   </button>
-  <button (click)="onAsc('loanDate')" mat-menu-item>
+  <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
+    <button (click)="onAsc('loanDate')" mat-menu-item>
     <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-    <span>Ascending</span>
+    <span>Asc</span>
   </button>
   <button (click)="onDesc('loanDate')" mat-menu-item >
     <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-    <span>Descending</span>
+    <span>Desc</span>
   </button>
+  </div>
 </mat-menu>
 
 <button  
@@ -73,7 +77,9 @@ class="refresh_icon2"
 </button>
 
 
-<button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+@if (sort != "" || filter != "") {
+  <button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+}
 </div>
 </div>
 
@@ -152,8 +158,8 @@ class="refresh_icon2"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/loan-entry/{{row.loanReqId}}" class="Btn" mat-button color="primary">Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+                <button routerLink="/system/loan-entry/{{row.loanReqId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         
@@ -198,6 +204,12 @@ class="refresh_icon2"
           <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
       
         </mat-table>
+        @if (dataSource.length === 0 && (filter != '' || sort != '') && dataIsLoaded) {
+          <h2 class="empty-records">Record is not found</h2>
+        } 
+        @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
+          <h2 class="empty-records">No records yet</h2>
+        }
         <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
             (page)="paginatoryOperation($any($event))" showFirstLastButtons>
         </mat-paginator>

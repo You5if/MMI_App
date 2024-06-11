@@ -3,6 +3,7 @@ export interface DayWorkingHoursModel {
     FromDate: any
     ToDate: any
     DayHours: number
+    staffType: string
     IsTest: boolean
     Active: boolean
     Deleted: boolean

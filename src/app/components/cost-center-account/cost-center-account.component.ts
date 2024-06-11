@@ -31,7 +31,7 @@ export class CostCenterAccountComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'leaveName', 'groupId', 'description'];
+  displayedColumns: string[] = ['leaveName', 'groupId', 'description', 'select'];
   dataSource: CostCenterAccModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

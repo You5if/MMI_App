@@ -31,7 +31,7 @@ export class AllowanceComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'leaveName', 'description', 'LeaveFormula', 'RunFreq'];
+  displayedColumns: string[] = ['leaveName', 'LeaveFormula'];
   dataSource: AllowanceModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

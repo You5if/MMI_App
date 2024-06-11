@@ -32,7 +32,7 @@ export class SaleOrderComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'journCode', 'journDate', 'tax'];
+  displayedColumns: string[] = ['journCode', 'journDate', 'tax', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

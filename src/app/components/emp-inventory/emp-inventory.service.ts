@@ -35,7 +35,7 @@ export class EmpInventoryService {
     return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
   }
   getDropdownItem(): Observable<any> { 
-    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empinvlistid/empinvlist/itemname/active=1 and empinvlistid>1/false', this._cf.requestOptions());
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + "Ddl/getdropdown/productid/product/prodname/active=1 and productid>1 and prodcat='HR'/false", this._cf.requestOptions());
   }
   getRecordEntry(id: number): Observable<any> {
       return this.httpclient.get<any>(this._globals.baseAPIUrl + "EmpInv/" + id + "/1/1/1/''/''/''", this._cf.requestOptions()).pipe(

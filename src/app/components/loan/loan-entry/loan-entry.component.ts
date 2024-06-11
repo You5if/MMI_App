@@ -29,8 +29,8 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class LoanEntryComponent {
 
 tenure: number = 0;
-amount: number = 0;
-requestDate = new Date();
+amount: number;
+requestDate :Date;
 tenures: LoanChildModel[] = [];
 deletedTenures: LoanChildModel[] = [];
 loanTypeId!: number;
@@ -38,6 +38,8 @@ loadId: number = 0;
 employeeId!: number;
 employees: any[] = []
 loanTypes: any[] = []
+
+months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
 
 
   submitDisable: boolean = false;
@@ -204,6 +206,18 @@ loanTypes: any[] = []
   }
 
   fetchTenure() {
+    if (!this.amount || this.amount <= 0) {
+      this.toast.error("Loan amount is can not be empty or zero")
+      return;
+    }
+    if (this.tenure === 0) {
+      this.toast.error("Tenure field is can not be empty or zero")
+      return;
+    }
+    if (!this.requestDate) {
+      this.toast.error("Request date can not be empty")
+      return;
+    }
     if (this.tenures.length != 0) {
       this.tenure = this.tenures.length
     }
@@ -289,6 +303,14 @@ handleInput(event: any) {
 }
 
 btnClick=  () => {
+  if (this.tenures.length < 1) {
+    this.toast.error("Tenures can not be empty, you need to add at least one.")
+    return;
+  }
+  if (this.amount === 0) {
+    this.toast.error("Amount can not be zero.")
+    return;
+  }
   var tenureAmount: number = 0
   this.tenures.filter(tenure => !tenure.Deleted).map((item) => {
     tenureAmount += item.Amount

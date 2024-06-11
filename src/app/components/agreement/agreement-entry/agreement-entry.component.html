@@ -48,7 +48,7 @@ mat-button
             <div class="card-head">Agreement information</div>
         <div class="card-body">
 
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Department</mat-label>
                 <input [disabled]="submitDisable"  matInput  placeholder="Department"   [(ngModel)]="department" name="department"   >
             </mat-form-field>
@@ -56,7 +56,7 @@ mat-button
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>jobTitle</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle"  >
-            </mat-form-field>
+            </mat-form-field> -->
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Description</mat-label>
@@ -76,17 +76,17 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Basic</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 1" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="earn1" name="earn1"  >
+                <input [disabled]="submitDisable"  matInput type="number" min="0"  placeholder="Earn 1" decimalOnly  [(ngModel)]="earn1" name="earn1"  >
                 <mat-error *ngIf="earn1 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allowance</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 2" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="earn2" name="earn2"  >
+                <input [disabled]="submitDisable"  matInput type="number" min="0"  placeholder="Earn 2" decimalOnly  [(ngModel)]="earn2" name="earn2"  >
                 <mat-error *ngIf="earn2 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Incentive</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Earn 2" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="earn3" name="earn3"  >
+                <input [disabled]="submitDisable"  matInput type="number" min="0"  placeholder="Earn 2" decimalOnly  [(ngModel)]="earn3" name="earn3"  >
                 <mat-error *ngIf="earn3 < 0">Negative value</mat-error>
             </mat-form-field>
         </div>
@@ -96,17 +96,17 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Ded 1</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 1" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="ded1" name="Ded1"  >
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 1" decimalOnly  [(ngModel)]="ded1" name="Ded1"  >
                 <mat-error *ngIf="ded1 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Ded 2</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 2" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="ded2" name="Ded2"  >
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 2" decimalOnly  [(ngModel)]="ded2" name="Ded2"  >
                 <mat-error *ngIf="ded2 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Ded 3</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 2" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="ded3" name="Ded3"  >
+                <input [disabled]="submitDisable"  matInput type="number" min="0" appTitleCase placeholder="Ded 2" decimalOnly  [(ngModel)]="ded3" name="Ded3"  >
                 <mat-error *ngIf="ded3 < 0">Negative value</mat-error>
             </mat-form-field>
         </div>

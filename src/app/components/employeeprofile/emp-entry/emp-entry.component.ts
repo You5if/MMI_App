@@ -12,6 +12,8 @@ import { AppGlobals } from '../../../app.global';
 import { GlobalService } from '../../../global.service';
 import { AuthService } from '../../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-emp-entry',
@@ -20,6 +22,8 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class EmpEntryComponent {
 
+  imageChangedEvent: Event | null = null;
+    croppedImage: SafeUrl  = '';
   // local variables 
   public empProfileId = 0;
   public firstName = '';
@@ -251,11 +255,15 @@ export class EmpEntryComponent {
 "Store keeper",     
 "Office Boy",     
 "Helper"
-  ]; // Sample departments
+  ]; // Sample job titles
+  public staffTypes: string[] = [
+    "Management", "Labor", "type3", "type4", "type5"
+  ]; // Sample staff type
   public selectedJobTitle: string = ''; // Variable to store the selected department
+  public selectedStaffType: string = ''; // Variable to store the selected department
   public selectedSupervisor: number = 1
   public biomId = '';
-
+  overtimeElig: boolean= false
   public languages = '';
   public education = '';
   public experience = '';
@@ -265,22 +273,26 @@ export class EmpEntryComponent {
   public certificates = '';
   public insurance = '';
   public inDesc = '';
-  public inSt : Date = new Date();
-  public inEnd: Date = new Date();
+  public contractEnd : Date;
+  public contractSt: Date;
+  public inSt : Date;
+  public inEnd: Date;
+  public dob: Date;
+  public doj: Date;
   public laborCard = '';
   public laborDesc = '';
-  public laborSt : Date = new Date();
-  public laborEn : Date = new Date();
+  public laborSt : Date;
+  public laborEn : Date;
  
-  public emiratesSt : Date= new Date();
-  public emiratesEn : Date = new Date();
+  public emiratesSt : Date;
+  public emiratesEn : Date;
   public passport = '';
-  public passportSt : Date = new Date();
-  public passportEn : Date = new Date();
+  public passportSt : Date;
+  public passportEn : Date;
   public visa = '';
   public visaDesc = '';
-  public visaSt : Date = new Date();
-  public visaEn : Date = new Date();
+  public visaSt : Date;
+  public visaEn : Date;
   public emiratesId = '';
   public supervisorId = 1;
   message: string = "";
@@ -332,6 +344,7 @@ export class EmpEntryComponent {
     private globalService: GlobalService,
     private _auth: AuthService,
     private toast: HotToastService,
+    private sanitizer: DomSanitizer
     ) {
 
   }
@@ -367,7 +380,11 @@ export class EmpEntryComponent {
               this.emerContact = response.emerContact;
               this.address = response.address;
               this.gender = response.gender
+              this.dob = response.dob
+              this.doj = response.doj
               this.selectedDepartment = response.department;
+              this.selectedStaffType = response.staffType
+              this.overtimeElig = response.overtimeElig
               this.biomId = response.biomId;
               this.supervisorId = response.supervisor
               this.languages = response.languages;
@@ -384,6 +401,8 @@ export class EmpEntryComponent {
               this.inDesc = response.inDesc
               this.inSt = response.inSt
               this.inEnd = response.inEnd
+              this.contractEnd = response.contractEnd
+              this.contractSt = response.contractSt
               this.laborCard = response.laborCard
               this.laborDesc = response.laborDesc
               this.laborSt = response.laborSt
@@ -488,6 +507,27 @@ export class EmpEntryComponent {
   
 }
 
+//Image cropper functions
+fileChangeEvent(event: Event): void {
+  this.imageChangedEvent = event;
+}
+imageCropped(event: ImageCroppedEvent) {
+if (event.objectUrl) {
+  this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+}
+// event.blob can be used to upload the cropped image
+}
+imageLoaded(image: LoadedImage) {
+  // show cropper
+}
+cropperReady() {
+  // cropper ready
+}
+loadImageFailed() {
+  // show message
+}
+
+//Attachment
 uploadAttachments(files:any)  {
   console.log(files);
   let fileValidations = 1;
@@ -706,6 +746,30 @@ deleteAttach(id: number) {
 }
 
 btnClick=  () => {
+  if (this.contractEnd < this.contractSt) {
+    this.toast.error("Contract end date can not be less than start date");
+    return;
+  }
+  if (this.inEnd < this.inSt) {
+    this.toast.error("Insurance end date can not be less than start date");
+    return;
+  }
+  if (this.laborEn < this.laborSt) {
+    this.toast.error("Labor end date can not be less than start date");
+    return;
+  }
+  if (this.emiratesEn < this.emiratesSt) {
+    this.toast.error("Emirates end date can not be less than start date");
+    return;
+  }
+  if (this.passportEn < this.passportSt) {
+    this.toast.error("Passport end date can not be less than start date");
+    return;
+  }
+  if (this.visaEn < this.visaSt) {
+    this.toast.error("Passport end date can not be less than start date");
+    return;
+  }
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
@@ -731,15 +795,17 @@ btnClick=  () => {
     "EmerContact": Number(this.emerContact),
     "Languages": this.languages,
     "JobTitle": this.selectedJobTitle,
+    "staffType": this.selectedStaffType,
+    "overtimeElig": this.overtimeElig,
     "Nationality": this.selectedNationality,
     "Gender": this.gender,
     "MaritStatus": "Married",
     "Children": 2,
-    "DOB": "1990-01-01T00:00:00Z",
+    "DOB": this.dob,
     "Supervisor": this.supervisorId,
-    "DOJ": "2020-01-01T00:00:00Z",
-    "ContractSt": "2020-01-01T00:00:00Z",
-    "ContractEnd": "2022-01-01T00:00:00Z",
+    "DOJ": this.doj,
+    "ContractSt": this.contractSt,
+    "ContractEnd": this.contractEnd,
     "Education": this.education,
     "Experience": this.experience,
     "Skills": this.skills,

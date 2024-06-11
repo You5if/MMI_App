@@ -33,7 +33,7 @@ export class UsersComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'displayName', 'appUserName'];
+  displayedColumns: string[] = ['displayName', 'appUserName', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

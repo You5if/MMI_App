@@ -32,7 +32,7 @@ export class StockReturnComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'journCode', 'journDate', 'tax','remarks'];
+  displayedColumns: string[] = ['journCode', 'journDate', 'tax','remarks', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

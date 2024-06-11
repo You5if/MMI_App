@@ -17,6 +17,10 @@
     height: 100%;
     background-color: rgba(100, 255, 95, 0.8);
     transition: width 3s ease-in-out;
+    -webkit-transition: width 3s ease-in-out;
+    -moz-transition: width 3s ease-in-out;
+    -ms-transition: width 3s ease-in-out;
+    -o-transition: width 3s ease-in-out;
     position: relative;
     overflow: hidden;
   }
@@ -35,8 +39,16 @@
   @keyframes shimmer {
     0% {
       transform: translateX(-100%);
+      -webkit-transform: translateY(-100%);
+      -moz-transform: translateY(-100%);
+      -ms-tr-moz-transform: translateY(-100%);
+      -o-tr-moz-transform: translateY(-100%);
     }
     100% {
       transform: translateX(100%);
+      -webkit-transform: translateY(100%);
+      -moz-transform: translateY(100%);
+      -ms-tr-moz-transform: translateY(100%);
+      -o-tr-moz-transform: translateY(100%);
     }
   }

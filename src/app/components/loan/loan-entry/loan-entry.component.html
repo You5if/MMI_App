@@ -23,24 +23,24 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
-                <mat-select id="firstName"  [disabled]="submitDisable" [(ngModel)]="employeeId" name="employee">
+                <mat-select id="firstName" required  [disabled]="submitDisable" [(ngModel)]="employeeId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Loan type</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="loanTypeId" name="loanType">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="loanTypeId" name="loanType">
                   <mat-option *ngFor="let loanType of loanTypes" [value]="loanType.id">{{ loanType.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Loan amount</mat-label>
-                <input [disabled]="submitDisable"  matInput  min="0"  placeholder="Loan amount" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="amount" name="amount">
+                <input [disabled]="submitDisable" required  matInput  min="0"  placeholder="Loan amount" type="number" decimalOnly  [(ngModel)]="amount" name="amount">
                 <mat-error *ngIf="amount < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Request date</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="requestDate" name="requestDate">
+                <input [disabled]="submitDisable" required  matInput [matDatepicker]="picker" [(ngModel)]="requestDate" name="requestDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -48,35 +48,43 @@ mat-button
             <mat-divider></mat-divider>
             <mat-form-field *ngIf="loadId ===0" style="margin-right: 10px;">
                 <mat-label>Tenure</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" type="number" min="0" appTitleCase placeholder="Tenure"  [(ngModel)]="tenure" name="tenure">
+                <input [disabled]="submitDisable"  matInput type="number" min="0" positiveNumberOnly placeholder="Tenure"  [(ngModel)]="tenure" name="tenure">
             </mat-form-field>
            
-                <button mat-stroked-button *ngIf="loadId === 0" [disabled]="tenure === 0" type="button" (click)="fetchTenure()">Fetch</button>
+                <button mat-stroked-button *ngIf="loadId === 0" type="button" (click)="fetchTenure()">Fetch</button>
         </div>
     </div>
-    <div fxLayout fxLayoutGap="5px">
-        <button mat-stroked-button type="button" (click)="addNewTenure()">Add paymnet</button>
-    </div>
+    @if (tenures.length > 0) {
+        <div fxLayout fxLayoutGap="5px" >
+            <button mat-stroked-button type="button" (click)="addNewTenure()">Add paymnet</button>
+        </div>
+    }
 
     <div *ngFor="let childTenure of tenures">
         <div class="card" *ngIf="!childTenure.Deleted">
             <div class="card-body">
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Amount</mat-label>
-                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Loan amount" type="number" min="0" [max]="amount" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"  [(ngModel)]="childTenure.Amount" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput placeholder="Loan amount" positiveNumberOnly type="number" min="0" [max]="amount" decimalOnly  [(ngModel)]="childTenure.Amount" [ngModelOptions]="{standalone: true}">
                     <mat-error *ngIf="childTenure.Amount < 0">Negative value</mat-error>
                 </mat-form-field>
+                <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
+                    <mat-label>Month</mat-label>
+                    <input [disabled]="submitDisable"  matInput  placeholder="Month" positiveNumberOnly type="number" min="1" [(ngModel)]="childTenure.Month" [ngModelOptions]="{standalone: true}">
+                </mat-form-field> -->
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Month</mat-label>
-                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Month" [ngModelOptions]="{standalone: true}">
+                    <mat-select  id="firstControl" [(ngModel)]="childTenure.Month" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Year</mat-label>
-                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Year" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput  placeholder="Year" positiveNumberOnly type="number"  [(ngModel)]="childTenure.Year" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Remarks</mat-label>
-                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Request date"  [(ngModel)]="childTenure.Remarks" [ngModelOptions]="{standalone: true}">
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks" type="number"  [(ngModel)]="childTenure.Remarks" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <button mat-raised-button color="warn" type="button" (click)="deleteTenure(childTenure)">Delete</button>
             </div>

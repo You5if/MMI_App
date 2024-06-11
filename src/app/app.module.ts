@@ -87,7 +87,6 @@ import { CostCenterAccountEntryComponent } from './components/cost-center-accoun
 import { AttendanceSummaryComponent } from './components/attendance-summary/attendance-summary.component';
 import { AttendanceSummaryEntryComponent } from './components/attendance-summary/attendance-summary-entry/attendance-summary-entry.component';
 import { MainHomeComponent } from './components/main-home/main-home.component';
-import { OnlyNumber } from './directives/RemoveNegativeNumbers';
 import { SupplierComponent } from './components/supplier/supplier.component';
 import { SupplierEntryComponent } from './components/supplier/supplier-entry/supplier-entry.component';
 import { WarehouseComponent } from './components/warehouse/warehouse.component';
@@ -118,6 +117,12 @@ import { InvReportComponent } from './reports/inv-report/inv-report.component';
 import { MaterialModule } from './material.module';
 import { FilterByComponent } from './components/general-operations/filter-by/filter-by.component';
 import { CheckLockComponent } from './components/general-operations/tenure-options/check-lock.component';
+import { DecimalOnlyDirective } from './directives/RemoveNegativeNumbers';
+import { PositiveNumberOnlyDirective } from './directives/OnlyNumberDirective';
+import { ImageCropperComponent } from 'ngx-image-cropper';
+import { SearchInTableComponent } from './components/general-operations/search-in-table/search-in-table.component';
+import { SearchFilterComponent } from './components/general-operations/search-filter/search-filter.component';
+import { MonthPipe } from './pipes/month.pipe';
 
 
 export function getAccessToken(): string {
@@ -149,7 +154,8 @@ export const jwtConfig = {
     AttendanceComponent,
     EmpEntryComponent,
     TitleCaseDirective,
-    OnlyNumber,
+    DecimalOnlyDirective,
+    PositiveNumberOnlyDirective,
     LoanComponent,
     LoanEntryComponent,
     LoanEntryChildComponent,
@@ -237,6 +243,9 @@ export const jwtConfig = {
     InvReportComponent,
     FilterByComponent,
     CheckLockComponent,
+    SearchInTableComponent,
+    SearchFilterComponent,
+    MonthPipe,
     // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],
@@ -245,7 +254,7 @@ export const jwtConfig = {
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    
+    ImageCropperComponent,
     NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...',
      theme:{ 
       extendsFromRoot: true,

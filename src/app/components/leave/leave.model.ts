@@ -4,6 +4,7 @@ export interface LeaveModel  {
     description: string
     leaveFormula: string
     isPaid: boolean
+    days: number
     payEvalFormula: string
     isTest: boolean
     active: boolean
@@ -25,6 +26,7 @@ export interface LeaveModel  {
     Description: string
     LeaveFormula: string
     IsPaid: boolean
+    Days: number
     PayEvalFormula: string
     IsTest: boolean
     Active: boolean

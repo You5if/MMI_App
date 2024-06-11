@@ -20,15 +20,17 @@ export interface EmployeeModel {
     EmerContact: number
     Languages: string
     JobTitle: string
+    staffType: string
+    overtimeElig: boolean
     Nationality: string
     Gender: boolean
     MaritStatus: string
     Children: number
-    DOB: string
+    DOB: Date
     Supervisor: number
-    DOJ: string
-    ContractSt: string
-    ContractEnd: string
+    DOJ: Date
+    ContractSt: Date
+    ContractEnd: Date
     Education: string
     Experience: string
     Skills: string

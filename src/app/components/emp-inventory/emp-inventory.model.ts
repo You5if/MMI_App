@@ -4,7 +4,7 @@ export interface EmpInvToSend {
     EmpInvListId: number
     ModelNo: string
     Specs: string
-    Expiry: string
+    Expiry: Date
     AllocationDate: any
     WitnessEmp1: number
     WitnessEmp2: number
@@ -34,7 +34,7 @@ export interface EmpInvToSend {
     empInvListId: number
     modelNo: string
     specs: string
-    expiry: string
+    expiry: Date
     allocationDate: any
     witnessEmp1: number
     witnessEmp2: number

@@ -31,7 +31,7 @@ export class TransactionComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'EmpId', 'witness1', 'witness2', 'LeaveDate'];
+  displayedColumns: string[] = ['EmpId', 'witness1', 'witness2', 'LeaveDate', 'select'];
   dataSource: TransactionModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

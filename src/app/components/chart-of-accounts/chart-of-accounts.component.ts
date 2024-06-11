@@ -31,7 +31,7 @@ export class ChartOfAccountsComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'Code', 'Name', 'Category', 'Description'];
+  displayedColumns: string[] = ['Code', 'Name', 'Category', 'Description', 'select'];
   dataSource: ChartOfAccountsModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

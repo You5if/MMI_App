@@ -17,9 +17,20 @@
     cursor: pointer;
     margin-right: 10px;
     transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;          
   }
 
   .lock-button:hover{
     background: #141e46d3;
     color: white;
   }
+
+  .empty-records {
+    text-align: center;
+    color: lightgrey;
+    margin: 20px 0;
+}
+

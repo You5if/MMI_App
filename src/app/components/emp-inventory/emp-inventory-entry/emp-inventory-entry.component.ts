@@ -33,12 +33,12 @@ export class EmpInventoryEntryComponent  {
   empInvListId: number = 2;
   modelNo: string = '';
   specs: string = '';
-  expiry: string = '';
-  allocationDate = new Date();
+  expiry: Date;
+  allocationDate:Date;
   witnessEmp1: number = 2;
   witnessEmp2: number = 2;
   allocRemarks: string = '';
-  withdrawDate = new Date();
+  withdrawDate:Date;
   witnessWDEmp1: number = 2;
   witnessWDEmp2: number = 2;
   withdrRemarks: string = '';
@@ -179,6 +179,19 @@ export class EmpInventoryEntryComponent  {
 }
 
 btnClick=  () => {
+
+  if (!this.expiry) {
+    this.toast.error("Choose expiry date")
+    return;
+  }
+  if (!this.allocationDate) {
+    this.toast.error("Choose allocation date")
+    return;
+  }
+  if (!this.withdrawDate) {
+    this.toast.error("Choose withdraw date")
+    return;
+  }
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);

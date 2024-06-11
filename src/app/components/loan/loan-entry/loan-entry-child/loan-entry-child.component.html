@@ -2,19 +2,19 @@
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Amount</mat-label>
-                <input matInput appTitleCase placeholder="Loan amount"  [(ngModel)]="amount" [ngModelOptions]="{standalone: true}">
+                <input matInput  placeholder="Loan amount" decimalOnly type="number" min="0"  [(ngModel)]="amount" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
-                <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="month" [ngModelOptions]="{standalone: true}">
+                <input matInput  placeholder="Month"  [(ngModel)]="month" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
-                <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
+                <input matInput positiveNumberOnly type="number" min="1" placeholder="Year"  [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Remarks</mat-label>
-                <input matInput appTitleCase placeholder="Request date"  [(ngModel)]="remarks" [ngModelOptions]="{standalone: true}">
+                <input matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </div>
     </div>

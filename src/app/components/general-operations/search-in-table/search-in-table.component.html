@@ -1,0 +1,25 @@
+<div class="search-container" #searchContainer>
+  <div class="search-div">
+    <!-- <input matInput type="text" placeholder="Search by name" disabled [matMenuTriggerFor]="menu" class="action-input" [(ngModel)]="searchText"> -->
+    <input matInput type="text" placeholder="Search by name" (input)="openSearchResult()"  class="action-input" [(ngModel)]="searchText">
+    <button class="search-button" (click)="openSearchResult()">Search</button>
+  </div>
+  <div class="search-menu" [class.active]="isMenuOpen">
+    @if (searchText === '') {
+      <button mat-menu-item disabled>Enter something to search</button>
+    }
+    @if (searchText != '') {
+      @for (searchItem of searchBy; track $index) {
+        <div class="search-list-title">{{searchItem.title}}</div>
+      <div class="search-list">
+        @for (item of searchItem.resultList; track $index) {
+          <div class="search-list-item"  (click)="sendSearchResult(item[searchItem.query], searchItem.query)">{{item[searchItem.query]}}</div>
+        }
+        
+      </div>
+      }
+      
+    }
+  </div>
+  
+</div>

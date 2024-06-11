@@ -25,6 +25,12 @@ export class DayWorkingHoursEntryComponent {
   public ToDate = new Date();
 
   MonthWDayId: number = 0
+
+  public selectedStaffType: string = '';
+
+  public staffTypes: string[] = [
+    "Management", "Labor", "type3", "type4", "type5"
+  ]; // Sample staff type
  
 
   submitDisable: boolean = false;
@@ -61,6 +67,7 @@ export class DayWorkingHoursEntryComponent {
               this.ToDate = response.toDate
               this.DayHours = response.dayHours
               this.MonthWDayId = response.monthWDayId
+              this.selectedStaffType = response.staffType
 
               this.submitDisable = false
       
@@ -143,6 +150,7 @@ btnClick=  () => {
     "FromDate": this.FromDate,
     "ToDate": this.ToDate,
    "DayHours": this.DayHours,
+   "staffType": this.selectedStaffType,
    "IsTest": this._auth.getIsTest(),
    "Active": true,
    "Deleted": false,

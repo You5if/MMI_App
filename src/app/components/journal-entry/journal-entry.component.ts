@@ -32,7 +32,7 @@ export class JournalEntryComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'journCode', 'journDate'];
+  displayedColumns: string[] = ['journCode', 'journDate', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;

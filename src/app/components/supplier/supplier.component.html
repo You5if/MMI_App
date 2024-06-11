@@ -8,6 +8,103 @@ color="primary"
   Create
 </button>
 
+<div class="action-bar">
+  
+  <!-- <div class="action-btns"> -->
+    <!-- <mat-form-field style="margin-right: 10px;" class="example-form-field">
+      <mat-label>Search employee</mat-label> -->
+      <!-- <input matInput type="text" placeholder="Search by name" class="action-input" [(ngModel)]="searchText"> -->
+      <!-- @if (nameFilter) { -->
+        
+      <!-- } -->
+    <!-- </mat-form-field> -->
+    <!-- <input type="text" matInput placeholder="Search employee" class="action-input" name="sortText" [(ngModel)]="searchText">
+         <button class="upload_icon" mat-icon-button color="basic" *ngIf="nameFilter != ''" (click)="onClearSearch()"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="cancel"></mat-icon></button> -->
+         <!-- <button class="search-button" (click)="onSearch()">Search</button>
+          @if (nameFilter) {
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+          } -->
+  <!-- </div> -->
+<div class="action-btns">
+  
+<!-- <button 
+mat-icon-button
+matTooltip="Upload file"
+[matTooltipShowDelay]="50"
+color="basic"
+type="file"
+class="upload_icon"
+  (click)="file.click()"
+>
+<mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="file_upload"></mat-icon>
+
+</button> -->
+
+
+
+<!-- <button  
+mat-icon-button
+matTooltip="Sort"
+[matTooltipShowDelay]="50"
+color="basic"
+type="button"
+class="refresh_icon"
+[matMenuTriggerFor]="sortMenu"
+>
+<mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="swap_vert"></mat-icon>
+
+</button>
+<mat-menu #sortMenu="matMenu">
+  <button disabled mat-menu-item>
+    <span>Sort by name</span>
+  </button>
+  <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
+    <button (click)="onAsc('empname')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Asc</span>
+  </button>
+  <button (click)="onDesc('empname')" mat-menu-item >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+    <span>Desc</span>
+  </button>
+  </div>
+  <button disabled mat-menu-item>
+    <span>Sort by date</span>
+  </button>
+  <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
+    <button (click)="onAsc('checkin')" mat-menu-item>
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+    <span>Asc</span>
+  </button>
+  <button (click)="onDesc('checkin')" mat-menu-item >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+    <span>Desc</span>
+  </button>
+  </div>
+  <button (click)="onClearSort()" mat-menu-item>
+    <button mat-raised-button color="warn">Clear</button>
+  </button>
+</mat-menu> -->
+<!-- <button  
+mat-icon-button
+matTooltip="Filter by"
+[matTooltipShowDelay]="50"
+color="basic"
+type="button"
+class="refresh_icon2"
+(click)="onFilterByDate()"
+>
+<mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+</button> -->
+
+@if (sort != "" || filter != "") {
+  <button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+}
+</div>
+</div>
+
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
   <div class="card-body">
@@ -26,14 +123,32 @@ color="primary"
        
         <ng-container matColumnDef="supplier">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Supplier
+                Supplier <button  
+                mat-icon-button
+                matTooltip="Filter by"
+                [matTooltipShowDelay]="50"
+                color="basic"
+                type="button"
+                disabled
+                  >
+                  <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+                </button>
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="contact">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Contact person
+              Contact person <button  
+              mat-icon-button
+              matTooltip="Filter by"
+              [matTooltipShowDelay]="50"
+              color="basic"
+              type="button"
+              disabled
+                >
+                <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+              </button>
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
           </ng-container>
@@ -92,22 +207,40 @@ color="primary"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/supplier-entry/{{row.supplierId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+                <button routerLink="/system/supplier-entry/{{row.supplierId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         
           
           <ng-container matColumnDef="supplier">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Supplier
+                Supplier <button  
+                mat-icon-button
+                matTooltip="Filter by"
+                [matTooltipShowDelay]="50"
+                color="basic"
+                type="button"
+                (click)="onFilterBySearch('suppname', 'Supplier')"
+                  >
+                  <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+                </button>
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.suppName}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="contact">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Contact person
+              Contact person <button  
+              mat-icon-button
+              matTooltip="Filter by"
+              [matTooltipShowDelay]="50"
+              color="basic"
+              type="button"
+              (click)="onFilterBySearch('contactper', 'Contact person')"
+                >
+                <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+              </button>
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.contactPer}}</mat-cell>
           </ng-container>
@@ -149,6 +282,12 @@ color="primary"
           <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
       
         </mat-table>
+        @if (dataSource.length === 0 && (filter != '' || sort != '') && dataIsLoaded) {
+          <h2 class="empty-records">Record is not found</h2>
+        } 
+        @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
+          <h2 class="empty-records">No records yet</h2>
+        }
         <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
             (page)="paginatoryOperation($any($event))" showFirstLastButtons>
         </mat-paginator>

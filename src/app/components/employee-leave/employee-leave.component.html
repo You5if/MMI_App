@@ -1,12 +1,12 @@
-<h1 class="first-card-home">Employee leave</h1>
+<h1 class="first-card-home">Leave utilization</h1>
 
-<button 
+<!-- <button 
 mat-stroked-button
 color="primary"
     routerLink="/system/employee-leave-entry/0"
   >
   Create
-</button>
+</button> -->
 
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
@@ -26,14 +26,14 @@ color="primary"
       
         <ng-container matColumnDef="EmpId">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-              Emp Id
+              Employee
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="LeaveId">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-            LeaveId
+            Leave
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
@@ -76,24 +76,24 @@ color="primary"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/employee-leave-entry/{{row.empLeaveId}}" style="margin-right: 5px;" class="Btn" mat-button color="primary">Edit</button>
-                <button (click)="onDelete(row)" class="Btn" mat-button color="warn">Delete</button>
+                <button routerLink="/system/employee-leave-entry/{{row.empLeaveId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         
           
           <ng-container matColumnDef="EmpId">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Emp Id
+                Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empId}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.employeeName}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="LeaveId">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              LeaveId
+              Leave
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leaveId}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leaveName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="LeaveDate">      
@@ -116,6 +116,12 @@ color="primary"
           <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
       
         </mat-table>
+        @if (dataSource.length === 0 && (filter != '' || sort != '') && dataIsLoaded) {
+          <h2 class="empty-records">Record is not found</h2>
+        } 
+        @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
+          <h2 class="empty-records">No records yet</h2>
+        }
         <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
             (page)="paginatoryOperation($any($event))" showFirstLastButtons>
         </mat-paginator>

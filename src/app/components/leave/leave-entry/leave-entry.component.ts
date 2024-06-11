@@ -23,6 +23,7 @@ export class LeaveEntryComponent  {
   
 
   invId: number = 0
+  days: number = 0
   description: string = ''
   leaves: any[] = []
  
@@ -74,6 +75,7 @@ export class LeaveEntryComponent  {
               this.leaveFormula = response.leaveFormula
               this.isPaid = response.isPaid
               this.leaveName = response.leaveName
+              this.days = response.days
               this.description = response.description
               this.payEvalFormula = response.payEvalFormula
               this.submitDisable = false
@@ -158,6 +160,7 @@ btnClick=  () => {
   "Description": this.description,
   "LeaveFormula": this.leaveFormula,
   "IsPaid": this.isPaid,
+  "Days": this.days,
   "PayEvalFormula": this.payEvalFormula,
   "IsTest": this._auth.getIsTest(),
   "Active": true,

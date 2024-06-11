@@ -3,7 +3,7 @@ export interface LeaveBalanceModel  {
     empAgreementId: number
     leaveId: number
     allocated: string
-    taken: string
+    taken: number
     isTest: boolean
     active: boolean
     userCR: number
@@ -23,8 +23,8 @@ export interface LeaveBalanceModel  {
         LeaveBalId: number
         EmpAgreementId: number
       LeaveId: number
-      Allocated: string
-      Taken: string
+      Allocated: number
+      Taken: number
       IsTest: boolean
       Active: boolean
       Deleted: boolean

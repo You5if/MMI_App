@@ -33,7 +33,7 @@ export class ProductComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'leaveName', 'description'];
+  displayedColumns: string[] = ['code', 'leaveName', 'category', 'description', 'select'];
   dataSource: ProductModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -126,9 +126,12 @@ export class ProductComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
-      this.nameFilter = "prodName like "+encodedSearchTerm
+      this.nameFilter = "prodName like "+encodedSearchTerm;
+      console.log(this.nameFilter);
+      
       if (this.dateFilter === "") {
         this.filter = this.nameFilter
         console.log(this.filter);

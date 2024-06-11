@@ -35,9 +35,9 @@ export class AttendanceComponent implements OnInit {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'empName', 'department', 'jobTitle', 'checkIn'];
+  displayedColumns: string[] = ['empName', 'department', 'jobTitle', 'checkIn', 'Leave', 'select'];
   dataSource: any;
-  isLastPage = false;
+  isLastPage = false; 
   recordsPerPage: number | undefined;
   currentPageIndex: number | undefined;
   totalRecords!: number;
@@ -384,7 +384,8 @@ alert('Enter key is pressed, form will be submitted');
       //   "Info",
       //   "File types not accepted! Upload only JPEG or PNG Images!!"
       // );
-      console.log('val');
+      // console.log('val');
+      this.toast.error("File type not accepted! Upload only CSV files!!")
       
       return;
     }

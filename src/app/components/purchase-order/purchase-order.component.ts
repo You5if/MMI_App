@@ -35,7 +35,7 @@ export class PurchaseOrderComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'journCode', 'journDate', 'tax', 'Remarks'];
+  displayedColumns: string[] = ['journCode', 'journDate', 'tax', 'Remarks', 'select'];
   dataSource: any;
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -161,7 +161,8 @@ export class PurchaseOrderComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "invcode like "+encodedSearchTerm
       if (this.dateFilter === "") {

@@ -31,7 +31,7 @@ export class EmployeeLeaveComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'EmpId', 'LeaveId', 'LeaveDate', 'remarks'];
+  displayedColumns: string[] = ['EmpId', 'LeaveId', 'LeaveDate', 'remarks'];
   dataSource: EmpLeaveModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

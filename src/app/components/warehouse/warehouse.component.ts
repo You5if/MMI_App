@@ -33,7 +33,7 @@ export class WarehouseComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'supplier', 'contact', 'email', 'phone'];
+  displayedColumns: string[] = ['supplier', 'contact', 'email', 'phone', 'select'];
   dataSource: WarehouseModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -126,7 +126,8 @@ export class WarehouseComponent {
 
     onSearch() {
       console.log(this.searchText);
-      const term = "'%"+this.searchText+"%'"
+      const textToSearch = this.searchText.replace("'", "''")
+      const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "wareName like "+encodedSearchTerm
       if (this.dateFilter === "") {

@@ -31,7 +31,7 @@ export class InventoryComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['select', 'Month', 'Year', 'Holiday'];
+  displayedColumns: string[] = ['Month', 'Year', 'Holiday', 'select'];
   dataSource: InventoryModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;

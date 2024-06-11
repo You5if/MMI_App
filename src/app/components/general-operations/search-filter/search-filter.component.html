@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Filter by {{title}}</h2>
+    <mat-dialog-content>
+      <form class="form-controls">
+        <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-label>First name</mat-label> -->
+            <input  matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="searchText" name="searchFilter"   >
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="sc-actions">
+      <button mat-raised-button color="warn" type="button" (click)="onClear()" >Clear filter</button>
+      <div>
+      <button mat-button type="button" (click)="onClose()" >Close</button>
+      <button mat-button type="button" (click)="onSubmit()" >Submit</button>
+      </div>
+    </mat-dialog-actions>
