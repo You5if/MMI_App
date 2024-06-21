@@ -28,7 +28,7 @@ mat-button
     </mat-form-field> -->
     <mat-form-field style="margin-right: 10px;" appearance="outline">
         <mat-label>Employee</mat-label>
-        <mat-select [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
+        <mat-select [disabled]="submitDisable" required [(ngModel)]="empId" name="employee">
           <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
         </mat-select>
     </mat-form-field>
@@ -42,7 +42,7 @@ mat-button
 
     <mat-form-field style="margin-right: 10px;" appearance="outline">
         <mat-label>Model no</mat-label>
-        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Model no"  [(ngModel)]="modelNo" name="modelNo"  >
+        <input [disabled]="submitDisable" required matInput appTitleCase placeholder="Model no"  [(ngModel)]="modelNo" name="modelNo"  >
     </mat-form-field>
 
     <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -93,13 +93,13 @@ mat-button
             </mat-form-field> -->
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Witness Employee 1</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="witnessEmp1" name="Witness Employee 1">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="witnessEmp1" name="Witness Employee 1">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Witness Employee 2</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="witnessEmp2" name="Witness Employee 2">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="witnessEmp2" name="Witness Employee 2">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>

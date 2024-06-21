@@ -33,6 +33,9 @@ export class ChartOfAccountsEntryComponent {
   category: string;
   parentId: number;
   description: string = '';
+  public categories: string[] = [
+    "Asset", "Expense", "Income", "Liability", "type5"
+  ];
 
   constructor(
     private holidayServcie: ChartOfAccountsService,

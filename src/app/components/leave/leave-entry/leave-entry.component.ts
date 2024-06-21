@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeaveModel, LeaveToSendModel } from '../leave.model';
 import { LeaveService } from '../leave.service';
@@ -11,6 +11,9 @@ import { CommonService } from '../../common.service';
 import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
 import { AuthService } from '../../../security/auth/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-leave-entry',
@@ -23,9 +26,14 @@ export class LeaveEntryComponent  {
   
 
   invId: number = 0
-  days: number = 0
+  days: number
   description: string = ''
   leaves: any[] = []
+
+  readonly addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly extractDocs = signal<string[]>([]);
+  readonly announcer = inject(LiveAnnouncer);
  
 
   submitDisable: boolean = false;
@@ -36,6 +44,7 @@ export class LeaveEntryComponent  {
   leaveName: string = '';
   payEvalFormula: string = '';
   leaveId: number = 0;
+  docs: any[] = []
 
   constructor(
     private leaveServcie: LeaveService,
@@ -78,6 +87,12 @@ export class LeaveEntryComponent  {
               this.days = response.days
               this.description = response.description
               this.payEvalFormula = response.payEvalFormula
+              if (this.payEvalFormula != '') {
+                this.docs = JSON.parse(this.payEvalFormula);
+                this.docs.forEach((doc) => {
+                  this.extractDocs.update(extractDocs => [...extractDocs, doc])
+                })
+              }
               this.submitDisable = false
       
             },
@@ -90,6 +105,51 @@ export class LeaveEntryComponent  {
       }
     )
    
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.extractDocs.update(extractDocs => [...extractDocs, value]);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(fruit: string): void {
+    this.extractDocs.update(extractDocs => {
+      const index = extractDocs.indexOf(fruit);
+      if (index < 0) {
+        return extractDocs;
+      }
+
+      extractDocs.splice(index, 1);
+      this.announcer.announce(`Removed ${fruit}`);
+      return [...extractDocs];
+    });
+  }
+
+  edit(fruit: string, event: MatChipEditedEvent) {
+    const value = event.value.trim();
+
+    // Remove fruit if it no longer has a name
+    if (!value) {
+      this.remove(fruit);
+      return;
+    }
+
+    // Edit existing fruit
+    this.extractDocs.update(extractDocs => {
+      const index = extractDocs.indexOf(fruit);
+      if (index >= 0) {
+        extractDocs[index] = value;
+        return [...extractDocs];
+      }
+      return extractDocs;
+    });
   }
 
   
@@ -161,7 +221,7 @@ btnClick=  () => {
   "LeaveFormula": this.leaveFormula,
   "IsPaid": this.isPaid,
   "Days": this.days,
-  "PayEvalFormula": this.payEvalFormula,
+  "PayEvalFormula": JSON.stringify(this.extractDocs()),
   "IsTest": this._auth.getIsTest(),
   "Active": true,
   "Deleted": false,

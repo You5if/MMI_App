@@ -23,13 +23,13 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
+                <mat-select [disabled]="submitDisable" required id="firstControl" [(ngModel)]="empId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Agreement start</mat-label>
-                <input [disabled]="submitDisable"  id="firstControl" matInput [matDatepicker]="picker" [(ngModel)]="agStart" name="agStart">
+                <input [disabled]="submitDisable" required matInput [matDatepicker]="picker" [(ngModel)]="agStart" name="agStart">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -37,7 +37,7 @@ mat-button
               
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Agreement end</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="agEnd" name="agEnd">
+                <input [disabled]="submitDisable" required matInput [matDatepicker]="picker2" [(ngModel)]="agEnd" name="agEnd">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -76,12 +76,12 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Basic</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0"  placeholder="Earn 1" decimalOnly  [(ngModel)]="earn1" name="earn1"  >
+                <input [disabled]="submitDisable" required matInput type="number" min="0"  placeholder="Earn 1" decimalOnly  [(ngModel)]="earn1" name="earn1"  >
                 <mat-error *ngIf="earn1 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allowance</mat-label>
-                <input [disabled]="submitDisable"  matInput type="number" min="0"  placeholder="Earn 2" decimalOnly  [(ngModel)]="earn2" name="earn2"  >
+                <input [disabled]="submitDisable" required matInput type="number" min="0"  placeholder="Earn 2" decimalOnly  [(ngModel)]="earn2" name="earn2"  >
                 <mat-error *ngIf="earn2 < 0">Negative value</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">

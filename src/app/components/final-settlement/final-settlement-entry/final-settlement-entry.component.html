@@ -23,7 +23,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="empId" name="employee">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="empId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -36,7 +36,7 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Final date</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="finalDate" name="leaveDate">
+                <input [disabled]="submitDisable" required matInput [matDatepicker]="picker2" [(ngModel)]="finalDate" name="leaveDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -109,14 +109,14 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Witness 1</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="witness1" name="witness1">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="witness1" name="witness1">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Witness 2</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="witness2" name="witness2">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="witness2" name="witness2">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -128,7 +128,7 @@ mat-button
         
         <div class="card-head">Attachments <button class="Btn" type="button" mat-button color="primary" (click)="file2.click()">Upload</button></div>
         <div class="card-body">
-            <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple accept="image/png, image/jpeg">
+            <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple >
             <div *ngFor="let link of links; let i = index">
                 <div class="attach-links">
                     <a [href]="link.Link" [download]="link.OriginalFileName" target="_blank">{{link.OriginalFileName}}</a>

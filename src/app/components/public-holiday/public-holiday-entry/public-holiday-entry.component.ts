@@ -20,8 +20,8 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class PublicHolidayEntryComponent {
 
   // local variables 
-  public month = 1;
-  public getYear = new Date().getFullYear();
+  public month = new Date().getMonth() + 1;
+  public year = new Date().getFullYear();
   public holiday = new Date();
 
   holidayId: number = 0
@@ -58,7 +58,7 @@ export class PublicHolidayEntryComponent {
               // var res = JSON.parse(response)
               console.log('API Response:', response);
               this.month = response.month
-              this.getYear = response.year
+              this.year = response.year
               this.holiday = response.holiday
               this.holidayId = response.publicHolId
 
@@ -132,6 +132,16 @@ export class PublicHolidayEntryComponent {
 //  console.log(event.keyCode);
 //function to submit the form submitit(form){
   
+} 
+
+
+onChangeDate() {
+  const m = new Date(this.holiday).getMonth() + 1
+  const y = new Date(this.holiday).getFullYear()
+  console.log(m ,y);
+   this.month = m
+   this.year = y
+  
 }
 
 btnClick=  () => {
@@ -141,7 +151,7 @@ btnClick=  () => {
   var dataToSend: PublicHolidayModel = {
       "publicHolId": this.holidayId,
         "month": this.month,
-       "year": this.getYear,
+       "year": this.year,
        "holiday": this.holiday,
       "isTest": this._auth.getIsTest(),
       "active": true,

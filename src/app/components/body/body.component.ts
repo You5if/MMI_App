@@ -15,6 +15,20 @@ import { ChangePasswordComponent } from '../users/changepassword.component';
 })
 export class BodyComponent {
 
+  hideNotification: boolean = true;
+  newNotification: any[] = [
+    {
+      notTitle: "New notification",
+      notMessage: "Some notification with very long notification details",
+      notTime : new Date()
+    },
+    {
+      notTitle: "New notification",
+      notMessage: "Some notification details",
+      notTime : new Date()
+    }
+  ];
+
   constructor(
     private globalService: GlobalService,
     private cdref: ChangeDetectorRef,
@@ -48,6 +62,8 @@ export class BodyComponent {
   // console.log(this._auth.getRole());
   
 }
+
+onNotification() {}
 
 showToast() {
   this.toast.show('Hello World!');

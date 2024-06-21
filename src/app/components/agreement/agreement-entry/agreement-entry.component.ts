@@ -20,7 +20,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class AgreementEntryComponent {
 
   // local variables 
-  public empId = 31;
+  public empId :number;
   public agStart = new Date();
   public agEnd = new Date();
   public department = '';

@@ -4,7 +4,7 @@
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable || !heroForm.valid"
+    [disabled]="submitDisable || !heroForm.valid || earnEmp.length == 0"
   >
   Save
 </button>
@@ -22,7 +22,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
-                <mat-select [disabled]="submitDisable" name="employee">
+                <mat-select [disabled]="submitDisable" required name="employee">
                   <mat-option *ngFor="let employee of employees" (click)="selectedEmp(employee)" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -37,19 +37,26 @@ mat-button
     <div class="card" >
         <div class="card-head">deduction information</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Month</mat-label>
                 <input [disabled]="submitDisable"  matInput positiveNumberOnly type="number" min="1" placeholder="Month"   [(ngModel)]="month" name="month"   >
+            </mat-form-field> -->
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Month</mat-label>
+                <mat-select  [(ngModel)]="month" required name="month">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Year</mat-label>
-                <input [disabled]="submitDisable"  matInput positiveNumberOnly type="number" placeholder="Year"  [(ngModel)]="getYear" name="year"  >
+                <input [disabled]="submitDisable" required matInput positiveNumberOnly type="number" placeholder="Year"  [(ngModel)]="getYear" name="year"  >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Amount</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="Amount"  type="number" min="0" decimalOnly [(ngModel)]="amount" name="amount"  >
+                <input [disabled]="submitDisable" required matInput  placeholder="Amount"  type="number" min="0" decimalOnly [(ngModel)]="amount" name="amount"  >
                 <mat-error *ngIf="amount < 0">Negative value</mat-error>
               </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">

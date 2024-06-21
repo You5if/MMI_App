@@ -20,7 +20,7 @@ import { SaveChangesComponent } from '../../general-operations/tenure-options/sa
 export class LeaveBalanceEntryComponent {
 
   // local variables 
-  public empAgreementId = 0;
+  public empAgreementId: number;
   public allocated = 0;
   public taken = '';
 
@@ -59,27 +59,21 @@ leaves: any[] = []
         console.error('API Error:', err);
       },
     })
-    this.empLeaveService.getLeaveDropdown().subscribe({
-      next: (value) => {
-        this.leaves = value
-        this.leaveId = value[0].id
-        this.empLeaveService.getLeaveData(this.leaveId).subscribe({
-          next: (value) => {
-            this.allocated = value.days
-          },
-          error:(err) => {
-              console.error('API Error:', err);
-          },
-        })
-      },
-      error: (err) => {
-        console.error('API Error:', err);
-      },
-    })
+    
     this.activeRoute.params.subscribe(
       param => {
         if (param['id'] != '0') {
           this.submitDisable = true
+          this.empLeaveService.getLeaveDropdown().subscribe({
+            next: (value) => {
+              this.leaves = value
+              this.leaveId = value[0].id
+              
+            },
+            error: (err) => {
+              console.error('API Error:', err);
+            },
+          })
           this.toast.loading('Wait just a moment ...')
           this.empLeaveService.getRecordEntry(Number(param['id'])).subscribe({
             next: (response) => {
@@ -100,6 +94,24 @@ leaves: any[] = []
               console.error('API Error:', err);
             },
           });
+        }else {
+          this.empLeaveService.getLeaveDropdown().subscribe({
+            next: (value) => {
+              this.leaves = value
+              this.leaveId = value[0].id
+              this.empLeaveService.getLeaveData(this.leaveId).subscribe({
+                next: (value) => {
+                  this.allocated = value.days
+                },
+                error:(err) => {
+                    console.error('API Error:', err);
+                },
+              })
+            },
+            error: (err) => {
+              console.error('API Error:', err);
+            },
+          })
         }
       }
     )
@@ -213,7 +225,7 @@ btnClick=  () => {
   ).subscribe(
     response => {
       console.log('API Response:', response);
-      this.router.navigate(['/system/leave-balance'], { relativeTo: this.activeRoute.parent });
+      this.router.navigate(['/system/leave-application'], { relativeTo: this.activeRoute.parent });
       // this.screenMode = 'index';
       // Handle the response data here
     },
@@ -253,12 +265,12 @@ btnClickCancel=  () => {
       if (result) {
         this.btnClick();
       }else {
-        this.router.navigate(['/system/leave-balance'], { relativeTo: this.activeRoute.parent });
+        this.router.navigate(['/system/leave-application'], { relativeTo: this.activeRoute.parent });
       }
      })
   }
   }else {
-    this.router.navigate(['/system/leave-balance'], { relativeTo: this.activeRoute.parent });
+    this.router.navigate(['/system/leave-application'], { relativeTo: this.activeRoute.parent });
   }
  
 }

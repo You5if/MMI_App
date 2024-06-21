@@ -22,7 +22,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Account code</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Account code" id="firstControl"   [(ngModel)]="code" name="code"   >
+                <input [disabled]="submitDisable" readonly  matInput appTitleCase  placeholder="Account code" id="firstControl"   [(ngModel)]="code" name="code"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -35,9 +35,16 @@ mat-button
     <div class="card" >
         <div class="card-head">Account details</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Account category</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase  placeholder="Account category"  [(ngModel)]="category" name="category"   >
+            </mat-form-field> -->
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Account category</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="category" name="category">
+                  <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+                </mat-select>
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">

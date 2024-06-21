@@ -34,13 +34,13 @@ mat-button
             </mat-form-field> -->
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="empAgreementId" name="EmpAgreementId">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="empAgreementId" name="EmpAgreementId">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Leave</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="leaveId" name="leave" (selectionChange)="onLeaveChange(leaveId)">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="leaveId" name="leave" (selectionChange)="onLeaveChange(leaveId)">
                   <mat-option *ngFor="let employee of leaves" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>

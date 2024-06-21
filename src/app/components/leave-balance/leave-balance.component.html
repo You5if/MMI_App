@@ -1,9 +1,9 @@
-<h1 class="first-card-home">Leave balance</h1>
+<h1 class="first-card-home">Leave application</h1>
 
 <button 
 mat-stroked-button
 color="primary"
-    routerLink="/system/leave-balance-entry/0"
+    routerLink="/system/leave-application-entry/0"
   >
   Create
 </button>
@@ -76,7 +76,7 @@ color="primary"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/leave-balance-entry/{{row.leaveBalId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button routerLink="/system/leave-application-entry/{{row.leaveBalId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
                 <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>

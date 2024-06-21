@@ -20,7 +20,7 @@ import { SaveChangesComponent } from '../../general-operations/tenure-options/sa
 export class FinalSettlementEntryComponent {
 
   // local variables 
-  public empId = 31;
+  public empId :number;
   public witness1 = 31;
   public witness2 = 31;
   public finalDate = new Date();

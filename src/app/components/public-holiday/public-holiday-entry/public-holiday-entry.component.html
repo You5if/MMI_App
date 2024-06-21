@@ -20,23 +20,24 @@ mat-button
     <div class="card first-card" >
         <div class="card-head">Holiday information</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Month</mat-label>
-                <input [disabled]="submitDisable"  matInput positiveNumberOnly type="number" min="1"  placeholder="Month" id="firstControl"   [(ngModel)]="month" name="month"   >
-            </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Year</mat-label>
-                <input [disabled]="submitDisable"  matInput positiveNumberOnly type="number"  placeholder="Year"  [(ngModel)]="getYear" name="year"  >
-            </mat-form-field>
-    
-            <mat-form-field appearance="outline">
                 <mat-label>Holiday</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="holiday" name="holiday">
+                <input [disabled]="submitDisable" id="firstControl"  matInput [matDatepicker]="picker" (dateChange)="onChangeDate()" [(ngModel)]="holiday" name="holiday">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
+
+              <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Month</mat-label>
+                <input disabled  matInput positiveNumberOnly type="number" min="1"  placeholder="Month"   [(ngModel)]="month" name="month"   >
+            </mat-form-field>
+    
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Year</mat-label>
+                <input disabled  matInput positiveNumberOnly type="number"  placeholder="Year"  [(ngModel)]="year" name="year"  >
+            </mat-form-field>
            
         </div>
     </div>

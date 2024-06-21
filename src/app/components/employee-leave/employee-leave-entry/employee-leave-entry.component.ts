@@ -20,7 +20,7 @@ import { CommonService } from '../../common.service';
 export class EmployeeLeaveEntryComponent {
 
   // local variables 
-  public empId = 31;
+  public empId :number;
   public leaveDate = new Date();
   public agEnd = new Date().toString();
   public department = '';

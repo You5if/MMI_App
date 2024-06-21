@@ -20,7 +20,7 @@ import { SaveChangesComponent } from '../../general-operations/tenure-options/sa
 export class TransactionEntryComponent {
 
   // local variables 
-  public empId = 31;
+  public empId :number;
   public witness1 = 31;
   public witness2 = 31;
   public incDate = new Date();
@@ -37,6 +37,8 @@ export class TransactionEntryComponent {
   public ded3 = 0;
 
   empIncidentId: number = 0
+  creditNoteId: number = 1
+  CreditPayId: number = 1
   leaveId: number = 0
 employees: any[] = []
 links: any[] = []
@@ -115,6 +117,8 @@ message: string = "";
               this.cheqRemarks = response.cheqRemarks
               this.reference = response.reference
               this.narration = response.narration
+              this.creditNoteId = response.creditNoteId
+              this.CreditPayId = response.creditPayId
               this.refTo = response.refTo
               this.refKey = response.refKey
               this.attachments = response.attachments;
@@ -329,6 +333,8 @@ btnClick=  () => {
   "RefTo": this.refTo,
   "RefKey": this.refKey,
   "Attachments": JSON.stringify(this.links),
+  "CreditNoteId": this.creditNoteId,
+  "CreditPayId": this.CreditPayId,
   "IsTest": this._auth.getIsTest(),
   "Active": true,
   "Deleted": false,

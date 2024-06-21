@@ -136,8 +136,8 @@ const routes: Routes = [
   {path: 'final-settlement-entry/:id', component: FinalSettlementEntryComponent},
   {path: 'employee-leave', component: EmployeeLeaveComponent},
   {path: 'employee-leave-entry/:id', component: EmployeeLeaveEntryComponent},
-  {path: 'leave-balance', component: LeaveBalanceComponent},
-  {path: 'leave-balance-entry/:id', component: LeaveBalanceEntryComponent},
+  {path: 'leave-application', component: LeaveBalanceComponent},
+  {path: 'leave-application-entry/:id', component: LeaveBalanceEntryComponent},
   {path: 'companyweekend', component: CompanyWeekendComponent},
   // Finance screens
   {path: 'chart-of-accounts', component: ChartOfAccountsComponent},

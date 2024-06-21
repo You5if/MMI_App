@@ -20,7 +20,8 @@ import { OtherDeductionService } from '../other-eraning.service';
 export class OtherDeductionEntryComponent {
 
   // local variables 
-  public month = 1;
+  months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
+  public month = Number(new Date().getMonth() + 1);
   public getYear = new Date().getFullYear();
   earnAllowId: number = 0
   amount: number = 0
@@ -148,6 +149,10 @@ export class OtherDeductionEntryComponent {
 }
 
 btnClick=  () => {
+  if (this.amount <= 0) {
+    this.toast.error("Amount should be greater than 0");
+    return;
+  }
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);

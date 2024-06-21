@@ -18,6 +18,8 @@ export interface TransactionModel  {
     refTo: number
     refKey: number
     attachments: string
+    creditNoteId: number
+    creditPayId: number
     isTest: boolean
     active: boolean
     userCR: number
@@ -54,6 +56,8 @@ export interface TransactionModel  {
         RefTo: number
         RefKey: number
         Attachments: string
+        CreditNoteId: number
+        CreditPayId: number
         IsTest: boolean
         Active: boolean
         Deleted: boolean

@@ -154,7 +154,7 @@ class="refresh_icon2"
             <mat-header-cell class="centH" *matHeaderCellDef>
                 Month
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.month}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.month | month}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="Year">      

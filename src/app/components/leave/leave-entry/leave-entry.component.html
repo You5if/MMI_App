@@ -23,7 +23,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Leave name</mat-label>
-                <input [disabled]="submitDisable"  matInput  placeholder="Leave name" id="firstControl"   [(ngModel)]="leaveName" name="leaveName"   >
+                <input [disabled]="submitDisable" required matInput  placeholder="Leave name" id="firstControl"   [(ngModel)]="leaveName" name="leaveName"   >
             </mat-form-field>
             <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Leave type</mat-label>
@@ -31,31 +31,68 @@ mat-button
                   <mat-option *ngFor="let employee of leaves" [value]="employee.name">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field> -->
-    
             <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Description</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
+                <mat-label>Days</mat-label>
+                <input [disabled]="submitDisable" readonly  matInput placeholder="Days" positiveNumberOnly type="number" min="0"   [(ngModel)]="days" name="Days"  >
             </mat-form-field>
+
+                <mat-checkbox style="margin-right: 10px;" color="primary" [(ngModel)]="isPaid" name="isPaid">Is paid</mat-checkbox>
+            
+    
+            
            
         </div>
     </div>
     <div class="card" >
-    <div class="card-head">Days</div>
+    <div class="card-head">More details</div>
         <div class="card-body">
-            
-            <mat-form-field style="margin-right: 10px;">
-                <mat-label>Days</mat-label>
-                <input [disabled]="submitDisable"  matInput placeholder="Days" positiveNumberOnly type="number" min="0"   [(ngModel)]="days" name="Days"  >
+            <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
+                <mat-label>Description</mat-label>
+                <!-- <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  > -->
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Description" name="description" [(ngModel)]="description"></textarea>
             </mat-form-field>
+            
 
         </div>
     </div>
     <div class="card" >
+    <div class="card-head">Documents</div>
+        <div class="card-body">
+            <mat-form-field class="example-chip-list" style="width: 100%;" appearance="outline">
+                <mat-label>Documents</mat-label>
+                <mat-chip-grid #chipGrid aria-label="Enter a doc">
+                  @for (fruit of extractDocs(); track fruit) {
+                    <mat-chip-row
+                      (removed)="remove(fruit)"
+                      [editable]="true"
+                      (edited)="edit(fruit, $event)"
+                      [aria-description]="'press enter to edit ' + fruit"
+                    >
+                      {{fruit}}
+                      <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </mat-chip-row>
+                  }
+                  <input
+                    placeholder="New fruit..."
+                    [matChipInputFor]="chipGrid"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur" 
+                    (matChipInputTokenEnd)="add($event)"
+                  />
+                </mat-chip-grid>
+              </mat-form-field>
+            
+
+        </div>
+    </div>
+    <!-- <div class="card" >
     <div class="card-head">Payment</div>
         <div class="card-body">
             <mat-checkbox style="margin-right: 10px;" color="primary" [(ngModel)]="isPaid" name="isPaid">Is paid</mat-checkbox>
         </div>
-    </div>
+    </div> -->
     <!-- <div class="card" >
     <div class="card-head">Payment formula</div>
         <div class="card-body">

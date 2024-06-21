@@ -20,7 +20,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class EmpInventoryEntryComponent  {
 
   // local variables 
-  public empId = 31;
+  public empId :number;
 
   empInvId: number = 0
  

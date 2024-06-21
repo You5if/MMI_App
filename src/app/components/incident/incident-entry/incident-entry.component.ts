@@ -20,9 +20,9 @@ import { SaveChangesComponent } from '../../general-operations/tenure-options/sa
 export class IncidentEntryComponent {
 
   // local variables 
-  public empId = 31;
-  public witness1 = 31;
-  public witness2 = 31;
+  public empId : number;
+  public witness1 : number;
+  public witness2 : number;
   public incDate = new Date();
 
   public description = '';

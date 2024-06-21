@@ -16,6 +16,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
 
 export const MY_FORMATS = {
     parse: {
@@ -52,6 +53,7 @@ export const MY_FORMATS = {
         MatIconModule,
         MatDialogModule,
         MatTooltipModule,
+        MatChipsModule,
     ],
     exports: [
         MatRadioModule,
@@ -71,6 +73,7 @@ export const MY_FORMATS = {
         MatIconModule,
         MatDialogModule,
         MatTooltipModule, 
+        MatChipsModule,
     ]
 })
 export class MaterialModule { }

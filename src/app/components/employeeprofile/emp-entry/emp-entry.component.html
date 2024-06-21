@@ -118,12 +118,62 @@ mat-button
                 <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
             </mat-form-field>
     
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Nationality</mat-label>
                 <mat-select [(ngModel)]="selectedNationality" name="nationality">
                   <mat-option *ngFor="let nationality of nationalitites" [value]="nationality">{{ nationality }}</mat-option>
                 </mat-select>
+            </mat-form-field> -->
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Nationality</mat-label>
+                <mat-select [(ngModel)]="selectedNationality" name="nationality">
+                  <!-- <mat-option *ngFor="let nationality of nationalitites" [value]="nationality">{{ nationality }}</mat-option> -->
+                  <!-- <mat-option (click)="onOther()">Other</mat-option> -->
+    
+      <mat-optgroup label="Countries"
+                    >
+        @for (nationality of nationalitites; track nationality) {
+          <mat-option [value]="nationality" (onSelectionChange)="onNationality()">{{nationality}}</mat-option>
+        }
+      </mat-optgroup>
+      <mat-option (click)="onOther()">Other</mat-option>
+    
+                </mat-select>
             </mat-form-field>
+
+            @if (other) {
+                <mat-form-field appearance="outline" style="margin-right: 10px;">
+                    <mat-label>Other nationality</mat-label>
+                    <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Other nationality"  [(ngModel)]="selectedNationality" name="otherOption"/>
+                </mat-form-field>
+            }
+            
+        </div>
+    </div>
+
+    <div class="card" >
+        <div class="card-head">Status</div>
+        <div class="card-body">
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Martial status</mat-label>
+                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedMartialStatus" name="selectedMartialStatus">
+                  <mat-option *ngFor="let item of martialStatuses" [value]="item">{{ item }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Children</mat-label>
+                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Children"  [(ngModel)]="children" name="children">
+            </mat-form-field>
+
+    
+
+        </div>
+    </div>
+    <div class="card" >
+        <div class="card-head">Emergency</div>
+        <div class="card-body">
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Emergency person</mat-label>
@@ -173,14 +223,14 @@ mat-button
                
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Start of contract</mat-label>
-                <input [disabled]="submitDisable" matInput [matDatepicker]="contractStpicker" [(ngModel)]="contractSt" name="inSt">
+                <input [disabled]="submitDisable" matInput [matDatepicker]="contractStpicker" [(ngModel)]="contractSt" name="contractSt">
                 
                 <mat-datepicker-toggle matIconSuffix [for]="contractStpicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractStpicker></mat-datepicker>
               </mat-form-field >
               <mat-form-field  style="margin-right: 10px;" appearance="outline">
                 <mat-label>End of contract</mat-label>
-                <input [disabled]="submitDisable" matInput [matDatepicker]="contractEndpicker" [(ngModel)]="contractEnd" name="inEnd">
+                <input [disabled]="submitDisable" matInput [matDatepicker]="contractEndpicker" [(ngModel)]="contractEnd" name="contractEnd">
                 
                 <mat-datepicker-toggle matIconSuffix [for]="contractEndpicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractEndpicker></mat-datepicker>

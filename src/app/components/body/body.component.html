@@ -2,6 +2,33 @@
     <mat-toolbar-row>
       <span>My App</span>
       <span class="example-spacer"></span>
+      <!-- <button (click)="onNotification()"  class="toggle_btn3"  [matMenuTriggerFor]="menuN"  mat-icon-button  aria-label="Example icon-button with heart icon">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="notifications"><div *ngIf="!hideNotification" class="notDot"></div></mat-icon>
+      </button> -->
+      <!-- <button (click)="onNotification()"  class="toggle_btn3"  [matMenuTriggerFor]="menuN"  mat-icon-button  aria-label="Example icon-button with heart icon">
+        <i matBadge="&#8288;" matBadgeSize="small" matBadgeColor="warn" [matBadgeHidden]="hideNotification"  class="fas fa-bell"></i>
+      </button> -->
+      <!-- <mat-menu #menuN="matMenu" xPosition="after">
+        <div class="notList" >
+          <div *ngFor="let not of newNotification; let i = index">
+            <div fxLayout="column" class="not">
+              <div fxLayout class="notRow">
+                <div class="notTitle">{{not.notTitle}}</div>
+              </div>
+                <div fxLayout class="notRow2">
+                  <div class="notMessage">{{not.notMessage}}</div>
+                <div class="notDate">{{not.notTime | date}} - {{not.notTime | date:'hh:mm a'}}</div>
+                </div>
+              @if (i != newNotification.length -1) {
+                <mat-divider></mat-divider>
+              }
+            </div>
+          </div>
+          
+        </div>
+        
+        
+      </mat-menu> -->
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="more_vert"></mat-icon>
       </button>

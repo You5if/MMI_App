@@ -248,7 +248,7 @@ export class EmpEntryComponent {
 "Production Manager",    
 "Foreman",     
 "Machine Oparator",     
-"Fabracator",     
+"Fabricator",     
 "Painter",     
 "Welder",     
 "Electrition",      
@@ -259,9 +259,14 @@ export class EmpEntryComponent {
   public staffTypes: string[] = [
     "Management", "Labor", "type3", "type4", "type5"
   ]; // Sample staff type
+  public martialStatuses: string[] = [
+    "Married", "NOT Married",
+  ]; // Sample staff type
   public selectedJobTitle: string = ''; // Variable to store the selected department
+  public selectedMartialStatus: string = ''; // Variable to store the selected department
   public selectedStaffType: string = ''; // Variable to store the selected department
   public selectedSupervisor: number = 1
+  public children: number = 1
   public biomId = '';
   overtimeElig: boolean= false
   public languages = '';
@@ -311,6 +316,8 @@ export class EmpEntryComponent {
 
   supervisors: any[] = []
 
+  other: boolean = false
+
   links: any[] = []
 
   submitDisable: boolean = false;
@@ -350,6 +357,7 @@ export class EmpEntryComponent {
   }
 
   ngOnInit():void {
+    this.other = false
     this.globalService.setNavStatus('entry')
     this.empService.getDropdown().subscribe({
       next: (value) => {
@@ -383,6 +391,8 @@ export class EmpEntryComponent {
               this.dob = response.dob
               this.doj = response.doj
               this.selectedDepartment = response.department;
+              this.selectedMartialStatus = response.maritStatus;
+              this.children = response.children;
               this.selectedStaffType = response.staffType
               this.overtimeElig = response.overtimeElig
               this.biomId = response.biomId;
@@ -419,7 +429,14 @@ export class EmpEntryComponent {
               this.emerPerson = response.emerPerson
               this.emerRelation = response.emerRelation
               this.emiratesId = response.emiratesId;
-              this.selectedNationality = response.nationality;
+              if (this.nationalitites.includes(response.nationality)) {
+                this.selectedNationality = response.nationality;
+              }else if (response.nationality === '') {
+                this.selectedNationality = response.nationality;
+              }else{
+                this.other = true
+                this.selectedNationality = response.nationality
+              }
               this.selectedJobTitle = response.jobTitle;
               // this.apiImagePath = response.apiImagePath
               this.apiPath = response.apiPath
@@ -484,6 +501,17 @@ export class EmpEntryComponent {
 
     
 
+  }
+
+  onOther() {
+    this.other = true
+    this.selectedNationality = ''
+    // console.log('other is selected');
+    
+  }
+
+  onNationality() {
+    this.other = false
   }
 
   EnterSubmit(event: KeyboardEvent) { 
@@ -746,6 +774,10 @@ deleteAttach(id: number) {
 }
 
 btnClick=  () => {
+  if (!this.dob) {
+    this.toast.error("The date of birth can't be empty");
+    return;
+  }
   if (this.contractEnd < this.contractSt) {
     this.toast.error("Contract end date can not be less than start date");
     return;
@@ -799,8 +831,8 @@ btnClick=  () => {
     "overtimeElig": this.overtimeElig,
     "Nationality": this.selectedNationality,
     "Gender": this.gender,
-    "MaritStatus": "Married",
-    "Children": 2,
+    "MaritStatus": this.selectedMartialStatus,
+    "Children":  this.children,
     "DOB": this.dob,
     "Supervisor": this.supervisorId,
     "DOJ": this.doj,

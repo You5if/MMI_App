@@ -69,3 +69,64 @@
     
     }
   }
+
+  .not {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 5px 10px;
+  }
+  
+  .notRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .notRow2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .notDot{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #03878c;
+    position: absolute;
+      left: 10px;
+      bottom: 20px;
+  }
+  
+  /* .fa-bell {
+    position: relative;
+  } */
+  
+  ::ng-deep .mat-badge-content {
+    font-size: 2px;
+  }
+  
+  .notDate {
+    font-size: 14px !important;
+      color: rgb(153, 152, 152);
+  }
+  .notTitle {
+    font-weight: bold;
+  }
+  .notMessage {
+    margin: 12px 0;
+  }
+  
+  .notList {
+    max-height: 250px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .notList::-webkit-scrollbar {
+    width: 3px;
+  }
+  .notList::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+  
+    background-color: #c2c2c2;
+  }

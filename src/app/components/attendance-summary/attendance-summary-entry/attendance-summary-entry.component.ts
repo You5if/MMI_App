@@ -20,7 +20,8 @@ import { SaveChangesComponent } from '../../general-operations/tenure-options/sa
 export class AttendanceSummaryEntryComponent {
 
   // local variables 
-  public empId = 31;
+  months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
+  public empId :number;
   public witness1 = 31;
   public witness2 = 31;
   public finalDate = new Date();
