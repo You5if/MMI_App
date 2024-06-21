@@ -50,4 +50,6 @@ export class AppGlobals {
   // step 2 of security (next: common.service.ts > requestOptions() > this.userToken)
   readonly baseAppName: string = "MMI";
   baseUserProfile: any;
+  
+  // comment from Milesh
 }
