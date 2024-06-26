@@ -338,7 +338,7 @@ export class AttendanceComponent implements OnInit {
   //   this.toast.observe({
   //     loading: 'Saving new record...',
   //     success: (data) => `${data.errorMessage}`,
-  //     error: (error) => `API Error: ${error.message}`,
+  //     error: (error) => `Error: ${error.error.message}`,
   //   })
   // ).subscribe(
     //   response => {
@@ -409,7 +409,7 @@ alert('Enter key is pressed, form will be submitted');
             this.toast.observe({
               loading: 'Uploading file...',
               success: (data: any) => `${data.errorMessage}`,
-              error: (error) => `API Error: ${error.message}` ,
+              error: (error) => `Error: ${error.error.message}` ,
             })
           ).subscribe((event:any) => {
             console.log('valEvent', event);
@@ -477,7 +477,7 @@ alert('Enter key is pressed, form will be submitted');
           this.toast.observe({
             loading: 'Deleting record...',
             success: (data) => `${data.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe(
       response => {

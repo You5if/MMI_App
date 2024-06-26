@@ -195,14 +195,14 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => `Error: ${error.error.message}`,
     })
   ).subscribe(
     response => {
       console.log('API Response:', response);
       this.router.navigate(['/system/employee-leave'], { relativeTo: this.activeRoute.parent });
       // this.screenMode = 'index';
-      // Handle the response data here
+      // Handle the response data here 
     },
     error => {
       // console.error('API Error:', error);

@@ -241,17 +241,17 @@ export class EmpEntryComponent {
   public selectedDepartment: string = ''; // Variable to store the selected department
   public jobTitles: string[] = [
     "Acountant" ,    
-"Humen Resourses Officer",     
+"Human Resources Officer",     
 "Draftsman",     
 "Purchasing Officer",     
-"Oparation Manager",     
+"Operation Manager",     
 "Production Manager",    
 "Foreman",     
-"Machine Oparator",     
+"Machine Operator",     
 "Fabricator",     
 "Painter",     
 "Welder",     
-"Electrition",      
+"Electricion",      
 "Store keeper",     
 "Office Boy",     
 "Helper"
@@ -269,6 +269,8 @@ export class EmpEntryComponent {
   public children: number = 1
   public biomId = '';
   overtimeElig: boolean= false
+  hasLeft: boolean= false
+  attExemption: boolean= false
   public languages = '';
   public education = '';
   public experience = '';
@@ -322,18 +324,7 @@ export class EmpEntryComponent {
 
   submitDisable: boolean = false;
 
-  departments: string[] = [
-    "Administration",      
- "Finance" ,    
- "Hummen Resourses"  ,   
- "Enginering and designing",    
- "Marketing and Sales",      
- "Procurments",     
- "Public Relations",     
- "Oparations",      
- "Production",      
- "Services"
-  ]
+  departments: string[] = []
 
   @ViewChild('heroForm') ngForm!: NgForm;
   emerPerson: string = '';
@@ -357,6 +348,7 @@ export class EmpEntryComponent {
   }
 
   ngOnInit():void {
+    this.departments = this._globals.departments
     this.other = false
     this.globalService.setNavStatus('entry')
     this.empService.getDropdown().subscribe({
@@ -388,8 +380,16 @@ export class EmpEntryComponent {
               this.emerContact = response.emerContact;
               this.address = response.address;
               this.gender = response.gender
+              this.hasLeft = response.hasLeft
+              this.attExemption = response.attExemption
               this.dob = response.dob
               this.doj = response.doj
+              if (response.doj != "1990-01-01T00:00:00") {
+                this.doj = response.doj
+              }
+              if (response.dob != "1990-01-01T00:00:00") {
+                this.dob = response.dob
+              }
               this.selectedDepartment = response.department;
               this.selectedMartialStatus = response.maritStatus;
               this.children = response.children;
@@ -409,23 +409,59 @@ export class EmpEntryComponent {
               this.certificates = response.certificates;
               this.insurance = response.insurance
               this.inDesc = response.inDesc
-              this.inSt = response.inSt
-              this.inEnd = response.inEnd
-              this.contractEnd = response.contractEnd
-              this.contractSt = response.contractSt
+              if (response.inSt != "1990-01-01T00:00:00") {
+                this.inSt = response.inSt
+              }
+              if (response.inEnd != "1990-01-01T00:00:00") {
+                this.inEnd = response.inEnd
+              }
+              if (response.contractEnd != "1990-01-01T00:00:00") {
+                this.contractEnd = response.contractEnd
+              }
+              if (response.contractSt != "1990-01-01T00:00:00") {
+                this.contractSt = response.contractSt
+              }
+              
+              
+              // this.contractEnd = response.contractEnd
+              // this.contractSt = response.contractSt
               this.laborCard = response.laborCard
               this.laborDesc = response.laborDesc
-              this.laborSt = response.laborSt
-              this.laborEn = response.laborEn
-              this.emiratesSt = response.emiratesSt;
-              this.emiratesEn = response.emiratesEn;
+              // this.laborSt = response.laborSt
+              // this.laborEn = response.laborEn
+              if (response.laborSt != "1990-01-01T00:00:00") {
+                this.laborSt = response.laborSt
+              }
+              if (response.laborEn != "1990-01-01T00:00:00") {
+                this.laborEn = response.laborEn
+              }
+              // this.emiratesSt = response.emiratesSt;
+              // this.emiratesEn = response.emiratesEn;
+              if (response.emiratesSt != "1990-01-01T00:00:00") {
+                this.emiratesSt = response.emiratesSt
+              }
+              if (response.emiratesEn != "1990-01-01T00:00:00") {
+                this.emiratesEn = response.emiratesEn
+              }
               this.passport = response.passport;
-              this.passportSt = response.passportSt;
-              this.passportEn = response.passportEn;
+              // this.passportSt = response.passportSt;
+              // this.passportEn = response.passportEn;
+              if (response.passportSt != "1990-01-01T00:00:00") {
+                this.passportSt = response.passportSt
+              }
+              if (response.passportEn != "1990-01-01T00:00:00") {
+                this.passportEn = response.passportEn
+              }
               this.visa = response.visa;
               this.visaDesc = response.visaDesc;
-              this.visaSt = response.visaSt;
-              this.visaEn = response.visaEn;
+              // this.visaSt = response.visaSt;
+              // this.visaEn = response.visaEn;
+              if (response.visaSt != "1990-01-01T00:00:00") {
+                this.visaSt = response.visaSt
+              }
+              if (response.visaEn != "1990-01-01T00:00:00") {
+                this.visaEn = response.visaEn
+              }
               this.emerPerson = response.emerPerson
               this.emerRelation = response.emerRelation
               this.emiratesId = response.emiratesId;
@@ -445,11 +481,14 @@ export class EmpEntryComponent {
               this.fullPath = response.fullPath
               this.originalFileName = response.originalFileName
               
-              if (response.fullPath != "/path/to/file") {
+              if (response.fullPath === '') {
+                this.user_img = '/path/to/file'
+              }else if (response.fullPath != "/path/to/file") {
                 this.user_img = "https://" + response.fullPath.substring(39)
               }else {
                 this.user_img = '/path/to/file'
               }
+              
 
       
             },
@@ -598,7 +637,7 @@ uploadAttachments(files:any)  {
           this.toast.observe({
             loading: 'Uploading attachment...',
             success: (data) => 'Attachment uploaded successfully ...!',
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe((event) => {
           // console.log('valEvent', event);
@@ -702,7 +741,7 @@ uploadFile = (files:any) => {
           this.toast.observe({
             loading: 'Uploading image...',
             success: (data) => 'Image uploaded successfully ...!',
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe((event) => {
           console.log('valEvent', event);
@@ -774,8 +813,12 @@ deleteAttach(id: number) {
 }
 
 btnClick=  () => {
-  if (!this.dob) {
-    this.toast.error("The date of birth can't be empty");
+  // if (!this.dob) {
+  //   this.toast.error("The date of birth can't be empty");
+  //   return;
+  // }
+  if (!this.ngForm.valid) {
+    this.toast.error("Fill the required fields")
     return;
   }
   if (this.contractEnd < this.contractSt) {
@@ -836,6 +879,8 @@ btnClick=  () => {
     "DOB": this.dob,
     "Supervisor": this.supervisorId,
     "DOJ": this.doj,
+    "HasLeft": this.hasLeft,
+    "AttExemption": this.attExemption,
     "ContractSt": this.contractSt,
     "ContractEnd": this.contractEnd,
     "Education": this.education,
@@ -888,7 +933,13 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => {
+        if (error.status === 400) {
+          return `Error: ${error.error.errorMessage}`;
+        }else {
+          return 'Network error, contact system administrator'
+        }
+      },
     })
   ).subscribe(
     response => {
@@ -898,7 +949,7 @@ btnClick=  () => {
       // Handle the response data here
     },
     error => {
-      // console.error('API Error:', error);
+      console.error('API Error:', error);
       this.submitDisable = false
       // Handle any errors here
     }

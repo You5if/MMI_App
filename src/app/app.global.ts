@@ -26,6 +26,20 @@ export class AppGlobals {
   //  readonly baseAPIUrl: string = 'https://localhost:44377/api/';
   //   readonly baseAPIRootUrl: string = 'https://localhost:44377/api/';
 
+  //global dropdowns 
+  departments: string[] = [
+    "Administration",      
+ "Finance" ,    
+ "Human Resourses"  ,   
+ "Engineering and designing",    
+ "Marketing and Sales",      
+ "Procurement",     
+ "Public Relations",     
+ "Operations",      
+ "Production",      
+ "Services"
+  ]
+
   /* Development Server */
   readonly realappUrl: string = "https://mmi.autopay-mcs.com/";
   readonly baseAPIFileUrl: string = "https://inventoryapi.autopay-mcs.com/";

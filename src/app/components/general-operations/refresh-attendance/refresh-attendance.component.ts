@@ -111,7 +111,7 @@ export class RefreshAttendanceComponent {
         //   this.toast.observe({
         //     loading: 'Refreshing attendance...',
         //     success: (dataR) => `${dataR.errorMessage}`,
-        //     error: (error) => `API Error: ${error.message}`,
+        //     error: (error) => `Error: ${error.error.message}`,
         //   })
         // ).subscribe((result) => {
         //   console.log(result);
@@ -124,7 +124,7 @@ export class RefreshAttendanceComponent {
         //   this.toast.observe({
         //     loading: 'Refreshing attendance...',
         //     success: (dataR) => `${dataR.errorMessage}`,
-        //     error: (error) => `API Error: ${error.message}`,
+        //     error: (error) => `Error: ${error.error.message}`,
         //   })
         // ).subscribe((result) => {
         //   console.log(result);

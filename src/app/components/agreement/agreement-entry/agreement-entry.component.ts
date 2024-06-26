@@ -166,6 +166,10 @@ employees: any[] = []
 }
 
 btnClick=  () => {
+  if(this.earn1 === 0) {
+    this.toast.error("Basic should be greater than zero")
+    return;
+  }
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
@@ -203,7 +207,7 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => `Error: ${error.error.message}`,
     })
   ).subscribe(
     response => {

@@ -32,7 +32,8 @@ export class EmpInventoryService {
   }
 
   getDropdown(): Observable<any> { 
-    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
+    https://inventoryapi.autopay-mcs.com/api/Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1 and empprofileid>1 and istest=0 and hasleft=0/false
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1 and empprofileid>1 and istest=0 and hasleft=0/false', this._cf.requestOptions());
   }
   getDropdownItem(): Observable<any> { 
     return this.httpclient.get<any>(this._globals.baseAPIUrl + "Ddl/getdropdown/productid/product/prodname/active=1 and productid>1 and prodcat='HR'/false", this._cf.requestOptions());

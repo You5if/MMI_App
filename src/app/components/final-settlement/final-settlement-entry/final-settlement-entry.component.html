@@ -23,7 +23,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Employee</mat-label>
-                <mat-select [disabled]="submitDisable" required [(ngModel)]="empId" name="employee">
+                <mat-select [disabled]="submitDisable || disableEmp" required [(ngModel)]="empId" name="employee">
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -42,38 +42,61 @@ mat-button
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
     
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Description</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  >
-            </mat-form-field>
+           
     
            
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Reamrks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
+        </div>
+    </div>
+        <div class="card" >
+            <div class="card-head">Description</div>
+        <div class="card-body">
+            
+            <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  ></textarea>
             </mat-form-field>
     
            
         </div>
     </div>
         <div class="card" >
-            <div class="card-head">Clearances</div>
+            <div class="card-head">Remarks</div>
+        <div class="card-body">
+
+            <mat-form-field style="margin-right: 10px;width: 100%;" appearance="outline">
+                <mat-label>Remarks</mat-label>
+                <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  ></textarea>
+            </mat-form-field>
+          
+        </div>
+    </div>
+        <div class="card" >
+            <div class="card-head">Clearances <button 
+                type="button" 
+                mat-raised-button
+                color="primary"
+                style="margin-left: 10px;"
+                (click)="onCompSett()"
+                [disabled]="!empId || disableCompSettAudit"
+              >
+              Complete Settlement Audit
+            </button> <app-payroll-progress-bar [isProgressActive]="showLoading" [empIdData]="empId" [message]="'Processing employee !'"  [refreshScreen]="false" [empScreen]="true" (empProcessFinished)="endTerm()" [timeLoad]="30" ></app-payroll-progress-bar></div>
         <div class="card-body">
 
             <div class="card-body">
-                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="gratuityClear" name="gratuityClear">Gratuity</mat-checkbox>
+                <mat-checkbox  disabled style="margin-right: 10px;" color="primary" [(ngModel)]="gratuityClear" name="gratuityClear">Gratuity</mat-checkbox>
             </div>
 
             <div class="card-body">
-                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="leaveClear" name="leaveClear">Leave</mat-checkbox>
+                <mat-checkbox  disabled style="margin-right: 10px;" color="primary" [(ngModel)]="leaveClear" name="leaveClear">Leave</mat-checkbox>
             </div>
 
             <div class="card-body">
-                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="invClear" name="invClear">Inventory</mat-checkbox>
+                <mat-checkbox  disabled style="margin-right: 10px;" color="primary" [(ngModel)]="invClear" name="invClear">Inventory</mat-checkbox>
             </div>
 
             <div class="card-body">
-                <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="salaryClear" name="salaryClear">Salary</mat-checkbox>
+                <mat-checkbox  disabled style="margin-right: 10px;" color="primary" [(ngModel)]="salaryClear" name="salaryClear">Salary</mat-checkbox>
             </div>
 
             <div class="card-body">
@@ -86,6 +109,10 @@ mat-button
 
             <div class="card-body">
                 <mat-checkbox  [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="managerCl" name="managerCl">Manager</mat-checkbox>
+            </div>
+
+            <div class="card-body">
+                <mat-checkbox  disabled style="margin-right: 10px;" color="primary" [(ngModel)]="loanClear" name="loanClear">Loan</mat-checkbox>
             </div>
 
         </div>

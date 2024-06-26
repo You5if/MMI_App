@@ -24,11 +24,13 @@ export interface EmployeeModel {
     overtimeElig: boolean
     Nationality: string
     Gender: boolean
+    AttExemption: boolean
     MaritStatus: string
     Children: number
     DOB: Date
     Supervisor: number
     DOJ: Date
+    HasLeft: boolean
     ContractSt: Date
     ContractEnd: Date
     Education: string

@@ -58,8 +58,8 @@ mat-button
         <div class="card-head">Expiry and allocation</div>
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
-                <mat-label>Expiry</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker" [(ngModel)]="expiry" name="expiry">
+                <mat-label>Expiry date</mat-label>
+                <input [disabled]="submitDisable" required  matInput [matDatepicker]="picker" [(ngModel)]="expiry" name="expiry">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -67,7 +67,7 @@ mat-button
               
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allocation date</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker2" [(ngModel)]="allocationDate" name="allocationDate">
+                <input [disabled]="submitDisable" required  matInput [matDatepicker]="picker2" [(ngModel)]="allocationDate" name="allocationDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -110,7 +110,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Withdraw date</mat-label>
-                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker3" [(ngModel)]="withdrawDate" name="withdrawDate">
+                <input [disabled]="submitDisable" required  matInput [matDatepicker]="picker3" [(ngModel)]="withdrawDate" name="withdrawDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
@@ -135,9 +135,9 @@ mat-button
                   <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                 <mat-label>Withdraw remarks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Withdraw remarks"  [(ngModel)]="withdrRemarks" name="withdrRemarks" >
+                <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Withdraw remarks"  [(ngModel)]="withdrRemarks" name="withdrRemarks" ></textarea>
             </mat-form-field>
         </div>
     </div>

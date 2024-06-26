@@ -207,11 +207,11 @@ months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
 
   fetchTenure() {
     if (!this.amount || this.amount <= 0) {
-      this.toast.error("Loan amount is can not be empty or zero")
+      this.toast.error("Loan amount can not be empty or zero")
       return;
     }
     if (this.tenure === 0) {
-      this.toast.error("Tenure field is can not be empty or zero")
+      this.toast.error("Tenure field can not be empty or zero")
       return;
     }
     if (!this.requestDate) {
@@ -350,7 +350,7 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (dataR) => `${dataR.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => `Error: ${error.error.message}`,
     })
   ).subscribe(
     response => {

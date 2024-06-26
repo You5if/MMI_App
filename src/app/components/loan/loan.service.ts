@@ -35,7 +35,7 @@ deleteRecord(dataToSend: LoanModel): Observable<any> {
 }
 
 getDropdown(): Observable<any> { 
-  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
+  return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1 and empprofileid>1 and istest=0 and hasleft=0/false', this._cf.requestOptions());
 }
 getDropdown2(): Observable<any> { 
   return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/miscdetailid/miscdetail/misctext/miscid=17/false', this._cf.requestOptions());

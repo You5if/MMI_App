@@ -9,6 +9,7 @@ import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
+import { UploadFromTableComponent } from '../general-operations/tenure-options/upload-from-table.component';
 
 @Component({
   selector: 'app-employee-leave',
@@ -31,7 +32,7 @@ export class EmployeeLeaveComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['EmpId', 'LeaveId', 'LeaveDate', 'remarks'];
+  displayedColumns: string[] = ['EmpId', 'LeaveId', 'LeaveDate', 'remarks', 'select'];
   dataSource: EmpLeaveModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -96,6 +97,13 @@ export class EmployeeLeaveComponent {
       this.totalRecords = result[0].totalRecords;
       this.recordsPerPage = this.recordsPerPage;
       this.dataSource = result;
+      for (let i = 0; i < this.dataSource.length; i++) {
+        const element = this.dataSource[i];
+        if (element.remarks != '') {
+          element.remarks = JSON.parse(element.remarks);
+        }
+        
+      }
       // console.log('Reached here!');
       // console.log(result);
     })
@@ -136,6 +144,22 @@ export class EmployeeLeaveComponent {
     }
   }
 
+  onUpload(rowData: EmpLeaveModel) {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(UploadFromTableComponent, {
+       disableClose: true,
+       data: rowData, 
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log(result);
+     
+            this.refreshMe();
+      
+     })
+  }
+  }
+
   
   onDelete=  (data: EmpLeaveModel) => {
     // this.router.navigate(['/user']);
@@ -157,7 +181,7 @@ export class EmployeeLeaveComponent {
           this.toast.observe({
             loading: 'Deleting record...',
             success: (data) => `${data.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe(
           response => {

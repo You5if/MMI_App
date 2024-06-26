@@ -10,6 +10,7 @@ export interface FinalSettleModel  {
     handoverCl: boolean
     supervisorCl: boolean
     managerCl: boolean
+    loanClear: boolean
     handedTo: number
     remarks: string
     witness1: number
@@ -42,6 +43,7 @@ export interface FinalSettleModel  {
         HandoverCl: boolean
         SupervisorCl: boolean
         ManagerCl: boolean
+        LoanClear: boolean
         HandedTo: number
         Remarks: string
         Witness1: number

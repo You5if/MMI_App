@@ -26,6 +26,10 @@ export class HrReportComponent {
    IncentiveYear: number = 2024
    payRollMonth: number = 1
    payRollYear: number = 2024
+   absenteeismMonth: number = 1
+   absenteeismYear: number = 2024
+   monthOvertimeMonth: number = 1
+   monthOvertimeYear: number = 2024
    overtimeMonth: number = 1
    overtimeYear: number = 2024
    leavesMonth: number = 1
@@ -38,20 +42,33 @@ export class HrReportComponent {
    employees: any[] = []
 
    empIdReport11: number = 1
+   empIdReport26: number = 1
    empIdReport12: number = 1
+   empIdReport31: number = 1
    empLeaveIdReport: number = 1
    empLoanIdReport: number = 1
    empInvIdReport: number = 1
+   empInvIdReport33: number = 1
    empIncidentIdReport: number = 1
 
+   departments: string[] = []
+   selectedDepartment23: string = '';
+   selectedDepartment25: string = '';
+   selectedDepartment27: string = '';
+   selectedDepartment28: string = '';
+   selectedDepartment29: string = '';
+   selectedDepartment32: string = '';
+   selectedDepartment34: string = '';
+   
    constructor(
     private AgreementServcie: AgreementService,
     private _report: ReportPageService,
-    private global: AppGlobals,
+    private _global: AppGlobals,
     private router: Router
    ) {}
 
    ngOnInit(): void {
+    this.departments = this._global.departments
     this.AgreementServcie.getDropdown().subscribe({
       next: (value) => {
         this.employees = value
@@ -70,6 +87,29 @@ export class HrReportComponent {
     let restOfUrl: string; 
       restOfUrl = 'month=' + month; 
       restOfUrl = restOfUrl + '&year=' + year;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+
+   fetchEmpDateReport(id: number,empId: number, month: number, year: number) {
+    console.log(id, month, year);
+    
+    let restOfUrl: string; 
+      restOfUrl = 'month=' + month; 
+      restOfUrl = restOfUrl + '&year=' + year;
+      restOfUrl = restOfUrl + '&empid=' + empId;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+   fetchDeptDateReport(id: number,dept: string, month: number, year: number) {
+    console.log(id, month, year);
+    
+    let restOfUrl: string; 
+      restOfUrl = 'month=' + month; 
+      restOfUrl = restOfUrl + '&year=' + year;
+      restOfUrl = restOfUrl + '&department=' + dept;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
       window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
@@ -97,6 +137,16 @@ export class HrReportComponent {
     
     let restOfUrl: string = ''; 
       restOfUrl = 'empid=' + empId; 
+      // restOfUrl = restOfUrl + '&year=' + year;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+
+   fetchDeptReport(id: number, dept: string) {
+    
+    let restOfUrl: string = ''; 
+      restOfUrl = 'department=' + dept; 
       // restOfUrl = restOfUrl + '&year=' + year;
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);

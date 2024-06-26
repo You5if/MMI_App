@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PayrollProgressBarService } from './payroll-progress-bar.service';
 import { response } from 'express';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-payroll-progress-bar',
@@ -11,13 +12,18 @@ import { response } from 'express';
 export class PayrollProgressBarComponent implements OnInit {
   @Input() isProgressActive = false;
   @Input() timeLoad = 0;
+  @Input() empIdData = 0;
   @Input() refreshScreen = false;
+  @Input() empScreen = false;
   @Output() canceled = new EventEmitter<void>();
+  @Output() empProcessFinished = new EventEmitter<void>();
   @Input() message: string = ""
 
 
 
-  constructor(private service: PayrollProgressBarService) {}
+  constructor(private service: PayrollProgressBarService,
+     private router: Router,
+     private activeRoute: ActivatedRoute,) {}
 
   progressPercentage = 0;
   isProgressComplete = false;
@@ -49,35 +55,40 @@ export class PayrollProgressBarComponent implements OnInit {
         this.isProgressComplete = true;
         this.message = "Success!"
         clearInterval(this.progressInterval);
+        if (this.empScreen) {
+        //   const empData = {"employeeId": this.empIdData}
+        // this.service.compSettAudit(empData).subscribe((result) => {
+        //   console.log(result);
+        //   // this.router.navigate(['/system/employee-term-end'], { relativeTo: this.activeRoute.parent });
+        //   this.empProcessFinished.emit();
+        // }, (error) =>{
+        //   console.log(error);
+        // })
+        this.empProcessFinished.emit();
+        }
+       
         this.canceled.emit();
       }
     }, 100);
-    if (this.refreshScreen) {
-      this.service.getStatusRefresh().subscribe((response) => {
-        console.log(response);
+    if (!this.empScreen) {
+      if (this.refreshScreen) {
+        this.service.getStatusRefresh().subscribe((response) => {
+          console.log(response);
+          
+        }, (error) => {
+          // this.message = " Error!"
+          // this.cancelProgress()
+        })
+      }else {
+          this.service.getStatusPayroll().subscribe((response) => {
+            console.log(response);
+            
+            
+          }, (error) => {
+            
+          })
         
-      }, (error) => {
-        // this.message = " Error!"
-        // this.cancelProgress()
-      })
-    }else {
-      this.service.getStatusPayroll().subscribe((response) => {
-        console.log(response);
-        
-        // this.progressInterval = setInterval(() => {
-        //   this.progressPercentage += increment;
-        //   if (this.progressPercentage > 100) {
-        //     this.progressPercentage = 100;
-        //     this.isProgressComplete = true;
-        //     this.message = "Success!"
-        //     clearInterval(this.progressInterval);
-        //     this.canceled.emit();
-        //   }
-        // }, 100);
-      }, (error) => {
-        // this.message = " Error!"
-        // this.cancelProgress()
-      })
+      }
     }
   }
 

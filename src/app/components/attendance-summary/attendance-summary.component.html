@@ -128,7 +128,7 @@ class="refresh_icon2"
 </div>
 </div>
 
-<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
+<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="true" [empScreen]="false"  [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
 
 
 <div class="card" *ngIf="!dataIsLoaded" >

@@ -1,21 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
-import { CostCenterGroupModel } from './cost-center-group.model';
-import { CostCenterGroupService } from './cost-center-group.service';
 import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { HotToastService } from '@ngneat/hot-toast';
 import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
+import { BankService } from '../bank/bank.service';
 import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
 
 @Component({
-  selector: 'app-cost-center-group',
-  templateUrl: './cost-center-group.component.html',
-  styleUrl: './cost-center-group.component.css'
+  selector: 'app-emp-term-end',
+  templateUrl: './emp-term-end.component.html',
+  styleUrl: './emp-term-end.component.css'
 })
-export class CostCenterGroupComponent {
+export class EmpTermEndComponent {
   
   public middleName = '';
   public lastName = '';
@@ -31,8 +30,8 @@ export class CostCenterGroupComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['leaveName', 'description', 'select'];
-  dataSource: CostCenterGroupModel[];
+  displayedColumns: string[] = ['leaveName', 'description', 'LeaveFormula'];
+  dataSource: any[];
   isLastPage = false;
   recordsPerPage: number | undefined;
   currentPageIndex: number | undefined;
@@ -46,7 +45,7 @@ export class CostCenterGroupComponent {
   
 
   constructor(
-    private allowanceService: CostCenterGroupService,
+    private allowanceService: BankService,
     private _cf: CommonService,
     private http: HttpClient,
     private dialog: MatDialog,
@@ -54,8 +53,8 @@ export class CostCenterGroupComponent {
     private _auth: AuthService,
     private toast: HotToastService,
   ) { 
-    this.pTableName = 'CostCenGr';
-    this.pTableId = 43;
+    this.pTableName = 'EmpTermEnd';
+    this.pTableId = 35;
     this.recordsPerPage = 10;
     this.pUserId = 1;
     this.isLastPage = false;
@@ -89,7 +88,7 @@ export class CostCenterGroupComponent {
     this.dataSource = []
     this.dataIsLoaded = false
     // console.log('reached here');
-    this._cf.newGetPageData(this.pTableName, this.pageData, this.sort, this.filter).subscribe((result: CostCenterGroupModel[]) => {
+    this._cf.newGetPageData(this.pTableName, this.pageData, this.sort, this.filter).subscribe((result: any[]) => {
       // this._ui.loadingStateChanged.next(false);
       this.dataIsLoaded = true
       // this._ui.loadingStateChanged.next(false);
@@ -137,10 +136,10 @@ export class CostCenterGroupComponent {
   }
 
   
-  onDelete=  (data: CostCenterGroupModel) => {
+  onDelete=  (data: any) => {
     // this.router.navigate(['/user']);
     // console.log(this.firstName);
-    var dataToSend: CostCenterGroupModel = data // Example data to send
+    var dataToSend: any = data // Example data to send
     dataToSend.transId = 0
     console.log(dataToSend);
 

@@ -18,7 +18,7 @@ style="margin-top: 10px;"
   Payroll run
 </button>
 
-<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="false" [message]="'Processing payroll!'" [timeLoad]="15" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
+<app-payroll-progress-bar [isProgressActive]="showLoading" [refreshScreen]="false" [empScreen]="false"  [message]="'Processing payroll!'" [timeLoad]="15" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
 
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->

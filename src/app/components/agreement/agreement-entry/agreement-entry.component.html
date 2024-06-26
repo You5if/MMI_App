@@ -44,9 +44,7 @@ mat-button
               </mat-form-field>
         </div>
         </div>
-        <div class="card" >
-            <div class="card-head">Agreement information</div>
-        <div class="card-body">
+        
 
             <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Department</mat-label>
@@ -58,7 +56,7 @@ mat-button
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Job title"  [(ngModel)]="jobTitle" name="jobTitle"  >
             </mat-form-field> -->
     
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Description</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="description"  [(ngModel)]="description" name="description"  >
             </mat-form-field>
@@ -66,11 +64,32 @@ mat-button
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Remarks</mat-label>
                 <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
-            </mat-form-field>
+            </mat-form-field> -->
     
-           
-        </div>
+         
+    <div class="card" >
+        <div class="card-head">Description</div>
+    <div class="card-body">
+        
+        <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Description"  [(ngModel)]="description" name="description"  ></textarea>
+        </mat-form-field>
+
+       
     </div>
+</div>
+    <div class="card" >
+        <div class="card-head">Remarks</div>
+    <div class="card-body">
+
+        <mat-form-field style="margin-right: 10px;width: 100%;" appearance="outline">
+            <mat-label>Remarks</mat-label>
+            <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  ></textarea>
+        </mat-form-field>
+      
+    </div>
+</div>
     <div class="card" >
         <div class="card-head">Agreement earning</div>
         <div class="card-body">
@@ -78,6 +97,7 @@ mat-button
                 <mat-label>Basic</mat-label>
                 <input [disabled]="submitDisable" required matInput type="number" min="0"  placeholder="Earn 1" decimalOnly  [(ngModel)]="earn1" name="earn1"  >
                 <mat-error *ngIf="earn1 < 0">Negative value</mat-error>
+                <mat-error *ngIf="earn1 === 0">Should be greater then zero</mat-error>
             </mat-form-field>
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Allowance</mat-label>

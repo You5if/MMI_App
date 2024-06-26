@@ -241,8 +241,8 @@ class="refresh_icon2"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/employeeprofile-entry/{{row.empProfileId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
-                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
+                <button *ngIf="!row.hasLeft" routerLink="/system/employeeprofile-entry/{{row.empProfileId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button *ngIf="!row.hasLeft" (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
               </mat-cell>
           </ng-container>
         

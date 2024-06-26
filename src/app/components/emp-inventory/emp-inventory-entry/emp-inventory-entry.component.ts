@@ -30,17 +30,17 @@ export class EmpInventoryEntryComponent  {
   @ViewChild('heroForm') ngForm!: NgForm;
 
 
-  empInvListId: number = 2;
+  empInvListId: number;
   modelNo: string = '';
   specs: string = '';
   expiry: Date;
   allocationDate:Date;
-  witnessEmp1: number = 2;
-  witnessEmp2: number = 2;
+  witnessEmp1: number;
+  witnessEmp2: number ;
   allocRemarks: string = '';
   withdrawDate:Date;
-  witnessWDEmp1: number = 2;
-  witnessWDEmp2: number = 2;
+  witnessWDEmp1: number ;
+  witnessWDEmp2: number ;
   withdrRemarks: string = '';
   costOfItem: number = 0;
   employees: any[] = []
@@ -230,7 +230,7 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => `Error: ${error.error.message}`,
     })
   ).subscribe(
     response => {

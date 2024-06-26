@@ -4,7 +4,7 @@
     mat-raised-button
     color="primary"
     style="margin-right: 10px;"
-    [disabled]="submitDisable || !heroForm.valid"
+    [disabled]="submitDisable"
   >
   Save
 </button>
@@ -25,7 +25,7 @@ mat-button
             <input [disabled]="submitDisable" type="file" name="second" #file2 placeholder="Choose file" (change)="uploadAttachments(file2.files)" style="display: none;" multiple>
             
                     <mat-card class="example-card">
-                        <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="Photo of a Shiba Inu">
+                        <img *ngIf="user_img != '/path/to/file'" mat-card-image src="{{user_img}}" class="user-img" alt="">
                         <div class="no-img" *ngIf="user_img === '/path/to/file'"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon></div>
                         <mat-card-actions class="card-footer">
                           <button class="card-btn" type="button" mat-raised-button (click)="deleteImg()" color="warn"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete_forever"></mat-icon></button>
@@ -49,7 +49,7 @@ mat-button
 <img [src]="croppedImage" /> -->
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>First name</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"   >
+                <input [disabled]="submitDisable" required matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -59,16 +59,19 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Last name</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName"  >
+                <input [disabled]="submitDisable" required matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Date of birth</mat-label>
-                <input [disabled]="submitDisable" matInput [matDatepicker]="dobpicker" [(ngModel)]="dob" name="dop">
+                <input [disabled]="submitDisable" required matInput [matDatepicker]="dobpicker" [(ngModel)]="dob" name="dop">
                 
                 <mat-datepicker-toggle matIconSuffix [for]="dobpicker"></mat-datepicker-toggle>
                 <mat-datepicker #dobpicker></mat-datepicker>
               </mat-form-field >
+
+              <mat-checkbox  disabled style="margin-right: 10px;" color="primary" [(ngModel)]="hasLeft" name="hasLeft">Has left</mat-checkbox>
+              
     
             <!-- <mat-radio-group  name="gender"> -->
                 <!-- <mat-radio-button [(ngModel)]="gender" onclick="changeGender(true)"  name="male">Male</mat-radio-button>
@@ -105,7 +108,7 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Phone</mat-label>
-                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Phone"   [(ngModel)]="phone" name="phone">
+                <input [disabled]="submitDisable" required matInput type="number" positiveNumberOnly min="0" placeholder="Phone"   [(ngModel)]="phone" name="phone">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -115,7 +118,7 @@ mat-button
 
             <mat-form-field appearance="outline" style="margin-right: 10px;">
                 <mat-label>Address</mat-label>
-                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
+                <textarea [disabled]="submitDisable" required matInput appTitleCase placeholder="Address"  [(ngModel)]="address" name="address"></textarea>
             </mat-form-field>
     
             <!-- <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -126,7 +129,7 @@ mat-button
             </mat-form-field> -->
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Nationality</mat-label>
-                <mat-select [(ngModel)]="selectedNationality" name="nationality">
+                <mat-select [(ngModel)]="selectedNationality" required name="nationality">
                   <!-- <mat-option *ngFor="let nationality of nationalitites" [value]="nationality">{{ nationality }}</mat-option> -->
                   <!-- <mat-option (click)="onOther()">Other</mat-option> -->
     
@@ -182,7 +185,7 @@ mat-button
             
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Emergency contact</mat-label>
-                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Emergency contact"  [(ngModel)]="emerContact" name="emercontact">
+                <input [disabled]="submitDisable" required matInput type="number" positiveNumberOnly min="0" placeholder="Emergency contact"  [(ngModel)]="emerContact" name="emercontact">
             </mat-form-field>
 
     
@@ -200,14 +203,14 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Department</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedDepartment" name="department">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="selectedDepartment" name="department">
                   <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Job title</mat-label>
-                <mat-select [disabled]="submitDisable" [(ngModel)]="selectedJobTitle" name="jobtitle">
+                <mat-select [disabled]="submitDisable" required [(ngModel)]="selectedJobTitle" name="jobtitle">
                   <mat-option *ngFor="let jobtitle of jobTitles" [value]="jobtitle">{{ jobtitle }}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -230,7 +233,7 @@ mat-button
               </mat-form-field >
               <mat-form-field  style="margin-right: 10px;" appearance="outline">
                 <mat-label>End of contract</mat-label>
-                <input [disabled]="submitDisable" matInput [matDatepicker]="contractEndpicker" [(ngModel)]="contractEnd" name="contractEnd">
+                <input [disabled]="submitDisable" required matInput [matDatepicker]="contractEndpicker" [(ngModel)]="contractEnd" name="contractEnd">
                 
                 <mat-datepicker-toggle matIconSuffix [for]="contractEndpicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractEndpicker></mat-datepicker>
@@ -238,7 +241,7 @@ mat-button
 
               <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Date of join</mat-label>
-                <input [disabled]="submitDisable" matInput [matDatepicker]="dojpicker" [(ngModel)]="doj" name="doj">
+                <input [disabled]="submitDisable" required matInput [matDatepicker]="dojpicker" [(ngModel)]="doj" name="doj">
                 
                 <mat-datepicker-toggle matIconSuffix [for]="dojpicker"></mat-datepicker-toggle>
                 <mat-datepicker #dojpicker></mat-datepicker>
@@ -248,8 +251,9 @@ mat-button
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Biometric Id</mat-label>
-                <input [disabled]="submitDisable" matInput placeholder="Biometric Id" type="number" positiveNumberOnly min="0" [(ngModel)]="biomId" name="biomid">
+                <input [disabled]="submitDisable" required matInput placeholder="Biometric Id" type="number" positiveNumberOnly min="0" [(ngModel)]="biomId" name="biomid">
             </mat-form-field>
+            <mat-checkbox [disabled]="submitDisable" style="margin-right: 10px;" color="primary" [(ngModel)]="attExemption" name="attExemption">Attendance exemption</mat-checkbox>
         </div>
     </div>
 
@@ -417,9 +421,9 @@ mat-button
     <div class="card" >
         <div class="card-head">Skills and experience</div>
         <div class="card-body">
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                 <mat-label>Experience</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Experience" name="experience" type="text" [(ngModel)]="experience">
+                <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Experience" name="experience" type="text" [(ngModel)]="experience"></textarea>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>Skills</mat-label>
@@ -456,7 +460,7 @@ mat-button
                 <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Trainings" name="trainings" [(ngModel)]="trainings"></textarea>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%;">
-                <mat-label>Certificaties</mat-label>
+                <mat-label>Certificates</mat-label>
                 <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Certificates" name="certificates" [(ngModel)]="certificates"></textarea>
             </mat-form-field>
         </div>

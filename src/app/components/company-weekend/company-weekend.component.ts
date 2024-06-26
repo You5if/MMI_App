@@ -65,7 +65,7 @@ export class CompanyWeekendComponent {
             this.toast.observe({
               loading: 'Just a moment while getting the data...',
               success: 'Data loaded successfully ...!',
-              error: (error) => `API Error: ${error.message}`,
+              error: (error) => `Error: ${error.error.message}`,
             })
           ).subscribe({
             next: (response) => {
@@ -182,7 +182,7 @@ btnClick=  () => {
   //   this.toast.observe({
   //     loading: 'Saving new record...',
   //     success: (data) => `${data.errorMessage}`,
-  //     error: (error) => `API Error: ${error.message}`,
+  //     error: (error) => `Error: ${error.error.message}`,
   //   })
   // )
     

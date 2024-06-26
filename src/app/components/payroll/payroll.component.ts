@@ -189,7 +189,7 @@ export class PayrollComponent {
           this.toast.observe({
             loading: 'Deleting record...',
             success: (data) => `${data.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe(
           response => {
@@ -247,7 +247,7 @@ export class PayrollComponent {
           this.toast.observe({
             loading: 'Locking payroll...',
             success: (data) => `${data.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe(
           response => {

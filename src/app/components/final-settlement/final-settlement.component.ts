@@ -9,6 +9,7 @@ import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
+import { CheckFinalSettleLockComponent } from '../general-operations/tenure-options/check-final-settle-lock.component';
 
 @Component({
   selector: 'app-final-settlement',
@@ -31,7 +32,7 @@ export class FinalSettlementComponent {
   pTableName = ''
   pTableId: number = 0;
   pUserId: number = 1;
-  displayedColumns: string[] = ['EmpId', 'GratuityClear', 'LeaveClear', 'SalaryClear', 'InvClear', 'HandoverCl', 'SupervisorCl', 'ManagerCl', 'select'];
+  displayedColumns: string[] = ['EmpId', 'GratuityClear', 'LeaveClear', 'SalaryClear', 'InvClear', 'HandoverCl', 'SupervisorCl', 'ManagerCl', 'LoanClear', 'Locked', 'select'];
   dataSource: FinalSettleModel[];
   isLastPage = false;
   recordsPerPage: number | undefined;
@@ -137,6 +138,8 @@ export class FinalSettlementComponent {
   }
 
   
+
+  
   onDelete=  (data: FinalSettleModel) => {
     // this.router.navigate(['/user']);
     // console.log(this.firstName);
@@ -157,7 +160,7 @@ export class FinalSettlementComponent {
           this.toast.observe({
             loading: 'Deleting record...',
             success: (data) => `${data.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe(
           response => {
@@ -176,6 +179,33 @@ export class FinalSettlementComponent {
   }
   }
 
+  onLock=  (data: FinalSettleModel) => {
+    // this.router.navigate(['/user']);
+    // console.log(this.firstName);
+    // var dataToSend: UsersToDeleteModel = data // Example data to send
+    // dataToSend.TransId = 0
+    // console.log(dataToSend);
+
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(CheckFinalSettleLockComponent, {
+       disableClose: true,
+       data: { 
+         FinalSettleId: data.finalSettleId,
+         Description: '',
+         Remarks: ''
+         }, 
+     });
+
+     dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log(result);
+      if (result) {
+            this.refreshMe();
+      }
+     })
+  }
+  }
+
+  
  
 }
 

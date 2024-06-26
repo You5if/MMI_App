@@ -123,6 +123,9 @@ import { ImageCropperComponent } from 'ngx-image-cropper';
 import { SearchInTableComponent } from './components/general-operations/search-in-table/search-in-table.component';
 import { SearchFilterComponent } from './components/general-operations/search-filter/search-filter.component';
 import { MonthPipe } from './pipes/month.pipe';
+import { CheckFinalSettleLockComponent } from './components/general-operations/tenure-options/check-final-settle-lock.component';
+import { UploadFromTableComponent } from './components/general-operations/tenure-options/upload-from-table.component';
+import { EmpTermEndComponent } from './components/emp-term-end/emp-term-end.component';
 
 
 export function getAccessToken(): string {
@@ -246,6 +249,9 @@ export const jwtConfig = {
     SearchInTableComponent,
     SearchFilterComponent,
     MonthPipe,
+    CheckFinalSettleLockComponent,
+    UploadFromTableComponent,
+    EmpTermEndComponent,
     // ReportPageComponent
     // ChangePasswordGeneralComponent
   ],

@@ -245,7 +245,7 @@ export class StockOutEntryComponent {
       this.toast.observe({
         loading: 'Saving new record...',
         success: (dataR) => `${dataR.errorMessage}`,
-        error: (error) => `API Error: ${error.message}`,
+        error: (error) => `Error: ${error.error.message}`,
       })
     ).subscribe(
       response => {

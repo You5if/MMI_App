@@ -314,7 +314,7 @@ export class AgreementComponent {
           this.toast.observe({
             loading: 'Deleting record...',
             success: (data) => `${data.errorMessage}`,
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe(
           response => {

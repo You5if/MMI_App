@@ -238,7 +238,7 @@ uploadAttachments(files:any)  {
           this.toast.observe({
             loading: 'Uploading attachment...',
             success: (data) => 'Attachment uploaded successfully ...!',
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe((event) => {
           // console.log('valEvent', event);
@@ -354,7 +354,7 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => `Error: ${error.error.message}`,
     })
   ).subscribe(
     response => {

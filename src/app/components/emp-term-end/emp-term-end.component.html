@@ -1,12 +1,12 @@
-<h1 class="first-card-home">Leave</h1>
+<h1 class="first-card-home">Employee term end</h1>
 
-<button 
+<!-- <button 
 mat-stroked-button
 color="primary"
-    routerLink="/system/leave-entry/0"
+    routerLink="/system/bank-entry/0"
   >
   Create
-</button>
+</button> -->
 
 <div class="card" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
@@ -26,41 +26,42 @@ color="primary"
       
         <ng-container matColumnDef="leaveName">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-              Name
+              Employee
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="description">      
-          <mat-header-cell class="centH" *matHeaderCellDef>
-            Description
-          </mat-header-cell>     
-          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
-        </ng-container>
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Allowance
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="LeaveFormula">      
-          <mat-header-cell class="centH" *matHeaderCellDef>
-            Leave formula
-          </mat-header-cell>     
-          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="LeaveFormula">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Amount
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="isPaid">      
-          <mat-header-cell class="centH" *matHeaderCellDef>
-            Is Paid
-          </mat-header-cell>     
-          <mat-cell mat-cell class="cent" *matCellDef="let row">
-            <ngx-skeleton-loader />
-          </mat-cell>
-        </ng-container>
+          
 
-        <ng-container matColumnDef="days">      
-          <mat-header-cell class="centH" *matHeaderCellDef>
-              Days
-          </mat-header-cell>     
-          <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
-        </ng-container>
-        
+          <!-- <ng-container matColumnDef="isPaid">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Param
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="payEvalFormula">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Param type
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
+          </ng-container> -->
     
         <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     
@@ -85,51 +86,48 @@ color="primary"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                @if (row.leaveId != 9) {
-                  <button routerLink="/system/leave-entry/{{row.leaveId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button routerLink="/system/bank-entry/{{row.bankId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
                 <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
-                }
               </mat-cell>
           </ng-container>
         
           
           <ng-container matColumnDef="leaveName">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Name
+                Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leaveName}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.employeeName}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="description">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Description
+                Allowance
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.description}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allowName}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="LeaveFormula">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Leave formula
+              Amount
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.leaveFormula}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.amount}}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="isPaid">      
+          <!-- <ng-container matColumnDef="isPaid">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-              Is Paid
+              Param
             </mat-header-cell>     
             <mat-cell mat-cell class="cent" *matCellDef="let row">
-                <mat-icon *ngIf="row.isPaid" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
-                <mat-icon *ngIf="!row.isPaid" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+                {{row.allowParam}}
             </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="days">      
+          <ng-container matColumnDef="payEvalFormula">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Days
+                Param type
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.days}}</mat-cell>
-          </ng-container>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.allowParamType}}</mat-cell>
+          </ng-container> -->
           
       
           <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>

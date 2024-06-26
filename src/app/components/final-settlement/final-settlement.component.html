@@ -26,7 +26,7 @@ color="primary"
       
         <ng-container matColumnDef="EmpId">      
           <mat-header-cell class="centH" *matHeaderCellDef>
-              Emp Id
+              Employee
           </mat-header-cell>     
           <mat-cell mat-cell class="cent" *matCellDef="let row"><ngx-skeleton-loader /></mat-cell>
         </ng-container>
@@ -94,6 +94,30 @@ color="primary"
             </mat-cell>
           </ng-container>
         
+          <ng-container matColumnDef="LoanClear" >  
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Loan
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+                <ngx-skeleton-loader />
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Locked">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Locked
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"> <ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="Lock">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Lock
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row"> <ngx-skeleton-loader /></mat-cell>
+          </ng-container>
+          
+        
     
         <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     
@@ -113,22 +137,39 @@ color="primary"
   
             <!-- Columns definition here to be displayed -->
         
-            <ng-container matColumnDef="select">
+            <ng-container matColumnDef="select" stickyEnd>
               <mat-header-cell class="cbPad"  *matHeaderCellDef>
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/final-settlement-entry/{{row.finalSettleId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
-                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
+                <button *ngIf="row.finalSettLockId === 0" class="Btn" mat-icon-button color="basic" matTooltip="Actions" [matMenuTriggerFor]="menu"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="more_vert"></mat-icon></button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item *ngIf="row.finalSettLockId === 0 && row.gratuityClear && row.leaveClear && row.salaryClear && row.invClear && row.handoverCl && row.supervisorCl && row.managerCl && row.loanClear"  (click)="onLock(row)">
+                    <mat-icon>lock</mat-icon>
+                    <span>Lock</span>
+                  </button>
+                  <button mat-menu-item *ngIf="row.finalSettLockId === 0"  routerLink="/system/final-settlement-entry/{{row.finalSettleId}}">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item *ngIf="row.finalSettLockId === 0"  (click)="onDelete(row)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+                <!-- <button *ngIf="row.finalSettLockId === 0"  (click)="onLock(row)" class="Btn" mat-icon-button color="primary" matTooltip="Lock"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="lock"></mat-icon></button>
+                <button *ngIf="row.finalSettLockId === 0"  routerLink="/system/final-settlement-entry/{{row.finalSettleId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button *ngIf="row.finalSettLockId === 0"  (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button> -->
+                <!-- <button  class="lock-button" >Lock</button> -->
               </mat-cell>
           </ng-container>
         
           
           <ng-container matColumnDef="EmpId">      
             <mat-header-cell class="centH" *matHeaderCellDef>
-                Emp Id
+                Employee
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.empId}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.employeeName}}</mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="GratuityClear">      
@@ -200,6 +241,39 @@ color="primary"
                 <mat-icon *ngIf="!row.managerCl" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
             </mat-cell>
           </ng-container>
+
+          <ng-container matColumnDef="LoanClear" >  
+            <mat-header-cell class="centH" *matHeaderCellDef>
+                Loan
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+              <mat-icon *ngIf="row.loanClear" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+              <mat-icon *ngIf="!row.loanClear" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Locked">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Locked
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+              <mat-icon *ngIf="row.finalSettLockId != 0" aria-hidden="false" aria-label="Example done icon" style="color: rgb(90, 180, 90);" fontIcon="done"></mat-icon>
+              <mat-icon *ngIf="row.finalSettLockId === 0" aria-hidden="false" aria-label="Example clear icon" style="color: rgb(180, 90, 90);" fontIcon="clear"></mat-icon>
+              <!-- <button *ngIf="!row.locked" (click)="onLock(row)" class="lock-button" >Lock</button> -->
+            </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="Lock">      
+            <mat-header-cell class="centH" *matHeaderCellDef>
+              Lock
+            </mat-header-cell>     
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+              
+              <!-- <button *ngIf="row.finalSettLockId === 0" (click)="onLock(row)" class="lock-button" >Lock</button> -->
+              <button *ngIf="row.finalSettLockId === 0"  (click)="onLock(row)" class="Btn" mat-icon-button color="primary" matTooltip="Lock"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="lock"></mat-icon></button>
+            </mat-cell>
+          </ng-container>
+          
 
       
           <mat-header-row class="headerRow" *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>

@@ -56,7 +56,7 @@ export class ChangeRoleComponent {
         this.toast.observe({
           loading: 'Just a moment while getting roles...',
           success: (data) => 'Roles loaded successfully ...!',
-          error: (error) => `API Error: ${error.message}`,
+          error: (error) => `Error: ${error.error.message}`,
         })
       ).subscribe((reponse) => {
         this.dataIsLoaded = true

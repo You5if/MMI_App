@@ -76,8 +76,10 @@ color="primary"
                 Action
               </mat-header-cell>
                <mat-cell class="cbPad" *matCellDef="let row; let i = index">
-                <button routerLink="/system/employee-leave-entry/{{row.empLeaveId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
-                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button>
+                <!-- <button routerLink="/system/employee-leave-entry/{{row.empLeaveId}}" style="margin-right: 5px;" class="Btn" mat-icon-button color="primary" matTooltip="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="edit"></mat-icon></button>
+                <button (click)="onDelete(row)" class="Btn" mat-icon-button color="warn" matTooltip="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete"></mat-icon></button> -->
+                <button (click)="onUpload(row)" class="Btn" mat-icon-button color="primary" matTooltip="Delete" matTooltip="Upload"><mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="file_upload"></mat-icon></button>
+
               </mat-cell>
           </ng-container>
         
@@ -107,7 +109,13 @@ color="primary"
             <mat-header-cell class="centH" *matHeaderCellDef>
               Remarks
             </mat-header-cell>     
-            <mat-cell mat-cell class="cent" *matCellDef="let row">{{row.remarks}}</mat-cell>
+            <mat-cell mat-cell class="cent" *matCellDef="let row">
+              <div style="display: flex;flex-direction: column;">
+                @for (item of row.remarks; track $index) {
+                  <a [href]="item.Link" [download]="item.OriginalFileName" target="_blank">{{item.OriginalFileName}}</a>
+                }
+              </div>
+            </mat-cell>
           </ng-container>
           
       

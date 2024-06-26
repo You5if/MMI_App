@@ -11,6 +11,7 @@ import { GlobalService } from '../../../global.service';
 import { AuthService } from '../../../security/auth/auth.service';
 import { CommonService } from '../../common.service';
 import { SaveChangesComponent } from '../../general-operations/tenure-options/save-changes.component';
+import { error } from 'console';
 
 @Component({
   selector: 'app-final-settlement-entry',
@@ -24,10 +25,11 @@ export class FinalSettlementEntryComponent {
   public witness1 = 31;
   public witness2 = 31;
   public finalDate = new Date();
-
+  disableEmp: boolean = false
   public description = '';
   public remarks = '';
   public attachments = '';
+  showLoading: boolean = false
 
   gratuityClear: boolean = false
         leaveClear: boolean= false
@@ -36,6 +38,7 @@ export class FinalSettlementEntryComponent {
         handoverCl: boolean= false
         supervisorCl: boolean= false
         managerCl: boolean= false
+        loanClear: boolean= false
         handedTo = 31
  
 
@@ -51,6 +54,7 @@ message: string = "";
   submitDisable: boolean = false;
 
   @ViewChild('heroForm') ngForm!: NgForm;
+  disableCompSettAudit: boolean = false;
 
   constructor(
     private finalSettleService: FinalSettlementService,
@@ -88,10 +92,12 @@ message: string = "";
               console.log('API Response:', response);
               this.finalSettleId = response.finalSettleId
               this.empId = response.empId
+              this.disableEmp =  true
               this.finalDate = response.finalDate
               this.remarks = response.remarks
               this.description = response.description
               this.witness1 = response.witness1
+              this.witness2 = response.witness2
               this.gratuityClear = response.gratuityClear
               this.leaveClear = response.leaveClear
               this.salaryClear = response.salaryClear
@@ -99,6 +105,7 @@ message: string = "";
               this.handoverCl = response.handoverCl
               this.supervisorCl = response.supervisorCl
               this.managerCl = response.managerCl
+              this.loanClear = response.loanClear
               this.handedTo = response.handedTo
               this.attachments = response.attachments;
               if (this.attachments != '') {
@@ -219,7 +226,7 @@ uploadAttachments(files:any)  {
           this.toast.observe({
             loading: 'Uploading attachment...',
             success: (data) => 'Attachment uploaded successfully ...!',
-            error: (error) => `API Error: ${error.message}`,
+            error: (error) => `Error: ${error.error.message}`,
           })
         ).subscribe((event) => {
           // console.log('valEvent', event);
@@ -290,7 +297,23 @@ deleteAttach(id: number) {
   this.links.splice(id, 1)
 }
 
-btnClick=  () => {
+onCompSett() {
+  this.disableEmp = true
+  this.disableCompSettAudit = true
+  
+  const empData = {"employeeId": this.empId}
+        this.finalSettleService.compSettAudit(empData).subscribe((result) => {
+          console.log(result);
+          // this.router.navigate(['/system/employee-term-end'], { relativeTo: this.activeRoute.parent });
+          // this.empProcessFinished.emit();
+        }, (error) =>{
+          console.log(error);
+        })
+  this.showLoading = true
+  
+}
+
+endTerm=  () => {
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);
@@ -306,6 +329,7 @@ btnClick=  () => {
   "HandoverCl": this.handoverCl,
   "SupervisorCl": this.supervisorCl,
   "ManagerCl": this.managerCl,
+  "LoanClear": this.loanClear,
   "HandedTo": this.handedTo,
   "Remarks": this.remarks,
   "Witness1": this.witness1,
@@ -330,7 +354,64 @@ btnClick=  () => {
     this.toast.observe({
       loading: 'Saving new record...',
       success: (data) => `${data.errorMessage}`,
-      error: (error) => `API Error: ${error.message}`,
+      error: (error) => `Error: ${error.error.message}`,
+    })
+  ).subscribe(
+    response => {
+      console.log('API Response:', response);
+      this.router.navigate(['/system/employee-term-end'], { relativeTo: this.activeRoute.parent });
+      // this.screenMode = 'index';
+      // Handle the response data here
+    },
+    error => {
+      // console.error('API Error:', error);
+      this.submitDisable = false
+      // Handle any errors here
+    }
+  );
+}
+btnClick=  () => {
+  this.submitDisable = true
+  // this.router.navigate(['/user']);
+  // console.log(this.firstName);
+  var dataToSend: FinalSettleToSendModel = {
+    "FinalSettleId": this.finalSettleId,
+  "EmpId": this.empId,
+  "FinalDate": this.finalDate,
+  "Description": this.description,
+  "GratuityClear": this.gratuityClear,
+  "LeaveClear": this.leaveClear,
+  "SalaryClear": this.salaryClear,
+  "InvClear": this.invClear,
+  "HandoverCl": this.handoverCl,
+  "SupervisorCl": this.supervisorCl,
+  "ManagerCl": this.managerCl,
+  "LoanClear": this.loanClear,
+  "HandedTo": this.handedTo,
+  "Remarks": this.remarks,
+  "Witness1": this.witness1,
+  "Witness2": this.witness2,
+  "Attachments": JSON.stringify(this.links),
+  "IsTest": this._auth.getIsTest(),
+  "Active": true,
+  "Deleted": false,
+  "UserCR": Number(this._auth.getUserId()),
+  "Company": 789,
+  "RoleCR": Number(this._auth.getRole()),
+  "DateCR": "2024-02-28T09:10:00",
+  "Browser": "Firefox",
+  "Device": "Laptop",
+  "Resol": "1366x768",
+  "TransId": 0
+  };   // Example data to send
+
+  console.log(dataToSend);
+  
+  this.finalSettleService.sendData(dataToSend).pipe(
+    this.toast.observe({
+      loading: 'Saving new record...',
+      success: (data) => `${data.errorMessage}`,
+      error: (error) => `Error: ${error.error.message}`,
     })
   ).subscribe(
     response => {

@@ -32,7 +32,7 @@ export class FinalSettlementService {
   }
 
   getEmpDropdown(): Observable<any> { 
-    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1/false', this._cf.requestOptions());
+    return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/empprofileid/vwempprofileindex/empname/active=1 and empprofileid>1 and istest=0 and hasleft=0/false', this._cf.requestOptions());
   }
   getLeaveDropdown(): Observable<any> { 
     return this.httpclient.get<any>(this._globals.baseAPIUrl + 'Ddl/getdropdown/leaveid/leave/leavename/active=1 and leaveid>1/false', this._cf.requestOptions());
@@ -44,6 +44,20 @@ export class FinalSettlementService {
       return result;
       }), catchError(this._cf.handleError)
       );
+  }
+  lockRecord(dataToSend: any): Observable<any> {
+    return this.httpclient.post<any>(this._globals.baseAPIUrl + "FinalSettLock/create", dataToSend, this._cf.requestOptions()).pipe(
+        map((result: any) => {
+        return result;
+        }), catchError(this._cf.handleError)
+        );
+  }
+  compSettAudit(dataToSend: any): Observable<any> {
+    return this.httpclient.post<any>(this._globals.baseAPIUrl + "FinalSettle/runfinalaudit", dataToSend, this._cf.requestOptions()).pipe(
+        map((result: any) => {
+        return result;
+        }), catchError(this._cf.handleError)
+        );
   }
   
 }

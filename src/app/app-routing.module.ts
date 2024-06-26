@@ -86,6 +86,7 @@ import { CreditNoteEntryComponent } from './components/credit-note/credit-note-e
 import { HrReportComponent } from './reports/hr-report/hr-report.component';
 import { ReportPageComponent } from './reports/report-page/report-page.component';
 import { InvReportComponent } from './reports/inv-report/inv-report.component';
+import { EmpTermEndComponent } from './components/emp-term-end/emp-term-end.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -139,6 +140,7 @@ const routes: Routes = [
   {path: 'leave-application', component: LeaveBalanceComponent},
   {path: 'leave-application-entry/:id', component: LeaveBalanceEntryComponent},
   {path: 'companyweekend', component: CompanyWeekendComponent},
+  {path: 'employee-term-end', component: EmpTermEndComponent},
   // Finance screens
   {path: 'chart-of-accounts', component: ChartOfAccountsComponent},
   {path: 'chart-of-accounts-entry/:id', component: ChartOfAccountsEntryComponent},

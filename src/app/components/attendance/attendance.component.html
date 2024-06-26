@@ -110,7 +110,7 @@ class="refresh_icon2"
 </div>
 </div>
 
-<app-payroll-progress-bar [isProgressActive]="showLoading" [message]="'Processing attendance !'"  [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
+<app-payroll-progress-bar [isProgressActive]="showLoading" [message]="'Processing attendance !'" [empScreen]="false"  [refreshScreen]="true" [timeLoad]="60" (canceled)="onProgressCanceled()"></app-payroll-progress-bar>
 
 <!-- <button *ngIf="screenMode === 'index'"
     (click)="btnClickCreate();"
