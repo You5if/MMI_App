@@ -30,7 +30,7 @@ export class AppGlobals {
   departments: string[] = [
     "Administration",      
  "Finance" ,    
- "Human Resourses"  ,   
+ "Human Resources"  ,   
  "Engineering and designing",    
  "Marketing and Sales",      
  "Procurement",     
@@ -39,6 +39,28 @@ export class AppGlobals {
  "Production",      
  "Services"
   ]
+
+ jobTitles: string[] = [
+    "Accountant" ,    
+"Human Resources Officer",     
+"Draftsman",     
+"Purchasing Officer",     
+"Operation Manager",     
+"Production Manager",    
+"Foreman",     
+"Machine Operator",  
+"Sales Engineer",
+"Driver",
+"Security Guard", 
+"Plant Manager" , 
+"Fabricator",     
+"Painter",     
+"Welder",     
+"Electrician",      
+"Store keeper",     
+"Office Boy",     
+"Helper"
+  ];
 
   /* Development Server */
   readonly realappUrl: string = "https://mmi.autopay-mcs.com/";

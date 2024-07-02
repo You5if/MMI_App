@@ -239,23 +239,7 @@ export class EmpEntryComponent {
 
   // public departments: string[] = ['HR', 'Finance', 'IT', 'Operations']; // Sample departments
   public selectedDepartment: string = ''; // Variable to store the selected department
-  public jobTitles: string[] = [
-    "Acountant" ,    
-"Human Resources Officer",     
-"Draftsman",     
-"Purchasing Officer",     
-"Operation Manager",     
-"Production Manager",    
-"Foreman",     
-"Machine Operator",     
-"Fabricator",     
-"Painter",     
-"Welder",     
-"Electricion",      
-"Store keeper",     
-"Office Boy",     
-"Helper"
-  ]; // Sample job titles
+  public jobTitles: string[] = [] // Sample job titles
   public staffTypes: string[] = [
     "Management", "Labor", "type3", "type4", "type5"
   ]; // Sample staff type
@@ -349,6 +333,7 @@ export class EmpEntryComponent {
 
   ngOnInit():void {
     this.departments = this._globals.departments
+    this.jobTitles = this._globals.jobTitles
     this.other = false
     this.globalService.setNavStatus('entry')
     this.empService.getDropdown().subscribe({

@@ -28,6 +28,8 @@ export class OtherEraningEntryComponent {
   remarks: string = ''
   employees: any[] = []
   earnEmp: string[] = []
+
+  selectedEmployee: string
  
 
   submitDisable: boolean = false;
@@ -73,7 +75,8 @@ export class OtherEraningEntryComponent {
               this.amount = response.amount
               this.earnAllowId = response.earnAllowId
               this.remarks = response.remarks
-              this.earnEmp = response.employees.split(', ')
+              this.selectedEmployee = response.employees
+              // this.earnEmp = response.employees.split(', ')
 
 
               this.submitDisable = false
@@ -163,7 +166,7 @@ btnClick=  () => {
   // console.log(this.firstName);
   var dataToSend: EarnToSendModel = {
     "EarnAllowId": this.earnAllowId,
-    "Employees": this.earnEmp.join(', '),
+    "Employees": this.selectedEmployee,
     "Month": this.month,
     "Year": this.getYear,
     "Amount": this.amount,

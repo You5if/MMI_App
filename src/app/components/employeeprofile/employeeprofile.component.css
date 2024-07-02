@@ -31,7 +31,9 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    /* position: fixed;
+    top: 0; */
 }
 .action-btns {
     display: flex;
@@ -72,7 +74,8 @@ mat-divider {
 }
 
 .first-card-home {
-    margin-top: 65px;
+    margin-top: 20px;
+    margin-right: 10px;
 }
 .first-card {
     margin-top: 120px;

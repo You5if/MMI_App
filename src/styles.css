@@ -32,6 +32,16 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/* .action-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    position: fixed;
+    top: 0;
+} */
+
 .card {
     display: flex;
     flex-direction: column;

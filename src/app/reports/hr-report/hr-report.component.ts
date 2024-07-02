@@ -15,6 +15,7 @@ export class HrReportComponent {
 
   months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
    years: number[] = [2024, 2025]
+   genders: string[] = ["Male", "Female"]
 
    empAttDetMonth: number = 1
    empAttDetYear: number = 2024
@@ -30,6 +31,18 @@ export class HrReportComponent {
    absenteeismYear: number = 2024
    monthOvertimeMonth: number = 1
    monthOvertimeYear: number = 2024
+   payslipByDeptMonth: number = 1
+   payslipByDeptYear: number = 2024
+   turnoverByGenMonth: number = 1
+   turnoverByGenYear: number = 2024
+   turnoverByJobMonth: number = 1
+   turnoverByJobYear: number = 2024
+   turnoverByDeptMonth: number = 1
+   turnoverByDeptYear: number = 2024
+   turnoverByAgeMonth: number = 1
+   turnoverByAgeYear: number = 2024
+   payslipByEmpMonth: number = 1
+   payslipByEmpYear: number = 2024
    overtimeMonth: number = 1
    overtimeYear: number = 2024
    leavesMonth: number = 1
@@ -37,6 +50,14 @@ export class HrReportComponent {
 
    fromDate: Date = new Date()
    toDate: Date = new Date()
+   fromDateDeptTurn: Date = new Date()
+   toDateDeptTurn: Date = new Date()
+   fromDateGenTurn: Date = new Date()
+   toDateGenTurn: Date = new Date()
+   fromDateJobTurn: Date = new Date()
+   toDateJobTurn: Date = new Date()
+   fromDateAgeTurn: Date = new Date()
+   toDateAgeTurn: Date = new Date()
 
    products: any[] = []
    employees: any[] = []
@@ -52,6 +73,7 @@ export class HrReportComponent {
    empIncidentIdReport: number = 1
 
    departments: string[] = []
+   jobTitles: string[] = []
    selectedDepartment23: string = '';
    selectedDepartment25: string = '';
    selectedDepartment27: string = '';
@@ -59,6 +81,12 @@ export class HrReportComponent {
    selectedDepartment29: string = '';
    selectedDepartment32: string = '';
    selectedDepartment34: string = '';
+   selectedDepartment41: string = '';
+   selectedGender40: string = '';
+   selectedJob42: string = '';
+
+   fromAgeNum: number =  0
+   toAgeNum: number =  0
    
    constructor(
     private AgreementServcie: AgreementService,
@@ -69,7 +97,8 @@ export class HrReportComponent {
 
    ngOnInit(): void {
     this.departments = this._global.departments
-    this.AgreementServcie.getDropdown().subscribe({
+    this.jobTitles = this._global.jobTitles
+    this.AgreementServcie.getReportHrEmpDropdown().subscribe({
       next: (value) => {
         this.employees = value
       },
@@ -114,6 +143,40 @@ export class HrReportComponent {
       // this.router.navigate(['system/report-page']);
       window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
    }
+   fetchGenDateReport(id: number,gen: string, month: number, year: number) {
+    console.log(id, month, year);
+    
+    let restOfUrl: string; 
+      restOfUrl = 'month=' + month; 
+      restOfUrl = restOfUrl + '&year=' + year;
+      restOfUrl = restOfUrl + '&gender=' + gen;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+   fetchJobDateReport(id: number,job: string, month: number, year: number) {
+    console.log(id, month, year);
+    
+    let restOfUrl: string; 
+      restOfUrl = 'month=' + month; 
+      restOfUrl = restOfUrl + '&year=' + year;
+      restOfUrl = restOfUrl + '&jobtitle=' + job;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+   fetchAgeDateReport(id: number,fromDate: Date, toDate: Date, fromAge: number, toAge: number) {
+    console.log(id, fromDate, toDate);
+    
+    let restOfUrl: string; 
+      restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+      restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+      restOfUrl = restOfUrl + '&fromage=' + fromAge;
+      restOfUrl = restOfUrl + '&toage=' + toAge;
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
 
    fetchIdReport(id: number) {
     
@@ -128,6 +191,36 @@ export class HrReportComponent {
     let restOfUrl: string;
     restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
     restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+   fetchDeptRangeDateReport(id: number, text:string, fromDate: Date, toDate: Date) {
+    
+    let restOfUrl: string;
+    restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&department=' + text; 
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+   fetchGenRangeDateReport(id: number, text:string, fromDate: Date, toDate: Date) {
+    
+    let restOfUrl: string;
+    restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&gender=' + text; 
+      this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
+      // this.router.navigate(['system/report-page']);
+      window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');
+   }
+   fetchJobRangeDateReport(id: number, text:string, fromDate: Date, toDate: Date) {
+    
+    let restOfUrl: string;
+    restOfUrl = 'fromdate=' + moment(fromDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&todate=' + moment(toDate, 'MM-DD-YYYY', true).format("YYYY-MM-DD"); 
+    restOfUrl = restOfUrl + '&jobtitle=' + text; 
       this._report.passReportData({ reportId: id!, restOfUrl: restOfUrl! }); 
       // this.router.navigate(['system/report-page']);
       window.open('https://inventoryreports.autopay-mcs.com/default.aspx?reportid=' + id + '&' + restOfUrl, '_blank');

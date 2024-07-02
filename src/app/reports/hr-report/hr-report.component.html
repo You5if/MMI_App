@@ -221,7 +221,7 @@
       </div>
 
       <div class="card" >
-        <div class="card-head">Overall loans report</div>
+        <div class="card-head">Active loans</div>
         <div class="card-body">
             <button mat-stroked-button color="primary"  (click)="fetchIdReport(22)" type="button" >Get report</button>
 
@@ -319,8 +319,22 @@
                   <mat-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name }}</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Month</mat-label>
+                <mat-select   [(ngModel)]="payslipByEmpMonth" name="payslipByEmpMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="payslipByEmpYear" name="payslipByEmpYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-            <button mat-stroked-button color="primary"  (click)="fetchEmpReport(26, empIdReport26)" type="button" >Get report</button>
+            <button mat-stroked-button color="primary"  (click)="fetchEmpDateReport(26, empIdReport26,  payslipByEmpMonth, payslipByEmpYear)" type="button" >Get report</button>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchEmpReport(26, empIdReport26)" type="button" >Get report</button> -->
 
         </div>
       </div>
@@ -379,8 +393,154 @@
                   <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Month</mat-label>
+                <mat-select   [(ngModel)]="payslipByDeptMonth" name="payslipByDeptMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+      <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Year</mat-label>
+                <mat-select  [(ngModel)]="payslipByDeptYear" name="payslipByDeptYear">
+                    <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-            <button mat-stroked-button color="primary"  (click)="fetchDeptReport(25, selectedDepartment25)" type="button" >Get report</button>
+            <button mat-stroked-button color="primary"  (click)="fetchDeptDateReport(25, selectedDepartment25,  payslipByDeptMonth, payslipByDeptYear)" type="button" >Get report</button>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchDeptReport(25, selectedDepartment25)" type="button" >Get report</button> -->
+
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-head">Turnover by department</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Department</mat-label>
+                <mat-select [(ngModel)]="selectedDepartment41" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>From date</mat-label>
+                <input   matInput [matDatepicker]="picker5" [(ngModel)]="fromDateDeptTurn" name="fromDateDeptTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
+                <mat-datepicker #picker5></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>To date</mat-label>
+                <input   matInput [matDatepicker]="picker6" [(ngModel)]="toDateDeptTurn" name="toDateDeptTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker6"></mat-datepicker-toggle>
+                <mat-datepicker #picker6></mat-datepicker>
+              </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchDeptRangeDateReport(41, selectedDepartment41,  fromDateDeptTurn, toDateDeptTurn)" type="button" >Get report</button>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchDeptReport(25, selectedDepartment25)" type="button" >Get report</button> -->
+
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-head">Turnover by gender</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select [(ngModel)]="selectedGender40" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>From date</mat-label>
+                <input   matInput [matDatepicker]="picker7" [(ngModel)]="fromDateGenTurn" name="fromDateGenTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker7"></mat-datepicker-toggle>
+                <mat-datepicker #picker7></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>To date</mat-label>
+                <input   matInput [matDatepicker]="picker8" [(ngModel)]="toDateGenTurn" name="toDateGenTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker8"></mat-datepicker-toggle>
+                <mat-datepicker #picker8></mat-datepicker>
+              </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchGenRangeDateReport(40, selectedGender40,  fromDateGenTurn, toDateGenTurn)" type="button" >Get report</button>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchGenDateReport(41, selectedGender40,  turnoverByGenMonth, turnoverByGenYear)" type="button" >Get report</button> -->
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchDeptReport(25, selectedDepartment25)" type="button" >Get report</button> -->
+
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-head">Turnover by job title</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>Job title</mat-label>
+                <mat-select [(ngModel)]="selectedJob42" [ngModelOptions]="{standalone: true}">
+                  <mat-option *ngFor="let job of jobTitles" [value]="job">{{ job }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>From date</mat-label>
+                <input   matInput [matDatepicker]="picker9" [(ngModel)]="fromDateJobTurn" name="fromDateJobTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker9"></mat-datepicker-toggle>
+                <mat-datepicker #picker9></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>To date</mat-label>
+                <input   matInput [matDatepicker]="picker10" [(ngModel)]="toDateJobTurn" name="toDateJobTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker10"></mat-datepicker-toggle>
+                <mat-datepicker #picker10></mat-datepicker>
+              </mat-form-field>
+
+            <button mat-stroked-button color="primary"  (click)="fetchJobRangeDateReport(42, selectedJob42,  fromDateJobTurn, toDateJobTurn)" type="button" >Get report</button>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchJobDateReport(41, selectedJob42,  turnoverByJobMonth, turnoverByJobYear)" type="button" >Get report</button> -->
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchDeptReport(25, selectedDepartment25)" type="button" >Get report</button> -->
+
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-head">Turnover by age range</div>
+        <div class="card-body">
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>From date</mat-label>
+                <input   matInput [matDatepicker]="picker11" [(ngModel)]="fromDateAgeTurn" name="fromDateAgeTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker11"></mat-datepicker-toggle>
+                <mat-datepicker #picker11></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>To date</mat-label>
+                <input   matInput [matDatepicker]="picker12" [(ngModel)]="toDateAgeTurn" name="toDateAgeTurn">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker12"></mat-datepicker-toggle>
+                <mat-datepicker #picker12></mat-datepicker>
+              </mat-form-field>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchJobRangeDateReport(42, selectedJob42,  fromDateJobTurn, toDateJobTurn)" type="button" >Get report</button> -->
+
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>From age</mat-label>
+                <input matInput type="number" positiveNumberOnly min="0" placeholder="From age"   [(ngModel)]="fromAgeNum" name="fromAgeNum">
+            </mat-form-field>
+
+            <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-label>To age</mat-label>
+                <input matInput type="number" positiveNumberOnly min="0" placeholder="To age"   [(ngModel)]="toAgeNum" name="toAgeNum">
+            </mat-form-field>
+
+
+            <button mat-stroked-button color="primary"  (click)="fetchAgeDateReport(43,  fromDateAgeTurn, toDateAgeTurn, fromAgeNum, toAgeNum)" type="button" >Get report</button>
+
+            <!-- <button mat-stroked-button color="primary"  (click)="fetchDeptReport(25, selectedDepartment25)" type="button" >Get report</button> -->
 
         </div>
       </div>

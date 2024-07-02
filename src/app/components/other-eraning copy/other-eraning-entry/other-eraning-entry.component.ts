@@ -28,6 +28,7 @@ export class OtherDeductionEntryComponent {
   remarks: string = ''
   employees: any[] = []
   earnEmp: string[] = []
+  selectedEmployee: string
  
 
   submitDisable: boolean = false;
@@ -73,7 +74,7 @@ export class OtherDeductionEntryComponent {
               this.amount = response.amount
               this.earnAllowId = response.earnDedId
               this.remarks = response.remarks
-              this.earnEmp = response.employees.split(', ')
+              this.selectedEmployee = response.employees
 
 
               this.submitDisable = false
@@ -158,7 +159,7 @@ btnClick=  () => {
   // console.log(this.firstName);
   var dataToSend: EarnToSendModel = {
     "EarnDedId": this.earnAllowId,
-    "Employees": this.earnEmp.join(', '),
+    "Employees": this.selectedEmployee,
     "Month": this.month,
     "Year": this.getYear,
     "Amount": this.amount,
