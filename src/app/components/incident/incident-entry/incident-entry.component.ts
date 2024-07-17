@@ -21,8 +21,8 @@ export class IncidentEntryComponent {
 
   // local variables 
   public empId : number;
-  public witness1 : number;
-  public witness2 : number;
+  public witness1 : any;
+  public witness2 : any;
   public incDate = new Date();
 
   public description = '';
@@ -38,6 +38,8 @@ export class IncidentEntryComponent {
   empIncidentId: number = 0
   leaveId: number = 0
 employees: any[] = []
+filteredEmployees :any[] = [];
+    filteredWitnesses:any[] = [];
  
 
   submitDisable: boolean = false;
@@ -63,6 +65,8 @@ employees: any[] = []
     this.incService.getEmpDropdown().subscribe({
       next: (value) => {
         this.employees = value
+        this.filteredEmployees = [...this.employees];
+    this.filteredWitnesses =[...this.employees];
       },
       error: (err) => {
         console.error('API Error:', err);
@@ -158,7 +162,37 @@ employees: any[] = []
   
 }
 
+filterWitnesses() {
+  console.log("HERE WE GO!");
+  
+  if (this.empId) {
+    this.filteredWitnesses = this.employees.filter(employee => employee.id !== this.empId);
+  } else {
+    this.filteredWitnesses = [...this.employees];
+  }
+
+  if (this.witness1 === this.empId) {
+    this.witness1 = null;
+  }
+  if (this.witness2 === this.empId || this.witness2 === this.witness1) {
+    this.witness1 = null;
+  }
+}
+
 btnClick=  () => {
+  if (this.witness1 === this.empId) {
+    this.toast.error("Selected employee can't be chosen in the withness again")
+    return;
+  }
+  if (this.witness2 === this.empId) {
+    this.toast.error("Selected employee can't be chosen in the withness again")
+    return;
+  }
+  if (this.witness1 === this.witness2) {
+    this.toast.error("Witness 1 and 2 can't be the same")
+    return;
+  }
+  
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);

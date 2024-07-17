@@ -99,6 +99,11 @@ export class SidenavComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+    for (let i = 0; i < this.navData.length; i++) {
+      const item = this.navData[i];
+      this.shrinkItems(item);
+    item.expanded = !item.expanded;
+    }
   }
 
   handleClick(item: INavbarData): void {

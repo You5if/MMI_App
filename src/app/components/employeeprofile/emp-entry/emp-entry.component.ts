@@ -229,9 +229,9 @@ export class EmpEntryComponent {
   public selectedNationality: string = ''; // Variable to store the selected department
 
   public mail = '';
-  public phone = '';
-  public phone2 = '';
-  public emerContact = '';
+  public phone = '5';
+  public phone2 = '5';
+  public emerContact = '5';
   public address = '';
   public gender = true;
 

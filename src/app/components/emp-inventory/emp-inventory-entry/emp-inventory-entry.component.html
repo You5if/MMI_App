@@ -45,9 +45,9 @@ mat-button
         <input [disabled]="submitDisable" required matInput appTitleCase placeholder="Model no"  [(ngModel)]="modelNo" name="modelNo"  >
     </mat-form-field>
 
-    <mat-form-field style="margin-right: 10px;" appearance="outline">
+    <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
         <mat-label>Specifications</mat-label>
-        <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Specifications"  [(ngModel)]="specs" name="specs">
+        <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Specifications"  [(ngModel)]="specs" name="specs"></textarea>
     </mat-form-field>
 
     
@@ -73,9 +73,9 @@ mat-button
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
 
-              <mat-form-field style="margin-right: 10px;" appearance="outline">
+              <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                 <mat-label>Allocation remarks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocation remarks"  [(ngModel)]="allocRemarks" name="allocRemarks" >
+                <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Allocation remarks"  [(ngModel)]="allocRemarks" name="allocRemarks" ></textarea>
             </mat-form-field>
         </div>
         </div>
@@ -110,7 +110,7 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Withdraw date</mat-label>
-                <input [disabled]="submitDisable" required  matInput [matDatepicker]="picker3" [(ngModel)]="withdrawDate" name="withdrawDate">
+                <input [disabled]="submitDisable"  matInput [matDatepicker]="picker3" [(ngModel)]="withdrawDate" name="withdrawDate">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>

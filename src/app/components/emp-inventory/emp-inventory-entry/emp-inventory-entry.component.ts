@@ -192,6 +192,39 @@ btnClick=  () => {
     this.toast.error("Choose withdraw date")
     return;
   }
+  if (this.expiry < this.allocationDate) {
+    this.toast.error("Expiry can't be less than Allocation date")
+    return;
+  }
+  if (this.allocationDate < this.withdrawDate) {
+    this.toast.error("Allocation date can't be less than Withdraw date")
+    return;
+  }
+  // if (this.witnessEmp1 === this.empId) {
+  //   this.toast.error("Selected employee can't be chosen in the withness again")
+  //   return;
+  // }
+  // if (this.witnessEmp2 === this.empId) {
+  //   this.toast.error("Selected employee can't be chosen in the withness again")
+  //   return;
+  // }
+  // if (this.witnessEmp1 === this.witnessEmp2) {
+  //   this.toast.error("Witness 1 and 2 can't be the same")
+  //   return;
+  // }
+
+  if (this.witnessWDEmp1 === this.empId) {
+    this.toast.error("Selected employee can't be chosen in the withness again")
+    return;
+  }
+  if (this.witnessWDEmp2 === this.empId) {
+    this.toast.error("Selected employee can't be chosen in the withness again")
+    return;
+  }
+  if (this.witnessWDEmp1 === this.witnessWDEmp2) {
+    this.toast.error("Witness 1 and 2 can't be the same")
+    return;
+  }
   this.submitDisable = true
   // this.router.navigate(['/user']);
   // console.log(this.firstName);

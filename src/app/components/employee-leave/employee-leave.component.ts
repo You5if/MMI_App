@@ -145,6 +145,8 @@ export class EmployeeLeaveComponent {
   }
 
   onUpload(rowData: EmpLeaveModel) {
+    console.log(rowData);
+    
     if(this.dialog.openDialogs.length==0){
       const dialogRef = this.dialog.open(UploadFromTableComponent, {
        disableClose: true,

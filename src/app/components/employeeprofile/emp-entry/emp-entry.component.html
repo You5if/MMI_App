@@ -49,17 +49,17 @@ mat-button
 <img [src]="croppedImage" /> -->
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>First name</mat-label>
-                <input [disabled]="submitDisable" required matInput appTitleCase  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"   >
+                <input [disabled]="submitDisable" appNoNumbers required matInput  placeholder="First name" id="firstName"   [(ngModel)]="firstName" name="firstName"   >
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Middle name</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
+                <input [disabled]="submitDisable" matInput appNoNumbers placeholder="Middle name"  [(ngModel)]="middleName" name="middleName">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Last name</mat-label>
-                <input [disabled]="submitDisable" required matInput appTitleCase placeholder="Last name"  [(ngModel)]="lastName" name="lastName"  >
+                <input [disabled]="submitDisable" required matInput appNoNumbers placeholder="Last name"  [(ngModel)]="lastName" name="lastName"  >
             </mat-form-field>
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
@@ -103,17 +103,17 @@ mat-button
         <div class="card-body">
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>E-mail</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="E-mail"  [(ngModel)]="mail" name="mail">
+                <input [disabled]="submitDisable" type="email" matInput placeholder="E-mail"  [(ngModel)]="mail" name="mail">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Phone</mat-label>
-                <input [disabled]="submitDisable" required matInput type="number" positiveNumberOnly min="0" placeholder="Phone"   [(ngModel)]="phone" name="phone">
+                <input [disabled]="submitDisable" required matInput type="number" phoneNumber [maxPhone]="9" placeholder="Phone"   [(ngModel)]="phone" name="phone">
             </mat-form-field>
     
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Phone 2</mat-label>
-                <input [disabled]="submitDisable" matInput type="number" positiveNumberOnly min="0" placeholder="Phone 2"  [(ngModel)]="phone2"  name="phone2">
+                <input [disabled]="submitDisable" matInput type="number" phoneNumber [maxPhone]="9" placeholder="Phone 2"  [(ngModel)]="phone2"  name="phone2">
             </mat-form-field>
 
             <mat-form-field appearance="outline" style="margin-right: 10px;">
@@ -180,19 +180,19 @@ mat-button
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Emergency person</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency person"  type="text" [(ngModel)]="emerPerson" name="emerPerson">
+                <input [disabled]="submitDisable" matInput appNoNumbers placeholder="Emergency person"  type="text" [(ngModel)]="emerPerson" name="emerPerson">
             </mat-form-field>
             
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Emergency contact</mat-label>
-                <input [disabled]="submitDisable" required matInput type="number" positiveNumberOnly min="0" placeholder="Emergency contact"  [(ngModel)]="emerContact" name="emercontact">
+                <input [disabled]="submitDisable" required matInput type="number" phoneNumber [maxPhone]="9" placeholder="Emergency contact"  [(ngModel)]="emerContact" name="emercontact">
             </mat-form-field>
 
     
 
             <mat-form-field style="margin-right: 10px;" appearance="outline">
                 <mat-label>Emergency relation</mat-label>
-                <input [disabled]="submitDisable" matInput appTitleCase placeholder="Emergency relation"  type="text" [(ngModel)]="emerRelation" name="emerRelation">
+                <input [disabled]="submitDisable" matInput appNoNumbers placeholder="Emergency relation"  type="text" [(ngModel)]="emerRelation" name="emerRelation">
             </mat-form-field>
     
         </div>
@@ -286,9 +286,9 @@ mat-button
         <div class="card-head">Identification documents</div>
         <div class="card-body">
             
-                <mat-form-field style="margin-right: 10px;" appearance="outline">
+                <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                     <mat-label>Insurance</mat-label>
-                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Insurance"  [(ngModel)]="insurance" name="insurance">
+                    <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Insurance"  [(ngModel)]="insurance" name="insurance"></textarea>
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Description</mat-label>
@@ -312,9 +312,9 @@ mat-button
                       </mat-form-field>
                     
                   <mat-divider></mat-divider>
-                  <mat-form-field style="margin-right: 10px;" appearance="outline">
+                  <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                     <mat-label>Labor card</mat-label>
-                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard">
+                    <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Labor card"  [(ngModel)]="laborCard" name="laborCard"></textarea>
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Description</mat-label>
@@ -382,9 +382,9 @@ mat-button
         
                 
                   <mat-divider></mat-divider>
-                  <mat-form-field style="margin-right: 10px;" appearance="outline">
+                  <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                     <mat-label>Visa</mat-label>
-                    <input [disabled]="submitDisable" matInput appTitleCase placeholder="Visa" name="visa" [(ngModel)]="visa" >
+                    <textarea [disabled]="submitDisable" matInput appTitleCase placeholder="Visa" name="visa" [(ngModel)]="visa" ></textarea>
                 </mat-form-field>
                 <mat-form-field style="margin-right: 10px;" appearance="outline">
                     <mat-label>Description</mat-label>

@@ -126,6 +126,8 @@ import { MonthPipe } from './pipes/month.pipe';
 import { CheckFinalSettleLockComponent } from './components/general-operations/tenure-options/check-final-settle-lock.component';
 import { UploadFromTableComponent } from './components/general-operations/tenure-options/upload-from-table.component';
 import { EmpTermEndComponent } from './components/emp-term-end/emp-term-end.component';
+import { NoNumbersDirective } from './directives/NoNumberDirective';
+import { PhoneDirective } from './directives/PhoneDirective';
 
 
 export function getAccessToken(): string {
@@ -159,6 +161,8 @@ export const jwtConfig = {
     TitleCaseDirective,
     DecimalOnlyDirective,
     PositiveNumberOnlyDirective,
+    NoNumbersDirective,
+    PhoneDirective,
     LoanComponent,
     LoanEntryComponent,
     LoanEntryChildComponent,

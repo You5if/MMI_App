@@ -59,10 +59,15 @@ export class UploadFromTableComponent {
 
 
       ngOnInit() {
+        this.links = []
         console.log(this.data);
         this.data.remarks = JSON.stringify(this.data.remarks)
         if (this.data.remarks != '') {
-            this.links = JSON.parse(this.data.remarks);
+          const dataLinks = JSON.parse(this.data.remarks);
+          if (dataLinks != '') {
+            
+            this.links = dataLinks
+          }
           }
       }
 
@@ -132,7 +137,7 @@ uploadAttachments(files:any)  {
               // this.tmpFilesList.push(this.uploadedFile);
               // this.myFiles.push(this.uploadedFile);
               // console.log(JSON.stringify(this.uploadedFile));
-              this.links.push({
+              const fileToSend =  {
                 APIImagePath: uploadedFile.apiImagePath,
                 APIPath: uploadedFile.apiPath,
                 Extension: uploadedFile.extension,
@@ -140,7 +145,10 @@ uploadAttachments(files:any)  {
                 FullPath: uploadedFile.fullPath,
                 OriginalFileName: uploadedFile.originalFileName,
                 Link: "https://" + uploadedFile.fullPath.substring(39)
-                })
+                }
+                console.log(fileToSend);
+              this.links.push(fileToSend)
+                
               // this.user_img = "https://" + this.uploadedFile.fullPath.substring(39)
               // this.apiImagePath = this.uploadedFile.apiImagePath
               // this.apiPath = this.uploadedFile.apiPath
@@ -165,6 +173,7 @@ uploadAttachments(files:any)  {
   
         // });
       }
+      // console.log(this.links);
       return;
     } catch (error:any) {
       // this._ui.loadingStateChanged.next(false);
@@ -173,6 +182,9 @@ uploadAttachments(files:any)  {
       files = [];
       return false;
     }
+
+    
+    
   };
       deleteAttach(id: number) {
         this.links.splice(id, 1)

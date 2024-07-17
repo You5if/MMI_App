@@ -166,7 +166,7 @@ employees: any[] = []
 }
 
 btnClick=  () => {
-  if(this.earn1 === 0) {
+  if(this.earn1 <= 0) {
     this.toast.error("Basic should be greater than zero")
     return;
   }

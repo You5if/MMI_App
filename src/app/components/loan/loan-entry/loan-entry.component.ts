@@ -307,7 +307,7 @@ btnClick=  () => {
     this.toast.error("Tenures can not be empty, you need to add at least one.")
     return;
   }
-  if (this.amount === 0) {
+  if (this.amount <= 0) {
     this.toast.error("Amount can not be zero.")
     return;
   }

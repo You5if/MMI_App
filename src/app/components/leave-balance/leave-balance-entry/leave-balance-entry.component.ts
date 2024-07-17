@@ -67,7 +67,7 @@ leaves: any[] = []
           this.empLeaveService.getLeaveDropdown().subscribe({
             next: (value) => {
               this.leaves = value
-              this.leaveId = value[0].id
+              // this.leaveId = value[0].id
               
             },
             error: (err) => {

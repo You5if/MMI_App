@@ -59,9 +59,9 @@ mat-button
                 <input [disabled]="submitDisable" required matInput  placeholder="Amount"  type="number" min="0" decimalOnly [(ngModel)]="amount" name="amount"  >
                 <mat-error *ngIf="amount < 0">Negative value</mat-error>
               </mat-form-field>
-            <mat-form-field style="margin-right: 10px;" appearance="outline">
+            <mat-form-field style="margin-right: 10px; width: 100%;" appearance="outline">
                 <mat-label>Remarks</mat-label>
-                <input [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  >
+                <textarea [disabled]="submitDisable"  matInput appTitleCase placeholder="Remarks"  [(ngModel)]="remarks" name="remarks"  ></textarea>
               </mat-form-field>
            
         </div>
