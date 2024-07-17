@@ -14,13 +14,20 @@
     padding: 0 3rem;
 
 }
+.settings-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
 .navItem {
     /* background: #f4f7fa; */
     background: transparent;
     position: fixed;
     top: 0;
-    left: 0;
-    z-index: 10;
+    right: 0;
+    z-index: 20;
+    width: 115px;
 }
 .login-body {
     width: 100%;

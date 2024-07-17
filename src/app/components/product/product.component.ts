@@ -9,6 +9,7 @@ import { AppGlobals } from '../../app.global';
 import { AuthService } from '../../security/auth/auth.service';
 import { CommonService } from '../common.service';
 import { CheckDeleteComponent } from '../general-operations/tenure-options/check-delete.component';
+import { SearchFilterComponent } from '../general-operations/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-product',
@@ -124,9 +125,36 @@ export class ProductComponent {
     this.refreshMe()
     }
 
-    onSearch() {
-      console.log(this.searchText);
-      const textToSearch = this.searchText.replace("'", "''")
+    onFilterBySearch(table: string, title: string) {
+      if(this.dialog.openDialogs.length==0){
+        const dialogRef = this.dialog.open(SearchFilterComponent, {
+         disableClose: true,
+         data: {
+          screenTable: table,
+          screenTitle: title
+         }
+       });
+  
+       dialogRef.afterClosed().subscribe((result: any) => {
+        console.log(result);
+        // if (result.tableName === 'empname') {
+        //   // console.log(result.text);
+        //   if (result.text != '') {
+        //     const term = "'%"+result.text+"%'"
+        //   const encodedSearchTerm = encodeURIComponent(term);
+        //   this.empNameFilter = result.tableName+" like "+encodedSearchTerm
+        //   }else {
+        //     this.empNameFilter = ''
+        //   }
+        // }
+        this.onSearch(result.text)
+      }
+       )}
+      }
+  
+    onSearch(text: string) {
+      console.log(text);
+      const textToSearch = text.replace("'", "''")
       const term = "'%"+textToSearch+"%'"
       const encodedSearchTerm = encodeURIComponent(term);
       this.nameFilter = "prodName like "+encodedSearchTerm;

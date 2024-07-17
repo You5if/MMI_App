@@ -12,6 +12,7 @@ import { AttendanceService } from '../attendance/attendance.service';
 import { AttendanceSummaryService } from './attendance-summary.service';
 import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
 import { FilterByComponent } from '../general-operations/filter-by/filter-by.component';
+import { SearchFilterComponent } from '../general-operations/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-attendance-summary',
@@ -116,10 +117,37 @@ export class AttendanceSummaryComponent {
       
     // }
   }
+  
+  onFilterBySearch(table: string, title: string) {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(SearchFilterComponent, {
+       disableClose: true,
+       data: {
+        screenTable: table,
+        screenTitle: title
+       }
+     });
 
-  onSearch() {
-    console.log(this.searchText);
-    const term = "'%"+this.searchText+"%'"
+     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(result);
+      // if (result.tableName === 'empname') {
+      //   // console.log(result.text);
+      //   if (result.text != '') {
+      //     const term = "'%"+result.text+"%'"
+      //   const encodedSearchTerm = encodeURIComponent(term);
+      //   this.empNameFilter = result.tableName+" like "+encodedSearchTerm
+      //   }else {
+      //     this.empNameFilter = ''
+      //   }
+      // }
+      this.onSearch(result.text)
+    }
+     )}
+    }
+
+  onSearch(text: string) {
+    console.log(text);
+    const term = "'%"+text+"%'"
     const encodedSearchTerm = encodeURIComponent(term);
     this.nameFilter = "employeeName like "+encodedSearchTerm
     if (this.dateFilter === "") {

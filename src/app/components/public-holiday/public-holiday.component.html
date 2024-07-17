@@ -1,3 +1,4 @@
+<div class="head-bar">
 <h1 class="first-card-home">Public holiday</h1>
 
 <button 
@@ -7,8 +8,70 @@ color="primary"
   >
   Create
 </button>
+<div class="action-btns">
 
-<div class="action-bar">
+
+  <!-- <button  
+  mat-icon-button
+  matTooltip="Sort"
+  [matTooltipShowDelay]="50"
+  color="basic"
+  type="button"
+  class="refresh_icon"
+  [matMenuTriggerFor]="sortMenu"
+  >
+  <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="swap_vert"></mat-icon>
+  
+  </button>
+  <mat-menu #sortMenu="matMenu">
+    <button disabled mat-menu-item>
+      <span>Sort by code</span>
+    </button>
+    <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
+      <button (click)="onAsc('invCode')" mat-menu-item>
+      <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+      <span>Asc</span>
+    </button>
+    <button (click)="onDesc('invCode')" mat-menu-item >
+      <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+      <span>Desc</span>
+    </button>
+    </div>
+    <button disabled mat-menu-item>
+      <span>Sort by date</span>
+    </button>
+    <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
+      <button (click)="onAsc('invDate')" mat-menu-item>
+      <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
+      <span>Asc</span>
+    </button>
+    <button (click)="onDesc('invDate')" mat-menu-item >
+      <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
+      <span>Desc</span>
+    </button>
+    </div>
+  </mat-menu> -->
+  
+  <button  
+  mat-icon-button
+  matTooltip="Filter by"
+  [matTooltipShowDelay]="50"
+  color="basic"
+  type="button"
+  class="refresh_icon2"
+  (click)="onFilterByDate()"
+    >
+    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
+  </button>
+  
+  
+  @if (sort != "" || filter != "") {
+    <button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
+  }
+  </div>
+</div>
+
+<!-- <div class="action-bar"> -->
   
   <!-- <div class="action-btns">
         <input matInput type="text" placeholder="Search by code" class="action-input" [(ngModel)]="searchText">
@@ -20,70 +83,10 @@ color="primary"
             }
 
   </div> -->
-<div class="action-btns">
 
+<!-- </div> -->
 
-<!-- <button  
-mat-icon-button
-matTooltip="Sort"
-[matTooltipShowDelay]="50"
-color="basic"
-type="button"
-class="refresh_icon"
-[matMenuTriggerFor]="sortMenu"
->
-<mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="swap_vert"></mat-icon>
-
-</button>
-<mat-menu #sortMenu="matMenu">
-  <button disabled mat-menu-item>
-    <span>Sort by code</span>
-  </button>
-  <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
-    <button (click)="onAsc('invCode')" mat-menu-item>
-    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-    <span>Asc</span>
-  </button>
-  <button (click)="onDesc('invCode')" mat-menu-item >
-    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-    <span>Desc</span>
-  </button>
-  </div>
-  <button disabled mat-menu-item>
-    <span>Sort by date</span>
-  </button>
-  <div style="display: flex; flex-direction: row; width: 100%; margin: 0 20ox;">
-    <button (click)="onAsc('invDate')" mat-menu-item>
-    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_upwards"></mat-icon>
-    <span>Asc</span>
-  </button>
-  <button (click)="onDesc('invDate')" mat-menu-item >
-    <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="arrow_downward"></mat-icon>
-    <span>Desc</span>
-  </button>
-  </div>
-</mat-menu> -->
-
-<button  
-mat-icon-button
-matTooltip="Filter by"
-[matTooltipShowDelay]="50"
-color="basic"
-type="button"
-class="refresh_icon2"
-(click)="onFilterByDate()"
-  >
-  <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="filter_list"></mat-icon>
-</button>
-
-
-@if (sort != "" || filter != "") {
-  <button mat-raised-button color="warn" (click)="onClearAll()" [disabled]='sort === "" && filter === ""'>Clear All</button>
-}
-</div>
-</div>
-
-<div class="card" *ngIf="!dataIsLoaded" >
+<div class="card-home" *ngIf="!dataIsLoaded" >
   <!-- <div class="card-head">Employee profile index</div> -->
   <div class="card-body">
       <mat-table #table  [dataSource]="[1,2,3,4,5 ,6,7,8,9,0]" style="width: 100%">
@@ -126,14 +129,14 @@ class="refresh_icon2"
         <mat-row *matRowDef="let row; columns: displayedColumns;"  class="rowR" ></mat-row>
     
       </mat-table>
-      <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+      <!-- <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
           (page)="paginatoryOperation($any($event))" showFirstLastButtons>
-      </mat-paginator>
+      </mat-paginator> -->
       
   </div>
 </div>
 
-<div class="card" *ngIf="dataIsLoaded" >
+<div class="card-home" *ngIf="dataIsLoaded" >
     <div class="card-body">
         <mat-table #table [dataSource]="dataSource"  style="width: 100%">
   
@@ -183,9 +186,8 @@ class="refresh_icon2"
         @if (dataSource.length === 0  && filter === ''&& sort === '' && dataIsLoaded) {
           <h2 class="empty-records">No records yet</h2>
         }
-        <mat-paginator style="width: 100%;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
-            (page)="paginatoryOperation($any($event))" showFirstLastButtons>
-        </mat-paginator>
-        
+        </div>
     </div>
-</div>
+    <mat-paginator style="width: 100%; background: transparent;" [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+        (page)="paginatoryOperation($any($event))" showFirstLastButtons>
+    </mat-paginator>

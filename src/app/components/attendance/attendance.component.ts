@@ -11,6 +11,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { MatDialog } from '@angular/material/dialog';
 import { RefreshAttendanceComponent } from '../general-operations/refresh-attendance/refresh-attendance.component';
 import { FilterByComponent } from '../general-operations/filter-by/filter-by.component';
+import { SearchFilterComponent } from '../general-operations/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-attendance',
@@ -23,6 +24,7 @@ export class AttendanceComponent implements OnInit {
   uploadStatus!: boolean;
   progress!: number;
   uploadedFile!: FileListModel;
+  empNameFilter: string = ''
 
   // screen mode
   screenMode = 'index';
@@ -144,9 +146,9 @@ export class AttendanceComponent implements OnInit {
     this.showLoading2 = false
   }
 
-  onSearch() {
+  onSearch(text: string) {
     console.log(this.searchText);
-    const term = "'%"+this.searchText+"%'"
+    const term = "'%"+text+"%'"
     const encodedSearchTerm = encodeURIComponent(term);
     this.nameFilter = "empname like "+encodedSearchTerm
     if (this.dateFilter === "") {
@@ -492,6 +494,33 @@ alert('Enter key is pressed, form will be submitted');
       }
     );
   }
+
+  onFilterBySearch(table: string, title: string) {
+    if(this.dialog.openDialogs.length==0){
+      const dialogRef = this.dialog.open(SearchFilterComponent, {
+       disableClose: true,
+       data: {
+        screenTable: table,
+        screenTitle: title
+       }
+     });
+
+     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(result);
+      // if (result.tableName === 'empname') {
+      //   // console.log(result.text);
+      //   if (result.text != '') {
+      //     const term = "'%"+result.text+"%'"
+      //   const encodedSearchTerm = encodeURIComponent(term);
+      //   this.empNameFilter = result.tableName+" like "+encodedSearchTerm
+      //   }else {
+      //     this.empNameFilter = ''
+      //   }
+      // }
+      this.onSearch(result.text)
+    }
+     )}
+    }
 
 
   btnClickCancel=  () => {

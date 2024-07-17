@@ -40,14 +40,77 @@ body {
     margin-top: 20px;
     position: fixed;
     top: 0;
-} */
+} */ 
 
-.card {
+.action-container {
+    position: fixed;
+    width: 100%;
+    height: 65px;
+    background-color: #f4f7fa;
+    z-index: 10;
+    top: 0px;
+    padding-top: 15px;
+    left: 10;
+}
+
+.head-bar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    height: 65px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background: #f4f7fa;
+}
+
+.cbPad {
+    display: flex;
+    /* font-size: 18px !important; */
+    /* font-weight: bolder;
+    color: #ffffff; */
+    font-size: 14px !important;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+  }
+.centH {
+    display: flex;
+    font-size: 14px !important;
+    font-weight: bold;
+    /* font-weight: bolder;
+    color: #ffffff; */
+    justify-content: center;
+    align-items: center;
+    button {
+        margin: 0;
+        margin-left: 3px;
+    }
+  }
+  .cent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px !important;
+    /* font-weight: bold; */
+  }
+
+.card-home {
+    /* display: flex;
+    flex-direction: column; 
     border-radius: .5rem;
     background-color: #fff;
     margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef; */
+
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    height: 80vh;
+    margin-top: 70px;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #fff;
+    margin: 4rem 0 0rem 0;
     box-shadow: 0 .25rem .5rem #e6edef;
 
     .card-head {
@@ -61,6 +124,133 @@ body {
         padding: 1rem 1.5rem;
     }
 }
+.card-report {
+    /* display: flex;
+    flex-direction: column; 
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef; */
+
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    height: 89vh;
+    /* margin-top: 70px; */
+    overflow: hidden;
+    overflow-y: scroll;
+    /* background-color: #fff; */
+    margin: 4rem 0 0rem 0;
+    /* box-shadow: 0 .25rem .5rem; */
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    /* .card-body {
+        padding: 1rem 1.5rem;
+    } */
+}
+.card-home-week {
+    /* display: flex;
+    flex-direction: column; 
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef; */
+
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    margin-top: 70px;
+    background-color: #fff;
+    margin: 4rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+}
+.card-report-home {
+    /* display: flex;
+    flex-direction: column; 
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef; */
+
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    /* margin-top: 70px; */
+    background-color: #fff;
+    margin: 0rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+}
+.card {
+    /* display: flex;
+    flex-direction: column; 
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 1.25rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef; */
+
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    margin-top: 70px;
+    background-color: #fff;
+    margin: 3rem 0 1.25rem 0;
+    box-shadow: 0 .25rem .5rem #e6edef;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+}
+.card-home::-webkit-scrollbar {
+    width: 3px;
+  }
+  .card-home::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+  
+    background-color: #e9e9e9;
+  }
+.card-report::-webkit-scrollbar {
+    width: 3px;
+  }
+  .card-report::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+  
+    background-color: #e9e9e9;
+  }
 @media only screen and (max-width: 960px) {
     .card {
         display: flex;

@@ -53,7 +53,7 @@ export class PayrollProgressBarComponent implements OnInit {
       if (this.progressPercentage > 100) {
         this.progressPercentage = 100;
         this.isProgressComplete = true;
-        this.message = "Success!"
+        // this.message = "Success!"
         clearInterval(this.progressInterval);
         if (this.empScreen) {
         //   const empData = {"employeeId": this.empIdData}
@@ -74,7 +74,9 @@ export class PayrollProgressBarComponent implements OnInit {
       if (this.refreshScreen) {
         this.service.getStatusRefresh().subscribe((response) => {
           console.log(response);
-          
+          if (response.id === 1 && response.name === "Success") {
+            this.message = "Success!"
+          }
         }, (error) => {
           // this.message = " Error!"
           // this.cancelProgress()
@@ -82,7 +84,9 @@ export class PayrollProgressBarComponent implements OnInit {
       }else {
           this.service.getStatusPayroll().subscribe((response) => {
             console.log(response);
-            
+            if (response.id === 1 && response.name === "Success") {
+              this.message = "Success!"
+            }
             
           }, (error) => {
             

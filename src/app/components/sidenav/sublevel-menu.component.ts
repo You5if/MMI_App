@@ -37,7 +37,7 @@ import { Router } from '@angular/router';
           <div class="sublevel-link-icon">
           <div class="sidenav-link-icon">
                         <!-- <img src="../../../assets/images/bullet.svg" width="100%" height="100%"/> -->
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        <!-- <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                             attr.style="{{data.svgicon.style}}" viewBox="0 0 500 400"
                             attr.preserveAspectRatio="{{data.svgicon.preserveAspectRatio}}">
 
@@ -45,7 +45,7 @@ import { Router } from '@angular/router';
                             fill="#000000" class="mysvgfill" stroke="none">
                             <path attr.d="{{data.svgicon.d}}"/>
                             </g>
-                        </svg>
+                        </svg> -->
                     </div>
           </div>
           <span class="sublevel-link-text" @fadeInOut *ngIf="collapsed">{{item.label}}</span>
